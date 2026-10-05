@@ -105,7 +105,7 @@ python3 curate.py --period subjects/cat-eagle/period-01 \
 
 > ⚠️ **On an engine without negative prompts there is no solution for "what to remove"** (both the positive `no X` and
 > `exactly one X` were measured ineffective). Such needs must switch to Qwen, or use a ControlNet structure lock. See
-> [the sub-theme's first-round diagnosis](subjects/cat-eagle/rounds/r02.md).
+> [the sub-theme's first-round diagnosis](subjects/cat-eagle/rounds/r02.en.md).
 
 ## 5. Output Log (across sub-themes)
 

@@ -1,5 +1,7 @@
 # R2 · 蜥蜴底座 + 鹰爪（D7）/ 虎掌（D8）—— 部分成立
 
+> 🌐 语言：**中文** ｜ [English](dn-r2.en.md)
+
 > 返回[子主题首页](../README.md) ｜ 复核报告：[dn-r2-review.md](dn-r2-review.md)
 > 引擎：Z-Image-Turbo　1024²　steps 12　**全 3 张共用 seed 4201**
 > 产物：[`work/dragon-nines/r2/`](../../../work/dragon-nines/r2/)　`unapplied` 全空

@@ -1,5 +1,7 @@
 # R1 · 蛇底座 + 鹿角（D1）—— 并发现"部位需要载体结构"
 
+> 🌐 语言：**中文** ｜ [English](dn-r1.en.md)
+
 > 返回[子主题首页](../README.md) ｜ 复核报告：[dn-r1-review.md](dn-r1-review.md)
 > 引擎：Z-Image-Turbo　1024²　steps 12　**全 4 张共用 seed 4201**
 > 产物：[`work/dragon-nines/r1/`](../../../work/dragon-nines/r1/)　`unapplied` 全空

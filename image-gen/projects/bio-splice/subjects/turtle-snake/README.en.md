@@ -88,8 +88,8 @@ Same part, same base, same seed: only the sentence structure changed and it went
 | File | Content |
 |------|------|
 | [`parts.md`](parts.en.md) | **the Black Tortoise part list** (N1–N5), freeing placeholders, rule 81 |
-| [`rounds/ts-r1-r2.md`](rounds/ts-r1-r2.md) | R1–R2: single-piece exploration + the coil-phrasing follow-up (where rule 81 comes from) |
-| [`rounds/ts-r3-r6.md`](rounds/ts-r3-r6.md) | R3–R6: the four finalization rounds |
+| [`rounds/ts-r1-r2.md`](rounds/ts-r1-r2.en.md) | R1–R2: single-piece exploration + the coil-phrasing follow-up (where rule 81 comes from) |
+| [`rounds/ts-r3-r6.md`](rounds/ts-r3-r6.en.md) | R3–R6: the four finalization rounds |
 | `rounds/ts-rN-review.md` | scoring review report of each round (including region audit sheets and point-by-point pros and cons) |
 | [`rounds/prompts-all.md`](rounds/prompts-all.md) | verbatim prompt archive of every round |
 

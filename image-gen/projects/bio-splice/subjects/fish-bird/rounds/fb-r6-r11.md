@@ -1,5 +1,7 @@
 # fb-R6–R11 · 五个出水阶段的定稿轮
 
+> 🌐 语言：**中文** ｜ [English](fb-r6-r11.en.md)
+
 > 返回[子主题首页](../README.md) ｜ 复核报告：[r6](fb-r6-review.md) · [r7](fb-r7-review.md) · [r8](fb-r8-review.md) · [r9](fb-r9-review.md) · [r10](fb-r10-review.md) · [r11](fb-r11-review.md)
 > 引擎：Z-Image-Turbo　steps 12　**seed 6101 / 6102 / 6103 / 6104**　产物：[`work/fish-bird/r6..r11/`](../../../work/fish-bird/)
 > ℹ️ 每轮都带**同轮底座对照**（`base-fish`，规律 76：一轮一个底座）

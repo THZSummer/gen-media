@@ -1,5 +1,7 @@
 # R3 · 鱼鳞（D6）—— 测"腾出占位"的手法
 
+> 🌐 语言：**中文** ｜ [English](dn-r3.en.md)
+
 > 返回[子主题首页](../README.md) ｜ 复核报告：[dn-r3-review.md](dn-r3-review.md)
 > 引擎：Z-Image-Turbo　1024²　steps 12　**全 3 张共用 seed 4201**
 > 产物：[`work/dragon-nines/r3/`](../../../work/dragon-nines/r3/)　`unapplied` 全空

@@ -1,5 +1,7 @@
 # R4 · 合龙 —— 把可行部件叠到同一个体上（收官）
 
+> 🌐 语言：**中文** ｜ [English](dn-r4.en.md)
+
 > 返回[子主题首页](../README.md) ｜ 复核报告：[dn-r4-review.md](dn-r4-review.md)
 > 引擎：Z-Image-Turbo　1024²　steps 12　**全 3 张共用 seed 4201**
 > 产物：[`work/dragon-nines/r4/`](../../../work/dragon-nines/r4/)　`unapplied` 全空

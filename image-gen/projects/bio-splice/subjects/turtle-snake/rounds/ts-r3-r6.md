@@ -1,5 +1,7 @@
 # ts-R3–R6 · 四期定稿轮
 
+> 🌐 语言：**中文** ｜ [English](ts-r3-r6.en.md)
+
 > 返回[子主题首页](../README.md) ｜ 复核报告：[ts-r3](ts-r3-review.md) · [ts-r4](ts-r4-review.md) · [ts-r5](ts-r5-review.md) · [ts-r6](ts-r6-review.md)
 > 引擎：Z-Image-Turbo　steps 12　**seed 5101 / 5102 / 5103**　产物：[`work/turtle-snake/r3..r6/`](../../../work/turtle-snake/)
 > ℹ️ 每轮都带**同轮底座对照**（`base-turtle`，规律 76：一轮一个底座）

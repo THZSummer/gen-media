@@ -135,10 +135,10 @@ for parts like the head, whose prior is extremely strong, the freed slot is fill
 | File | Content |
 |------|------|
 | [`parts.md`](parts.en.md) | **the nine-resemblances part list** (D1–D9), base selection, mechanism predictions |
-| [`rounds/dn-r1.md`](rounds/dn-r1.md) | R1: snake base + deer antlers, discovering that "a part needs a bearing structure" |
-| [`rounds/dn-r2.md`](rounds/dn-r2.md) | R2: switching to a lizard base + eagle talons, verifying that changing the base works |
-| [`rounds/dn-r3.md`](rounds/dn-r3.md) | R3: fish scales, the technique of "freeing a placeholder" and the difficulty of reading a same-material replacement |
-| [`rounds/dn-r4.md`](rounds/dn-r4.md) | R4 [composite dragon]: a 4-piece stack, the region ceiling re-verified |
+| [`rounds/dn-r1.md`](rounds/dn-r1.en.md) | R1: snake base + deer antlers, discovering that "a part needs a bearing structure" |
+| [`rounds/dn-r2.md`](rounds/dn-r2.en.md) | R2: switching to a lizard base + eagle talons, verifying that changing the base works |
+| [`rounds/dn-r3.md`](rounds/dn-r3.en.md) | R3: fish scales, the technique of "freeing a placeholder" and the difficulty of reading a same-material replacement |
+| [`rounds/dn-r4.md`](rounds/dn-r4.en.md) | R4 [composite dragon]: a 4-piece stack, the region ceiling re-verified |
 | [`rounds/dn-r5-r7.md`](rounds/dn-r5-r7.md) | R5–R7 **finalization rounds**: giving the "periods" their own characteristics (period style table + constant within a period/different across periods) |
 | [`rounds/dn-r8.md`](rounds/dn-r8.md) | R8: camel head D2 / rabbit eyes D3—**freeing the placeholder is ineffective, both pieces rejected** |
 | [`rounds/dn-r9.md`](rounds/dn-r9.md) | R9: following up "the base's species noun = a placeholder"—delete it and the donor takes over the **whole animal** |

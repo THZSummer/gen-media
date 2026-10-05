@@ -95,8 +95,8 @@ So the schedule was redone — **the main axis changed from "swap parts" to "sta
 | File | Content |
 |------|------|
 | [`parts.md`](parts.en.md) | **Kunpeng part table** (B1/B2/B5) + Rules 85/86/87 |
-| [`rounds/fb-r1-r5.md`](rounds/fb-r1-r5.md) | R1–R5: total wipeout underwater → landing out of water (the source of the habitat hard constraint) |
-| [`rounds/fb-r6-r11.md`](rounds/fb-r6-r11.md) | R6–R11: the rounds finalizing the five water-exit stages |
+| [`rounds/fb-r1-r5.md`](rounds/fb-r1-r5.en.md) | R1–R5: total wipeout underwater → landing out of water (the source of the habitat hard constraint) |
+| [`rounds/fb-r6-r11.md`](rounds/fb-r6-r11.en.md) | R6–R11: the rounds finalizing the five water-exit stages |
 | `rounds/fb-rN-review.md` | Review reports for each round's scoring |
 | [`rounds/prompts-all.md`](rounds/prompts-all.md) | Verbatim prompt archive for every round |
 

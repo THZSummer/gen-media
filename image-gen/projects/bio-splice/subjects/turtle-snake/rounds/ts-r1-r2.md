@@ -1,5 +1,7 @@
 # ts-R1 / ts-R2 · 单件探索与缠体写法追问
 
+> 🌐 语言：**中文** ｜ [English](ts-r1-r2.en.md)
+
 > 返回[子主题首页](../README.md) ｜ 复核报告：[ts-r1](ts-r1-review.md) · [ts-r2](ts-r2-review.md)
 > 引擎：Z-Image-Turbo　1024²　steps 12　**全部 seed 5101**　产物：[`work/turtle-snake/r1..r2/`](../../../work/turtle-snake/)
 > ℹ️ `work/` 不进仓库（固定 seed 可逐像素复现）

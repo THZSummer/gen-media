@@ -1,5 +1,7 @@
 # fb-R1–R5 · 水下全灭 → 离水落地（生境硬约束的出处）
 
+> 🌐 语言：**中文** ｜ [English](fb-r1-r5.en.md)
+
 > 返回[子主题首页](../README.md) ｜ 复核报告：[r1](fb-r1-review.md) · [r2](fb-r2-review.md) · [r3](fb-r3-review.md) · [r4](fb-r4-review.md) · [r5](fb-r5-review.md)
 > 引擎：Z-Image-Turbo　1024²　steps 12　**全部 seed 6101**　产物：[`work/fish-bird/r1..r5/`](../../../work/fish-bird/)
 > ℹ️ `work/` 不进仓库（固定 seed 可逐像素复现）
