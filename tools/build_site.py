@@ -56,7 +56,8 @@ PROJECTS = {
     "bio-splice":        ("生物拼接", "Bio Splice"),
     "bone-china-doll":   ("骨瓷人偶", "Bone-China Doll"),
     "character-lookbook": ("角色设定图库", "Character Lookbook"),
-    "video-gen":         ("视频生成", "Video Generation"),
+    "shanhai-jing":      ("山海经 · 图赞", "Shan Hai Jing · Illustrated Verses"),
+    "video-projects":    ("视频项目", "Video Projects"),
 }
 
 DOCS = {
@@ -74,10 +75,26 @@ DOCS = {
         "角色多角度设定图库（示例项目）：正面锚点 → 补视角 → 换场景 → 换装。",
         "Multi-angle character lookbook (example project): front anchor → more views → scenes → outfits.",
     ),
-    "video-gen": (
-        "图生视频 / 文生视频的成片与方法手册，图片库的产物在这里被消费。",
-        "Image-to-video / text-to-video films and method notes; the image library feeds in here.",
+    "shanhai-jing": (
+        "以《山海经》原文为纲的图赞连载：一兽一期，标注卷次 + 原文 + 郭璞注，"
+        "面向小红书竖版；出图到制版的完整过程（含失败迭代）都留档。",
+        "Illustrated-verse series driven by the verbatim Shan Hai Jing: one creature per period with "
+        "volume, original passage and commentary; the full generate-to-typeset process is recorded.",
     ),
+    "video-projects": (
+        "图生视频 / 文生视频的成片与方法手册，图片项目的产物在这里被消费。",
+        "Image-to-video / text-to-video films and method notes; image projects feed in here.",
+    ),
+}
+
+# 项目卡片目录：**扫描式收录**（新增项目放进 projects/ 即自动进画廊）。
+# 之前这里硬编码项目清单，导致新建的 shanhai-jing 一直没进画廊。
+PROJECTS_DIR = "projects"
+
+# 封面显式覆写；未列出的走自动挑选（见 pick_cover）
+COVERS = {
+    # 图赞主图（成品卡片）比白描画心更适合当画廊封面
+    "shanhai-jing": "projects/shanhai-jing/subjects/jiu-wei-hu/period-01/02-jiu-wei-hu-zan.png",
 }
 
 VERDICT_OK = "✅"
@@ -268,38 +285,78 @@ def build_subject(sid, meta):
     }
 
 
+IMG_RE = re.compile(r"\.(png|jpe?g|webp)$", re.I)
+
+
+def pick_cover(pid, pdir):
+    """挑项目封面：显式覆写 → `final-*` → 期目录首图 → 项目首图。
+
+    优先级是"确定性"的（walk_files 已排序），所以同输入永远同一张封面。
+    """
+    if pid in COVERS:
+        p = COVERS[pid]
+        return rel(p) if p and os.path.isfile(p) else None
+    imgs = [p for p in walk_files(pdir) if IMG_RE.search(p)]
+    # 排除对照图/审计图：它们是过程件，不代表项目观感
+    imgs = [p for p in imgs if "/controls/" not in p and "audit" not in os.path.basename(p).lower()]
+    for pat in (r"/final[-_]", r"/period-\d+/0?1-", r"/sheet-thumb\."):
+        for p in imgs:
+            if re.search(pat, p, re.I):
+                return rel(p)
+    return rel(imgs[0]) if imgs else None
+
+
+def count_finals(pdir):
+    """数成品：优先读 manifest.json 里 role=final 的条目，退化到文件名含 final。"""
+    n = 0
+    for p in walk_files(pdir):
+        if not p.endswith("manifest.json"):
+            continue
+        try:
+            with open(p, encoding="utf-8") as fh:
+                data = json.load(fh)
+        except (OSError, ValueError):
+            continue
+        for e in data.get("entries", []):
+            if e.get("role") == "final":
+                n += 1
+    return n
+
+
 def build_other_projects():
+    """**扫描 `projects/` 自动收录**项目卡片。
+
+    以前这里硬编码 bone-china-doll / character-lookbook 两个项目，新建的项目
+    （shanhai-jing）建好后不会出现在画廊里。改为扫描后，新增项目放进 `projects/`
+    就自动进画廊；标题/说明/封面可用 PROJECTS / DOCS / COVERS 覆写。
+
+    口径：
+      * `_` 开头（_template）跳过
+      * `bio-splice` 单独成卡（kind=periods，见 build_bio）
+      * **含 `.mp4` 的项目归视频汇总卡**（kind=videos，见 build_videos）
+      * 其余各成一卡（kind=project，点击在新标签打开它的 README）
+    """
     items = []
-
-    # bone-china-doll：挑一张 final-* 当封面
-    bdir = "projects/bone-china-doll"
-    cover = None
-    if os.path.isdir(bdir):
-        cands = [p for p in walk_files(bdir) if os.path.basename(p).startswith("final") and p.endswith(".png")]
-        cands.sort(key=lambda p: (0 if "east" in os.path.basename(p) else 1, len(p), p))
-        if cands:
-            cover = rel(cands[0])
-        zh, en = PROJECTS["bone-china-doll"]
+    if not os.path.isdir(PROJECTS_DIR):
+        return items
+    for pid in sorted(os.listdir(PROJECTS_DIR)):
+        pdir = os.path.join(PROJECTS_DIR, pid)
+        if not os.path.isdir(pdir) or pid.startswith("_"):
+            continue
+        if pid == "bio-splice":
+            continue
+        if any(p.lower().endswith(".mp4") for p in walk_files(pdir)):
+            continue                              # 视频项目 → 汇总卡
+        title = PROJECTS.get(pid, (pid, pid))
+        desc = DOCS.get(pid, ("", ""))
+        finals = count_finals(pdir)
         items.append({
-            "id": "bone-china-doll", "kind": "project",
-            "title": {"zh": zh, "en": en},
-            "desc": {"zh": DOCS["bone-china-doll"][0], "en": DOCS["bone-china-doll"][1]},
-            "cover": cover,
-            "readme": maybe_path(os.path.join(bdir, "README.md")),
-            "stats": {},
-        })
-
-    # character-lookbook：示例项目，暂无成品图
-    cdir = "projects/character-lookbook"
-    if os.path.isdir(cdir):
-        zh, en = PROJECTS["character-lookbook"]
-        items.append({
-            "id": "character-lookbook", "kind": "project",
-            "title": {"zh": zh, "en": en},
-            "desc": {"zh": DOCS["character-lookbook"][0], "en": DOCS["character-lookbook"][1]},
-            "cover": None,
-            "readme": maybe_path(os.path.join(cdir, "README.md")),
-            "stats": {},
+            "id": pid, "kind": "project",
+            "title": {"zh": title[0], "en": title[1]},
+            "desc": {"zh": desc[0], "en": desc[1]},
+            "cover": pick_cover(pid, pdir),
+            "readme": maybe_path(os.path.join(pdir, "README.md")),
+            "stats": {"finals": finals} if finals else {},
         })
     return items
 
@@ -421,13 +478,14 @@ def main():
         "groups": [g["id"] for g in groups],
     }
 
-    vz, ve = PROJECTS["video-gen"]
+    vz, ve = PROJECTS["video-projects"]
     video_card = {
-        "id": "video-gen", "kind": "videos",
+        "id": "video-projects", "kind": "videos",
         "title": {"zh": vz, "en": ve},
-        "desc": {"zh": DOCS["video-gen"][0], "en": DOCS["video-gen"][1]},
+        "desc": {"zh": DOCS["video-projects"][0], "en": DOCS["video-projects"][1]},
         "cover": videos["projects"][0]["poster"] if videos["projects"] else None,
-        "readme": maybe_path("README.md"),
+        # 指向项目索引（原 video-gen/README.md 已随扁平化合并删除）
+        "readme": maybe_path(os.path.join(PROJECTS_DIR, "README.md")),
         "stats": {"projects": len(videos["projects"]), "clips": sum(p["count"] for p in videos["projects"])},
     }
 

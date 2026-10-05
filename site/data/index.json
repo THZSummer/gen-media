@@ -36,18 +36,18 @@
    ]
   },
   {
-   "id": "video-gen",
+   "id": "video-projects",
    "kind": "videos",
    "title": {
-    "zh": "视频生成",
-    "en": "Video Generation"
+    "zh": "视频项目",
+    "en": "Video Projects"
    },
    "desc": {
-    "zh": "图生视频 / 文生视频的成片与方法手册，图片库的产物在这里被消费。",
-    "en": "Image-to-video / text-to-video films and method notes; the image library feeds in here."
+    "zh": "图生视频 / 文生视频的成片与方法手册，图片项目的产物在这里被消费。",
+    "en": "Image-to-video / text-to-video films and method notes; image projects feed in here."
    },
    "cover": "projects/giant-kingdom/out/storyboard/shot1_final.jpg",
-   "readme": "README.md",
+   "readme": "projects/README.md",
    "stats": {
     "projects": 5,
     "clips": 7
@@ -82,6 +82,23 @@
    "cover": null,
    "readme": "projects/character-lookbook/README.md",
    "stats": {}
+  },
+  {
+   "id": "shanhai-jing",
+   "kind": "project",
+   "title": {
+    "zh": "山海经 · 图赞",
+    "en": "Shan Hai Jing · Illustrated Verses"
+   },
+   "desc": {
+    "zh": "以《山海经》原文为纲的图赞连载：一兽一期，标注卷次 + 原文 + 郭璞注，面向小红书竖版；出图到制版的完整过程（含失败迭代）都留档。",
+    "en": "Illustrated-verse series driven by the verbatim Shan Hai Jing: one creature per period with volume, original passage and commentary; the full generate-to-typeset process is recorded."
+   },
+   "cover": "projects/shanhai-jing/subjects/jiu-wei-hu/period-01/02-jiu-wei-hu-zan.png",
+   "readme": "projects/shanhai-jing/README.md",
+   "stats": {
+    "finals": 3
+   }
   }
  ]
 }
