@@ -1,0 +1,52 @@
+{
+  "period": "period-04",
+  "note": "第四期：子座与孢子（ST1+SP1）——雪线砾石·冷光·横",
+  "from": "work/cordyceps/r6/round.json",
+  "entries": [
+    {
+      "final": "01-larva-stroma-spores.png",
+      "path": "01-larva-stroma-spores.png",
+      "role": "final",
+      "source_round": 6,
+      "source_engine": "zimage",
+      "source_shot": "larva-stroma-spores",
+      "source_file": "work/cordyceps/r6/bs-cd-r6-larva-stroma-spores_00001_.png",
+      "seed": 9101,
+      "prompt_id": "5c8af570-6689-49d4-b494-ef82971a28b0",
+      "prompt": "微距特写，一个生物体独自占据画面：它伏在砾石土面上、身体侧向镜头：a large moth larva with a single tall club-shaped fungal stroma rising from its body and clusters of fine pale spores dusting the surface, a segmented pale body, a dark head capsule and short stubby legs. on gravelly soil at the snow line, patches of old snow behind. cold flat light, no shadows. a low macro view, 100mm macro lens at f/11, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "f44e867a64c5128f12f5086d303c1e38c85f7a36ee7af27ad76c8cb929d8cf7a"
+    },
+    {
+      "final": "02-larva-stroma-spores-b.png",
+      "path": "02-larva-stroma-spores-b.png",
+      "role": "final",
+      "source_round": 6,
+      "source_engine": "zimage",
+      "source_shot": "larva-stroma-spores-b",
+      "source_file": "work/cordyceps/r6/bs-cd-r6-larva-stroma-spores-b_00001_.png",
+      "seed": 9102,
+      "prompt_id": "defa9e60-9f04-4959-aac1-3c2b7c049175",
+      "prompt": "微距特写，一个生物体独自占据画面：它伏在砾石土面上、身体侧向镜头：a large moth larva with a single tall club-shaped fungal stroma rising from its body and clusters of fine pale spores dusting the surface, a segmented pale body, a dark head capsule and short stubby legs. on gravelly soil at the snow line, patches of old snow behind. cold flat light, no shadows. a low macro view, 100mm macro lens at f/11, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "b2e4aa7d65ff885b6561ceda2c5328782dea1e719932341ba230450f7469d4e3"
+    },
+    {
+      "final": "controls/larva.png",
+      "path": "controls/larva.png",
+      "role": "control",
+      "source_round": 6,
+      "source_engine": "zimage",
+      "source_shot": "base-larva",
+      "source_file": "work/cordyceps/r6/bs-cd-r6-base-larva_00001_.png",
+      "seed": 9101,
+      "prompt_id": "b9417859-df4c-4cfa-a44b-c4c543c70497",
+      "prompt": "微距特写，一个生物体独自占据画面：它伏在砾石土面上、身体侧向镜头：a large moth larva with a segmented pale body, a dark head capsule and short stubby legs. on gravelly soil at the snow line, patches of old snow behind. cold flat light, no shadows. a low macro view, 100mm macro lens at f/11, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "1c37b750dbd7ea5d100c9ad91572d450828713d851b9f49e163be34eb2e49b48"
+    }
+  ]
+}

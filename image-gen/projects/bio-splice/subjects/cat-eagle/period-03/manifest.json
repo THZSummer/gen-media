@@ -1,0 +1,67 @@
+{
+  "period": "period-03",
+  "note": "第三期：猫底座 + 鹰的局部件（E2 鹰翼 / E5 鹰尾羽）。呈现=雨后林地·逆光·广角低机位翼展·竖",
+  "from": "work/cat-eagle/r15/round.json",
+  "entries": [
+    {
+      "final": "01-cat-eagle-wings.png",
+      "path": "01-cat-eagle-wings.png",
+      "role": "final",
+      "source_round": 15,
+      "source_engine": "zimage",
+      "source_shot": "c-eagle-wings",
+      "source_file": "work/cat-eagle/r15/bs-ce-r15-c-eagle-wings_00001_.png",
+      "seed": 4201,
+      "prompt_id": "34dd732b-d0d8-4b25-a65b-6e6ee4e18217",
+      "prompt": "全身像，一只动物独自占据画面：它正要落定、全身展开：a feral tabby cat with broad folded feathered eagle wings, a broad feline head, tufted ears, whiskers, green slit-pupil eyes, dense striped fur, four legs and a long tail. on a rain-soaked forest floor among ferns and mossy roots. strong backlight through the wet canopy, rimming every feather. Wildlife photograph, a wide-angle 35mm lens at a low angle, f/4, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "6824a52ef71d3eca23a328fb6309b6cfc29404a22fda287d62420ce52fb13060"
+    },
+    {
+      "final": "02-cat-eagle-tail.png",
+      "path": "02-cat-eagle-tail.png",
+      "role": "final",
+      "source_round": 15,
+      "source_engine": "zimage",
+      "source_shot": "c-eagle-tail",
+      "source_file": "work/cat-eagle/r15/bs-ce-r15-c-eagle-tail_00001_.png",
+      "seed": 4201,
+      "prompt_id": "c5cf8636-4a52-4bb9-aa4c-8363d9990ede",
+      "prompt": "全身像，一只动物独自占据画面：它正要落定、全身展开：a feral tabby cat with a fan of dark brown eagle tail feathers, a broad feline head, tufted ears, whiskers, green slit-pupil eyes, dense striped fur, four legs and a long tail. on a rain-soaked forest floor among ferns and mossy roots. strong backlight through the wet canopy, rimming every feather. Wildlife photograph, a wide-angle 35mm lens at a low angle, f/4, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "b0e4ee59ee64e7313a00827b5a4433f86d63cf0b690412d5d079ad86eaa2238a"
+    },
+    {
+      "final": "03-cat-eagle-wings-tail.png",
+      "path": "03-cat-eagle-wings-tail.png",
+      "role": "final",
+      "source_round": 15,
+      "source_engine": "zimage",
+      "source_shot": "c-eagle-wings-tail",
+      "source_file": "work/cat-eagle/r15/bs-ce-r15-c-eagle-wings-tail_00001_.png",
+      "seed": 4201,
+      "prompt_id": "10a04abd-22fd-4a8b-b026-fb337168bbc8",
+      "prompt": "全身像，一只动物独自占据画面：它正要落定、全身展开：a feral tabby cat with broad folded feathered eagle wings and a fan of dark brown eagle tail feathers, a broad feline head, tufted ears, whiskers, green slit-pupil eyes, dense striped fur, four legs and a long tail. on a rain-soaked forest floor among ferns and mossy roots. strong backlight through the wet canopy, rimming every feather. Wildlife photograph, a wide-angle 35mm lens at a low angle, f/4, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "eb152c4f9dfc66a28ac3a282c63a404aedb8d38e4c9c19e8ca535bdb4686ac8c"
+    },
+    {
+      "final": "controls/cat.png",
+      "path": "controls/cat.png",
+      "role": "control",
+      "source_round": 15,
+      "source_engine": "zimage",
+      "source_shot": "base-cat",
+      "source_file": "work/cat-eagle/r15/bs-ce-r15-base-cat_00001_.png",
+      "seed": 4201,
+      "prompt_id": "407724d5-0271-4e50-9709-adbbdd3955ea",
+      "prompt": "全身像，一只动物独自占据画面：它正要落定、全身展开：a feral tabby cat with a broad feline head, tufted ears, whiskers, green slit-pupil eyes, dense striped fur, four legs and a long tail. on a rain-soaked forest floor among ferns and mossy roots. strong backlight through the wet canopy, rimming every feather. Wildlife photograph, a wide-angle 35mm lens at a low angle, f/4, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "61241ca59dbcf2deec86e0b6e14fdf8443ab24688ea47fda53d2255b35643d9a"
+    }
+  ]
+}

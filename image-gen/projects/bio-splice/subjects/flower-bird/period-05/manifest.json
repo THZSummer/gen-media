@@ -1,0 +1,52 @@
+{
+  "period": "period-05",
+  "note": "第五期：花鸟（收官·满枝）——玉兰·逆光·广角·横幅",
+  "from": "work/flower-bird/r8/round.json",
+  "entries": [
+    {
+      "final": "01-flower-bird.png",
+      "path": "01-flower-bird.png",
+      "role": "final",
+      "source_round": 8,
+      "source_engine": "zimage",
+      "source_shot": "flower-bird",
+      "source_file": "work/flower-bird/r8/bs-fb2-r8-flower-bird_00001_.png",
+      "seed": 11101,
+      "prompt_id": "13c3bc2c-492c-4a3c-8691-613afc9bd383",
+      "prompt": "微距特写，一个生物体独自占据画面：一枝上开着好几朵、整体朝向镜头：a large white magnolia flower with long pale bird plume feathers rising from the stem and a tuft of soft downy bird feathers in the centre of the flower, broad rounded petals and a ring of pale stamens. a whole flowering branch in a spring grove. warm low backlight, the plumes glowing. a wide macro view, 45mm lens at f/11, macro photograph, fine surface detail, soft natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "d9b4bd4738066b85dce8e4600eb81022e2019d19605741861e470e6c11776cbd"
+    },
+    {
+      "final": "02-flower-bird-b.png",
+      "path": "02-flower-bird-b.png",
+      "role": "final",
+      "source_round": 8,
+      "source_engine": "zimage",
+      "source_shot": "flower-bird-b",
+      "source_file": "work/flower-bird/r8/bs-fb2-r8-flower-bird-b_00001_.png",
+      "seed": 11102,
+      "prompt_id": "319adc0c-1c78-4142-a7dc-e9447000cf46",
+      "prompt": "微距特写，一个生物体独自占据画面：一枝上开着好几朵、整体朝向镜头：a large white magnolia flower with long pale bird plume feathers rising from the stem and a tuft of soft downy bird feathers in the centre of the flower, broad rounded petals and a ring of pale stamens. a whole flowering branch in a spring grove. warm low backlight, the plumes glowing. a wide macro view, 45mm lens at f/11, macro photograph, fine surface detail, soft natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "f76d595e7125b0124c2e9c09244fabff56b29ee9e010e8c764be5866c638e620"
+    },
+    {
+      "final": "controls/flower.png",
+      "path": "controls/flower.png",
+      "role": "control",
+      "source_round": 8,
+      "source_engine": "zimage",
+      "source_shot": "base-flower",
+      "source_file": "work/flower-bird/r8/bs-fb2-r8-base-flower_00001_.png",
+      "seed": 11101,
+      "prompt_id": "bd68caca-dea1-4f35-9087-0dc02f6131f7",
+      "prompt": "微距特写，一个生物体独自占据画面：一枝上开着好几朵、整体朝向镜头：a large white magnolia flower with broad rounded petals and a ring of pale stamens. a whole flowering branch in a spring grove. warm low backlight, the plumes glowing. a wide macro view, 45mm lens at f/11, macro photograph, fine surface detail, soft natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "0a51aa33455d951d7592c5c89ee5f8f49f4104997d00c0cbb8d745fc0bebee89"
+    }
+  ]
+}

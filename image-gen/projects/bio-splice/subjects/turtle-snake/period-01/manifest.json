@@ -1,0 +1,67 @@
+{
+  "period": "period-01",
+  "note": "第一期：蛇颈的龟（N1）——溪石浅滩·晨光·平视 600mm",
+  "from": "work/turtle-snake/r3/round.json",
+  "entries": [
+    {
+      "final": "01-turtle-snakeneck.png",
+      "path": "01-turtle-snakeneck.png",
+      "role": "final",
+      "source_round": 3,
+      "source_engine": "zimage",
+      "source_shot": "turtle-snakeneck",
+      "source_file": "work/turtle-snake/r3/bs-ts-r3-turtle-snakeneck_00001_.png",
+      "seed": 5101,
+      "prompt_id": "fcf005fd-86a8-478f-abc0-dd561b11ee95",
+      "prompt": "全身像，一只动物独自占据画面：它从水里爬上溪石、正面朝向镜头：a large wild river turtle with a long sinuous snake's neck with fine keeled scales, a dark domed shell, a small wrinkled head, four short webbed legs. on wet river stones at the edge of a shallow stream in early morning. soft low morning light. Wildlife photograph, a level camera at eye height, 600mm telephoto lens at f/4, the whole body in frame, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "113a6343627605ab41c3c33267a99f96bf1e19bbce05eb3058dbeeab5b64ba7d"
+    },
+    {
+      "final": "02-turtle-snakeneck-b.png",
+      "path": "02-turtle-snakeneck-b.png",
+      "role": "final",
+      "source_round": 3,
+      "source_engine": "zimage",
+      "source_shot": "turtle-snakeneck-b",
+      "source_file": "work/turtle-snake/r3/bs-ts-r3-turtle-snakeneck-b_00001_.png",
+      "seed": 5102,
+      "prompt_id": "094cd85a-a52d-45ba-ac7f-eaa9caa2b98e",
+      "prompt": "全身像，一只动物独自占据画面：它从水里爬上溪石、正面朝向镜头：a large wild river turtle with a long sinuous snake's neck with fine keeled scales, a dark domed shell, a small wrinkled head, four short webbed legs. on wet river stones at the edge of a shallow stream in early morning. soft low morning light. Wildlife photograph, a level camera at eye height, 600mm telephoto lens at f/4, the whole body in frame, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "f92fa46833cf2de704af9ffb8ffe1d67dc5383365cce02ebcf86b5d4060911ce"
+    },
+    {
+      "final": "03-turtle-snakeneck-c.png",
+      "path": "03-turtle-snakeneck-c.png",
+      "role": "final",
+      "source_round": 3,
+      "source_engine": "zimage",
+      "source_shot": "turtle-snakeneck-c",
+      "source_file": "work/turtle-snake/r3/bs-ts-r3-turtle-snakeneck-c_00001_.png",
+      "seed": 5103,
+      "prompt_id": "c5139ad3-4dd1-4e6d-97d0-3c62ecf9a0ca",
+      "prompt": "全身像，一只动物独自占据画面：它从水里爬上溪石、正面朝向镜头：a large wild river turtle with a long sinuous snake's neck with fine keeled scales, a dark domed shell, a small wrinkled head, four short webbed legs. on wet river stones at the edge of a shallow stream in early morning. soft low morning light. Wildlife photograph, a level camera at eye height, 600mm telephoto lens at f/4, the whole body in frame, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "f1e071af3cc3d75bdd80be9e7458b855734855bfb011bdc979e05904afecb01a"
+    },
+    {
+      "final": "controls/turtle.png",
+      "path": "controls/turtle.png",
+      "role": "control",
+      "source_round": 3,
+      "source_engine": "zimage",
+      "source_shot": "base-turtle",
+      "source_file": "work/turtle-snake/r3/bs-ts-r3-base-turtle_00001_.png",
+      "seed": 5101,
+      "prompt_id": "8c6f8ada-07b5-469a-bec9-96a4f08f2449",
+      "prompt": "全身像，一只动物独自占据画面：它从水里爬上溪石、正面朝向镜头：a large wild river turtle with a dark domed shell, a small wrinkled head, four short webbed legs. on wet river stones at the edge of a shallow stream in early morning. soft low morning light. Wildlife photograph, a level camera at eye height, 600mm telephoto lens at f/4, the whole body in frame, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "75a05c28811da6c8521a4d6257191a6d0a508d4acc24278d3f347399ca5d32af"
+    }
+  ]
+}

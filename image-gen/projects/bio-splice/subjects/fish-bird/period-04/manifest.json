@@ -1,0 +1,52 @@
+{
+  "period": "period-04",
+  "note": "第四期：低空掠水——长焦压缩·平光灰水·横幅",
+  "from": "work/fish-bird/r9/round.json",
+  "entries": [
+    {
+      "final": "01-fish-wings.png",
+      "path": "01-fish-wings.png",
+      "role": "final",
+      "source_round": 9,
+      "source_engine": "zimage",
+      "source_shot": "fish-wings",
+      "source_file": "work/fish-bird/r9/bs-fb-r9-fish-wings_00001_.png",
+      "seed": 6101,
+      "prompt_id": "5c6bf7aa-2753-4c24-a439-03381570149c",
+      "prompt": "全身像，一只动物独自占据画面：它贴着水面低飞、身体近乎水平：a large wild carp with broad feathered bird wings on both sides of its body, a long scaled body, a blunt head, small eyes and a dorsal fin. skimming low over open water, the far shore compressed behind it. flat overcast light on grey water. Photograph, a 400mm telephoto compressing the distance, f/4, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "13f7206fabfb9146675a51f56b63fed87c5dbd4548c7186e08924d27f8e8fb63"
+    },
+    {
+      "final": "02-fish-wings-spread.png",
+      "path": "02-fish-wings-spread.png",
+      "role": "final",
+      "source_round": 9,
+      "source_engine": "zimage",
+      "source_shot": "fish-wings-spread",
+      "source_file": "work/fish-bird/r9/bs-fb-r9-fish-wings-spread_00001_.png",
+      "seed": 6103,
+      "prompt_id": "631a3c53-7d47-4d18-94bd-3115ffafd336",
+      "prompt": "全身像，一只动物独自占据画面：它贴着水面低飞、身体近乎水平：a large wild carp with a pair of broad feathered bird wings spread wide from its back, a long scaled body, a blunt head, small eyes and a dorsal fin. skimming low over open water, the far shore compressed behind it. flat overcast light on grey water. Photograph, a 400mm telephoto compressing the distance, f/4, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "185ef692d5be8f4f2a43c8789dd15b8e55e724c510b9469e9b9db4cd9fa2bb46"
+    },
+    {
+      "final": "controls/fish.png",
+      "path": "controls/fish.png",
+      "role": "control",
+      "source_round": 9,
+      "source_engine": "zimage",
+      "source_shot": "base-fish",
+      "source_file": "work/fish-bird/r9/bs-fb-r9-base-fish_00001_.png",
+      "seed": 6101,
+      "prompt_id": "10460270-0b08-439f-a5c3-0205b263b43b",
+      "prompt": "全身像，一只动物独自占据画面：它贴着水面低飞、身体近乎水平：a large wild carp with a long scaled body, a blunt head, small eyes and a dorsal fin. skimming low over open water, the far shore compressed behind it. flat overcast light on grey water. Photograph, a 400mm telephoto compressing the distance, f/4, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "08f56fa181061a8046c35ba929d7384a2271f77ba41ac623082cefa9357c1b86"
+    }
+  ]
+}

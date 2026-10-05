@@ -1,0 +1,52 @@
+{
+  "period": "period-04",
+  "note": "第四期：牙舌俱全（T1+T4）——雨后·硬侧光·方",
+  "from": "work/flytrap-fang/r6/round.json",
+  "entries": [
+    {
+      "final": "01-flytrap-fangs-tongue.png",
+      "path": "01-flytrap-fangs-tongue.png",
+      "role": "final",
+      "source_round": 6,
+      "source_engine": "zimage",
+      "source_shot": "flytrap-fangs-tongue",
+      "source_file": "work/flytrap-fang/r6/bs-ff-r6-flytrap-fangs-tongue_00001_.png",
+      "seed": 10101,
+      "prompt_id": "390ef57e-d643-49e0-b6e9-25d8a01663c5",
+      "prompt": "微距特写，一个生物体独自占据画面：它张着夹子、内面朝向镜头：a Venus flytrap with a row of sharp white mammal fangs along the trap edges and a long pink mammal tongue curling out of the trap, two wide-open trap lobes and a red inner surface. in a bog just after rain, water beading on the lobes. hard side light after the rain, crisp shadows. a level macro view, 100mm macro lens at f/11, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "6e2c4d49aeaa5380e868d8f077aa544ee1c7b1408571a1d57af4f309b81b3bc7"
+    },
+    {
+      "final": "02-flytrap-fangs-tongue-b.png",
+      "path": "02-flytrap-fangs-tongue-b.png",
+      "role": "final",
+      "source_round": 6,
+      "source_engine": "zimage",
+      "source_shot": "flytrap-fangs-tongue-b",
+      "source_file": "work/flytrap-fang/r6/bs-ff-r6-flytrap-fangs-tongue-b_00001_.png",
+      "seed": 10102,
+      "prompt_id": "269a7ef9-3f2e-47e1-b94d-11e2cac24628",
+      "prompt": "微距特写，一个生物体独自占据画面：它张着夹子、内面朝向镜头：a Venus flytrap with a row of sharp white mammal fangs along the trap edges and a long pink mammal tongue curling out of the trap, two wide-open trap lobes and a red inner surface. in a bog just after rain, water beading on the lobes. hard side light after the rain, crisp shadows. a level macro view, 100mm macro lens at f/11, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "b0c7d745a950ba034606e4e8b0428037b219966b0d64b54f1bed18875fd2456d"
+    },
+    {
+      "final": "controls/flytrap.png",
+      "path": "controls/flytrap.png",
+      "role": "control",
+      "source_round": 6,
+      "source_engine": "zimage",
+      "source_shot": "base-flytrap",
+      "source_file": "work/flytrap-fang/r6/bs-ff-r6-base-flytrap_00001_.png",
+      "seed": 10101,
+      "prompt_id": "d82b701a-14ef-4859-b27b-913756c86917",
+      "prompt": "微距特写，一个生物体独自占据画面：它张着夹子、内面朝向镜头：a Venus flytrap with two wide-open trap lobes and a red inner surface. in a bog just after rain, water beading on the lobes. hard side light after the rain, crisp shadows. a level macro view, 100mm macro lens at f/11, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "24e00fe26fd92c9647f3df80ba7a182c65e08006d29e649237d1c1d80f4eeee2"
+    }
+  ]
+}

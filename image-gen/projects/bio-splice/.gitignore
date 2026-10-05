@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.scratch/
+
+# 探索产物（半成品/失败轮次）不进仓库：
+# 它们是确定性的，用 run_round.py 的固定 seed 可逐像素复现
+work/

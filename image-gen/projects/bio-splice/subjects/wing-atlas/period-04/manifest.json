@@ -1,0 +1,52 @@
+{
+  "period": "period-04",
+  "note": "第四部分：四翼（飞鱼鳍）——飞鱼长鳍为第二对——水边·湿润光·方",
+  "from": "work/wing-atlas/r7/round.json",
+  "entries": [
+    {
+      "final": "01-bird-flyfish.png",
+      "path": "01-bird-flyfish.png",
+      "role": "final",
+      "source_round": 7,
+      "source_engine": "zimage",
+      "source_shot": "bird-flyfish",
+      "source_file": "work/wing-atlas/r7/bs-wa-r7-bird-flyfish_00001_.png",
+      "seed": 13101,
+      "prompt_id": "691b86a1-a058-4150-ab08-7b7f62ab5205",
+      "prompt": "全身像，一只动物独自占据画面：它立在水边的石头上、侧身朝向镜头：a medium-sized brown bird with a pair of long gliding flying-fish fins rising from its back, a rounded head, a short dark beak, folded feathered wings and a long tail. on a wet stone at the edge of a stream. soft wet light, reflections from the water below. a level view at eye height, 400mm lens at f/5.6, Wildlife photograph, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "cb1d03c7b1055ee10e8889850f87bc3261791316164a0c457a55e31440dce2ee"
+    },
+    {
+      "final": "02-bird-flyfish-b.png",
+      "path": "02-bird-flyfish-b.png",
+      "role": "final",
+      "source_round": 7,
+      "source_engine": "zimage",
+      "source_shot": "bird-flyfish-b",
+      "source_file": "work/wing-atlas/r7/bs-wa-r7-bird-flyfish-b_00001_.png",
+      "seed": 13102,
+      "prompt_id": "475699d5-7ac6-4b00-831e-70cc4d2dbe9d",
+      "prompt": "全身像，一只动物独自占据画面：它立在水边的石头上、侧身朝向镜头：a medium-sized brown bird with a pair of long gliding flying-fish fins rising from its back, a rounded head, a short dark beak, folded feathered wings and a long tail. on a wet stone at the edge of a stream. soft wet light, reflections from the water below. a level view at eye height, 400mm lens at f/5.6, Wildlife photograph, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "d7332e52d89f9f819fd678ea54706032c09e6eaa6782a447b9bd993d970c8d3e"
+    },
+    {
+      "final": "controls/bird.png",
+      "path": "controls/bird.png",
+      "role": "control",
+      "source_round": 7,
+      "source_engine": "zimage",
+      "source_shot": "base-bird",
+      "source_file": "work/wing-atlas/r7/bs-wa-r7-base-bird_00001_.png",
+      "seed": 13101,
+      "prompt_id": "c30164b4-1193-4af2-bcae-7c880ba09b7f",
+      "prompt": "全身像，一只动物独自占据画面：它立在水边的石头上、侧身朝向镜头：a medium-sized brown bird with a rounded head, a short dark beak, folded feathered wings and a long tail. on a wet stone at the edge of a stream. soft wet light, reflections from the water below. a level view at eye height, 400mm lens at f/5.6, Wildlife photograph, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "24bf99d3faa4186bb71fd3496bd926bb908e27b000f7aecffb96e9fd7e9c5ff6"
+    }
+  ]
+}

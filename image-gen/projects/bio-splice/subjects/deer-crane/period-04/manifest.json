@@ -1,0 +1,52 @@
+{
+  "period": "period-04",
+  "note": "第四期：颈腿俱全（G1+G2）——霜晨草地·冷光·平视·横",
+  "from": "work/deer-crane/r5/round.json",
+  "entries": [
+    {
+      "final": "01-deer-neck-legs.png",
+      "path": "01-deer-neck-legs.png",
+      "role": "final",
+      "source_round": 5,
+      "source_engine": "zimage",
+      "source_shot": "deer-neck-legs",
+      "source_file": "work/deer-crane/r5/bs-dc-r5-deer-neck-legs_00001_.png",
+      "seed": 7101,
+      "prompt_id": "39c69736-0f87-4be7-b7a5-765888946dfb",
+      "prompt": "全身像，一只动物独自占据画面：它立在结霜的草地上、侧身朝向镜头：a red deer with a long slender crane's neck with fine grey feathers and a pair of long thin crane's legs, a slender head, large ears, a smooth reddish-brown coat and a short tail. on a frost-covered meadow at first light. cold low light, frost glittering on the grass. Photograph, a level camera at eye height, 400mm lens at f/4, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "8eea44bee6fde58b102d8687eb46b96907cca1b1c40fdbbf886797e91e6d046b"
+    },
+    {
+      "final": "02-deer-neck-legs-b.png",
+      "path": "02-deer-neck-legs-b.png",
+      "role": "final",
+      "source_round": 5,
+      "source_engine": "zimage",
+      "source_shot": "deer-neck-legs-b",
+      "source_file": "work/deer-crane/r5/bs-dc-r5-deer-neck-legs-b_00001_.png",
+      "seed": 7102,
+      "prompt_id": "8798278f-a592-4294-a47c-48397827a63f",
+      "prompt": "全身像，一只动物独自占据画面：它立在结霜的草地上、侧身朝向镜头：a red deer with a long slender crane's neck with fine grey feathers and a pair of long thin crane's legs, a slender head, large ears, a smooth reddish-brown coat and a short tail. on a frost-covered meadow at first light. cold low light, frost glittering on the grass. Photograph, a level camera at eye height, 400mm lens at f/4, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "5756c5a9bce5940eff1e84ebf116bb127e4e261f4b5fc026a20745a39bb7ad63"
+    },
+    {
+      "final": "controls/deer.png",
+      "path": "controls/deer.png",
+      "role": "control",
+      "source_round": 5,
+      "source_engine": "zimage",
+      "source_shot": "base-deer",
+      "source_file": "work/deer-crane/r5/bs-dc-r5-base-deer_00001_.png",
+      "seed": 7101,
+      "prompt_id": "c21d70e5-5e2c-4e24-8d6c-207fa0fc5812",
+      "prompt": "全身像，一只动物独自占据画面：它立在结霜的草地上、侧身朝向镜头：a red deer with a slender head, large ears, a smooth reddish-brown coat and a short tail. on a frost-covered meadow at first light. cold low light, frost glittering on the grass. Photograph, a level camera at eye height, 400mm lens at f/4, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "61c2c3cec28f7594d00dc12ae2ed1cf02fe334aff134e503fc149096356aa970"
+    }
+  ]
+}

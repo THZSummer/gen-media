@@ -1,0 +1,52 @@
+{
+  "period": "period-01",
+  "note": "龙·九似 第一期：蛇底座 + 鹿角 D1（+ 牛耳 D9）。鹰爪 D7 未成立——蛇无四肢，爪无处可长",
+  "from": "work/dragon-nines/r1/round.json",
+  "entries": [
+    {
+      "final": "01-snake-antler.png",
+      "path": "01-snake-antler.png",
+      "role": "final",
+      "source_round": 1,
+      "source_engine": "zimage",
+      "source_shot": "snake-antler",
+      "source_file": "work/dragon-nines/r1/as-dn-r1-snake-antler_00001_.png",
+      "seed": 4201,
+      "prompt_id": "156422e9-1920-4a1b-92e4-6f53b4d7feb4",
+      "prompt": "全身像，一只动物独自占据画面：a large wild snake with a pair of branching deer antlers, its head raised, a blunt scaled head, dark lidless eyes, a flickering forked tongue, keeled scales along a long muscular body. among wet reeds at the edge of a misty marsh, the background falling away into soft grey-green bokeh. Wildlife photograph, 600mm telephoto lens, f/4, shallow depth of field, soft overcast daylight, muted natural colour, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "dc000f115c88b3f9e950254fb39675c32d8b7a71329901309b94052257de8d45"
+    },
+    {
+      "final": "02-snake-antler-ox-ear.png",
+      "path": "02-snake-antler-ox-ear.png",
+      "role": "final",
+      "source_round": 1,
+      "source_engine": "zimage",
+      "source_shot": "snake-antler-oxear",
+      "source_file": "work/dragon-nines/r1/as-dn-r1-snake-antler-oxear_00001_.png",
+      "seed": 4201,
+      "prompt_id": "30dc0dfd-c63b-4c5b-934e-e28fba678ca6",
+      "prompt": "全身像，一只动物独自占据画面：a large wild snake with a pair of branching deer antlers and a small pointed ox's ear, its head raised, a blunt scaled head, dark lidless eyes, a flickering forked tongue, keeled scales along a long muscular body. among wet reeds at the edge of a misty marsh, the background falling away into soft grey-green bokeh. Wildlife photograph, 600mm telephoto lens, f/4, shallow depth of field, soft overcast daylight, muted natural colour, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "1a7924340d0cf12fda840c3280954e541e07a8c3c5250db4f48d4f2408785980"
+    },
+    {
+      "final": "controls/snake.png",
+      "path": "controls/snake.png",
+      "role": "control",
+      "source_round": 1,
+      "source_engine": "zimage",
+      "source_shot": "base-snake",
+      "source_file": "work/dragon-nines/r1/as-dn-r1-base-snake_00001_.png",
+      "seed": 4201,
+      "prompt_id": "4a90b569-8263-418c-ad49-87c5f78854f5",
+      "prompt": "全身像，一只动物独自占据画面：a large wild snake with its head raised, a blunt scaled head, dark lidless eyes, a flickering forked tongue, keeled scales along a long muscular body. among wet reeds at the edge of a misty marsh, the background falling away into soft grey-green bokeh. Wildlife photograph, 600mm telephoto lens, f/4, shallow depth of field, soft overcast daylight, muted natural colour, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "4ad89a4b39ebbb670c26c8676cde4757ff7a80557b0aae99f57835e93c43d894"
+    }
+  ]
+}

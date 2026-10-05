@@ -1,0 +1,52 @@
+{
+  "period": "period-05",
+  "note": "第五期：鹿鹤同春（G1+G2+G6·收官）——春日梅林·柔散光·广角·横幅",
+  "from": "work/deer-crane/r6/round.json",
+  "entries": [
+    {
+      "final": "01-deer-crane-3parts.png",
+      "path": "01-deer-crane-3parts.png",
+      "role": "final",
+      "source_round": 6,
+      "source_engine": "zimage",
+      "source_shot": "deer-crane-3parts",
+      "source_file": "work/deer-crane/r6/bs-dc-r6-deer-crane-3parts_00001_.png",
+      "seed": 7101,
+      "prompt_id": "03f3fa4b-d0a6-450c-a0a2-48f5c977ae5c",
+      "prompt": "全身像，一只动物独自占据画面：它站在花树下、身体横向展开：a red deer with a long slender crane's neck with fine grey feathers and a pair of long thin crane's legs and a fan of long white crane tail feathers, a slender head, large ears and a smooth reddish-brown coat. under blossoming plum trees in spring, petals drifting down. soft diffused light through the blossom. Photograph, a wide-angle 35mm lens at eye height, f/4, the whole animal in frame, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "510077639c226c65368ce0b4ee0c3f0ace5bd989319f01058e5ea9a9d21b0f56"
+    },
+    {
+      "final": "02-deer-crane-3parts-b.png",
+      "path": "02-deer-crane-3parts-b.png",
+      "role": "final",
+      "source_round": 6,
+      "source_engine": "zimage",
+      "source_shot": "deer-crane-3parts-b",
+      "source_file": "work/deer-crane/r6/bs-dc-r6-deer-crane-3parts-b_00001_.png",
+      "seed": 7102,
+      "prompt_id": "1e147177-2cd6-4628-8f5f-3b4bb1e537da",
+      "prompt": "全身像，一只动物独自占据画面：它站在花树下、身体横向展开：a red deer with a long slender crane's neck with fine grey feathers and a pair of long thin crane's legs and a fan of long white crane tail feathers, a slender head, large ears and a smooth reddish-brown coat. under blossoming plum trees in spring, petals drifting down. soft diffused light through the blossom. Photograph, a wide-angle 35mm lens at eye height, f/4, the whole animal in frame, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "2a0a716d2d02baf38eeb65b756dc8e4ad08f495aa9e372bf68a6e08184de3191"
+    },
+    {
+      "final": "controls/deer.png",
+      "path": "controls/deer.png",
+      "role": "control",
+      "source_round": 6,
+      "source_engine": "zimage",
+      "source_shot": "base-deer",
+      "source_file": "work/deer-crane/r6/bs-dc-r6-base-deer_00001_.png",
+      "seed": 7101,
+      "prompt_id": "fbe88ba1-372c-4091-a805-75f8038c9b1f",
+      "prompt": "全身像，一只动物独自占据画面：它站在花树下、身体横向展开：a red deer with a slender head, large ears and a smooth reddish-brown coat. under blossoming plum trees in spring, petals drifting down. soft diffused light through the blossom. Photograph, a wide-angle 35mm lens at eye height, f/4, the whole animal in frame, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "35a351c97fdb5f52c593ebf2e3a7062611b7818598a47a4febd0fc36155b7f7f"
+    }
+  ]
+}

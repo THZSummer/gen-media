@@ -1,0 +1,67 @@
+{
+  "period": "period-01",
+  "note": "第一期：翎枝的花（P6 翎羽落在花轴）——玉兰·晨露柔光·微距 100mm·方",
+  "from": "work/flower-bird/r5/round.json",
+  "entries": [
+    {
+      "final": "01-flower-plume.png",
+      "path": "01-flower-plume.png",
+      "role": "final",
+      "source_round": 5,
+      "source_engine": "zimage",
+      "source_shot": "flower-plume",
+      "source_file": "work/flower-bird/r5/bs-fb2-r5-flower-plume_00001_.png",
+      "seed": 11101,
+      "prompt_id": "51ae06d0-1861-42a0-aa6a-c63e50b4c7bb",
+      "prompt": "微距特写，一个生物体独自占据画面：它开在枝头、正面朝向镜头：a large white magnolia flower with long pale bird plume feathers rising from the stem, broad rounded petals and a ring of pale stamens. on a spring branch, dew on the petals. soft diffused morning light. a level macro view, 100mm macro lens at f/8, macro photograph, fine surface detail, soft natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "de0468dd32feb41da09a335f14c0b7925e04243fe835498bcc81e1329fb1d60b"
+    },
+    {
+      "final": "02-flower-plume-b.png",
+      "path": "02-flower-plume-b.png",
+      "role": "final",
+      "source_round": 5,
+      "source_engine": "zimage",
+      "source_shot": "flower-plume-b",
+      "source_file": "work/flower-bird/r5/bs-fb2-r5-flower-plume-b_00001_.png",
+      "seed": 11102,
+      "prompt_id": "eec78c86-8354-4045-a1f8-856e58a30b58",
+      "prompt": "微距特写，一个生物体独自占据画面：它开在枝头、正面朝向镜头：a large white magnolia flower with long pale bird plume feathers rising from the stem, broad rounded petals and a ring of pale stamens. on a spring branch, dew on the petals. soft diffused morning light. a level macro view, 100mm macro lens at f/8, macro photograph, fine surface detail, soft natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "b216738bcbec889ce6f7888fca0a022a1641b76a22f185d3338189a14b37214c"
+    },
+    {
+      "final": "03-flower-plume-c.png",
+      "path": "03-flower-plume-c.png",
+      "role": "final",
+      "source_round": 5,
+      "source_engine": "zimage",
+      "source_shot": "flower-plume-c",
+      "source_file": "work/flower-bird/r5/bs-fb2-r5-flower-plume-c_00001_.png",
+      "seed": 11103,
+      "prompt_id": "562999c8-bcdd-4d9a-8c73-06fafffe0f79",
+      "prompt": "微距特写，一个生物体独自占据画面：它开在枝头、正面朝向镜头：a large white magnolia flower with long pale bird plume feathers rising from the stem, broad rounded petals and a ring of pale stamens. on a spring branch, dew on the petals. soft diffused morning light. a level macro view, 100mm macro lens at f/8, macro photograph, fine surface detail, soft natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "fb04fb31ae1419e83bccbbc0036162cfd708abc097b592092a4eae7bdce7b0a4"
+    },
+    {
+      "final": "controls/flower.png",
+      "path": "controls/flower.png",
+      "role": "control",
+      "source_round": 5,
+      "source_engine": "zimage",
+      "source_shot": "base-flower",
+      "source_file": "work/flower-bird/r5/bs-fb2-r5-base-flower_00001_.png",
+      "seed": 11101,
+      "prompt_id": "47af1ca8-1a55-4c3d-b4ec-6d1bd773d32c",
+      "prompt": "微距特写，一个生物体独自占据画面：它开在枝头、正面朝向镜头：a large white magnolia flower with broad rounded petals and a ring of pale stamens. on a spring branch, dew on the petals. soft diffused morning light. a level macro view, 100mm macro lens at f/8, macro photograph, fine surface detail, soft natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "a05c6f39ab82f6522a920fa1a9304af0e1af4d6fc008cbd88f99e4a6276b7ae5"
+    }
+  ]
+}

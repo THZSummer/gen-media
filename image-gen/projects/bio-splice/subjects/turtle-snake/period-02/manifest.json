@@ -1,0 +1,67 @@
+{
+  "period": "period-02",
+  "note": "第二期：蛇尾的龟（N2）——湿地泥岸·阴天·平视全身 400mm",
+  "from": "work/turtle-snake/r4/round.json",
+  "entries": [
+    {
+      "final": "01-turtle-snaketail.png",
+      "path": "01-turtle-snaketail.png",
+      "role": "final",
+      "source_round": 4,
+      "source_engine": "zimage",
+      "source_shot": "turtle-snaketail-c",
+      "source_file": "work/turtle-snake/r4/bs-ts-r4-turtle-snaketail-c_00001_.png",
+      "seed": 5103,
+      "prompt_id": "ef036bd4-8f3b-4436-9acc-59dc0ae7d1d0",
+      "prompt": "全身像，一只动物独自占据画面：它正在泥岸上爬行、侧身朝向镜头：a large wild river turtle with a long tapering snake's tail with keeled scales, a dark domed shell, a small wrinkled head, four short webbed legs. on the muddy bank of a marsh pool, wet silt and trampled reeds. flat overcast light. Wildlife photograph, a level camera at eye height, 400mm lens at f/4, the whole body in frame, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "7c251a9c8822fa124af4e4aa41363eec7d354cd94fa3087a4479d2858b2a48b7"
+    },
+    {
+      "final": "02-turtle-snaketail-b.png",
+      "path": "02-turtle-snaketail-b.png",
+      "role": "final",
+      "source_round": 4,
+      "source_engine": "zimage",
+      "source_shot": "turtle-snaketail-b",
+      "source_file": "work/turtle-snake/r4/bs-ts-r4-turtle-snaketail-b_00001_.png",
+      "seed": 5102,
+      "prompt_id": "efb648cc-1c56-4088-9983-25275f2343b8",
+      "prompt": "全身像，一只动物独自占据画面：它正在泥岸上爬行、侧身朝向镜头：a large wild river turtle with a long tapering snake's tail with keeled scales, a dark domed shell, a small wrinkled head, four short webbed legs. on the muddy bank of a marsh pool, wet silt and trampled reeds. flat overcast light. Wildlife photograph, a level camera at eye height, 400mm lens at f/4, the whole body in frame, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "c8710666eeb6890540d238a959b73ae513d56f202884370bf0c6479287aaee7e"
+    },
+    {
+      "final": "03-turtle-snaketail.png",
+      "path": "03-turtle-snaketail.png",
+      "role": "final",
+      "source_round": 4,
+      "source_engine": "zimage",
+      "source_shot": "turtle-snaketail",
+      "source_file": "work/turtle-snake/r4/bs-ts-r4-turtle-snaketail_00001_.png",
+      "seed": 5101,
+      "prompt_id": "fbfbb314-87dc-4266-8672-9b24c4971be6",
+      "prompt": "全身像，一只动物独自占据画面：它正在泥岸上爬行、侧身朝向镜头：a large wild river turtle with a long tapering snake's tail with keeled scales, a dark domed shell, a small wrinkled head, four short webbed legs. on the muddy bank of a marsh pool, wet silt and trampled reeds. flat overcast light. Wildlife photograph, a level camera at eye height, 400mm lens at f/4, the whole body in frame, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "e7687746b4b1ec59768c3da6baffb05ac8f01f637d2b3fba59d3e353ed6d63cb"
+    },
+    {
+      "final": "controls/turtle.png",
+      "path": "controls/turtle.png",
+      "role": "control",
+      "source_round": 4,
+      "source_engine": "zimage",
+      "source_shot": "base-turtle",
+      "source_file": "work/turtle-snake/r4/bs-ts-r4-base-turtle_00001_.png",
+      "seed": 5101,
+      "prompt_id": "a42d39a5-4630-4f39-bc12-d9d0af33e412",
+      "prompt": "全身像，一只动物独自占据画面：它正在泥岸上爬行、侧身朝向镜头：a large wild river turtle with a dark domed shell, a small wrinkled head, four short webbed legs. on the muddy bank of a marsh pool, wet silt and trampled reeds. flat overcast light. Wildlife photograph, a level camera at eye height, 400mm lens at f/4, the whole body in frame, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "3e6e3132aee2f1d7f5f3d2aad2302c759e13de70cf481365b87edea538afec0b"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "period": "period-03",
+  "note": "第三期：鹤尾的鹿（G6·真空位）——芦苇荡·逆光·平视 600mm·方（1/4 命中，完整成立）",
+  "from": "work/deer-crane/r7/round.json",
+  "entries": [
+    {
+      "final": "01-deer-cranetait.png",
+      "path": "01-deer-cranetait.png",
+      "role": "final",
+      "source_round": 7,
+      "source_engine": "zimage",
+      "source_shot": "deer-cranetait",
+      "source_file": "work/deer-crane/r7/bs-dc-r7-deer-cranetait_00001_.png",
+      "seed": 7101,
+      "prompt_id": "96e6fe31-cecb-4028-9277-1782e0e61f94",
+      "prompt": "全身像，一只动物独自占据画面：它站在苇丛里、侧身朝向镜头：a red deer with a fan of long white crane tail feathers, a slender head, large ears, a smooth reddish-brown coat and four long legs. among tall reeds at the edge of a marsh. strong backlight through the reed heads. Photograph, a level camera at eye height, 600mm lens at f/4, the whole body in frame, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "fc634c03836947e1a959126ce7f5be9fcb21e122c9fbec9819db6a6162e2b784"
+    },
+    {
+      "final": "controls/deer.png",
+      "path": "controls/deer.png",
+      "role": "control",
+      "source_round": 7,
+      "source_engine": "zimage",
+      "source_shot": "base-deer",
+      "source_file": "work/deer-crane/r7/bs-dc-r7-base-deer_00001_.png",
+      "seed": 7101,
+      "prompt_id": "78228113-ebbd-4c42-b262-acf63ccc45cb",
+      "prompt": "全身像，一只动物独自占据画面：它站在苇丛里、侧身朝向镜头：a red deer with a slender head, large ears, a smooth reddish-brown coat and four long legs. among tall reeds at the edge of a marsh. strong backlight through the reed heads. Photograph, a level camera at eye height, 600mm lens at f/4, the whole body in frame, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "2230b2a22d53ca8c8f1cec67610d6ef3c5de97061fe1ba9972a049b646d4f116"
+    }
+  ]
+}

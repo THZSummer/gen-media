@@ -1,0 +1,77 @@
+{
+  "period": "period-01",
+  "note": "第一期：猫头鹰（猫的头 + 鹰的身体）—— 本子主题唯一成立的方向，三种拼接语义各一张，另附两个退化角对照",
+  "from": "work/cat-eagle/r1/round.json",
+  "entries": [
+    {
+      "final": "01-owl-seamless.png",
+      "role": "final",
+      "source_round": 1,
+      "source_engine": "zimage",
+      "source_shot": "owl-seamless",
+      "source_file": "work/cat-eagle/r1/os-r1-owl-seamless_00001_.png",
+      "seed": 4201,
+      "prompt_id": "be679edd-d263-49c4-be7d-e7abdac8dc52",
+      "prompt": "全身像，一只动物独自占据画面：a single animal whose head is entirely a domestic cat's and whose body is entirely a golden eagle's -- the head with a cat's short muzzle, whiskers, triangular tufted ears, green slit-pupil eyes and soft striped fur; the body with an eagle's dark brown feathering, folded wings and scaled yellow legs with black talons; the head and the body are joined at the neck. The join is invisible: the fur of the head and the feathers of the body meet in a natural transition, as if this animal had evolved this way. in a misty autumn meadow, the background falling away into soft grey-green bokeh. Wildlife photograph, 600mm telephoto lens, f/4, shallow depth of field, soft overcast daylight, muted natural colour, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "64b994f7f3a61c856416b19c8897981697cf6be3a3fad738f683d2f81a7ca040"
+    },
+    {
+      "final": "02-owl-seam.png",
+      "role": "final",
+      "source_round": 1,
+      "source_engine": "zimage",
+      "source_shot": "owl-seam",
+      "source_file": "work/cat-eagle/r1/os-r1-owl-seam_00001_.png",
+      "seed": 4201,
+      "prompt_id": "c16ee1aa-4998-4f8f-8303-e2305fde25a8",
+      "prompt": "全身像，一只动物独自占据画面：a single animal whose head is entirely a domestic cat's and whose body is entirely a golden eagle's -- the head with a cat's short muzzle, whiskers, triangular tufted ears, green slit-pupil eyes and soft striped fur; the body with an eagle's dark brown feathering, folded wings and scaled yellow legs with black talons; the head and the body are joined at the neck. The join is a visible seam: a line of coarse dark stitching runs right around the neck where the two halves are sewn together, the two halves are mismatched in texture and slightly in scale, and the whole animal looks assembled from two different animals like a museum specimen. in a misty autumn meadow, the background falling away into soft grey-green bokeh. Wildlife photograph, 600mm telephoto lens, f/4, shallow depth of field, soft overcast daylight, muted natural colour, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "768e4f2e67330aabf6b5f70c7d832282b6dc728db29cb2eef7a10fa1a7420b79"
+    },
+    {
+      "final": "03-owl-surreal.png",
+      "role": "final",
+      "source_round": 1,
+      "source_engine": "zimage",
+      "source_shot": "owl-surreal",
+      "source_file": "work/cat-eagle/r1/os-r1-owl-surreal_00001_.png",
+      "seed": 4201,
+      "prompt_id": "1ccb65b9-ee13-4ce2-803d-3d6b6ee36683",
+      "prompt": "全身像，一只动物独自占据画面：a single animal whose head is entirely a domestic cat's and whose body is entirely a golden eagle's -- the head with a cat's short muzzle, whiskers, triangular tufted ears, green slit-pupil eyes and soft striped fur; the body with an eagle's dark brown feathering, folded wings and scaled yellow legs with black talons; the head and the body are joined at the neck. Everything is slightly wrong: the head is a little too large for the body, the gaze is uncanny and too still, and the proportions are deliberately impossible -- yet the animal is photographed as calmly and plainly as if it were an ordinary species. in a misty autumn meadow, the background falling away into soft grey-green bokeh. Wildlife photograph, 600mm telephoto lens, f/4, shallow depth of field, soft overcast daylight, muted natural colour, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "845bb129563eb71c9f799559cdc04978c6826d27f723bf5baf49be684fd3fa08"
+    },
+    {
+      "final": "controls/cat.png",
+      "role": "control",
+      "source_round": 1,
+      "source_engine": "zimage",
+      "source_shot": "cat",
+      "source_file": "work/cat-eagle/r1/os-r1-cat_00001_.png",
+      "seed": 4201,
+      "prompt_id": "df0886a5-4c12-45bd-ab67-c56b04cddf2d",
+      "prompt": "全身像，一只动物独自占据画面：a feral tabby cat, head to tail, with a broad feline head, tufted ears, whiskers, green slit-pupil eyes, dense striped fur, four legs and a long tail. in a misty autumn meadow, the background falling away into soft grey-green bokeh. Wildlife photograph, 600mm telephoto lens, f/4, shallow depth of field, soft overcast daylight, muted natural colour, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "f7c1edef1359d11629a9ed4eec1de5ff32d79a5bb867b5055c483d5c67151f34"
+    },
+    {
+      "final": "controls/eagle.png",
+      "role": "control",
+      "source_round": 1,
+      "source_engine": "zimage",
+      "source_shot": "eagle",
+      "source_file": "work/cat-eagle/r1/os-r1-eagle_00001_.png",
+      "seed": 4201,
+      "prompt_id": "84cb8092-ddb0-4fe5-8444-a77b20128a43",
+      "prompt": "全身像，一只动物独自占据画面：a golden eagle, head to tail, with a hooked yellow beak, a dark brown feathered head, a piercing amber eye, a feathered neck ruff, folded wings, and scaled yellow legs with black talons. in a misty autumn meadow, the background falling away into soft grey-green bokeh. Wildlife photograph, 600mm telephoto lens, f/4, shallow depth of field, soft overcast daylight, muted natural colour, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "4a42d7b34d323d0ef1f29edd0530b2ba81160e785f7826bbb931e29013d4a1ca"
+    }
+  ]
+}

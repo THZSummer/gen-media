@@ -1,0 +1,248 @@
+{
+  "name": "fastvideo-fasth3-t2v",
+  "workflow": "video_fastvideo_fasth3_t2v.json",
+  "description": "MiniMax-H3 + FastVideo FastH3 8-Step V2（DMD2 蒸馏）：纯文本 → 视频 + 同步音频（t2va），8 步出片。分辨率由 ResolutionSelector 决定，时长按 17k+5 帧栅格吸附到 24fps。",
+  "parameters": {
+    "prompt": {
+      "interface": "prompt",
+      "aliases": [
+        "text"
+      ]
+    },
+    "seed": {
+      "interface": "noise_seed"
+    },
+    "unet_name": {
+      "interface": "unet_name",
+      "aliases": [
+        "model"
+      ]
+    },
+    "clip_name": {
+      "interface": "clip_name",
+      "aliases": [
+        "text_encoder"
+      ]
+    },
+    "vae_name": {
+      "interface": "vae_name",
+      "aliases": [
+        "video_vae"
+      ]
+    },
+    "audio_vae_name": {
+      "interface": "vae_name_1",
+      "aliases": [
+        "audio_vae",
+        "vae_name_audio"
+      ]
+    },
+    "attention": {
+      "interface": "attention",
+      "aliases": [
+        "attn_backend",
+        "attention_backend"
+      ]
+    },
+    "duration": {
+      "interface": "value_1",
+      "aliases": [
+        "seconds",
+        "duration_seconds"
+      ]
+    },
+    "aspect_ratio": {
+      "node": "ResolutionSelector",
+      "field": "aspect_ratio",
+      "aliases": [
+        "ratio"
+      ]
+    },
+    "megapixels": {
+      "node": "ResolutionSelector",
+      "field": "megapixels",
+      "aliases": [
+        "mp"
+      ]
+    },
+    "multiple": {
+      "node": "ResolutionSelector",
+      "field": "multiple"
+    },
+    "width": {
+      "node": "MiniMaxH3ImageToVideo",
+      "field": "width",
+      "force": true
+    },
+    "height": {
+      "node": "MiniMaxH3ImageToVideo",
+      "field": "height",
+      "force": true
+    },
+    "length": {
+      "node": "MiniMaxH3ImageToVideo",
+      "field": "length",
+      "force": true,
+      "aliases": [
+        "frames"
+      ]
+    },
+    "steps": {
+      "node": "BasicScheduler",
+      "field": "steps"
+    },
+    "scheduler": {
+      "node": "BasicScheduler",
+      "field": "scheduler"
+    },
+    "denoise": {
+      "node": "BasicScheduler",
+      "field": "denoise"
+    },
+    "sampler": {
+      "node": "KSamplerSelect",
+      "field": "sampler_name",
+      "aliases": [
+        "sampler_name"
+      ]
+    },
+    "shift_video": {
+      "node": "MiniMaxH3SigmaShift",
+      "field": "shift_video"
+    },
+    "shift_audio": {
+      "node": "MiniMaxH3SigmaShift",
+      "field": "shift_audio"
+    },
+    "sparse_selection": {
+      "node": "BlockSparseAttention",
+      "field": "selection",
+      "aliases": [
+        "vsa_selection"
+      ]
+    },
+    "sparse_keep_percent": {
+      "node": "BlockSparseAttention",
+      "field": "selection.keep_percent"
+    },
+    "sparse_tau": {
+      "node": "BlockSparseAttention",
+      "field": "tau"
+    },
+    "sparse_start_percent": {
+      "node": "BlockSparseAttention",
+      "field": "start_percent"
+    },
+    "sparse_end_percent": {
+      "node": "BlockSparseAttention",
+      "field": "end_percent"
+    },
+    "sparse_min_tokens": {
+      "node": "BlockSparseAttention",
+      "field": "min_tokens"
+    },
+    "sparse_extra_tokens": {
+      "node": "BlockSparseAttention",
+      "field": "extra_tokens"
+    },
+    "sparse_dense_blocks": {
+      "node": "BlockSparseAttention",
+      "field": "dense_blocks"
+    },
+    "sparse_sink": {
+      "node": "BlockSparseAttention",
+      "field": "sink_conditioning"
+    },
+    "fps": {
+      "node": "CreateVideo",
+      "field": "fps"
+    },
+    "bit_depth": {
+      "node": "CreateVideo",
+      "field": "bit_depth"
+    },
+    "color_space": {
+      "node": "CreateVideo",
+      "field": "color_space"
+    },
+    "video_codec": {
+      "node": "CreateVideo",
+      "field": "codec",
+      "aliases": [
+        "codec"
+      ]
+    },
+    "filename_prefix": {
+      "node": "SaveVideo",
+      "field": "filename_prefix"
+    },
+    "video_format": {
+      "node": "SaveVideo",
+      "field": "format",
+      "aliases": [
+        "format",
+        "container"
+      ]
+    }
+  },
+  "node_classes": {
+    "conditioning": "MiniMaxH3ImageToVideo",
+    "model_loader": "UNETLoader",
+    "text_encoder": "CLIPLoader",
+    "video_vae": "VAELoader",
+    "audio_vae": "VAELoader",
+    "attention_backend": "ModelAttentionBackend",
+    "sparse_attention": "BlockSparseAttention",
+    "sigma_shift": "MiniMaxH3SigmaShift",
+    "scheduler": "BasicScheduler",
+    "sampler_select": "KSamplerSelect",
+    "noise": "RandomNoise",
+    "duration": "PrimitiveFloat",
+    "length_math": "ComfyMathExpression",
+    "resolution": "ResolutionSelector",
+    "video_assembly": "CreateVideo",
+    "save_video": "SaveVideo"
+  },
+  "defaults": {
+    "duration": 5,
+    "aspect_ratio": "1:1 (Square)",
+    "megapixels": 0.4,
+    "multiple": 32,
+    "steps": 8,
+    "sampler": "res_multistep",
+    "scheduler": "simple",
+    "denoise": 1.0,
+    "attention": "comfy kitchen attention",
+    "shift_video": 10,
+    "shift_audio": 3,
+    "sparse_selection": "vsa",
+    "sparse_keep_percent": 10,
+    "sparse_start_percent": 0.2,
+    "sparse_end_percent": 1.0,
+    "sparse_min_tokens": 12288,
+    "sparse_extra_tokens": 256,
+    "sparse_sink": "exact_kv_and_rows",
+    "fps": 24
+  },
+  "expected_unconnected": [
+    "first_frame",
+    "last_frame"
+  ],
+  "drop_inputs": {
+    "RandomNoise": [
+      "control_after_generate"
+    ]
+  },
+  "notes": [
+    "这是纯文生视频（t2va）配置：MiniMaxH3ImageToVideo 的 first_frame / last_frame 是可选输入，不接线即为 T2V，所以 expected_unconnected 声明它们缺失是预期的（否则每轮都会报两条假警告）。",
+    "FastH3 8-Step V2 是 DMD2 蒸馏权重：t2va（纯文生，本工作流）与 fl2va（首尾帧）都已由真机实测确认可用（fl2va 见姊妹技能 image-to-video-fastvideo3，2026-10-03 首跑 success）；只有 Ref2VA（多参考）未蒸馏。⚠️ 本工作流自带 MarkdownNote 里 'supports t2va only；FL2VA 未蒸馏' 那句已过时。",
+    "本工作流真机实测（2026-10-03，576×736 / 56 帧 / 8 步）：status success，165.3 秒，AAC 32kHz 双声道；提交图与服务器执行图 20 节点 0 差异。",
+    "分辨率：ResolutionSelector(aspect_ratio, megapixels, multiple) 算出的 width/height 通过顶层连线喂给 MiniMaxH3ImageToVideo。传 width/height 会 force 切断该连线并写入字面值。",
+    "时长：duration(秒) → PrimitiveFloat → ComfyMathExpression 吸附到 17k+5 帧栅格 → length。传 length 会 force 切断该算式。",
+    "length 栅格公式：max(5, round(duration*24)) + (5 - (max(5, round(duration*24)) % 17)) % 17。5 秒 → 124 帧（17*7+5）→ 5.167 秒。",
+    "steps 是蒸馏权重的一部分：FastH3 8-Step 就该用 8 步；调高不会更细，只会更慢（且脱离蒸馏分布）。",
+    "BlockSparseAttention.selection 是动态 combo：vsa/sla 用 selection.keep_percent，sol-attn 用 tau；FastH3-VSA 权重训练时 keep_percent=10。",
+    "control_after_generate 是前端字段，不在 RandomNoise 的节点 schema 里，必须 drop（否则提交带多余字段）。",
+    "filename_prefix 默认带子目录（video/MiniMax_H3），成品落在 output/video/ 下；/view 下载时 subfolder=video。"
+  ]
+}

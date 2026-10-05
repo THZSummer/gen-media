@@ -1,0 +1,52 @@
+{
+  "period": "period-04",
+  "note": "第四期：颈尾俱全（N1+N2）——雨后溪石·逆光·平视 400mm·横",
+  "from": "work/turtle-snake/r5/round.json",
+  "entries": [
+    {
+      "final": "01-turtle-neck-tail.png",
+      "path": "01-turtle-neck-tail.png",
+      "role": "final",
+      "source_round": 5,
+      "source_engine": "zimage",
+      "source_shot": "turtle-neck-tail",
+      "source_file": "work/turtle-snake/r5/bs-ts-r5-turtle-neck-tail_00001_.png",
+      "seed": 5101,
+      "prompt_id": "6656eff3-ae3a-46a9-a305-123dfd831879",
+      "prompt": "全身像，一只动物独自占据画面：它伏在湿石上、侧身朝向镜头：a large wild river turtle with a long sinuous snake's neck with fine keeled scales and a long tapering snake's tail with keeled scales, a dark domed shell, a small wrinkled head, four short webbed legs. on rain-soaked stones in a mountain stream. backlight through the spray, rimming its outline. Wildlife photograph, a level camera at eye height, 400mm lens at f/4, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "adb819cfb0443e98950ebcb8df7330054f80e7bbee3b6e289e1b3269b33d86e9"
+    },
+    {
+      "final": "02-turtle-neck-tail-b.png",
+      "path": "02-turtle-neck-tail-b.png",
+      "role": "final",
+      "source_round": 5,
+      "source_engine": "zimage",
+      "source_shot": "turtle-neck-tail-b",
+      "source_file": "work/turtle-snake/r5/bs-ts-r5-turtle-neck-tail-b_00001_.png",
+      "seed": 5102,
+      "prompt_id": "1f3237a5-4780-4b14-b0f1-bf5c31edd832",
+      "prompt": "全身像，一只动物独自占据画面：它伏在湿石上、侧身朝向镜头：a large wild river turtle with a long sinuous snake's neck with fine keeled scales and a long tapering snake's tail with keeled scales, a dark domed shell, a small wrinkled head, four short webbed legs. on rain-soaked stones in a mountain stream. backlight through the spray, rimming its outline. Wildlife photograph, a level camera at eye height, 400mm lens at f/4, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "717c3ce298a40bb8a5c3d832c3e9d41374b754e1b1cf69f5e620c5fb0ffad064"
+    },
+    {
+      "final": "controls/turtle.png",
+      "path": "controls/turtle.png",
+      "role": "control",
+      "source_round": 5,
+      "source_engine": "zimage",
+      "source_shot": "base-turtle",
+      "source_file": "work/turtle-snake/r5/bs-ts-r5-base-turtle_00001_.png",
+      "seed": 5101,
+      "prompt_id": "9ef94348-89e0-41dc-b914-730526ea3398",
+      "prompt": "全身像，一只动物独自占据画面：它伏在湿石上、侧身朝向镜头：a large wild river turtle with a dark domed shell, a small wrinkled head, four short webbed legs. on rain-soaked stones in a mountain stream. backlight through the spray, rimming its outline. Wildlife photograph, a level camera at eye height, 400mm lens at f/4, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "ff0922de318d964bc762a94e35f23a5f8ac6705ba608ff7ce6ce561386ee8f3f"
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "period": "period-05",
+  "note": "第五期：共生体（三种形态±藻·收官）——雾林·散射光·广角·横幅",
+  "from": "work/lichen/r5/round.json",
+  "entries": [
+    {
+      "final": "01-mycelium-3forms.png",
+      "path": "01-mycelium-3forms.png",
+      "role": "final",
+      "source_round": 5,
+      "source_engine": "zimage",
+      "source_shot": "mycelium-3forms",
+      "source_file": "work/lichen/r5/bs-lc-r5-mycelium-3forms_00002_.png",
+      "seed": 8101,
+      "prompt_id": "125acdd7-91a9-49d5-91fb-fc6a394dcfb2",
+      "prompt": "微距特写，一个生物体独自占据画面：它铺在林地上的石面上、整体展开：a dense mat of pale fungal mycelium with a hard crustose lichen crust with a cracked areolate surface and leafy foliose lichen lobes with pale rims and branching fruticose lichen tufts standing up like tiny shrubs, fine branching threads and a soft dusty surface. on a mossy boulder in a misty forest, the background dissolving into fog. soft scattered light, no hard shadows. a wide macro view, 45mm lens at f/11, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "694e593ffe124494cbe578254886e1e2c1ed3b704a664b76969080ff90162439"
+    },
+    {
+      "final": "02-mycelium-forms-algae.png",
+      "path": "02-mycelium-forms-algae.png",
+      "role": "final",
+      "source_round": 5,
+      "source_engine": "zimage",
+      "source_shot": "mycelium-forms-algae",
+      "source_file": "work/lichen/r5/bs-lc-r5-mycelium-forms-algae_00002_.png",
+      "seed": 8102,
+      "prompt_id": "65a78031-1409-468c-ba6b-25603b45153d",
+      "prompt": "微距特写，一个生物体独自占据画面：它铺在林地上的石面上、整体展开：a dense mat of pale fungal mycelium with leafy foliose lichen lobes with pale rims and branching fruticose lichen tufts standing up like tiny shrubs and clusters of bright green algal cells, fine branching threads and a soft dusty surface. on a mossy boulder in a misty forest, the background dissolving into fog. soft scattered light, no hard shadows. a wide macro view, 45mm lens at f/11, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "d036280d0b7a1d4d2f8e6bebbacb196038b44c5a91ee994e37f9860115e81ffd"
+    },
+    {
+      "final": "controls/mycelium.png",
+      "path": "controls/mycelium.png",
+      "role": "control",
+      "source_round": 5,
+      "source_engine": "zimage",
+      "source_shot": "base-mycelium",
+      "source_file": "work/lichen/r5/bs-lc-r5-base-mycelium_00002_.png",
+      "seed": 8101,
+      "prompt_id": "8ed533f1-501f-46f5-af55-f2022bb095bc",
+      "prompt": "微距特写，一个生物体独自占据画面：它铺在林地上的石面上、整体展开：a dense mat of pale fungal mycelium with fine branching threads and a soft dusty surface. on a mossy boulder in a misty forest, the background dissolving into fog. soft scattered light, no hard shadows. a wide macro view, 45mm lens at f/11, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "194c1c25abdd6c52f44a3d71413385b095eb2f6fab5037267b60d76ade6ebee6"
+    }
+  ]
+}

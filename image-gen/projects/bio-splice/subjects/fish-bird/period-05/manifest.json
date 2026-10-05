@@ -1,0 +1,52 @@
+{
+  "period": "period-05",
+  "note": "第五期：鲲鹏（收官）——暮色海面·逆光剪影·广角·横幅",
+  "from": "work/fish-bird/r10/round.json",
+  "entries": [
+    {
+      "final": "01-kunpeng.png",
+      "path": "01-kunpeng.png",
+      "role": "final",
+      "source_round": 10,
+      "source_engine": "zimage",
+      "source_shot": "fish-wings-spread",
+      "source_file": "work/fish-bird/r10/bs-fb-r10-fish-wings-spread_00001_.png",
+      "seed": 6101,
+      "prompt_id": "c7d00a36-ea44-4ded-822d-5f5770740ad9",
+      "prompt": "全身像，一只动物独自占据画面：它在暮色海面上高高跃起、双翼全展：a large wild carp with a pair of broad feathered bird wings spread wide from its back, a long scaled body, a blunt head, small eyes and a dorsal fin. above a dark open sea at dusk, the horizon far behind. low backlight throwing the whole animal into near-silhouette. Photograph, a wide-angle 35mm lens at eye height, f/4, the whole animal in frame, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "40b62999134933f0c4bf2caabe7d4c87222c4948046bbc94a2923b7989e91c78"
+    },
+    {
+      "final": "02-kunpeng-spread.png",
+      "path": "02-kunpeng-spread.png",
+      "role": "final",
+      "source_round": 10,
+      "source_engine": "zimage",
+      "source_shot": "fish-wings-spread-b",
+      "source_file": "work/fish-bird/r10/bs-fb-r10-fish-wings-spread-b_00001_.png",
+      "seed": 6102,
+      "prompt_id": "cf50a24b-31a1-4705-a0ef-53c15b3799ff",
+      "prompt": "全身像，一只动物独自占据画面：它在暮色海面上高高跃起、双翼全展：a large wild carp with a pair of broad feathered bird wings spread wide from its back, a long scaled body, a blunt head, small eyes and a dorsal fin. above a dark open sea at dusk, the horizon far behind. low backlight throwing the whole animal into near-silhouette. Photograph, a wide-angle 35mm lens at eye height, f/4, the whole animal in frame, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "d42af2cf04fb1d560184ac33387f17018a6c1e44e52e5330e4bd760f7534de94"
+    },
+    {
+      "final": "controls/fish.png",
+      "path": "controls/fish.png",
+      "role": "control",
+      "source_round": 10,
+      "source_engine": "zimage",
+      "source_shot": "base-fish",
+      "source_file": "work/fish-bird/r10/bs-fb-r10-base-fish_00001_.png",
+      "seed": 6101,
+      "prompt_id": "5b698a81-edcb-4031-943d-53ad7be87e86",
+      "prompt": "全身像，一只动物独自占据画面：它在暮色海面上高高跃起、双翼全展：a large wild carp with a long scaled body, a blunt head, small eyes and a dorsal fin. above a dark open sea at dusk, the horizon far behind. low backlight throwing the whole animal into near-silhouette. Photograph, a wide-angle 35mm lens at eye height, f/4, the whole animal in frame, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "e82e1d3aa94e48ea80aa19d1280cc48241726edf46f100697a58c99610fd660d"
+    }
+  ]
+}

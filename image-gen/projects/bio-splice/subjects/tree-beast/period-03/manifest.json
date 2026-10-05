@@ -1,0 +1,52 @@
+{
+  "period": "period-03",
+  "note": "第三期：皮角俱全（K1+K4）——雨后林·硬光·横",
+  "from": "work/tree-beast/r8/round.json",
+  "entries": [
+    {
+      "final": "01-tree-hide-horns.png",
+      "path": "01-tree-hide-horns.png",
+      "role": "final",
+      "source_round": 8,
+      "source_engine": "zimage",
+      "source_shot": "tree-hide-horns",
+      "source_file": "work/tree-beast/r8/bs-tb-r8-tree-hide-horns_00001_.png",
+      "seed": 12101,
+      "prompt_id": "8f9cce53-cd13-4e0b-b3bf-0d62b48f3af8",
+      "prompt": "全身像，一个生物体独自占据画面：它长在坡地上、树干与根系都朝向镜头：an old gnarled tree with a covering of coarse tawny mammal hide and a pair of massive curved mammal horns rising from the trunk, thick roots spreading over the ground and a massive trunk. on a forest slope just after rain, wet leaves everywhere. hard light breaking through after the rain, crisp shadows. a level view at eye height, 35mm lens at f/11, fine surface detail, natural colour, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "b759f0339411c982d6da82109cd30eccd1e92e823c1281b64a533ab0f087ae6a"
+    },
+    {
+      "final": "02-tree-hide-horns-b.png",
+      "path": "02-tree-hide-horns-b.png",
+      "role": "final",
+      "source_round": 8,
+      "source_engine": "zimage",
+      "source_shot": "tree-hide-horns-b",
+      "source_file": "work/tree-beast/r8/bs-tb-r8-tree-hide-horns-b_00001_.png",
+      "seed": 12102,
+      "prompt_id": "5c2dcfda-1887-4a43-9ffc-dc47625bd13d",
+      "prompt": "全身像，一个生物体独自占据画面：它长在坡地上、树干与根系都朝向镜头：an old gnarled tree with a covering of coarse tawny mammal hide and a pair of massive curved mammal horns rising from the trunk, thick roots spreading over the ground and a massive trunk. on a forest slope just after rain, wet leaves everywhere. hard light breaking through after the rain, crisp shadows. a level view at eye height, 35mm lens at f/11, fine surface detail, natural colour, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "3e21a80c7c9dd99b8ec32235b5669e33372e193a3bea4ebf96088d37d8a79d09"
+    },
+    {
+      "final": "controls/tree.png",
+      "path": "controls/tree.png",
+      "role": "control",
+      "source_round": 8,
+      "source_engine": "zimage",
+      "source_shot": "base-tree",
+      "source_file": "work/tree-beast/r8/bs-tb-r8-base-tree_00001_.png",
+      "seed": 12101,
+      "prompt_id": "f6220f4a-16fa-4e49-8055-44b3edde0ba4",
+      "prompt": "全身像，一个生物体独自占据画面：它长在坡地上、树干与根系都朝向镜头：an old gnarled tree with thick roots spreading over the ground and a massive trunk. on a forest slope just after rain, wet leaves everywhere. hard light breaking through after the rain, crisp shadows. a level view at eye height, 35mm lens at f/11, fine surface detail, natural colour, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "07dc0e7e4fa28eec6ba05ed218e69622ff9b5ed1976c4fb236cedfde5e027268"
+    }
+  ]
+}

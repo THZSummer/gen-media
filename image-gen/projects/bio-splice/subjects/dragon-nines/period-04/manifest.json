@@ -1,0 +1,52 @@
+{
+  "period": "period-04",
+  "note": "期04【雨中岩石·黄昏逆光+雨丝·广角低机位·横幅】合龙：蜥蜴底座 + 角/耳/爪/掌",
+  "from": "work/dragon-nines/r7/round.json",
+  "entries": [
+    {
+      "final": "01-dragon-3parts.png",
+      "path": "01-dragon-3parts.png",
+      "role": "final",
+      "source_round": 7,
+      "source_engine": "zimage",
+      "source_shot": "dragon-3parts",
+      "source_file": "work/dragon-nines/r7/as-dn-r7-dragon-3parts_00001_.png",
+      "seed": 4201,
+      "prompt_id": "a51afce2-81a8-4372-8aa4-6e89cb1569fd",
+      "prompt": "全身像，一只动物独自占据画面：它昂首挺立、四肢张开、全身展开：a large monitor lizard with a pair of branching deer antlers and sharp curved eagle talons on its front feet and broad tiger paws with heavy pads on its hind feet, its head raised, a blunt scaled snout, dark lidless eyes, a flickering forked tongue, four stout legs and a long tapering tail. on a rain-slicked rock outcrop. dusk backlight through falling rain, water beading along its back. Wildlife photograph, a wide-angle 35mm lens at a low angle, f/4, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "1795a7e7835575622e8051b06c75203641a7bfc2c80564f744c80a8b9d578db3"
+    },
+    {
+      "final": "02-dragon-4parts.png",
+      "path": "02-dragon-4parts.png",
+      "role": "final",
+      "source_round": 7,
+      "source_engine": "zimage",
+      "source_shot": "dragon-4parts",
+      "source_file": "work/dragon-nines/r7/as-dn-r7-dragon-4parts_00001_.png",
+      "seed": 4201,
+      "prompt_id": "2695a1ce-03d3-475d-a994-33dbfd134cc5",
+      "prompt": "全身像，一只动物独自占据画面：它昂首挺立、四肢张开、全身展开：a large monitor lizard with a pair of branching deer antlers and a small pointed ox's ear and sharp curved eagle talons on its front feet and broad tiger paws with heavy pads on its hind feet, its head raised, a blunt scaled snout, dark lidless eyes, a flickering forked tongue, four stout legs and a long tapering tail. on a rain-slicked rock outcrop. dusk backlight through falling rain, water beading along its back. Wildlife photograph, a wide-angle 35mm lens at a low angle, f/4, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "f5ae48e7f696f223557f094b9750d213a839713610abb5e374bae01863064bad"
+    },
+    {
+      "final": "controls/lizard.png",
+      "path": "controls/lizard.png",
+      "role": "control",
+      "source_round": 7,
+      "source_engine": "zimage",
+      "source_shot": "base-lizard",
+      "source_file": "work/dragon-nines/r7/as-dn-r7-base-lizard_00001_.png",
+      "seed": 4201,
+      "prompt_id": "e98c0fbd-1ee5-4fa2-98ed-b0b00a24e703",
+      "prompt": "全身像，一只动物独自占据画面：它昂首挺立、四肢张开、全身展开：a large monitor lizard with its head raised, a blunt scaled snout, dark lidless eyes, a flickering forked tongue, four stout legs and a long tapering tail. on a rain-slicked rock outcrop. dusk backlight through falling rain, water beading along its back. Wildlife photograph, a wide-angle 35mm lens at a low angle, f/4, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "2dc153b59dcbcae4fa369bd7e53320ba98b087c18d9165b4fc83e06b783b14da"
+    }
+  ]
+}

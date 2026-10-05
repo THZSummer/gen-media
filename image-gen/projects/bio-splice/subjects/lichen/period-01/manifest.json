@@ -1,0 +1,67 @@
+{
+  "period": "period-01",
+  "note": "第一期：壳状地衣（CR1 + AL1）——岩面·侧光·微距平视 100mm·方",
+  "from": "work/lichen/r1/round.json",
+  "entries": [
+    {
+      "final": "01-mycelium-crust.png",
+      "path": "01-mycelium-crust.png",
+      "role": "final",
+      "source_round": 1,
+      "source_engine": "zimage",
+      "source_shot": "mycelium-crust",
+      "source_file": "work/lichen/r1/bs-lc-r1-mycelium-crust_00001_.png",
+      "seed": 8101,
+      "prompt_id": "3b2a1c5c-b186-4827-962d-0c38e722558c",
+      "prompt": "微距特写，一个生物体独自占据画面：它铺在岩面上、表面朝向镜头：a dense mat of pale fungal mycelium with a hard crustose lichen crust with a cracked areolate surface, fine branching threads and a soft dusty surface. on a bare granite rock face. raking side light that picks out every crack in the surface. a level macro view, 100mm macro lens at f/8, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "db31e693c629f8a1343b96697f12f528526bbbdd659ad9c25775d1d0a701cdfb"
+    },
+    {
+      "final": "02-mycelium-algae.png",
+      "path": "02-mycelium-algae.png",
+      "role": "final",
+      "source_round": 1,
+      "source_engine": "zimage",
+      "source_shot": "mycelium-algae",
+      "source_file": "work/lichen/r1/bs-lc-r1-mycelium-algae_00001_.png",
+      "seed": 8101,
+      "prompt_id": "55365538-166e-4789-b676-806786ccc06b",
+      "prompt": "微距特写，一个生物体独自占据画面：它铺在岩面上、表面朝向镜头：a dense mat of pale fungal mycelium with clusters of bright green algal cells, fine branching threads and a soft dusty surface. on a bare granite rock face. raking side light that picks out every crack in the surface. a level macro view, 100mm macro lens at f/8, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "9d63662222c5f4523e9d69a7d56dd7e1c2d8c805bbef32e8a93bc819f40ee62e"
+    },
+    {
+      "final": "03-mycelium-crust-algae.png",
+      "path": "03-mycelium-crust-algae.png",
+      "role": "final",
+      "source_round": 1,
+      "source_engine": "zimage",
+      "source_shot": "mycelium-crust-algae",
+      "source_file": "work/lichen/r1/bs-lc-r1-mycelium-crust-algae_00001_.png",
+      "seed": 8101,
+      "prompt_id": "488dbcbb-c9e0-4834-95c7-98ae45b60e1a",
+      "prompt": "微距特写，一个生物体独自占据画面：它铺在岩面上、表面朝向镜头：a dense mat of pale fungal mycelium with a hard crustose lichen crust with a cracked areolate surface and clusters of bright green algal cells, fine branching threads and a soft dusty surface. on a bare granite rock face. raking side light that picks out every crack in the surface. a level macro view, 100mm macro lens at f/8, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "9c5d1ac97c07dbe17cfb71f5f8826dbf9600d035d2b71ff2545b6179e8d78a78"
+    },
+    {
+      "final": "controls/mycelium.png",
+      "path": "controls/mycelium.png",
+      "role": "control",
+      "source_round": 1,
+      "source_engine": "zimage",
+      "source_shot": "base-mycelium",
+      "source_file": "work/lichen/r1/bs-lc-r1-base-mycelium_00001_.png",
+      "seed": 8101,
+      "prompt_id": "2286be44-e381-43a8-a88d-bd44ba7a1810",
+      "prompt": "微距特写，一个生物体独自占据画面：它铺在岩面上、表面朝向镜头：a dense mat of pale fungal mycelium with fine branching threads and a soft dusty surface. on a bare granite rock face. raking side light that picks out every crack in the surface. a level macro view, 100mm macro lens at f/8, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "2c9d4df87471cc2d8ae2a5ac511a0e08b3d210a4e9466b68c49f62dbe9289604"
+    }
+  ]
+}

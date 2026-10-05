@@ -1,0 +1,52 @@
+{
+  "period": "period-02",
+  "note": "第二期：有眼的捕蝇草（T2·叶面真空位）——沼泽·平视叶面·方",
+  "from": "work/flytrap-fang/r4/round.json",
+  "entries": [
+    {
+      "final": "01-flytrap-eye.png",
+      "path": "01-flytrap-eye.png",
+      "role": "final",
+      "source_round": 4,
+      "source_engine": "zimage",
+      "source_shot": "flytrap-eye",
+      "source_file": "work/flytrap-fang/r4/bs-ff-r4-flytrap-eye_00001_.png",
+      "seed": 10101,
+      "prompt_id": "748c5634-31cf-4be0-ad66-e91d3be95348",
+      "prompt": "微距特写，一个生物体独自占据画面：它把宽叶面朝向镜头、夹子在后：a Venus flytrap with a glossy dark animal eye on the leaf blade, broad flat leaf blades and two wide-open trap lobes with a red inner surface. in a sphagnum bog among wet moss. flat overcast light, no glare on the leaf. a flat-on macro view of the leaf blade, 100mm macro lens at f/11, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "ec17d89aefdc178f948b0e3b79292d7a9527df44555986c365e96a3ea1dca1b9"
+    },
+    {
+      "final": "02-flytrap-eye-b.png",
+      "path": "02-flytrap-eye-b.png",
+      "role": "final",
+      "source_round": 4,
+      "source_engine": "zimage",
+      "source_shot": "flytrap-eye-b",
+      "source_file": "work/flytrap-fang/r4/bs-ff-r4-flytrap-eye-b_00001_.png",
+      "seed": 10102,
+      "prompt_id": "f7e08ea7-b11b-473e-a37e-ba7e103b478d",
+      "prompt": "微距特写，一个生物体独自占据画面：它把宽叶面朝向镜头、夹子在后：a Venus flytrap with a glossy dark animal eye on the leaf blade, broad flat leaf blades and two wide-open trap lobes with a red inner surface. in a sphagnum bog among wet moss. flat overcast light, no glare on the leaf. a flat-on macro view of the leaf blade, 100mm macro lens at f/11, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "b35f881c02824c029cc21697594fa17ffc7be57d5efe2ae4667a1bd05068a079"
+    },
+    {
+      "final": "controls/flytrap.png",
+      "path": "controls/flytrap.png",
+      "role": "control",
+      "source_round": 4,
+      "source_engine": "zimage",
+      "source_shot": "base-flytrap",
+      "source_file": "work/flytrap-fang/r4/bs-ff-r4-base-flytrap_00001_.png",
+      "seed": 10101,
+      "prompt_id": "c075531d-384e-4f0d-9fc2-f6f47b3e906f",
+      "prompt": "微距特写，一个生物体独自占据画面：它把宽叶面朝向镜头、夹子在后：a Venus flytrap with broad flat leaf blades and two wide-open trap lobes with a red inner surface. in a sphagnum bog among wet moss. flat overcast light, no glare on the leaf. a flat-on macro view of the leaf blade, 100mm macro lens at f/11, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "cbcd466e559a7499b16797511b676757841506a9906c162490f8f5f6725b9add"
+    }
+  ]
+}

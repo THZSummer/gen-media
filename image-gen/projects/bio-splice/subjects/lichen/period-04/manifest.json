@@ -1,0 +1,52 @@
+{
+  "period": "period-04",
+  "note": "第四期：藻层可见（AL1+AL2·拟剖面）——环形光·深景深·方",
+  "from": "work/lichen/r4/round.json",
+  "entries": [
+    {
+      "final": "01-mycelium-algal-layer.png",
+      "path": "01-mycelium-algal-layer.png",
+      "role": "final",
+      "source_round": 4,
+      "source_engine": "zimage",
+      "source_shot": "mycelium-algal-layer",
+      "source_file": "work/lichen/r4/bs-lc-r4-mycelium-algal-layer_00001_.png",
+      "seed": 8101,
+      "prompt_id": "dc6d41cb-ac67-4e99-b2bb-eb3d3a06a77f",
+      "prompt": "微距特写，一个生物体独自占据画面：它的表层被掀开、露出内部结构：a dense mat of pale fungal mycelium with clusters of bright green algal cells and fine bright green algal filaments woven through the surface, fine branching threads and a soft dusty surface. as if in cross-section, the upper cortex lifted away. ring light, deep even depth of field, everything in focus. a flat-on macro view, 100mm macro lens at f/16, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "cb9d81c1ebc16713143191a7fc419e8d59993ab9e4c50fe64e9533d223cdaecc"
+    },
+    {
+      "final": "02-mycelium-algal-layer-b.png",
+      "path": "02-mycelium-algal-layer-b.png",
+      "role": "final",
+      "source_round": 4,
+      "source_engine": "zimage",
+      "source_shot": "mycelium-algal-layer-b",
+      "source_file": "work/lichen/r4/bs-lc-r4-mycelium-algal-layer-b_00001_.png",
+      "seed": 8102,
+      "prompt_id": "b5af9b8f-2e58-4c54-a8f3-70cf4e6900db",
+      "prompt": "微距特写，一个生物体独自占据画面：它的表层被掀开、露出内部结构：a dense mat of pale fungal mycelium with clusters of bright green algal cells and fine bright green algal filaments woven through the surface, fine branching threads and a soft dusty surface. as if in cross-section, the upper cortex lifted away. ring light, deep even depth of field, everything in focus. a flat-on macro view, 100mm macro lens at f/16, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "2af32f0c81a1c34566acd851fffa2362cda6d667e6b0fb594fc2dff618aa0e54"
+    },
+    {
+      "final": "controls/mycelium.png",
+      "path": "controls/mycelium.png",
+      "role": "control",
+      "source_round": 4,
+      "source_engine": "zimage",
+      "source_shot": "base-mycelium",
+      "source_file": "work/lichen/r4/bs-lc-r4-base-mycelium_00001_.png",
+      "seed": 8101,
+      "prompt_id": "4f22b812-89dc-4a0a-aa79-02da81ca42c3",
+      "prompt": "微距特写，一个生物体独自占据画面：它的表层被掀开、露出内部结构：a dense mat of pale fungal mycelium with fine branching threads and a soft dusty surface. as if in cross-section, the upper cortex lifted away. ring light, deep even depth of field, everything in focus. a flat-on macro view, 100mm macro lens at f/16, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "4dc58b348b2144da47259083cacd74e861e0c3644ffa3e8a11978e6b5ab89801"
+    }
+  ]
+}

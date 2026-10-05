@@ -1,0 +1,173 @@
+{
+  "name": "z-image-turbo-fun-union-controlnet",
+  "workflow": "z-image-turbo-fun-union-controlnet.json",
+  "description": "Z-Image-Turbo Fun Union ControlNet 图生图/编辑：控制图 → Canny(可关) → ControlNet patch → KSampler。输出尺寸默认跟随控制图（GetImageSize）。",
+  "parameters": {
+    "image": {
+      "node": "LoadImage",
+      "field": "image",
+      "force": true,
+      "upload": true,
+      "aliases": [
+        "input_image",
+        "control_image"
+      ]
+    },
+    "prompt": {
+      "interface": "text",
+      "aliases": [
+        "text",
+        "positive"
+      ]
+    },
+    "seed": {
+      "interface": "seed"
+    },
+    "unet_name": {
+      "interface": "unet_name",
+      "aliases": [
+        "model"
+      ]
+    },
+    "clip_name": {
+      "interface": "clip_name",
+      "aliases": [
+        "text_encoder"
+      ]
+    },
+    "vae_name": {
+      "interface": "vae_name"
+    },
+    "controlnet_name": {
+      "interface": "name",
+      "aliases": [
+        "patch_model",
+        "model_patch"
+      ]
+    },
+    "steps": {
+      "node": "KSampler",
+      "field": "steps"
+    },
+    "cfg": {
+      "node": "KSampler",
+      "field": "cfg"
+    },
+    "sampler": {
+      "node": "KSampler",
+      "field": "sampler_name",
+      "aliases": [
+        "sampler_name"
+      ]
+    },
+    "scheduler": {
+      "node": "KSampler",
+      "field": "scheduler"
+    },
+    "denoise": {
+      "node": "KSampler",
+      "field": "denoise"
+    },
+    "shift": {
+      "node": "ModelSamplingAuraFlow",
+      "field": "shift"
+    },
+    "sampling": {
+      "node": "ModelSamplingAuraFlow",
+      "field": "sampling"
+    },
+    "control_strength": {
+      "node": "QwenImageDiffsynthControlnet",
+      "field": "strength",
+      "aliases": [
+        "strength"
+      ]
+    },
+    "control_start": {
+      "node": "QwenImageDiffsynthControlnet",
+      "field": "start_percent"
+    },
+    "control_end": {
+      "node": "QwenImageDiffsynthControlnet",
+      "field": "end_percent"
+    },
+    "canny_low": {
+      "node": "Canny",
+      "field": "low_threshold"
+    },
+    "canny_high": {
+      "node": "Canny",
+      "field": "high_threshold"
+    },
+    "width": {
+      "node": "EmptySD3LatentImage",
+      "field": "width",
+      "force": true
+    },
+    "height": {
+      "node": "EmptySD3LatentImage",
+      "field": "height",
+      "force": true
+    },
+    "batch_size": {
+      "node": "EmptySD3LatentImage",
+      "field": "batch_size",
+      "aliases": [
+        "batch"
+      ]
+    },
+    "filename_prefix": {
+      "node": "SaveImage",
+      "field": "filename_prefix"
+    },
+    "max_dimension": {
+      "node": "ImageScaleToMaxDimension",
+      "field": "largest_size",
+      "enable": true,
+      "aliases": [
+        "largest_size"
+      ]
+    },
+    "scale_method": {
+      "node": "ImageScaleToMaxDimension",
+      "field": "upscale_method",
+      "enable": true,
+      "aliases": [
+        "upscale_method"
+      ]
+    }
+  },
+  "node_classes": {
+    "control_preprocessor": "Canny",
+    "controlnet_apply": "QwenImageDiffsynthControlnet",
+    "latent": "EmptySD3LatentImage",
+    "load_image": "LoadImage",
+    "save_image": "SaveImage",
+    "pre_scale": "ImageScaleToMaxDimension"
+  },
+  "defaults": {
+    "steps": 8,
+    "cfg": 1.0,
+    "sampler": "res_multistep",
+    "scheduler": "simple",
+    "denoise": 1.0,
+    "shift": 3.0,
+    "control_strength": 1.0,
+    "control_start": 0.0,
+    "control_end": 1.0,
+    "canny_low": 0.1,
+    "canny_high": 0.32
+  },
+  "notes": [
+    "negative prompt 不可用：工作流用 ConditioningZeroOut 置零负向",
+    "controlnet_name 走子图接口 name（标签 patch_model），文件在 models/model_patches/",
+    "width/height 默认由 GetImageSize(输入图) 驱动；传 width/height 会切断该连线并强制该尺寸",
+    "max_dimension / scale_method 会启用默认被 bypass 的 ImageScaleToMaxDimension 节点（>2500px 大图预处理）",
+    "image 为连线型接口输入：由顶层 LoadImage 供给，脚本会先上传本地文件再接线"
+  ],
+  "drop_inputs": {
+    "LoadImage": [
+      "upload"
+    ]
+  }
+}

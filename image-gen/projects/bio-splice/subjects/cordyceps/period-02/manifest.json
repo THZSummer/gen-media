@@ -1,0 +1,52 @@
+{
+  "period": "period-02",
+  "note": "第二期：单根子座（ST1）——高山草甸·晨光·低机位微距·竖",
+  "from": "work/cordyceps/r4/round.json",
+  "entries": [
+    {
+      "final": "01-larva-stroma.png",
+      "path": "01-larva-stroma.png",
+      "role": "final",
+      "source_round": 4,
+      "source_engine": "zimage",
+      "source_shot": "larva-stroma",
+      "source_file": "work/cordyceps/r4/bs-cd-r4-larva-stroma_00001_.png",
+      "seed": 9101,
+      "prompt_id": "378a77d6-4483-4208-9db9-6188bdd96604",
+      "prompt": "微距特写，一个生物体独自占据画面：它伏在草甸的土面上、身体侧向镜头：a large moth larva with a single tall club-shaped fungal stroma rising from its body, a segmented pale body, a dark head capsule and short stubby legs. on alpine meadow soil among short grasses. low morning sun, dew on the ground. a low macro view from just above the ground, 100mm macro lens at f/8, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "aa2f01482eef52113fed7daeb1a5aa0c8d0478a856115eab99deecc004eac6c7"
+    },
+    {
+      "final": "02-larva-stroma-b.png",
+      "path": "02-larva-stroma-b.png",
+      "role": "final",
+      "source_round": 4,
+      "source_engine": "zimage",
+      "source_shot": "larva-stroma-b",
+      "source_file": "work/cordyceps/r4/bs-cd-r4-larva-stroma-b_00001_.png",
+      "seed": 9102,
+      "prompt_id": "446977d1-778a-4e12-a2de-6470dae34f89",
+      "prompt": "微距特写，一个生物体独自占据画面：它伏在草甸的土面上、身体侧向镜头：a large moth larva with a single tall club-shaped fungal stroma rising from its body, a segmented pale body, a dark head capsule and short stubby legs. on alpine meadow soil among short grasses. low morning sun, dew on the ground. a low macro view from just above the ground, 100mm macro lens at f/8, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "7820e78aa3d46fd54386edf9e1e0c0982d2447a5f1905f4feb9cf151e0106bcd"
+    },
+    {
+      "final": "controls/larva.png",
+      "path": "controls/larva.png",
+      "role": "control",
+      "source_round": 4,
+      "source_engine": "zimage",
+      "source_shot": "base-larva",
+      "source_file": "work/cordyceps/r4/bs-cd-r4-base-larva_00001_.png",
+      "seed": 9101,
+      "prompt_id": "658b0f33-013f-473e-8875-d8c722b536fc",
+      "prompt": "微距特写，一个生物体独自占据画面：它伏在草甸的土面上、身体侧向镜头：a large moth larva with a segmented pale body, a dark head capsule and short stubby legs. on alpine meadow soil among short grasses. low morning sun, dew on the ground. a low macro view from just above the ground, 100mm macro lens at f/8, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "64a216fe963655f549e0f1b37f1b6a729f84c5bc64586377d45a3efe71118ad8"
+    }
+  ]
+}

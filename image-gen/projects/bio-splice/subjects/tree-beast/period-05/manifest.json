@@ -1,0 +1,52 @@
+{
+  "period": "period-05",
+  "note": "第五期：树兽（收官·K1+K4，兽足未落地）——暮色林·逆光剪影·广角·横幅",
+  "from": "work/tree-beast/r6/round.json",
+  "entries": [
+    {
+      "final": "01-tree-beast.png",
+      "path": "01-tree-beast.png",
+      "role": "final",
+      "source_round": 6,
+      "source_engine": "zimage",
+      "source_shot": "tree-beast",
+      "source_file": "work/tree-beast/r6/bs-tb-r6-tree-beast_00001_.png",
+      "seed": 12101,
+      "prompt_id": "d3280536-ad54-4a7e-9bbc-fdca80ab86e2",
+      "prompt": "全身像，一个生物体独自占据画面：它立在暮色林里、整棵树朝向镜头：an old gnarled tree with a covering of coarse tawny mammal hide and heavy clawed mammal feet among the roots and a pair of massive curved mammal horns rising from the trunk, thick roots spreading over the ground and a massive trunk. in a forest at dusk, the far trees lost in haze. low backlight throwing the whole tree into near-silhouette. a wide-angle 24mm lens at eye height, f/8, fine surface detail, natural colour, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "83d2a25ebdd0813e19e369aaa277a673b126c35c85be3c167e989430f3b6768a"
+    },
+    {
+      "final": "02-tree-beast-b.png",
+      "path": "02-tree-beast-b.png",
+      "role": "final",
+      "source_round": 6,
+      "source_engine": "zimage",
+      "source_shot": "tree-beast-b",
+      "source_file": "work/tree-beast/r6/bs-tb-r6-tree-beast-b_00001_.png",
+      "seed": 12102,
+      "prompt_id": "d3875556-63b7-4b84-86f0-18eebd6e12ec",
+      "prompt": "全身像，一个生物体独自占据画面：它立在暮色林里、整棵树朝向镜头：an old gnarled tree with a covering of coarse tawny mammal hide and heavy clawed mammal feet among the roots and a pair of massive curved mammal horns rising from the trunk, thick roots spreading over the ground and a massive trunk. in a forest at dusk, the far trees lost in haze. low backlight throwing the whole tree into near-silhouette. a wide-angle 24mm lens at eye height, f/8, fine surface detail, natural colour, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "0ec6e3e8296c09671faf94aafc5efc5dfde5b56e7e1228d274144e9e5082b00c"
+    },
+    {
+      "final": "controls/tree.png",
+      "path": "controls/tree.png",
+      "role": "control",
+      "source_round": 6,
+      "source_engine": "zimage",
+      "source_shot": "base-tree",
+      "source_file": "work/tree-beast/r6/bs-tb-r6-base-tree_00001_.png",
+      "seed": 12101,
+      "prompt_id": "38f95ab8-5174-4f87-aef6-7a74da30b759",
+      "prompt": "全身像，一个生物体独自占据画面：它立在暮色林里、整棵树朝向镜头：an old gnarled tree with thick roots spreading over the ground and a massive trunk. in a forest at dusk, the far trees lost in haze. low backlight throwing the whole tree into near-silhouette. a wide-angle 24mm lens at eye height, f/8, fine surface detail, natural colour, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "b11f74a5c2c28089724879ed65fa5e2968a065dd562e7f2c56f2074aa02d4d29"
+    }
+  ]
+}

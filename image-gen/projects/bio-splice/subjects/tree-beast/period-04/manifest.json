@@ -1,0 +1,52 @@
+{
+  "period": "period-04",
+  "note": "第四期：枯木的皮与角（换底座·枯立木）——霜晨·平光·方",
+  "from": "work/tree-beast/r9/round.json",
+  "entries": [
+    {
+      "final": "01-deadwood-hide-horns.png",
+      "path": "01-deadwood-hide-horns.png",
+      "role": "final",
+      "source_round": 9,
+      "source_engine": "zimage",
+      "source_shot": "deadwood-hide-horns",
+      "source_file": "work/tree-beast/r9/bs-tb-r9-deadwood-hide-horns_00001_.png",
+      "seed": 12101,
+      "prompt_id": "259c4335-9eb0-4389-9747-15e2669ffc6d",
+      "prompt": "全身像，一个生物体独自占据画面：它立在霜晨的空地上、树干正面朝向镜头：a dead standing tree with a covering of coarse tawny mammal hide and a pair of massive curved mammal horns rising from the trunk, a splintered bare trunk and exposed roots. standing dead in a clearing on a frosty morning. cold flat light, frost on every surface. a level view at eye height, 50mm lens at f/8, fine surface detail, natural colour, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "835d75520e0b6816d2ee9d5ab91d013e1bd4fc61c83b414ed510abbb4e798294"
+    },
+    {
+      "final": "02-deadwood-hide-horns-b.png",
+      "path": "02-deadwood-hide-horns-b.png",
+      "role": "final",
+      "source_round": 9,
+      "source_engine": "zimage",
+      "source_shot": "deadwood-hide-horns-b",
+      "source_file": "work/tree-beast/r9/bs-tb-r9-deadwood-hide-horns-b_00001_.png",
+      "seed": 12102,
+      "prompt_id": "23348b95-6c98-4c32-850c-0240369adcda",
+      "prompt": "全身像，一个生物体独自占据画面：它立在霜晨的空地上、树干正面朝向镜头：a dead standing tree with a covering of coarse tawny mammal hide and a pair of massive curved mammal horns rising from the trunk, a splintered bare trunk and exposed roots. standing dead in a clearing on a frosty morning. cold flat light, frost on every surface. a level view at eye height, 50mm lens at f/8, fine surface detail, natural colour, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "d15c530971e375925949c08f5ced97f42b0eb9bb28195e6916ae187df90c81f8"
+    },
+    {
+      "final": "controls/tree.png",
+      "path": "controls/tree.png",
+      "role": "control",
+      "source_round": 9,
+      "source_engine": "zimage",
+      "source_shot": "base-tree",
+      "source_file": "work/tree-beast/r9/bs-tb-r9-base-tree_00001_.png",
+      "seed": 12101,
+      "prompt_id": "41ad13b1-49f5-4663-83e7-52d2e6a437de",
+      "prompt": "全身像，一个生物体独自占据画面：它立在霜晨的空地上、树干正面朝向镜头：a dead standing tree with a splintered bare trunk and exposed roots. standing dead in a clearing on a frosty morning. cold flat light, frost on every surface. a level view at eye height, 50mm lens at f/8, fine surface detail, natural colour, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "3a8dbdc33a5b388c4c8600774b989c67d17ae7996ee38d7a515af53aad3f4d11"
+    }
+  ]
+}

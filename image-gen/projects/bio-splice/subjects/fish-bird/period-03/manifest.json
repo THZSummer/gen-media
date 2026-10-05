@@ -1,0 +1,52 @@
+{
+  "period": "period-03",
+  "note": "第三期：完全离水·双翼全展——侧上方视角·逆光勾羽·方",
+  "from": "work/fish-bird/r8/round.json",
+  "entries": [
+    {
+      "final": "01-fish-wings-spread.png",
+      "path": "01-fish-wings-spread.png",
+      "role": "final",
+      "source_round": 8,
+      "source_engine": "zimage",
+      "source_shot": "fish-wings-spread",
+      "source_file": "work/fish-bird/r8/bs-fb-r8-fish-wings-spread_00001_.png",
+      "seed": 6101,
+      "prompt_id": "cda5a7ac-6d5d-4784-949b-e2af08d9f19e",
+      "prompt": "全身像，一只动物独自占据画面：它悬在空中、身体横向展开：a large wild carp with a pair of broad feathered bird wings spread wide from its back, a long scaled body, a blunt head, small eyes and a dorsal fin. well above the water, only sky and a distant shoreline behind it. strong backlight rimming every feather. Photograph, a view from slightly above and to the side, 85mm lens at f/5.6, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "8e65b9366c4cb3f2821ec6ccee1a7c401522c33543664f77cd67019e3c619620"
+    },
+    {
+      "final": "02-fish-wings-spread-b.png",
+      "path": "02-fish-wings-spread-b.png",
+      "role": "final",
+      "source_round": 8,
+      "source_engine": "zimage",
+      "source_shot": "fish-wings-spread-b",
+      "source_file": "work/fish-bird/r8/bs-fb-r8-fish-wings-spread-b_00001_.png",
+      "seed": 6102,
+      "prompt_id": "4044a13f-d856-4dc9-a1aa-09c967b0fd93",
+      "prompt": "全身像，一只动物独自占据画面：它悬在空中、身体横向展开：a large wild carp with a pair of broad feathered bird wings spread wide from its back, a long scaled body, a blunt head, small eyes and a dorsal fin. well above the water, only sky and a distant shoreline behind it. strong backlight rimming every feather. Photograph, a view from slightly above and to the side, 85mm lens at f/5.6, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "6265b5be0fa31ae34b58baec77881fba069d3f3998c9c83134582984fb4967b7"
+    },
+    {
+      "final": "controls/fish.png",
+      "path": "controls/fish.png",
+      "role": "control",
+      "source_round": 8,
+      "source_engine": "zimage",
+      "source_shot": "base-fish",
+      "source_file": "work/fish-bird/r8/bs-fb-r8-base-fish_00001_.png",
+      "seed": 6101,
+      "prompt_id": "5fca0afa-cca0-4866-aba7-2ea7415ed14a",
+      "prompt": "全身像，一只动物独自占据画面：它悬在空中、身体横向展开：a large wild carp with a long scaled body, a blunt head, small eyes and a dorsal fin. well above the water, only sky and a distant shoreline behind it. strong backlight rimming every feather. Photograph, a view from slightly above and to the side, 85mm lens at f/5.6, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "699f6b46b0bb2b90acfe4ddb3afe849c23054f920efb05c3d633a15c0e51af55"
+    }
+  ]
+}

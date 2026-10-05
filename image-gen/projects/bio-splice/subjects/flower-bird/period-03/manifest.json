@@ -1,0 +1,52 @@
+{
+  "period": "period-03",
+  "note": "第三期：翎绒俱全（P6+P5）——玉兰·暗背景硬光·方",
+  "from": "work/flower-bird/r6/round.json",
+  "entries": [
+    {
+      "final": "01-flower-plume-down.png",
+      "path": "01-flower-plume-down.png",
+      "role": "final",
+      "source_round": 6,
+      "source_engine": "zimage",
+      "source_shot": "flower-plume-down",
+      "source_file": "work/flower-bird/r6/bs-fb2-r6-flower-plume-down_00001_.png",
+      "seed": 11101,
+      "prompt_id": "4c33eacf-5917-4f00-b07e-bc2113a4b0e7",
+      "prompt": "微距特写，一个生物体独自占据画面：它开在枝头、正面朝向镜头：a large white magnolia flower with long pale bird plume feathers rising from the stem and a tuft of soft downy bird feathers in the centre of the flower, broad rounded petals and a ring of pale stamens. against a dark blurred background of twigs. hard light from one side, the background falling to near-black. a level macro view, 100mm macro lens at f/8, macro photograph, fine surface detail, soft natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "10048d1ccc693f9f1863b8cc8479ea984a08e9dc290968c50d6c29f31181fb5f"
+    },
+    {
+      "final": "02-flower-plume-down-b.png",
+      "path": "02-flower-plume-down-b.png",
+      "role": "final",
+      "source_round": 6,
+      "source_engine": "zimage",
+      "source_shot": "flower-plume-down-b",
+      "source_file": "work/flower-bird/r6/bs-fb2-r6-flower-plume-down-b_00001_.png",
+      "seed": 11102,
+      "prompt_id": "5ab4f7b8-0e26-4e7a-9bdf-be446d635765",
+      "prompt": "微距特写，一个生物体独自占据画面：它开在枝头、正面朝向镜头：a large white magnolia flower with long pale bird plume feathers rising from the stem and a tuft of soft downy bird feathers in the centre of the flower, broad rounded petals and a ring of pale stamens. against a dark blurred background of twigs. hard light from one side, the background falling to near-black. a level macro view, 100mm macro lens at f/8, macro photograph, fine surface detail, soft natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "d0edec7a735eb988130195102c5fafb9f1f9d1f3e5650625476793e1a04fa19c"
+    },
+    {
+      "final": "controls/flower.png",
+      "path": "controls/flower.png",
+      "role": "control",
+      "source_round": 6,
+      "source_engine": "zimage",
+      "source_shot": "base-flower",
+      "source_file": "work/flower-bird/r6/bs-fb2-r6-base-flower_00001_.png",
+      "seed": 11101,
+      "prompt_id": "29745ff0-ca80-421a-8f39-8755125dad52",
+      "prompt": "微距特写，一个生物体独自占据画面：它开在枝头、正面朝向镜头：a large white magnolia flower with broad rounded petals and a ring of pale stamens. against a dark blurred background of twigs. hard light from one side, the background falling to near-black. a level macro view, 100mm macro lens at f/8, macro photograph, fine surface detail, soft natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "af568788526201a1ad31c969c1a6f90e65a6ec37b7bd153b7da7e8722918f421"
+    }
+  ]
+}

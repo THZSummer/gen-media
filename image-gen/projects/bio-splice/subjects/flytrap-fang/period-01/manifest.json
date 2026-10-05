@@ -1,0 +1,67 @@
+{
+  "period": "period-01",
+  "note": "第一期：有牙的捕蝇草（T1·腾出版）——沼泽·侧逆光·微距 100mm·方",
+  "from": "work/flytrap-fang/r3/round.json",
+  "entries": [
+    {
+      "final": "01-flytrap-fangs.png",
+      "path": "01-flytrap-fangs.png",
+      "role": "final",
+      "source_round": 3,
+      "source_engine": "zimage",
+      "source_shot": "flytrap-fangs",
+      "source_file": "work/flytrap-fang/r3/bs-ff-r3-flytrap-fangs_00001_.png",
+      "seed": 10101,
+      "prompt_id": "10d93ab2-a263-4dbe-b13b-27e561834446",
+      "prompt": "微距特写，一个生物体独自占据画面：它张着夹子、内面朝向镜头：a Venus flytrap with a row of sharp white mammal fangs along the trap edges, two wide-open trap lobes and a red inner surface. in a sphagnum bog among wet moss. raking side-backlight, the red inner surface glowing. a level macro view, 100mm macro lens at f/8, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "6a684ffd561923c745244ee2ada1ade78908be593ff0a4e4baab6a190aa2ad99"
+    },
+    {
+      "final": "02-flytrap-fangs-b.png",
+      "path": "02-flytrap-fangs-b.png",
+      "role": "final",
+      "source_round": 3,
+      "source_engine": "zimage",
+      "source_shot": "flytrap-fangs-b",
+      "source_file": "work/flytrap-fang/r3/bs-ff-r3-flytrap-fangs-b_00001_.png",
+      "seed": 10102,
+      "prompt_id": "06522e4e-c970-45c9-bdee-455eb19dff1b",
+      "prompt": "微距特写，一个生物体独自占据画面：它张着夹子、内面朝向镜头：a Venus flytrap with a row of sharp white mammal fangs along the trap edges, two wide-open trap lobes and a red inner surface. in a sphagnum bog among wet moss. raking side-backlight, the red inner surface glowing. a level macro view, 100mm macro lens at f/8, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "b32fb3ea8776e70c6bdd77fa3f80df598b2379f29b2044dc671d90e9f2170c69"
+    },
+    {
+      "final": "03-flytrap-fangs-c.png",
+      "path": "03-flytrap-fangs-c.png",
+      "role": "final",
+      "source_round": 3,
+      "source_engine": "zimage",
+      "source_shot": "flytrap-fangs-c",
+      "source_file": "work/flytrap-fang/r3/bs-ff-r3-flytrap-fangs-c_00001_.png",
+      "seed": 10103,
+      "prompt_id": "36512398-74b6-48b3-ae25-6bc799919061",
+      "prompt": "微距特写，一个生物体独自占据画面：它张着夹子、内面朝向镜头：a Venus flytrap with a row of sharp white mammal fangs along the trap edges, two wide-open trap lobes and a red inner surface. in a sphagnum bog among wet moss. raking side-backlight, the red inner surface glowing. a level macro view, 100mm macro lens at f/8, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "75787548b2ed5d4b79fb223f78b3c557c9f76c711249ceddc9ee4a868d90719f"
+    },
+    {
+      "final": "controls/flytrap.png",
+      "path": "controls/flytrap.png",
+      "role": "control",
+      "source_round": 3,
+      "source_engine": "zimage",
+      "source_shot": "base-flytrap",
+      "source_file": "work/flytrap-fang/r3/bs-ff-r3-base-flytrap_00001_.png",
+      "seed": 10101,
+      "prompt_id": "9f60863f-0fef-4c45-8d4e-4baef86f0db2",
+      "prompt": "微距特写，一个生物体独自占据画面：它张着夹子、内面朝向镜头：a Venus flytrap with two wide-open trap lobes and a red inner surface. in a sphagnum bog among wet moss. raking side-backlight, the red inner surface glowing. a level macro view, 100mm macro lens at f/8, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "a5081a56d785742210f0466a71238a9fc67e716ad42397d2150b16a1bb4f27ff"
+    }
+  ]
+}

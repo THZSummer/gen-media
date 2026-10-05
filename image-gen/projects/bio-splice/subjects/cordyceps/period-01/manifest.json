@@ -1,0 +1,67 @@
+{
+  "period": "period-01",
+  "note": "第一期：菌丝覆体的虫（MY1·腾出版）——土面·柔光·微距 100mm·方",
+  "from": "work/cordyceps/r3/round.json",
+  "entries": [
+    {
+      "final": "01-larva-mycelium.png",
+      "path": "01-larva-mycelium.png",
+      "role": "final",
+      "source_round": 3,
+      "source_engine": "zimage",
+      "source_shot": "larva-mycelium",
+      "source_file": "work/cordyceps/r3/bs-cd-r3-larva-mycelium_00001_.png",
+      "seed": 9101,
+      "prompt_id": "0a0d84ac-3005-477e-8c62-8dc2764bf397",
+      "prompt": "微距特写，一个生物体独自占据画面：它伏在土面上、身体侧向镜头：a large moth larva with a dense coating of pale fungal mycelium across the whole body, a dark head capsule and short stubby legs. on damp dark soil among dead leaves. soft diffused light under a forest canopy. a low macro view, 100mm macro lens at f/8, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "bc3c8398106a2eaa3cf3a6b04e42c474aa0dbd871ec7b73ec1efff64a59211ec"
+    },
+    {
+      "final": "02-larva-mycelium-b.png",
+      "path": "02-larva-mycelium-b.png",
+      "role": "final",
+      "source_round": 3,
+      "source_engine": "zimage",
+      "source_shot": "larva-mycelium-b",
+      "source_file": "work/cordyceps/r3/bs-cd-r3-larva-mycelium-b_00001_.png",
+      "seed": 9102,
+      "prompt_id": "fa533870-cf55-4d04-a4d2-ec24a3247228",
+      "prompt": "微距特写，一个生物体独自占据画面：它伏在土面上、身体侧向镜头：a large moth larva with a dense coating of pale fungal mycelium across the whole body, a dark head capsule and short stubby legs. on damp dark soil among dead leaves. soft diffused light under a forest canopy. a low macro view, 100mm macro lens at f/8, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "9a2cb8f21b3fc8afb1cc36a1357f40a68027ffe95fc00eaea0bbef33595fe424"
+    },
+    {
+      "final": "03-larva-mycelium-c.png",
+      "path": "03-larva-mycelium-c.png",
+      "role": "final",
+      "source_round": 3,
+      "source_engine": "zimage",
+      "source_shot": "larva-mycelium-c",
+      "source_file": "work/cordyceps/r3/bs-cd-r3-larva-mycelium-c_00001_.png",
+      "seed": 9103,
+      "prompt_id": "3e391d97-86cf-45fe-a4f1-59f1fcd68690",
+      "prompt": "微距特写，一个生物体独自占据画面：它伏在土面上、身体侧向镜头：a large moth larva with a dense coating of pale fungal mycelium across the whole body, a dark head capsule and short stubby legs. on damp dark soil among dead leaves. soft diffused light under a forest canopy. a low macro view, 100mm macro lens at f/8, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "8cbe75747bcc7490091c6b2c80d4122290020251d0114959bec52a1fa8d72c30"
+    },
+    {
+      "final": "controls/larva.png",
+      "path": "controls/larva.png",
+      "role": "control",
+      "source_round": 3,
+      "source_engine": "zimage",
+      "source_shot": "base-larva",
+      "source_file": "work/cordyceps/r3/bs-cd-r3-base-larva_00001_.png",
+      "seed": 9101,
+      "prompt_id": "7efbe713-cdef-4fa3-9ff8-41cedc73dcf1",
+      "prompt": "微距特写，一个生物体独自占据画面：它伏在土面上、身体侧向镜头：a large moth larva with a dark head capsule and short stubby legs. on damp dark soil among dead leaves. soft diffused light under a forest canopy. a low macro view, 100mm macro lens at f/8, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "b4720b7e6f28de19dea78821dabe34b16479b6f46642b1fddecaaf594b5671c8"
+    }
+  ]
+}

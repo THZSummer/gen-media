@@ -1,0 +1,52 @@
+{
+  "period": "period-02",
+  "note": "第二部分：四翼（膜）——昆虫膜翅为第二对——枝头·顶光·方",
+  "from": "work/wing-atlas/r2/round.json",
+  "entries": [
+    {
+      "final": "01-bird-membrane.png",
+      "path": "01-bird-membrane.png",
+      "role": "final",
+      "source_round": 2,
+      "source_engine": "zimage",
+      "source_shot": "bird-membrane",
+      "source_file": "work/wing-atlas/r2/bs-wa-r2-bird-membrane_00001_.png",
+      "seed": 13101,
+      "prompt_id": "9a71f344-92ce-491c-88e3-aff9e2859b7b",
+      "prompt": "全身像，一只动物独自占据画面：它停在枝头、身体微微抬起：a medium-sized brown bird with a pair of translucent insect membranous wings rising from its back, a rounded head, a short dark beak, folded feathered wings and a long tail. on a branch in a sunlit woodland clearing. flat top light, no shadows. a level view at eye height, 400mm lens at f/5.6, Wildlife photograph, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "f829f76dc8c82df779409a69ea0423bdfef96845d06b0f8d226be7e893646c5c"
+    },
+    {
+      "final": "02-bird-membrane-b.png",
+      "path": "02-bird-membrane-b.png",
+      "role": "final",
+      "source_round": 2,
+      "source_engine": "zimage",
+      "source_shot": "bird-membrane-b",
+      "source_file": "work/wing-atlas/r2/bs-wa-r2-bird-membrane-b_00001_.png",
+      "seed": 13102,
+      "prompt_id": "7e64c765-fbfb-4885-9a3d-1109fb286dfa",
+      "prompt": "全身像，一只动物独自占据画面：它停在枝头、身体微微抬起：a medium-sized brown bird with a pair of translucent insect membranous wings rising from its back, a rounded head, a short dark beak, folded feathered wings and a long tail. on a branch in a sunlit woodland clearing. flat top light, no shadows. a level view at eye height, 400mm lens at f/5.6, Wildlife photograph, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "77266258c22ad9dfe850ca6b3ce7951056df56ed6247986dd9d59726c85da150"
+    },
+    {
+      "final": "controls/bird.png",
+      "path": "controls/bird.png",
+      "role": "control",
+      "source_round": 2,
+      "source_engine": "zimage",
+      "source_shot": "base-bird",
+      "source_file": "work/wing-atlas/r2/bs-wa-r2-base-bird_00001_.png",
+      "seed": 13101,
+      "prompt_id": "a50b4982-d050-490d-bbf9-676b1b7638cf",
+      "prompt": "全身像，一只动物独自占据画面：它停在枝头、身体微微抬起：a medium-sized brown bird with a rounded head, a short dark beak, folded feathered wings and a long tail. on a branch in a sunlit woodland clearing. flat top light, no shadows. a level view at eye height, 400mm lens at f/5.6, Wildlife photograph, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "5885af19e688f61aa22a0627a93665f9a08946bc1dd836ed4dc1fd7f756920da"
+    }
+  ]
+}

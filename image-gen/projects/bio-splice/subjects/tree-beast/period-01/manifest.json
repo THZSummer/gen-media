@@ -1,0 +1,67 @@
+{
+  "period": "period-01",
+  "note": "第一期：兽皮的树（K1·腾出树皮）——雾林·柔光·平视·方",
+  "from": "work/tree-beast/r7/round.json",
+  "entries": [
+    {
+      "final": "01-tree-hide.png",
+      "path": "01-tree-hide.png",
+      "role": "final",
+      "source_round": 7,
+      "source_engine": "zimage",
+      "source_shot": "tree-hide",
+      "source_file": "work/tree-beast/r7/bs-tb-r7-tree-hide_00001_.png",
+      "seed": 12101,
+      "prompt_id": "9c4de578-4f1a-4dcc-a685-c7d402bc07c3",
+      "prompt": "全身像，一个生物体独自占据画面：它立在雾里、树干正面朝向镜头：an old gnarled tree with a covering of coarse tawny mammal hide, thick roots spreading over the ground and a massive trunk. deep in a misty forest, undergrowth fading into fog. soft diffused light through the mist. a level view at eye height, 50mm lens at f/8, fine surface detail, natural colour, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "a2f7354fafb2605ce79ffd45c158582cebadb2d6e25c52ec3c2f3866597327ee"
+    },
+    {
+      "final": "02-tree-hide-b.png",
+      "path": "02-tree-hide-b.png",
+      "role": "final",
+      "source_round": 7,
+      "source_engine": "zimage",
+      "source_shot": "tree-hide-b",
+      "source_file": "work/tree-beast/r7/bs-tb-r7-tree-hide-b_00001_.png",
+      "seed": 12102,
+      "prompt_id": "12886056-459f-43ab-be07-ceff137893df",
+      "prompt": "全身像，一个生物体独自占据画面：它立在雾里、树干正面朝向镜头：an old gnarled tree with a covering of coarse tawny mammal hide, thick roots spreading over the ground and a massive trunk. deep in a misty forest, undergrowth fading into fog. soft diffused light through the mist. a level view at eye height, 50mm lens at f/8, fine surface detail, natural colour, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "0a99c15554c005e13e83ef7e28d8c0da0d75135b85ba503a8e330a1e9624ea3c"
+    },
+    {
+      "final": "03-tree-hide-c.png",
+      "path": "03-tree-hide-c.png",
+      "role": "final",
+      "source_round": 7,
+      "source_engine": "zimage",
+      "source_shot": "tree-hide-c",
+      "source_file": "work/tree-beast/r7/bs-tb-r7-tree-hide-c_00001_.png",
+      "seed": 12103,
+      "prompt_id": "a2214d66-8c12-43a6-9343-6e0c7550302e",
+      "prompt": "全身像，一个生物体独自占据画面：它立在雾里、树干正面朝向镜头：an old gnarled tree with a covering of coarse tawny mammal hide, thick roots spreading over the ground and a massive trunk. deep in a misty forest, undergrowth fading into fog. soft diffused light through the mist. a level view at eye height, 50mm lens at f/8, fine surface detail, natural colour, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "1e60fb1b8f3ce1161adbc5c3e0db46ebe6cc54e39fc7d769866a35d476d837b7"
+    },
+    {
+      "final": "controls/tree.png",
+      "path": "controls/tree.png",
+      "role": "control",
+      "source_round": 7,
+      "source_engine": "zimage",
+      "source_shot": "base-tree",
+      "source_file": "work/tree-beast/r7/bs-tb-r7-base-tree_00001_.png",
+      "seed": 12101,
+      "prompt_id": "e06421d6-122c-46f4-852d-a9c508dda74c",
+      "prompt": "全身像，一个生物体独自占据画面：它立在雾里、树干正面朝向镜头：an old gnarled tree with thick roots spreading over the ground and a massive trunk. deep in a misty forest, undergrowth fading into fog. soft diffused light through the mist. a level view at eye height, 50mm lens at f/8, fine surface detail, natural colour, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "ab49f488a188cdbf9bda8d46b2d7cde6baadfed9b08e438e8bbbf69bed810262"
+    }
+  ]
+}

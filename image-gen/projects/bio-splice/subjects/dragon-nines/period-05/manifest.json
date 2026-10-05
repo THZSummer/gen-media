@@ -1,0 +1,52 @@
+{
+  "period": "period-05",
+  "note": "期05【晨雾芦苇·侧逆光勾轮廓·龙首特写】蛇底座 + 鹿角 D1 / 牛耳 D9（+鱼鳞 D6）",
+  "from": "work/dragon-nines/r10/round.json",
+  "entries": [
+    {
+      "final": "01-dragon-head.png",
+      "path": "01-dragon-head.png",
+      "role": "final",
+      "source_round": 10,
+      "source_engine": "zimage",
+      "source_shot": "dragon-head",
+      "source_file": "work/dragon-nines/r10/bs-dn-r10-dragon-head_00001_.png",
+      "seed": 4201,
+      "prompt_id": "b5470cfb-31b1-4b67-8116-c10d5d62136c",
+      "prompt": "头部特写，一只动物独自占据画面：它昂起头颈、正面朝向镜头：a large wild snake with a pair of branching deer antlers and a small pointed ox's ear, its head raised, a blunt scaled head, dark lidless eyes, a flickering forked tongue, keeled scales along a long muscular body. at the edge of a misty marsh before sunrise, the far bank lost in grey. low side-backlight from the first light, rimming the outline of the head. Wildlife photograph, a tight close-up portrait of the head and neck, 200mm lens at f/4, the background dissolved into soft grey, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "a65e257ffb81afc7407b2de726400854127744c3d9d83fbf666eb553ccb0d72a"
+    },
+    {
+      "final": "02-dragon-head-scale.png",
+      "path": "02-dragon-head-scale.png",
+      "role": "final",
+      "source_round": 10,
+      "source_engine": "zimage",
+      "source_shot": "dragon-head-scale",
+      "source_file": "work/dragon-nines/r10/bs-dn-r10-dragon-head-scale_00001_.png",
+      "seed": 4201,
+      "prompt_id": "0cab32ea-9491-4afc-865a-ce07609c3af5",
+      "prompt": "头部特写，一只动物独自占据画面：它昂起头颈、正面朝向镜头：a large wild snake with a pair of branching deer antlers and a small pointed ox's ear and large overlapping fish scales, its head raised, a blunt head, dark lidless eyes, a flickering forked tongue, and a long smooth muscular body. at the edge of a misty marsh before sunrise, the far bank lost in grey. low side-backlight from the first light, rimming the outline of the head. Wildlife photograph, a tight close-up portrait of the head and neck, 200mm lens at f/4, the background dissolved into soft grey, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "d74fc18bc8cfe7be1193bffd55d99215171e7f94859e9b6221699980ea8e3524"
+    },
+    {
+      "final": "controls/snake.png",
+      "path": "controls/snake.png",
+      "role": "control",
+      "source_round": 10,
+      "source_engine": "zimage",
+      "source_shot": "base-snake",
+      "source_file": "work/dragon-nines/r10/bs-dn-r10-base-snake_00001_.png",
+      "seed": 4201,
+      "prompt_id": "3ccbe9cf-faf4-4420-9b05-dcebe755efa6",
+      "prompt": "头部特写，一只动物独自占据画面：它昂起头颈、正面朝向镜头：a large wild snake with its head raised, a blunt scaled head, dark lidless eyes, a flickering forked tongue, keeled scales along a long muscular body. at the edge of a misty marsh before sunrise, the far bank lost in grey. low side-backlight from the first light, rimming the outline of the head. Wildlife photograph, a tight close-up portrait of the head and neck, 200mm lens at f/4, the background dissolved into soft grey, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "c6219ee8c4c7ceed7d1e950c777343500d2d3c36cb660e7d0c25f306fe043bcb"
+    }
+  ]
+}

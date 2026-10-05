@@ -1,0 +1,67 @@
+{
+  "period": "period-05",
+  "note": "第五期：猫底座 + 鹰的三处（E6 颈羽 / E5 尾羽+E6 / E2 翼+E5+E6）。呈现=雪原雨雾·长焦压缩·横幅",
+  "from": "work/cat-eagle/r13/round.json",
+  "entries": [
+    {
+      "final": "01-cat-eagle-ruff.png",
+      "path": "01-cat-eagle-ruff.png",
+      "role": "final",
+      "source_round": 13,
+      "source_engine": "zimage",
+      "source_shot": "c-eagle-ruff",
+      "source_file": "work/cat-eagle/r13/bs-ce-r13-c-eagle-ruff_00001_.png",
+      "seed": 4201,
+      "prompt_id": "6cc0e647-34e5-4e11-8155-f95ed869fe49",
+      "prompt": "全身像，一只动物独自占据画面：它端坐在开阔地上、颈羽蓬起，长尾横过身后：a feral tabby cat with a thick ruff of dark brown eagle feathers around its neck, a broad feline head, tufted ears, whiskers, green slit-pupil eyes, dense striped fur, four legs and a long tail. in falling snow on open ground, mist flattening the far treeline. flat cold overcast light through snow haze. Wildlife photograph, a long 600mm telephoto compressing the distance, f/4, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "9004e88a52bc8310ae5b1651835f8ea29ff8addeb9ccac1908b7614ab5bcecbf"
+    },
+    {
+      "final": "02-cat-eagle-tail-ruff.png",
+      "path": "02-cat-eagle-tail-ruff.png",
+      "role": "final",
+      "source_round": 13,
+      "source_engine": "zimage",
+      "source_shot": "c-eagle-tail-ruff",
+      "source_file": "work/cat-eagle/r13/bs-ce-r13-c-eagle-tail-ruff_00001_.png",
+      "seed": 4201,
+      "prompt_id": "743c101b-74d0-4012-8216-5b44c72059c6",
+      "prompt": "全身像，一只动物独自占据画面：它端坐在开阔地上、颈羽蓬起，长尾横过身后：a feral tabby cat with a fan of dark brown eagle tail feathers and a thick ruff of dark brown eagle feathers around its neck, a broad feline head, tufted ears, whiskers, green slit-pupil eyes, dense striped fur, four legs and a long tail. in falling snow on open ground, mist flattening the far treeline. flat cold overcast light through snow haze. Wildlife photograph, a long 600mm telephoto compressing the distance, f/4, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "3254f5eaf12a43f908dd8b4ceaa0b3a14822911edf71f9eeca1766a6cb9410a8"
+    },
+    {
+      "final": "03-cat-eagle-wings-tail-ruff.png",
+      "path": "03-cat-eagle-wings-tail-ruff.png",
+      "role": "final",
+      "source_round": 13,
+      "source_engine": "zimage",
+      "source_shot": "c-eagle-3parts",
+      "source_file": "work/cat-eagle/r13/bs-ce-r13-c-eagle-3parts_00001_.png",
+      "seed": 4201,
+      "prompt_id": "b985e1f1-c521-4cc1-b0c1-1354ee5c5d53",
+      "prompt": "全身像，一只动物独自占据画面：它端坐在开阔地上、颈羽蓬起，长尾横过身后：a feral tabby cat with broad folded feathered eagle wings and a fan of dark brown eagle tail feathers and a thick ruff of dark brown eagle feathers around its neck, a broad feline head, tufted ears, whiskers, green slit-pupil eyes, dense striped fur, four legs and a long tail. in falling snow on open ground, mist flattening the far treeline. flat cold overcast light through snow haze. Wildlife photograph, a long 600mm telephoto compressing the distance, f/4, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "dde7a2453e65140ecc84933a85512696bd2373cb54ce58d38d2ac219eade26b1"
+    },
+    {
+      "final": "controls/cat.png",
+      "path": "controls/cat.png",
+      "role": "control",
+      "source_round": 13,
+      "source_engine": "zimage",
+      "source_shot": "base-cat",
+      "source_file": "work/cat-eagle/r13/bs-ce-r13-base-cat_00001_.png",
+      "seed": 4201,
+      "prompt_id": "babb9fc9-49a6-41d2-8233-29bcac5d972b",
+      "prompt": "全身像，一只动物独自占据画面：它端坐在开阔地上、颈羽蓬起，长尾横过身后：a feral tabby cat with a broad feline head, tufted ears, whiskers, green slit-pupil eyes, dense striped fur, four legs and a long tail. in falling snow on open ground, mist flattening the far treeline. flat cold overcast light through snow haze. Wildlife photograph, a long 600mm telephoto compressing the distance, f/4, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "fb33411f1dc79875da65854fbcf67f170be8227823483e5b3a4213975d9cabb7"
+    }
+  ]
+}

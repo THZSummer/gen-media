@@ -1,0 +1,52 @@
+{
+  "period": "period-04",
+  "note": "第四期：鹰底座 + 猫的面部件（C6 胡须 / C1 耳+胡须）。呈现=暗背景·侧光勾胡须·贴面特写（原定正午硬光，实测胡须不可读故改）",
+  "from": "work/cat-eagle/r16/round.json",
+  "entries": [
+    {
+      "final": "01-eagle-cat-whiskers.png",
+      "path": "01-eagle-cat-whiskers.png",
+      "role": "final",
+      "source_round": 16,
+      "source_engine": "zimage",
+      "source_shot": "e-cat-whiskers",
+      "source_file": "work/cat-eagle/r16/bs-ce-r16-e-cat-whiskers_00001_.png",
+      "seed": 4201,
+      "prompt_id": "23eb6fdd-7809-4f60-aa35-cdd3f00d05df",
+      "prompt": "头部特写，一只动物独自占据画面：它侧头朝向镜头、喙略微抬起：a golden eagle with a domestic cat's long thin whiskers, a hooked yellow beak, a dark brown feathered head, a feathered neck ruff, a piercing amber eye, folded wings, and scaled yellow legs with black talons. against a dark shadowed bank of dry reeds, the background falling into near-black. a single low side light catching the thin whiskers so they read as bright lines. Wildlife photograph, a tight portrait of the head, 200mm lens at f/4, background thrown out of focus, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "b5254b6f83dfc92ea5106d4c782376b1afecad5e1e2e2d141863b6ceddcaa95a"
+    },
+    {
+      "final": "02-eagle-cat-ears-whiskers.png",
+      "path": "02-eagle-cat-ears-whiskers.png",
+      "role": "final",
+      "source_round": 16,
+      "source_engine": "zimage",
+      "source_shot": "e-cat-ears-whiskers",
+      "source_file": "work/cat-eagle/r16/bs-ce-r16-e-cat-ears-whiskers_00001_.png",
+      "seed": 4201,
+      "prompt_id": "a918515a-34f2-41b1-b558-37d1e1cc0923",
+      "prompt": "头部特写，一只动物独自占据画面：它侧头朝向镜头、喙略微抬起：a golden eagle with a domestic cat's triangular tufted ears and a domestic cat's long thin whiskers, a hooked yellow beak, a dark brown feathered head, a feathered neck ruff, a piercing amber eye, folded wings, and scaled yellow legs with black talons. against a dark shadowed bank of dry reeds, the background falling into near-black. a single low side light catching the thin whiskers so they read as bright lines. Wildlife photograph, a tight portrait of the head, 200mm lens at f/4, background thrown out of focus, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "4a009cd0883b7ed123599012aeb2528700d6cb535d437469cd83af92454fb352"
+    },
+    {
+      "final": "controls/eagle.png",
+      "path": "controls/eagle.png",
+      "role": "control",
+      "source_round": 16,
+      "source_engine": "zimage",
+      "source_shot": "base-eagle",
+      "source_file": "work/cat-eagle/r16/bs-ce-r16-base-eagle_00001_.png",
+      "seed": 4201,
+      "prompt_id": "03944b6a-e84a-4b0f-930c-1b677d698a1b",
+      "prompt": "头部特写，一只动物独自占据画面：它侧头朝向镜头、喙略微抬起：a golden eagle with a hooked yellow beak, a dark brown feathered head, a feathered neck ruff, a piercing amber eye, folded wings, and scaled yellow legs with black talons. against a dark shadowed bank of dry reeds, the background falling into near-black. a single low side light catching the thin whiskers so they read as bright lines. Wildlife photograph, a tight portrait of the head, 200mm lens at f/4, background thrown out of focus, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "c67f3fbd20d7dd3029e1bdac6ac1bc5a3ea5729b001a1f6c74ecd8ed7ea1f67b"
+    }
+  ]
+}

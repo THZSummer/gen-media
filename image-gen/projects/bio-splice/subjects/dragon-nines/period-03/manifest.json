@@ -1,0 +1,52 @@
+{
+  "period": "period-03",
+  "note": "期03【林下枯叶·斑驳林光·侧俯贴体看鳞】蛇底座（腾出鳞占位）+ 鱼鳞 D6 / 鹿角+鱼鳞",
+  "from": "work/dragon-nines/r6/round.json",
+  "entries": [
+    {
+      "final": "01-snake-fishscale.png",
+      "path": "01-snake-fishscale.png",
+      "role": "final",
+      "source_round": 6,
+      "source_engine": "zimage",
+      "source_shot": "snake-fishscale",
+      "source_file": "work/dragon-nines/r6/as-dn-r6-snake-fishscale_00001_.png",
+      "seed": 4201,
+      "prompt_id": "1e2c96ad-fff1-480e-b98c-32b30df875ed",
+      "prompt": "全身像，一只动物独自占据画面：它把身体平铺在地、整个背脊朝向镜头：a large wild snake with large overlapping fish scales, its head raised, a blunt head, dark lidless eyes, a flickering forked tongue, and a long smooth muscular body. on damp leaf litter deep on a forest floor. dappled light falling through the canopy. Wildlife photograph, 100mm macro lens, side view from slightly above, f/5.6, the whole length of the body in focus, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "1eb1737cffb7dca42e401780f9a8a7327a3d902ce0ff1e7fd1642272b4d335ad"
+    },
+    {
+      "final": "02-snake-antler-fishscale.png",
+      "path": "02-snake-antler-fishscale.png",
+      "role": "final",
+      "source_round": 6,
+      "source_engine": "zimage",
+      "source_shot": "snake-fishscale-antler",
+      "source_file": "work/dragon-nines/r6/as-dn-r6-snake-fishscale-antler_00001_.png",
+      "seed": 4201,
+      "prompt_id": "e3738ba6-135f-40d4-98b6-ff9d2ab068b4",
+      "prompt": "全身像，一只动物独自占据画面：它把身体平铺在地、整个背脊朝向镜头：a large wild snake with a pair of branching deer antlers and large overlapping fish scales, its head raised, a blunt head, dark lidless eyes, a flickering forked tongue, and a long smooth muscular body. on damp leaf litter deep on a forest floor. dappled light falling through the canopy. Wildlife photograph, 100mm macro lens, side view from slightly above, f/5.6, the whole length of the body in focus, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "8e5c5b4eb340e56b80224d11dd8031816a50906b9a3fa7c1f68333a12bb8342b"
+    },
+    {
+      "final": "controls/snake-clean.png",
+      "path": "controls/snake-clean.png",
+      "role": "control",
+      "source_round": 6,
+      "source_engine": "zimage",
+      "source_shot": "base-snake",
+      "source_file": "work/dragon-nines/r6/as-dn-r6-base-snake_00001_.png",
+      "seed": 4201,
+      "prompt_id": "7cda036a-7520-421e-b1de-e0444e50d757",
+      "prompt": "全身像，一只动物独自占据画面：它把身体平铺在地、整个背脊朝向镜头：a large wild snake with its head raised, a blunt head, dark lidless eyes, a flickering forked tongue, and a long smooth muscular body. on damp leaf litter deep on a forest floor. dappled light falling through the canopy. Wildlife photograph, 100mm macro lens, side view from slightly above, f/5.6, the whole length of the body in focus, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "89a0b597d2485451b89c125c8bf8064a7ca5c243ca3e7274366e2fde6e51c739"
+    }
+  ]
+}

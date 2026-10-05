@@ -1,0 +1,52 @@
+{
+  "period": "period-05",
+  "note": "第五部分：独角鲸长牙（H5）+ 犀角（H4）——霜晨草原·侧逆光·贴面特写·竖",
+  "from": "work/horn-atlas/r5/round.json",
+  "entries": [
+    {
+      "final": "01-horse-narwhal.png",
+      "path": "01-horse-narwhal.png",
+      "role": "final",
+      "source_round": 5,
+      "source_engine": "zimage",
+      "source_shot": "horse-narwhal",
+      "source_file": "work/horn-atlas/r5/bs-ha-r5-horse-narwhal_00001_.png",
+      "seed": 14101,
+      "prompt_id": "b72a2d5c-02a5-4f8a-b692-d48a12be7725",
+      "prompt": "头部特写，一只动物独自占据画面：它抬起头、正面朝向镜头：a bay horse with a single long spiral narwhal tusk rising from its forehead, a long dark mane, a dark muzzle, four slender legs and a flowing tail. on frost-covered grassland at first light. low side-backlight, frost glittering. a tight portrait of the head, 200mm lens at f/5.6, Wildlife photograph, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "04ffb9b2a01b371368f2482e0e126974e46098ab6976b3ea0f4c03bfcf0100d7"
+    },
+    {
+      "final": "02-horse-rhino.png",
+      "path": "02-horse-rhino.png",
+      "role": "final",
+      "source_round": 5,
+      "source_engine": "zimage",
+      "source_shot": "horse-rhino",
+      "source_file": "work/horn-atlas/r5/bs-ha-r5-horse-rhino_00001_.png",
+      "seed": 14102,
+      "prompt_id": "ab66b26e-d49c-4ec9-beb9-4483a16e3b08",
+      "prompt": "头部特写，一只动物独自占据画面：它抬起头、正面朝向镜头：a bay horse with a single heavy rhinoceros horn rising from its nose, a long dark mane, a dark muzzle, four slender legs and a flowing tail. on frost-covered grassland at first light. low side-backlight, frost glittering. a tight portrait of the head, 200mm lens at f/5.6, Wildlife photograph, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "58a184dc023def41fde112304958bb702f53f56001a5c883dec11ed59ee98ff9"
+    },
+    {
+      "final": "controls/horse.png",
+      "path": "controls/horse.png",
+      "role": "control",
+      "source_round": 5,
+      "source_engine": "zimage",
+      "source_shot": "base-horse",
+      "source_file": "work/horn-atlas/r5/bs-ha-r5-base-horse_00001_.png",
+      "seed": 14101,
+      "prompt_id": "e907a6a6-5980-4097-8724-176cdda4558f",
+      "prompt": "头部特写，一只动物独自占据画面：它抬起头、正面朝向镜头：a bay horse with a long dark mane, a dark muzzle, four slender legs and a flowing tail. on frost-covered grassland at first light. low side-backlight, frost glittering. a tight portrait of the head, 200mm lens at f/5.6, Wildlife photograph, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "68a3a7fb55fda0c947dd3e65d011b93b87a89f60aabc0a3fb8aa83f3c8ec3d68"
+    }
+  ]
+}

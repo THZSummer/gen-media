@@ -1,0 +1,52 @@
+{
+  "period": "period-03",
+  "note": "第三部分：四翼（皮）——蝙蝠皮翼为第二对——洞窟口·硬光·方",
+  "from": "work/wing-atlas/r3/round.json",
+  "entries": [
+    {
+      "final": "01-bird-bat.png",
+      "path": "01-bird-bat.png",
+      "role": "final",
+      "source_round": 3,
+      "source_engine": "zimage",
+      "source_shot": "bird-bat",
+      "source_file": "work/wing-atlas/r3/bs-wa-r3-bird-bat_00001_.png",
+      "seed": 13101,
+      "prompt_id": "605234aa-06ea-49c8-897b-75af479b65a1",
+      "prompt": "全身像，一只动物独自占据画面：它停在岩壁上、侧身朝向镜头：a medium-sized brown bird with a pair of leathery bat wings rising from its back, a rounded head, a short dark beak, folded feathered wings and a long tail. at the mouth of a dim limestone cave. hard light from the cave mouth, deep shadows behind. a level view at eye height, 300mm lens at f/5.6, Wildlife photograph, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "a8847bfeb3e7fed36214da87221d8dd147bfebdb75c17e0fa74890cef5821ac3"
+    },
+    {
+      "final": "02-bird-bat-b.png",
+      "path": "02-bird-bat-b.png",
+      "role": "final",
+      "source_round": 3,
+      "source_engine": "zimage",
+      "source_shot": "bird-bat-b",
+      "source_file": "work/wing-atlas/r3/bs-wa-r3-bird-bat-b_00001_.png",
+      "seed": 13102,
+      "prompt_id": "c17087cf-0aca-46d6-a5eb-5ac9d3b0ea10",
+      "prompt": "全身像，一只动物独自占据画面：它停在岩壁上、侧身朝向镜头：a medium-sized brown bird with a pair of leathery bat wings rising from its back, a rounded head, a short dark beak, folded feathered wings and a long tail. at the mouth of a dim limestone cave. hard light from the cave mouth, deep shadows behind. a level view at eye height, 300mm lens at f/5.6, Wildlife photograph, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "0d04e7dfa3a15a9ecd7c6c65b00dfeef8427d37caaca545c34c4db81e8bd9d34"
+    },
+    {
+      "final": "controls/bird.png",
+      "path": "controls/bird.png",
+      "role": "control",
+      "source_round": 3,
+      "source_engine": "zimage",
+      "source_shot": "base-bird",
+      "source_file": "work/wing-atlas/r3/bs-wa-r3-base-bird_00001_.png",
+      "seed": 13101,
+      "prompt_id": "bca5f491-7075-4b48-a67a-acba0f60467d",
+      "prompt": "全身像，一只动物独自占据画面：它停在岩壁上、侧身朝向镜头：a medium-sized brown bird with a rounded head, a short dark beak, folded feathered wings and a long tail. at the mouth of a dim limestone cave. hard light from the cave mouth, deep shadows behind. a level view at eye height, 300mm lens at f/5.6, Wildlife photograph, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "b4e05c57104b8145e7f9335e902c1c3cf0bc3831eb64583a33b207ecd4bf132c"
+    }
+  ]
+}

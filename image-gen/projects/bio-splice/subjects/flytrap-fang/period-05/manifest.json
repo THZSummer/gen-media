@@ -1,0 +1,52 @@
+{
+  "period": "period-05",
+  "note": "第五期：食肉植物（T1+T2+T4·收官）——晨雾沼泽·逆光·广角·横幅",
+  "from": "work/flytrap-fang/r7/round.json",
+  "entries": [
+    {
+      "final": "01-flytrap-all3.png",
+      "path": "01-flytrap-all3.png",
+      "role": "final",
+      "source_round": 7,
+      "source_engine": "zimage",
+      "source_shot": "flytrap-all3-b",
+      "source_file": "work/flytrap-fang/r7/bs-ff-r7-flytrap-all3-b_00001_.png",
+      "seed": 10102,
+      "prompt_id": "517319cd-81cb-4be8-9f35-280f1cd56e02",
+      "prompt": "微距特写，一个生物体独自占据画面：一整丛捕蝇草张着夹子、朝向镜头：a Venus flytrap with a row of sharp white mammal fangs along the trap edges and a glossy dark animal eye on the leaf blade and a long pink mammal tongue curling out of the trap, broad flat leaf blades and two wide-open trap lobes with a red inner surface. in a misty bog at dawn, several traps in the frame. low backlight through the mist, the red inner surfaces glowing. a wide macro view, 45mm lens at f/11, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "d1dbf9cbc71dc5a6da272d94a452ceea0e9a1ef886fb2f9f123e617805b09155"
+    },
+    {
+      "final": "02-flytrap-all3-b.png",
+      "path": "02-flytrap-all3-b.png",
+      "role": "final",
+      "source_round": 7,
+      "source_engine": "zimage",
+      "source_shot": "flytrap-all3",
+      "source_file": "work/flytrap-fang/r7/bs-ff-r7-flytrap-all3_00001_.png",
+      "seed": 10101,
+      "prompt_id": "e796d791-6e27-4357-9253-defdc7cd7403",
+      "prompt": "微距特写，一个生物体独自占据画面：一整丛捕蝇草张着夹子、朝向镜头：a Venus flytrap with a row of sharp white mammal fangs along the trap edges and a glossy dark animal eye on the leaf blade and a long pink mammal tongue curling out of the trap, broad flat leaf blades and two wide-open trap lobes with a red inner surface. in a misty bog at dawn, several traps in the frame. low backlight through the mist, the red inner surfaces glowing. a wide macro view, 45mm lens at f/11, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "0af2711e818240abc77005baca675d967fdb5e10f8b0013f4a101aedab141303"
+    },
+    {
+      "final": "controls/flytrap.png",
+      "path": "controls/flytrap.png",
+      "role": "control",
+      "source_round": 7,
+      "source_engine": "zimage",
+      "source_shot": "base-flytrap",
+      "source_file": "work/flytrap-fang/r7/bs-ff-r7-base-flytrap_00001_.png",
+      "seed": 10101,
+      "prompt_id": "9d3d8174-2e96-4e36-8468-21fca8c4a9cd",
+      "prompt": "微距特写，一个生物体独自占据画面：一整丛捕蝇草张着夹子、朝向镜头：a Venus flytrap with broad flat leaf blades and two wide-open trap lobes with a red inner surface. in a misty bog at dawn, several traps in the frame. low backlight through the mist, the red inner surfaces glowing. a wide macro view, 45mm lens at f/11, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "ece8f6f95b7122327516fbf85b19ef91faa48dae3aa7bbecb409c6b447c90fa9"
+    }
+  ]
+}

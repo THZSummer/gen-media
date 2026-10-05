@@ -1,0 +1,67 @@
+{
+  "period": "period-02",
+  "note": "第二期：半出水——水线穿过身体·侧光·平视 135mm·方",
+  "from": "work/fish-bird/r11/round.json",
+  "entries": [
+    {
+      "final": "01-fish-wings-half.png",
+      "path": "01-fish-wings-half.png",
+      "role": "final",
+      "source_round": 11,
+      "source_engine": "zimage",
+      "source_shot": "fish-wings-half",
+      "source_file": "work/fish-bird/r11/bs-fb-r11-fish-wings-half_00001_.png",
+      "seed": 6101,
+      "prompt_id": "3fd434ff-19f2-46c2-949a-675553f33344",
+      "prompt": "全身像，一只动物独自占据画面：它半个身体还在水里、前半身已经抬起：a large wild carp with a pair of broad feathered bird wings half-opened along its flanks, a long scaled body, a blunt head, small eyes and a dorsal fin. at the water surface, the waterline cutting across its body. soft side light with the surface breaking into highlights. Photograph, a level view from the side, 135mm lens at f/4, the whole animal in frame, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "b1d803e18ca43e987165bef6d1da4b1986c1ded45048edfb604af56d93fbe104"
+    },
+    {
+      "final": "02-fish-wings-half-b.png",
+      "path": "02-fish-wings-half-b.png",
+      "role": "final",
+      "source_round": 11,
+      "source_engine": "zimage",
+      "source_shot": "fish-wings-half-b",
+      "source_file": "work/fish-bird/r11/bs-fb-r11-fish-wings-half-b_00001_.png",
+      "seed": 6102,
+      "prompt_id": "4006ced6-07b4-4b61-90c0-2e75de25fc10",
+      "prompt": "全身像，一只动物独自占据画面：它半个身体还在水里、前半身已经抬起：a large wild carp with a pair of broad feathered bird wings half-opened along its flanks, a long scaled body, a blunt head, small eyes and a dorsal fin. at the water surface, the waterline cutting across its body. soft side light with the surface breaking into highlights. Photograph, a level view from the side, 135mm lens at f/4, the whole animal in frame, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "20580afda3490907ed72f7956123abedb041b38ac51dfb8f839924c712aad7aa"
+    },
+    {
+      "final": "03-fish-wings-half-c.png",
+      "path": "03-fish-wings-half-c.png",
+      "role": "final",
+      "source_round": 11,
+      "source_engine": "zimage",
+      "source_shot": "fish-wings-half-c",
+      "source_file": "work/fish-bird/r11/bs-fb-r11-fish-wings-half-c_00001_.png",
+      "seed": 6104,
+      "prompt_id": "08fd4153-1576-47c6-ab59-58de77623b2f",
+      "prompt": "全身像，一只动物独自占据画面：它半个身体还在水里、前半身已经抬起：a large wild carp with a pair of broad feathered bird wings half-opened along its flanks, a long scaled body, a blunt head, small eyes and a dorsal fin. at the water surface, the waterline cutting across its body. soft side light with the surface breaking into highlights. Photograph, a level view from the side, 135mm lens at f/4, the whole animal in frame, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "1929d924f75aefb892c9c0c5df4a441a6bceff41f1d798bdce7d50a70b6fa245"
+    },
+    {
+      "final": "controls/fish.png",
+      "path": "controls/fish.png",
+      "role": "control",
+      "source_round": 11,
+      "source_engine": "zimage",
+      "source_shot": "base-fish",
+      "source_file": "work/fish-bird/r11/bs-fb-r11-base-fish_00001_.png",
+      "seed": 6101,
+      "prompt_id": "3286caca-4883-40a6-a223-b411e00a2ed8",
+      "prompt": "全身像，一只动物独自占据画面：它半个身体还在水里、前半身已经抬起：a large wild carp with a long scaled body, a blunt head, small eyes and a dorsal fin. at the water surface, the waterline cutting across its body. soft side light with the surface breaking into highlights. Photograph, a level view from the side, 135mm lens at f/4, the whole animal in frame, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "9f00cb0aa1fb9ccdd0eddaf3068a9adf697e7ffa3004caf8fc7d6fce0220ea1c"
+    }
+  ]
+}

@@ -1,0 +1,236 @@
+{
+  "92": {
+    "class_type": "SaveVideo",
+    "inputs": {
+      "filename_prefix": "video/verify-t2v",
+      "video": [
+        "91",
+        0
+      ],
+      "format": "auto",
+      "format.codec": "auto",
+      "codec": "auto"
+    }
+  },
+  "11": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+    }
+  },
+  "24": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+    }
+  },
+  "23": {
+    "class_type": "VAEDecodeAudio",
+    "inputs": {
+      "samples": [
+        "14",
+        0
+      ],
+      "vae": [
+        "24",
+        0
+      ]
+    }
+  },
+  "10": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "14",
+        0
+      ],
+      "vae": [
+        "11",
+        0
+      ]
+    }
+  },
+  "17": {
+    "class_type": "KSamplerSelect",
+    "inputs": {
+      "sampler_name": "res_multistep"
+    }
+  },
+  "9": {
+    "class_type": "BasicScheduler",
+    "inputs": {
+      "model": [
+        "127",
+        0
+      ],
+      "scheduler": "simple",
+      "steps": 8,
+      "denoise": 1
+    }
+  },
+  "14": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "15",
+        0
+      ],
+      "guider": [
+        "16",
+        0
+      ],
+      "sampler": [
+        "17",
+        0
+      ],
+      "sigmas": [
+        "9",
+        0
+      ],
+      "latent_image": [
+        "104",
+        1
+      ]
+    }
+  },
+  "16": {
+    "class_type": "BasicGuider",
+    "inputs": {
+      "model": [
+        "127",
+        0
+      ],
+      "conditioning": [
+        "104",
+        0
+      ]
+    }
+  },
+  "6": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "fastvideo_fasth3_8step_v2_pruned_int8_convrot.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "13": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+      "type": "minimax",
+      "device": "default"
+    }
+  },
+  "15": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 42
+    }
+  },
+  "91": {
+    "class_type": "CreateVideo",
+    "inputs": {
+      "images": [
+        "10",
+        0
+      ],
+      "audio": [
+        "23",
+        0
+      ],
+      "fps": 24,
+      "bit_depth": "auto",
+      "color_space": "sRGB",
+      "codec": "none"
+    }
+  },
+  "104": {
+    "class_type": "MiniMaxH3ImageToVideo",
+    "inputs": {
+      "prompt": "integrated_multimodal_description: [Shot 1] A single bone-china princess figurine stands centred on a plain warm-grey studio backdrop, lit by soft window light from the left. She wears a white lace gown, a silver filigree tiara set with a blue sapphire, a pearl necklace and pearl drop earrings, and holds a small bouquet of white porcelain roses. The camera slowly pushes in. A faint breath of air lifts the fine gauze veil at her shoulder and lets it settle again. [Shot 2] At 01.200, the camera continues in to a closer framing of her face and shoulder; a highlight slides slowly across the glaze of her cheek as she blinks once.\noverall_soundscape: A quiet studio room tone with a very faint draught. A soft rustle of thin silk is heard when the gauze moves, and a single small porcelain wind chime rings once, very softly.\nnon_diegetic_music: Sparse, slow guzheng plucks with long silences between them, warm and unhurried, no percussion, fading gently at the end.",
+      "width": [
+        "143",
+        0
+      ],
+      "height": [
+        "143",
+        1
+      ],
+      "clip": [
+        "13",
+        0
+      ],
+      "vae": [
+        "11",
+        0
+      ],
+      "length": [
+        "107",
+        1
+      ]
+    }
+  },
+  "107": {
+    "class_type": "ComfyMathExpression",
+    "inputs": {
+      "values.a": [
+        "111",
+        0
+      ],
+      "expression": "max(5, round(a * 24)) + (5 - (max(5, round(a * 24)) % 17)) % 17"
+    }
+  },
+  "111": {
+    "class_type": "PrimitiveFloat",
+    "inputs": {
+      "value": 2.0
+    }
+  },
+  "127": {
+    "class_type": "BlockSparseAttention",
+    "inputs": {
+      "model": [
+        "128",
+        0
+      ],
+      "selection": "vsa",
+      "selection.keep_percent": 10,
+      "start_percent": 0.2,
+      "end_percent": 1,
+      "dense_blocks": "",
+      "min_tokens": 12288,
+      "extra_tokens": 256,
+      "sink_conditioning": "exact_kv_and_rows",
+      "verbose": false
+    }
+  },
+  "128": {
+    "class_type": "ModelAttentionBackend",
+    "inputs": {
+      "attention": "comfy kitchen attention",
+      "model": [
+        "148",
+        0
+      ]
+    }
+  },
+  "148": {
+    "class_type": "MiniMaxH3SigmaShift",
+    "inputs": {
+      "model": [
+        "6",
+        0
+      ],
+      "shift_video": 10,
+      "shift_audio": 3
+    }
+  },
+  "143": {
+    "class_type": "ResolutionSelector",
+    "inputs": {
+      "aspect_ratio": "3:4 (Portrait Standard)",
+      "megapixels": 0.4,
+      "multiple": 32
+    }
+  }
+}

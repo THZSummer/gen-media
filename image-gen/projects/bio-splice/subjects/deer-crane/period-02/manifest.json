@@ -1,0 +1,52 @@
+{
+  "period": "period-02",
+  "note": "第二期：鹤腿的鹿（G2·腾出腿位）——浅水沼泽·晨光·平视全身·方（部分成立）",
+  "from": "work/deer-crane/r2/round.json",
+  "entries": [
+    {
+      "final": "01-deer-cranelegs.png",
+      "path": "01-deer-cranelegs.png",
+      "role": "final",
+      "source_round": 2,
+      "source_engine": "zimage",
+      "source_shot": "deer-cranelegs",
+      "source_file": "work/deer-crane/r2/bs-dc-r2-deer-cranelegs_00001_.png",
+      "seed": 7101,
+      "prompt_id": "ee9581d9-4d71-47fa-91f5-6b2dfdafe0f5",
+      "prompt": "全身像，一只动物独自占据画面：它在浅水里走着、侧身朝向镜头：a red deer with a pair of long thin crane's legs, a slender head, large ears, a smooth reddish-brown coat and a short tail. in shallow marsh water among reeds, ripples around its feet. low morning sun raking across the water. Photograph, a level camera at eye height, 400mm lens at f/4, the whole body in frame, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "35cf81506f9572062b9cab1ca13f44e24069abfeca92dca72d9850fed971d26d"
+    },
+    {
+      "final": "02-deer-cranelegs-b.png",
+      "path": "02-deer-cranelegs-b.png",
+      "role": "final",
+      "source_round": 2,
+      "source_engine": "zimage",
+      "source_shot": "deer-cranelegs-b",
+      "source_file": "work/deer-crane/r2/bs-dc-r2-deer-cranelegs-b_00001_.png",
+      "seed": 7102,
+      "prompt_id": "2b0b1816-9709-4dc0-8110-03490db09856",
+      "prompt": "全身像，一只动物独自占据画面：它在浅水里走着、侧身朝向镜头：a red deer with a pair of long thin crane's legs, a slender head, large ears, a smooth reddish-brown coat and a short tail. in shallow marsh water among reeds, ripples around its feet. low morning sun raking across the water. Photograph, a level camera at eye height, 400mm lens at f/4, the whole body in frame, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "218c14f8f8de75f809b2eaff74369ad2e2ccc96909d71dd044c47c46fc52e293"
+    },
+    {
+      "final": "controls/deer.png",
+      "path": "controls/deer.png",
+      "role": "control",
+      "source_round": 2,
+      "source_engine": "zimage",
+      "source_shot": "base-deer",
+      "source_file": "work/deer-crane/r2/bs-dc-r2-base-deer_00001_.png",
+      "seed": 7101,
+      "prompt_id": "99ef26a7-3ff6-4538-bfb5-bffa24391b5a",
+      "prompt": "全身像，一只动物独自占据画面：它在浅水里走着、侧身朝向镜头：a red deer with a slender head, large ears, a smooth reddish-brown coat and a short tail. in shallow marsh water among reeds, ripples around its feet. low morning sun raking across the water. Photograph, a level camera at eye height, 400mm lens at f/4, the whole body in frame, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "eac6144f7bc1b542a1463f81116dd1ba40c9de3535728399e9e990e773002a65"
+    }
+  ]
+}

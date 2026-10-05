@@ -1,0 +1,52 @@
+{
+  "period": "period-02",
+  "note": "第二部分：鹿角（H1）——晨雾草场·侧逆光·平视·方",
+  "from": "work/horn-atlas/r2/round.json",
+  "entries": [
+    {
+      "final": "01-horse-antlers.png",
+      "path": "01-horse-antlers.png",
+      "role": "final",
+      "source_round": 2,
+      "source_engine": "zimage",
+      "source_shot": "horse-antlers",
+      "source_file": "work/horn-atlas/r2/bs-ha-r2-horse-antlers_00001_.png",
+      "seed": 14101,
+      "prompt_id": "f2fe91d6-d669-4249-becf-1d7897a21a66",
+      "prompt": "全身像，一只动物独自占据画面：它立在雾里、侧身朝向镜头：a bay horse with a pair of branching deer antlers rising from its forehead, a long dark mane, a dark muzzle, four slender legs and a flowing tail. in a misty meadow at dawn. low side-backlight rimming its outline. a level view at eye height, 400mm lens at f/4, Wildlife photograph, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "c1e6a90a26510b122985354c07e6e6f8c7a7c5e7d2fa5d2a095e3738ae1ebc89"
+    },
+    {
+      "final": "02-horse-antlers-b.png",
+      "path": "02-horse-antlers-b.png",
+      "role": "final",
+      "source_round": 2,
+      "source_engine": "zimage",
+      "source_shot": "horse-antlers-b",
+      "source_file": "work/horn-atlas/r2/bs-ha-r2-horse-antlers-b_00001_.png",
+      "seed": 14102,
+      "prompt_id": "ab8b8a67-d270-4d17-9472-ce55c7dce87d",
+      "prompt": "全身像，一只动物独自占据画面：它立在雾里、侧身朝向镜头：a bay horse with a pair of branching deer antlers rising from its forehead, a long dark mane, a dark muzzle, four slender legs and a flowing tail. in a misty meadow at dawn. low side-backlight rimming its outline. a level view at eye height, 400mm lens at f/4, Wildlife photograph, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "4ed1f3f244eba3a58dd7f52126b44da8f2e271c4b4483a4e922b77f4553cb396"
+    },
+    {
+      "final": "controls/horse.png",
+      "path": "controls/horse.png",
+      "role": "control",
+      "source_round": 2,
+      "source_engine": "zimage",
+      "source_shot": "base-horse",
+      "source_file": "work/horn-atlas/r2/bs-ha-r2-base-horse_00001_.png",
+      "seed": 14101,
+      "prompt_id": "07aaf443-2376-4767-9511-14cf29ad9ab5",
+      "prompt": "全身像，一只动物独自占据画面：它立在雾里、侧身朝向镜头：a bay horse with a long dark mane, a dark muzzle, four slender legs and a flowing tail. in a misty meadow at dawn. low side-backlight rimming its outline. a level view at eye height, 400mm lens at f/4, Wildlife photograph, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "ecacfc0d08e6de3d02163baa50f3cdda2b22695970084648268e42a625a0618f"
+    }
+  ]
+}

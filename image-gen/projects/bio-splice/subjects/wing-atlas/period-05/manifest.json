@@ -1,0 +1,52 @@
+{
+  "period": "period-05",
+  "note": "第五部分：四翼（鹤羽）——鹤的白翼为第二对——秋林·逆光·广角·横幅",
+  "from": "work/wing-atlas/r8/round.json",
+  "entries": [
+    {
+      "final": "01-bird-crane.png",
+      "path": "01-bird-crane.png",
+      "role": "final",
+      "source_round": 8,
+      "source_engine": "zimage",
+      "source_shot": "bird-crane",
+      "source_file": "work/wing-atlas/r8/bs-wa-r8-bird-crane_00001_.png",
+      "seed": 13101,
+      "prompt_id": "16b5234d-b014-4754-a8e3-5139056783e6",
+      "prompt": "全身像，一只动物独自占据画面：它停在秋枝上、身体侧向镜头：a medium-sized brown bird with a pair of long white crane wings rising from its back, a rounded head, a short dark beak, folded feathered wings and a long tail. among turning leaves in an autumn wood. strong backlight through the leaves. a wide view at eye height, 135mm lens at f/5.6, Wildlife photograph, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "bbc5d2b45ce1d69648aed000823619462c7101df156a8f2d677c675df8059fd3"
+    },
+    {
+      "final": "02-bird-crane-b.png",
+      "path": "02-bird-crane-b.png",
+      "role": "final",
+      "source_round": 8,
+      "source_engine": "zimage",
+      "source_shot": "bird-crane-b",
+      "source_file": "work/wing-atlas/r8/bs-wa-r8-bird-crane-b_00001_.png",
+      "seed": 13102,
+      "prompt_id": "dd523efc-a283-4fb0-b4c5-f4e6b9457c90",
+      "prompt": "全身像，一只动物独自占据画面：它停在秋枝上、身体侧向镜头：a medium-sized brown bird with a pair of long white crane wings rising from its back, a rounded head, a short dark beak, folded feathered wings and a long tail. among turning leaves in an autumn wood. strong backlight through the leaves. a wide view at eye height, 135mm lens at f/5.6, Wildlife photograph, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "bf4e43b47b6206a487558ddde94a9732ae69edec4b2c688b590ea1923cd34903"
+    },
+    {
+      "final": "controls/bird.png",
+      "path": "controls/bird.png",
+      "role": "control",
+      "source_round": 8,
+      "source_engine": "zimage",
+      "source_shot": "base-bird",
+      "source_file": "work/wing-atlas/r8/bs-wa-r8-base-bird_00001_.png",
+      "seed": 13101,
+      "prompt_id": "e650f427-9f5b-4a3a-9c79-ecb61b5e6c8d",
+      "prompt": "全身像，一只动物独自占据画面：它停在秋枝上、身体侧向镜头：a medium-sized brown bird with a rounded head, a short dark beak, folded feathered wings and a long tail. among turning leaves in an autumn wood. strong backlight through the leaves. a wide view at eye height, 135mm lens at f/5.6, Wildlife photograph, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "9efa7ae61783477573ea16ca1b0bb60ae670965df3b05a90e5a0c8b02f885e6e"
+    }
+  ]
+}

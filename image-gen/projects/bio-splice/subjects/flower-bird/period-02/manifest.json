@@ -1,0 +1,52 @@
+{
+  "period": "period-02",
+  "note": "第二期：绒心的花（P5 绒羽落在花心）——玉兰·侧光·方（部分成立）",
+  "from": "work/flower-bird/r3/round.json",
+  "entries": [
+    {
+      "final": "01-flower-down.png",
+      "path": "01-flower-down.png",
+      "role": "final",
+      "source_round": 3,
+      "source_engine": "zimage",
+      "source_shot": "flower-down",
+      "source_file": "work/flower-bird/r3/bs-fb2-r3-flower-down_00001_.png",
+      "seed": 11101,
+      "prompt_id": "46d71e7c-0f32-49d3-8e23-985f58a42f77",
+      "prompt": "微距特写，一个生物体独自占据画面：它开在枝头、正面朝向镜头：a large white magnolia flower with a tuft of soft downy bird feathers in the centre of the flower, broad rounded petals. on a spring branch, dew on the petals. raking side light picking out the surface. a level macro view, 100mm macro lens at f/8, macro photograph, fine surface detail, soft natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "3915f254135209c66bc41d298eeb04c4b8d4a0270d8b2c498cd4453cf9a3bc07"
+    },
+    {
+      "final": "02-flower-down-b.png",
+      "path": "02-flower-down-b.png",
+      "role": "final",
+      "source_round": 3,
+      "source_engine": "zimage",
+      "source_shot": "flower-down-b",
+      "source_file": "work/flower-bird/r3/bs-fb2-r3-flower-down-b_00001_.png",
+      "seed": 11102,
+      "prompt_id": "97543603-1d63-4d53-8b58-fda3c68c3ea6",
+      "prompt": "微距特写，一个生物体独自占据画面：它开在枝头、正面朝向镜头：a large white magnolia flower with a tuft of soft downy bird feathers in the centre of the flower, broad rounded petals. on a spring branch, dew on the petals. raking side light picking out the surface. a level macro view, 100mm macro lens at f/8, macro photograph, fine surface detail, soft natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "92ffbb530ff7c7847a8e927069d68f11f973d8d16a5eb668130289ec98b17d48"
+    },
+    {
+      "final": "controls/flower.png",
+      "path": "controls/flower.png",
+      "role": "control",
+      "source_round": 3,
+      "source_engine": "zimage",
+      "source_shot": "base-flower",
+      "source_file": "work/flower-bird/r3/bs-fb2-r3-base-flower_00001_.png",
+      "seed": 11101,
+      "prompt_id": "314e4a01-a281-423f-ba27-db7ec1acc9f6",
+      "prompt": "微距特写，一个生物体独自占据画面：它开在枝头、正面朝向镜头：a large white magnolia flower with broad rounded petals. on a spring branch, dew on the petals. raking side light picking out the surface. a level macro view, 100mm macro lens at f/8, macro photograph, fine surface detail, soft natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "daf3ba18441466cd79178a0cfa31f409ad86bfe96a94cb773d7ffdedbc8a1eb0"
+    }
+  ]
+}

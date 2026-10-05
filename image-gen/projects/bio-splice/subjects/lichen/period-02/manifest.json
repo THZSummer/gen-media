@@ -1,0 +1,52 @@
+{
+  "period": "period-02",
+  "note": "第二期：叶状地衣（FL1 + AL2）——树皮·湿润·微距侧俯·方",
+  "from": "work/lichen/r2/round.json",
+  "entries": [
+    {
+      "final": "01-mycelium-foliose.png",
+      "path": "01-mycelium-foliose.png",
+      "role": "final",
+      "source_round": 2,
+      "source_engine": "zimage",
+      "source_shot": "mycelium-foliose",
+      "source_file": "work/lichen/r2/bs-lc-r2-mycelium-foliose_00001_.png",
+      "seed": 8101,
+      "prompt_id": "66db4c27-a5aa-4d92-9003-224af112fb7b",
+      "prompt": "微距特写，一个生物体独自占据画面：它贴在树皮上、表面斜向镜头：a dense mat of pale fungal mycelium with leafy foliose lichen lobes with pale rims, fine branching threads and a soft dusty surface. on the wet bark of an old tree trunk. soft wet light with a faint sheen on the surface. a macro view from slightly above, 100mm macro lens at f/8, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "248edfa2d2fc3fe1c4fb4b125dac39c9f935fcd9ab5c61654d853e405d0d997f"
+    },
+    {
+      "final": "02-mycelium-foliose-algae.png",
+      "path": "02-mycelium-foliose-algae.png",
+      "role": "final",
+      "source_round": 2,
+      "source_engine": "zimage",
+      "source_shot": "mycelium-foliose-algae",
+      "source_file": "work/lichen/r2/bs-lc-r2-mycelium-foliose-algae_00001_.png",
+      "seed": 8102,
+      "prompt_id": "0e70ede1-f822-4d0e-b023-64f876b0da20",
+      "prompt": "微距特写，一个生物体独自占据画面：它贴在树皮上、表面斜向镜头：a dense mat of pale fungal mycelium with leafy foliose lichen lobes with pale rims and fine bright green algal filaments woven through the surface, fine branching threads and a soft dusty surface. on the wet bark of an old tree trunk. soft wet light with a faint sheen on the surface. a macro view from slightly above, 100mm macro lens at f/8, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "8a9ba9bde62183f03c7357dce935cc0ffe8d80671e041f79230dedcc84f85da6"
+    },
+    {
+      "final": "controls/mycelium.png",
+      "path": "controls/mycelium.png",
+      "role": "control",
+      "source_round": 2,
+      "source_engine": "zimage",
+      "source_shot": "base-mycelium",
+      "source_file": "work/lichen/r2/bs-lc-r2-base-mycelium_00001_.png",
+      "seed": 8101,
+      "prompt_id": "d9af78d0-ac1c-43b0-8772-6e6f16e1016b",
+      "prompt": "微距特写，一个生物体独自占据画面：它贴在树皮上、表面斜向镜头：a dense mat of pale fungal mycelium with fine branching threads and a soft dusty surface. on the wet bark of an old tree trunk. soft wet light with a faint sheen on the surface. a macro view from slightly above, 100mm macro lens at f/8, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "0c366c2185e455146bf9a16ed49cbd66d5606b59bb933c93c8636f5beb2e9b3c"
+    }
+  ]
+}

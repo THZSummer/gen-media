@@ -1,0 +1,52 @@
+{
+  "period": "period-05",
+  "note": "第五期：冬虫夏草（标本照·收官）——中性背景·环形光·全焦点·方",
+  "from": "work/cordyceps/r7/round.json",
+  "entries": [
+    {
+      "final": "01-cordyceps-specimen.png",
+      "path": "01-cordyceps-specimen.png",
+      "role": "final",
+      "source_round": 7,
+      "source_engine": "zimage",
+      "source_shot": "cordyceps-specimen",
+      "source_file": "work/cordyceps/r7/bs-cd-r7-cordyceps-specimen_00001_.png",
+      "seed": 9101,
+      "prompt_id": "201ca842-0ac4-4909-a2e3-a3045bd64cea",
+      "prompt": "标本照，一个标本独自占据画面：它被放在灰色台面上、身体侧向镜头：a large moth larva with a dense coating of pale fungal mycelium across the whole body and a single tall club-shaped fungal stroma rising from its body and clusters of fine pale spores dusting the surface, a segmented pale body, a dark head capsule and short stubby legs. on a plain neutral grey background, nothing else in frame. ring light, deep even illumination, everything in focus. a flat-on macro view, 100mm macro lens at f/16, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "bc2cc76668960b79f175436bf2f602040e6d49681abba84f9958906745061d57"
+    },
+    {
+      "final": "02-cordyceps-specimen-b.png",
+      "path": "02-cordyceps-specimen-b.png",
+      "role": "final",
+      "source_round": 7,
+      "source_engine": "zimage",
+      "source_shot": "cordyceps-specimen-b",
+      "source_file": "work/cordyceps/r7/bs-cd-r7-cordyceps-specimen-b_00001_.png",
+      "seed": 9102,
+      "prompt_id": "d28740af-7be6-4a12-a45c-08e1b73fad3f",
+      "prompt": "标本照，一个标本独自占据画面：它被放在灰色台面上、身体侧向镜头：a large moth larva with a dense coating of pale fungal mycelium across the whole body and a single tall club-shaped fungal stroma rising from its body and clusters of fine pale spores dusting the surface, a segmented pale body, a dark head capsule and short stubby legs. on a plain neutral grey background, nothing else in frame. ring light, deep even illumination, everything in focus. a flat-on macro view, 100mm macro lens at f/16, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "bcb54576da496ccf91a97fc85a5227c745743a096c79e70b477340036715b9bb"
+    },
+    {
+      "final": "controls/larva.png",
+      "path": "controls/larva.png",
+      "role": "control",
+      "source_round": 7,
+      "source_engine": "zimage",
+      "source_shot": "base-larva",
+      "source_file": "work/cordyceps/r7/bs-cd-r7-base-larva_00001_.png",
+      "seed": 9101,
+      "prompt_id": "dd2aedfc-e70f-4bdd-af57-4fd2e3eef0d7",
+      "prompt": "标本照，一个标本独自占据画面：它被放在灰色台面上、身体侧向镜头：a large moth larva with a segmented pale body, a dark head capsule and short stubby legs. on a plain neutral grey background, nothing else in frame. ring light, deep even illumination, everything in focus. a flat-on macro view, 100mm macro lens at f/16, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "fa2fa3f49578cccb2b3e204652ad20b83a2711caa2d66dc68ef8ec19c301e02d"
+    }
+  ]
+}

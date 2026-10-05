@@ -1,0 +1,52 @@
+{
+  "period": "period-01",
+  "note": "第一期：长颈的鹿（G1）——晨雾竹林·柔光·平视 400mm·方（部分成立）",
+  "from": "work/deer-crane/r1/round.json",
+  "entries": [
+    {
+      "final": "01-deer-craneneck.png",
+      "path": "01-deer-craneneck.png",
+      "role": "final",
+      "source_round": 1,
+      "source_engine": "zimage",
+      "source_shot": "deer-craneneck",
+      "source_file": "work/deer-crane/r1/bs-dc-r1-deer-craneneck_00001_.png",
+      "seed": 7101,
+      "prompt_id": "671ea052-4b1d-48d2-b95f-665a6484fd96",
+      "prompt": "全身像，一只动物独自占据画面：它站在雾里、正面朝向镜头：a red deer with a long slender crane's neck with fine grey feathers, a slender head, large ears, a smooth reddish-brown coat, four long legs and a short tail. in a misty bamboo grove, thin fog drifting between the stems. soft diffuse morning light. Photograph, a level camera at eye height, 400mm lens at f/4, the whole body in frame, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "06af7f6eb4e3ac4630d1f2c27283c8d57b34e16ecd6697bc6a03584ec3b3c6e3"
+    },
+    {
+      "final": "02-deer-craneneck-b.png",
+      "path": "02-deer-craneneck-b.png",
+      "role": "final",
+      "source_round": 1,
+      "source_engine": "zimage",
+      "source_shot": "deer-craneneck-b",
+      "source_file": "work/deer-crane/r1/bs-dc-r1-deer-craneneck-b_00001_.png",
+      "seed": 7102,
+      "prompt_id": "bb2dba96-36be-4657-9c35-887b93e1db44",
+      "prompt": "全身像，一只动物独自占据画面：它站在雾里、正面朝向镜头：a red deer with a long slender crane's neck with fine grey feathers, a slender head, large ears, a smooth reddish-brown coat, four long legs and a short tail. in a misty bamboo grove, thin fog drifting between the stems. soft diffuse morning light. Photograph, a level camera at eye height, 400mm lens at f/4, the whole body in frame, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "ac89be033f302739a4b54ef43077e558b4ed203d8bef3eb614544690d8884eaf"
+    },
+    {
+      "final": "controls/deer.png",
+      "path": "controls/deer.png",
+      "role": "control",
+      "source_round": 1,
+      "source_engine": "zimage",
+      "source_shot": "base-deer",
+      "source_file": "work/deer-crane/r1/bs-dc-r1-base-deer_00001_.png",
+      "seed": 7101,
+      "prompt_id": "622a9bec-4e62-41a0-8c7d-2b5652096f30",
+      "prompt": "全身像，一只动物独自占据画面：它站在雾里、正面朝向镜头：a red deer with a slender head, large ears, a smooth reddish-brown coat, four long legs and a short tail. in a misty bamboo grove, thin fog drifting between the stems. soft diffuse morning light. Photograph, a level camera at eye height, 400mm lens at f/4, the whole body in frame, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "09f2d4263e0b77301998e2af35aacbf9d867adb7a97cc980e8805701c353fb85"
+    }
+  ]
+}

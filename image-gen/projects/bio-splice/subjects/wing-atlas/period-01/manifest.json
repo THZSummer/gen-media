@@ -1,0 +1,52 @@
+{
+  "period": "period-01",
+  "note": "第一部分：双翼基准（无移植件，作为后四部分的参照）——枝头·侧逆光·平视·方",
+  "from": "work/wing-atlas/r1/round.json",
+  "entries": [
+    {
+      "final": "01-bird-baseline.png",
+      "path": "01-bird-baseline.png",
+      "role": "final",
+      "source_round": 1,
+      "source_engine": "zimage",
+      "source_shot": "base-bird",
+      "source_file": "work/wing-atlas/r1/bs-wa-r1-base-bird_00001_.png",
+      "seed": 13101,
+      "prompt_id": "3d80eb6b-caa5-4c8a-aabd-b350a28c200f",
+      "prompt": "全身像，一只动物独自占据画面：它停在枝头、侧身朝向镜头：a medium-sized brown bird with a rounded head, a short dark beak, folded feathered wings and a long tail. on a bare branch in a woodland clearing. soft side-backlight rimming its outline. a level view at eye height, 400mm lens at f/4, Wildlife photograph, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "4f2884affca38c8185f9644bf4273fdac608120fcca028a1f8801c15c524e6bf"
+    },
+    {
+      "final": "02-bird-baseline-b.png",
+      "path": "02-bird-baseline-b.png",
+      "role": "final",
+      "source_round": 1,
+      "source_engine": "zimage",
+      "source_shot": "base-bird-b",
+      "source_file": "work/wing-atlas/r1/bs-wa-r1-base-bird-b_00001_.png",
+      "seed": 13102,
+      "prompt_id": "ac1ca1f9-aaca-42cc-97bb-2d767623a51d",
+      "prompt": "全身像，一只动物独自占据画面：它停在枝头、侧身朝向镜头：a medium-sized brown bird with a rounded head, a short dark beak, folded feathered wings and a long tail. on a bare branch in a woodland clearing. soft side-backlight rimming its outline. a level view at eye height, 400mm lens at f/4, Wildlife photograph, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "33e5fd555f914c5c253cba91c9f1b0dcd320635aff6bfbf11ee70e5bc78c500c"
+    },
+    {
+      "final": "03-bird-baseline-c.png",
+      "path": "03-bird-baseline-c.png",
+      "role": "final",
+      "source_round": 1,
+      "source_engine": "zimage",
+      "source_shot": "base-bird-c",
+      "source_file": "work/wing-atlas/r1/bs-wa-r1-base-bird-c_00001_.png",
+      "seed": 13103,
+      "prompt_id": "62cb1c60-e59a-48fe-8860-ce0c2ab13cb8",
+      "prompt": "全身像，一只动物独自占据画面：它停在枝头、侧身朝向镜头：a medium-sized brown bird with a rounded head, a short dark beak, folded feathered wings and a long tail. on a bare branch in a woodland clearing. soft side-backlight rimming its outline. a level view at eye height, 400mm lens at f/4, Wildlife photograph, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "99fdabc31494f9baa49a11ac18b1535ce996f71cf9b9c74754c52e41a0edd776"
+    }
+  ]
+}

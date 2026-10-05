@@ -1,0 +1,52 @@
+{
+  "period": "period-03",
+  "note": "第三期：吐信的捕蝇草（T4·夹子内腔）——苔藓·低机位·竖",
+  "from": "work/flytrap-fang/r5/round.json",
+  "entries": [
+    {
+      "final": "01-flytrap-tongue.png",
+      "path": "01-flytrap-tongue.png",
+      "role": "final",
+      "source_round": 5,
+      "source_engine": "zimage",
+      "source_shot": "flytrap-tongue",
+      "source_file": "work/flytrap-fang/r5/bs-ff-r5-flytrap-tongue_00001_.png",
+      "seed": 10101,
+      "prompt_id": "b4b44ade-6527-4a57-b4c0-ca39ab069342",
+      "prompt": "微距特写，一个生物体独自占据画面：它张着夹子、内腔朝向镜头：a Venus flytrap with a long pink mammal tongue curling out of the trap, broad flat leaf blades and two wide-open trap lobes with a red inner surface. low among wet moss, the trap opening facing the camera. soft light falling into the open trap. a low macro view looking into the trap, 100mm macro lens at f/8, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "4e93d157ca470716787f31af71fa5d3228ca74e5aebccbc0ae2c4dc22b4c4b92"
+    },
+    {
+      "final": "02-flytrap-tongue-b.png",
+      "path": "02-flytrap-tongue-b.png",
+      "role": "final",
+      "source_round": 5,
+      "source_engine": "zimage",
+      "source_shot": "flytrap-tongue-b",
+      "source_file": "work/flytrap-fang/r5/bs-ff-r5-flytrap-tongue-b_00001_.png",
+      "seed": 10102,
+      "prompt_id": "2b35ec69-f116-4460-a742-02096d077269",
+      "prompt": "微距特写，一个生物体独自占据画面：它张着夹子、内腔朝向镜头：a Venus flytrap with a long pink mammal tongue curling out of the trap, broad flat leaf blades and two wide-open trap lobes with a red inner surface. low among wet moss, the trap opening facing the camera. soft light falling into the open trap. a low macro view looking into the trap, 100mm macro lens at f/8, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "bb822c0c3cc25c31bd4b80d84ecbe85bce775973a52ca09ab09d00f66ae534a5"
+    },
+    {
+      "final": "controls/flytrap.png",
+      "path": "controls/flytrap.png",
+      "role": "control",
+      "source_round": 5,
+      "source_engine": "zimage",
+      "source_shot": "base-flytrap",
+      "source_file": "work/flytrap-fang/r5/bs-ff-r5-base-flytrap_00001_.png",
+      "seed": 10101,
+      "prompt_id": "5703137f-d1d4-42f0-8d87-acc6f3083bb9",
+      "prompt": "微距特写，一个生物体独自占据画面：它张着夹子、内腔朝向镜头：a Venus flytrap with broad flat leaf blades and two wide-open trap lobes with a red inner surface. low among wet moss, the trap opening facing the camera. soft light falling into the open trap. a low macro view looking into the trap, 100mm macro lens at f/8, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "5f074eb26d03a36ddcc51a2a0551240bcf06bed62d1803d375722f0b0f8c7843"
+    }
+  ]
+}

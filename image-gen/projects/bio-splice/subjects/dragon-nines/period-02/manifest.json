@@ -1,0 +1,52 @@
+{
+  "period": "period-02",
+  "note": "期02【卵石河滩·雨后·低机位聚焦前足·竖幅】蜥蜴底座 + 鹰爪 D7 / 虎掌 D8",
+  "from": "work/dragon-nines/r5/round.json",
+  "entries": [
+    {
+      "final": "01-lizard-talons.png",
+      "path": "01-lizard-talons.png",
+      "role": "final",
+      "source_round": 5,
+      "source_engine": "zimage",
+      "source_shot": "lizard-talons",
+      "source_file": "work/dragon-nines/r5/as-dn-r5-lizard-talons_00001_.png",
+      "seed": 4201,
+      "prompt_id": "b067dd4b-9234-46de-be04-6ccd5defb567",
+      "prompt": "全身像，一只动物独自占据画面：它以后肢撑起上身、两前足抬起张开：a large monitor lizard with sharp curved eagle talons on its front feet, its head raised, a blunt scaled snout, dark lidless eyes, a flickering forked tongue, four stout legs and a long tapering tail. on a wet pebble riverbank just after rain, water still sheeting over the stones. wet overcast light with a soft backlight rimming its body. Wildlife photograph, a low ground-level camera angle, 85mm lens at f/3.2, very shallow depth of field, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "208886912fb523b31f3fecc9ce8c55797a29b99663ab9a4ef31c862b9c5fccbd"
+    },
+    {
+      "final": "02-lizard-talons-paws.png",
+      "path": "02-lizard-talons-paws.png",
+      "role": "final",
+      "source_round": 5,
+      "source_engine": "zimage",
+      "source_shot": "lizard-talons-paws",
+      "source_file": "work/dragon-nines/r5/as-dn-r5-lizard-talons-paws_00001_.png",
+      "seed": 4201,
+      "prompt_id": "f404a726-f51e-4a12-94c9-2399e1c3ca66",
+      "prompt": "全身像，一只动物独自占据画面：它以后肢撑起上身、两前足抬起张开：a large monitor lizard with sharp curved eagle talons on its front feet and broad tiger paws with heavy pads on its hind feet, its head raised, a blunt scaled snout, dark lidless eyes, a flickering forked tongue, four stout legs and a long tapering tail. on a wet pebble riverbank just after rain, water still sheeting over the stones. wet overcast light with a soft backlight rimming its body. Wildlife photograph, a low ground-level camera angle, 85mm lens at f/3.2, very shallow depth of field, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "000f02adb63162bf63c5913392848a0daec3201005783a93efc161f56c60640e"
+    },
+    {
+      "final": "controls/lizard.png",
+      "path": "controls/lizard.png",
+      "role": "control",
+      "source_round": 5,
+      "source_engine": "zimage",
+      "source_shot": "base-lizard",
+      "source_file": "work/dragon-nines/r5/as-dn-r5-base-lizard_00001_.png",
+      "seed": 4201,
+      "prompt_id": "1f867cf0-f960-4da6-858f-cbd13ae326d0",
+      "prompt": "全身像，一只动物独自占据画面：它以后肢撑起上身、两前足抬起张开：a large monitor lizard with its head raised, a blunt scaled snout, dark lidless eyes, a flickering forked tongue, four stout legs and a long tapering tail. on a wet pebble riverbank just after rain, water still sheeting over the stones. wet overcast light with a soft backlight rimming its body. Wildlife photograph, a low ground-level camera angle, 85mm lens at f/3.2, very shallow depth of field, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "20375dc2ceb80fc008430d17605036de9939e081acd1e848ac4b02ff40bc2bbb"
+    }
+  ]
+}

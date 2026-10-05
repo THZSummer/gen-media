@@ -1,0 +1,67 @@
+{
+  "period": "period-04",
+  "note": "第四期：百合的绒与翎（换花种）——逆光·竖幅",
+  "from": "work/flower-bird/r9/round.json",
+  "entries": [
+    {
+      "final": "01-lily-down-plume.png",
+      "path": "01-lily-down-plume.png",
+      "role": "final",
+      "source_round": 9,
+      "source_engine": "zimage",
+      "source_shot": "lily-down-plume",
+      "source_file": "work/flower-bird/r9/bs-fb2-r9-lily-down-plume_00001_.png",
+      "seed": 11101,
+      "prompt_id": "c66c6561-821b-4666-8dee-8d53bb52d375",
+      "prompt": "微距特写，一个生物体独自占据画面：它开在枝头、侧面朝向镜头：a white lily flower with a tuft of soft downy bird feathers in the centre of the flower and long pale bird plume feathers rising from the stem, six long recurved petals. on a leafy stem in a spring garden. strong backlight through the petals. a level macro view, 100mm macro lens at f/8, macro photograph, fine surface detail, soft natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "e83c12ed76796c470094d3db73109bc42ce4e51d6c975a13fc8657004614e125"
+    },
+    {
+      "final": "02-lily-down-plume-c.png",
+      "path": "02-lily-down-plume-c.png",
+      "role": "final",
+      "source_round": 9,
+      "source_engine": "zimage",
+      "source_shot": "lily-down-plume-c",
+      "source_file": "work/flower-bird/r9/bs-fb2-r9-lily-down-plume-c_00001_.png",
+      "seed": 11103,
+      "prompt_id": "2d72e3bb-f4dd-4db5-b916-8209bca4cfca",
+      "prompt": "微距特写，一个生物体独自占据画面：它开在枝头、侧面朝向镜头：a white lily flower with a tuft of soft downy bird feathers in the centre of the flower and long pale bird plume feathers rising from the stem, six long recurved petals. on a leafy stem in a spring garden. strong backlight through the petals. a level macro view, 100mm macro lens at f/8, macro photograph, fine surface detail, soft natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "81ccfe2d648fc1603c5e624163b379f44f7c216fa38799dd1383970a9bae8807"
+    },
+    {
+      "final": "03-lily-down-plume-d.png",
+      "path": "03-lily-down-plume-d.png",
+      "role": "final",
+      "source_round": 9,
+      "source_engine": "zimage",
+      "source_shot": "lily-down-plume-d",
+      "source_file": "work/flower-bird/r9/bs-fb2-r9-lily-down-plume-d_00001_.png",
+      "seed": 11104,
+      "prompt_id": "9800df0a-11c8-4ac3-95d5-f8adfd6b253a",
+      "prompt": "微距特写，一个生物体独自占据画面：它开在枝头、侧面朝向镜头：a white lily flower with a tuft of soft downy bird feathers in the centre of the flower and long pale bird plume feathers rising from the stem, six long recurved petals. on a leafy stem in a spring garden. strong backlight through the petals. a level macro view, 100mm macro lens at f/8, macro photograph, fine surface detail, soft natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "5d171f38ff25ec95f721f274b888ce979c108b30f9ddf854dba7d28f33a56281"
+    },
+    {
+      "final": "controls/flower.png",
+      "path": "controls/flower.png",
+      "role": "control",
+      "source_round": 9,
+      "source_engine": "zimage",
+      "source_shot": "base-flower",
+      "source_file": "work/flower-bird/r9/bs-fb2-r9-base-flower_00001_.png",
+      "seed": 11101,
+      "prompt_id": "99ae0b7b-536f-4c16-9aca-eb131a3ac1c8",
+      "prompt": "微距特写，一个生物体独自占据画面：它开在枝头、侧面朝向镜头：a white lily flower with six long recurved petals. on a leafy stem in a spring garden. strong backlight through the petals. a level macro view, 100mm macro lens at f/8, macro photograph, fine surface detail, soft natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "db97e5786eb9bd0103840b0d67d6f6bd4331cff2b2342778b902b3cad151d56a"
+    }
+  ]
+}

@@ -1,0 +1,265 @@
+{
+  "name": "fastvideo-fasth3-i2v",
+  "workflow": "video_fastvideo_fasth3_i2v.json",
+  "description": "MiniMax-H3 + FastVideo FastH3 8-Step V2（DMD2 蒸馏）图生视频（fl2va）：首帧（可选尾帧）→ 视频 + 同步音频。画幅由输入图决定（ImageScaleToTotalPixels → GetImageSize），时长按 17k+5 帧栅格吸附到 24fps。",
+  "parameters": {
+    "image": {
+      "node": "LoadImage",
+      "field": "image",
+      "force": true,
+      "upload": true,
+      "aliases": [
+        "input_image",
+        "first_frame",
+        "first_frame_image"
+      ]
+    },
+    "prompt": {
+      "interface": "prompt",
+      "aliases": [
+        "text"
+      ]
+    },
+    "seed": {
+      "interface": "noise_seed"
+    },
+    "unet_name": {
+      "interface": "unet_name",
+      "aliases": [
+        "model"
+      ]
+    },
+    "clip_name": {
+      "interface": "clip_name",
+      "aliases": [
+        "text_encoder"
+      ]
+    },
+    "vae_name": {
+      "interface": "vae_name",
+      "aliases": [
+        "video_vae"
+      ]
+    },
+    "audio_vae_name": {
+      "interface": "vae_name_1",
+      "aliases": [
+        "audio_vae",
+        "vae_name_audio"
+      ]
+    },
+    "attention": {
+      "interface": "attention",
+      "aliases": [
+        "attn_backend",
+        "attention_backend"
+      ]
+    },
+    "duration": {
+      "interface": "value_1",
+      "aliases": [
+        "seconds",
+        "duration_seconds"
+      ]
+    },
+    "megapixels": {
+      "node": "ImageScaleToTotalPixels",
+      "field": "megapixels",
+      "aliases": [
+        "mp"
+      ]
+    },
+    "resolution_steps": {
+      "node": "ImageScaleToTotalPixels",
+      "field": "resolution_steps",
+      "aliases": [
+        "multiple"
+      ]
+    },
+    "scale_method": {
+      "node": "ImageScaleToTotalPixels",
+      "field": "upscale_method",
+      "aliases": [
+        "upscale_method"
+      ]
+    },
+    "width": {
+      "node": "MiniMaxH3ImageToVideo",
+      "field": "width",
+      "force": true
+    },
+    "height": {
+      "node": "MiniMaxH3ImageToVideo",
+      "field": "height",
+      "force": true
+    },
+    "length": {
+      "node": "MiniMaxH3ImageToVideo",
+      "field": "length",
+      "force": true,
+      "aliases": [
+        "frames"
+      ]
+    },
+    "steps": {
+      "node": "BasicScheduler",
+      "field": "steps"
+    },
+    "scheduler": {
+      "node": "BasicScheduler",
+      "field": "scheduler"
+    },
+    "denoise": {
+      "node": "BasicScheduler",
+      "field": "denoise"
+    },
+    "sampler": {
+      "node": "KSamplerSelect",
+      "field": "sampler_name",
+      "aliases": [
+        "sampler_name"
+      ]
+    },
+    "shift_video": {
+      "node": "MiniMaxH3SigmaShift",
+      "field": "shift_video"
+    },
+    "shift_audio": {
+      "node": "MiniMaxH3SigmaShift",
+      "field": "shift_audio"
+    },
+    "sparse_selection": {
+      "node": "BlockSparseAttention",
+      "field": "selection",
+      "aliases": [
+        "vsa_selection"
+      ]
+    },
+    "sparse_keep_percent": {
+      "node": "BlockSparseAttention",
+      "field": "selection.keep_percent"
+    },
+    "sparse_tau": {
+      "node": "BlockSparseAttention",
+      "field": "tau"
+    },
+    "sparse_start_percent": {
+      "node": "BlockSparseAttention",
+      "field": "start_percent"
+    },
+    "sparse_end_percent": {
+      "node": "BlockSparseAttention",
+      "field": "end_percent"
+    },
+    "sparse_min_tokens": {
+      "node": "BlockSparseAttention",
+      "field": "min_tokens"
+    },
+    "sparse_extra_tokens": {
+      "node": "BlockSparseAttention",
+      "field": "extra_tokens"
+    },
+    "sparse_dense_blocks": {
+      "node": "BlockSparseAttention",
+      "field": "dense_blocks"
+    },
+    "sparse_sink": {
+      "node": "BlockSparseAttention",
+      "field": "sink_conditioning"
+    },
+    "fps": {
+      "node": "CreateVideo",
+      "field": "fps"
+    },
+    "bit_depth": {
+      "node": "CreateVideo",
+      "field": "bit_depth"
+    },
+    "color_space": {
+      "node": "CreateVideo",
+      "field": "color_space"
+    },
+    "video_codec": {
+      "node": "CreateVideo",
+      "field": "codec",
+      "aliases": [
+        "codec"
+      ]
+    },
+    "filename_prefix": {
+      "node": "SaveVideo",
+      "field": "filename_prefix"
+    },
+    "video_format": {
+      "node": "SaveVideo",
+      "field": "format",
+      "aliases": [
+        "format",
+        "container"
+      ]
+    }
+  },
+  "node_classes": {
+    "load_image": "LoadImage",
+    "image_scaling": "ImageScaleToTotalPixels",
+    "image_size": "GetImageSize",
+    "conditioning": "MiniMaxH3ImageToVideo",
+    "model_loader": "UNETLoader",
+    "text_encoder": "CLIPLoader",
+    "video_vae": "VAELoader",
+    "audio_vae": "VAELoader",
+    "attention_backend": "ModelAttentionBackend",
+    "sparse_attention": "BlockSparseAttention",
+    "sigma_shift": "MiniMaxH3SigmaShift",
+    "scheduler": "BasicScheduler",
+    "sampler_select": "KSamplerSelect",
+    "noise": "RandomNoise",
+    "duration": "PrimitiveFloat",
+    "length_math": "ComfyMathExpression",
+    "video_assembly": "CreateVideo",
+    "save_video": "SaveVideo"
+  },
+  "defaults": {
+    "megapixels": 0.4,
+    "resolution_steps": 32,
+    "scale_method": "nearest-exact",
+    "duration": 5,
+    "steps": 8,
+    "sampler": "res_multistep",
+    "scheduler": "simple",
+    "denoise": 1.0,
+    "attention": "comfy kitchen attention",
+    "shift_video": 10,
+    "shift_audio": 3,
+    "sparse_selection": "vsa",
+    "sparse_keep_percent": 10,
+    "sparse_start_percent": 0.2,
+    "sparse_end_percent": 1.0,
+    "sparse_min_tokens": 12288,
+    "sparse_extra_tokens": 256,
+    "sparse_sink": "exact_kv_and_rows",
+    "fps": 24
+  },
+  "expected_unconnected": [
+    "last_frame"
+  ],
+  "drop_inputs": {
+    "RandomNoise": [
+      "control_after_generate"
+    ],
+    "LoadImage": [
+      "upload"
+    ]
+  },
+  "notes": [
+    "画幅不来自参数，而来自输入图：LoadImage → ImageScaleToTotalPixels(upscale_method, megapixels, resolution_steps) → GetImageSize → 子图 width/height。所以 --megapixels 决定画布总像素，比例跟随输入图；没有 ResolutionSelector，也没有 aspect_ratio 参数。",
+    "first_frame 接的是 LoadImage 的**原图**（不经 ImageScaleToTotalPixels）；缩放节点只用来算目标尺寸，不改喂给模型的帧。",
+    "last_frame 是可选的：工作流默认不接线（MiniMaxH3ImageToVideo 的 first_frame/last_frame 都是可选输入）。--last-frame 由脚本**在转换之后注入**一个 LoadImage 节点并接到该输入上；它刻意不写成 profile 参数，否则 profile 只会把字符串塞进一个本应是连线的输入。",
+    "expected_unconnected 声明 last_frame 缺失是预期的（MiniMaxH3ImageToVideo 的 first_frame/last_frame 都是可选输入），否则每轮都报假警告。",
+    "LoadImage.upload 是前端字段，不在节点 schema 里，必须 drop；脚本注入的 LoadImage 也不会带该字段。",
+    "control_after_generate 是前端字段（本工作流为 fixed），不在 RandomNoise schema 里，必须 drop。",
+    "✅ fl2va 支持与否已由真机首跑裁定（2026-10-03）：**支持**。传首帧+尾帧跑通（status success），且帧 0 = 首帧图、帧 55 = 尾帧图，视频在两张图之间插值。此前两个官方模板说法矛盾（T2V 模板称 'supports t2va only；FL2VA 未蒸馏'，本 I2V 模板称支持 t2va + fl2va），现确认 T2V 模板那句已过时。",
+    "时长栅格与 t2v 相同：max(5, round(duration*24)) + (5 - (max(5, round(duration*24)) % 17)) % 17，5 秒 → 124 帧 → 5.167 秒。",
+    "✅ 真机实测（2026-10-03）：576×736 / 56 帧 / 2.333 秒 / AAC 32kHz 双声道 / 180 秒出片；提交图与服务器执行图 22 节点 0 差异。注意首帧并非输入图的像素级复制（SSIM 0.929 / PSNR 30.3dB），模型是重绘并会轻微重新构图。"
+  ]
+}

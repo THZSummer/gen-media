@@ -1,0 +1,67 @@
+{
+  "period": "period-02",
+  "note": "第二期：鹰底座 + 猫的小件（C1 猫耳 / C5 猫尾）。呈现=黄昏湿草地·暖侧逆光·平视全身 400mm",
+  "from": "work/cat-eagle/r17/round.json",
+  "entries": [
+    {
+      "final": "01-eagle-cat-ears.png",
+      "path": "01-eagle-cat-ears.png",
+      "role": "final",
+      "source_round": 17,
+      "source_engine": "zimage",
+      "source_shot": "e-cat-ears",
+      "source_file": "work/cat-eagle/r17/bs-ce-r17-e-cat-ears_00001_.png",
+      "seed": 4201,
+      "prompt_id": "430f0453-8d15-410f-8874-cdf3d57bbedc",
+      "prompt": "全身像，一只动物独自占据画面：它侧身站着、头略向后转：a golden eagle with a domestic cat's triangular tufted ears, a hooked yellow beak, a dark brown feathered head, a feathered neck ruff, a piercing amber eye, folded wings, and scaled yellow legs with black talons. on wet grass at the edge of a marsh at dusk, the ground dark and damp. warm low sun from behind and to the side, rimming its outline. Wildlife photograph, a level camera at eye height, 400mm lens at f/4, the whole body in frame, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "32467573ac58da0f1b830ee299bf3dea3c3aeebd604bd05e194c6063c980df69"
+    },
+    {
+      "final": "02-eagle-cat-tail.png",
+      "path": "02-eagle-cat-tail.png",
+      "role": "final",
+      "source_round": 17,
+      "source_engine": "zimage",
+      "source_shot": "e-cat-tail",
+      "source_file": "work/cat-eagle/r17/bs-ce-r17-e-cat-tail_00001_.png",
+      "seed": 4201,
+      "prompt_id": "06115702-0d87-47c1-b05b-c3a00404da51",
+      "prompt": "全身像，一只动物独自占据画面：它侧身站着、头略向后转：a golden eagle with a domestic cat's long ringed tabby tail, a hooked yellow beak, a dark brown feathered head, a feathered neck ruff, a piercing amber eye, folded wings, and scaled yellow legs with black talons. on wet grass at the edge of a marsh at dusk, the ground dark and damp. warm low sun from behind and to the side, rimming its outline. Wildlife photograph, a level camera at eye height, 400mm lens at f/4, the whole body in frame, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "cb0485ce3d1db88b85840ce2769f5fd4e8a222cbdf2f93f6dec21509a468473e"
+    },
+    {
+      "final": "03-eagle-cat-ears-tail.png",
+      "path": "03-eagle-cat-ears-tail.png",
+      "role": "final",
+      "source_round": 17,
+      "source_engine": "zimage",
+      "source_shot": "e-cat-ears-tail",
+      "source_file": "work/cat-eagle/r17/bs-ce-r17-e-cat-ears-tail_00001_.png",
+      "seed": 4201,
+      "prompt_id": "538f8462-0747-4d2e-bd07-7f6265030b55",
+      "prompt": "全身像，一只动物独自占据画面：它侧身站着、头略向后转：a golden eagle with a domestic cat's triangular tufted ears and a domestic cat's long ringed tabby tail, a hooked yellow beak, a dark brown feathered head, a feathered neck ruff, a piercing amber eye, folded wings, and scaled yellow legs with black talons. on wet grass at the edge of a marsh at dusk, the ground dark and damp. warm low sun from behind and to the side, rimming its outline. Wildlife photograph, a level camera at eye height, 400mm lens at f/4, the whole body in frame, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "3f64c94f5b8840e0ffdde5aa4031f5d06f9c6ab970a84b3dc6b7b8370be5e298"
+    },
+    {
+      "final": "controls/eagle.png",
+      "path": "controls/eagle.png",
+      "role": "control",
+      "source_round": 17,
+      "source_engine": "zimage",
+      "source_shot": "base-eagle",
+      "source_file": "work/cat-eagle/r17/bs-ce-r17-base-eagle_00001_.png",
+      "seed": 4201,
+      "prompt_id": "95923dec-15ea-4832-a6b2-74b0a1e100bd",
+      "prompt": "全身像，一只动物独自占据画面：它侧身站着、头略向后转：a golden eagle with a hooked yellow beak, a dark brown feathered head, a feathered neck ruff, a piercing amber eye, folded wings, and scaled yellow legs with black talons. on wet grass at the edge of a marsh at dusk, the ground dark and damp. warm low sun from behind and to the side, rimming its outline. Wildlife photograph, a level camera at eye height, 400mm lens at f/4, the whole body in frame, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "77d0552f6876d8c23aaefbdf187479ff3badd6ca45a8ad7028660389ff3412fb"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+file 'narration_1_pad.mp3'
+file 'narration_2_pad.mp3'
+file 'narration_3_pad.mp3'
+file 'narration_4_pad.mp3'
+file 'narration_5_pad.mp3'
+file 'narration_6_pad.mp3'

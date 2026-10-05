@@ -1,0 +1,52 @@
+{
+  "period": "period-03",
+  "note": "第三期：枝状地衣（FR1）——冻原·逆光·微距低机位·竖",
+  "from": "work/lichen/r3/round.json",
+  "entries": [
+    {
+      "final": "01-mycelium-fruticose.png",
+      "path": "01-mycelium-fruticose.png",
+      "role": "final",
+      "source_round": 3,
+      "source_engine": "zimage",
+      "source_shot": "mycelium-fruticose",
+      "source_file": "work/lichen/r3/bs-lc-r3-mycelium-fruticose_00001_.png",
+      "seed": 8101,
+      "prompt_id": "0bb08aee-e280-4a1c-905b-d5ed9248e6b2",
+      "prompt": "微距特写，一个生物体独自占据画面：它立在冻原的石面上、整体朝向镜头：a dense mat of pale fungal mycelium with branching fruticose lichen tufts standing up like tiny shrubs, fine branching threads and a soft dusty surface. on a frost-covered stone in open tundra. low backlight through ice fog, rimming every tip. a low three-quarter macro view, 90mm macro lens at f/8, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "acf842d97745aadb7f7c0cec2ab7d0077867e91f81432d8aec2b613f0974724a"
+    },
+    {
+      "final": "02-mycelium-fruticose-b.png",
+      "path": "02-mycelium-fruticose-b.png",
+      "role": "final",
+      "source_round": 3,
+      "source_engine": "zimage",
+      "source_shot": "mycelium-fruticose-b",
+      "source_file": "work/lichen/r3/bs-lc-r3-mycelium-fruticose-b_00001_.png",
+      "seed": 8103,
+      "prompt_id": "8313748e-ead9-463f-9f8a-b69be732511b",
+      "prompt": "微距特写，一个生物体独自占据画面：它立在冻原的石面上、整体朝向镜头：a dense mat of pale fungal mycelium with branching fruticose lichen tufts standing up like tiny shrubs, fine branching threads and a soft dusty surface. on a frost-covered stone in open tundra. low backlight through ice fog, rimming every tip. a low three-quarter macro view, 90mm macro lens at f/8, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "bdec631b14dafe5185b4facdf49c4138377fa5f3bee05358fc278df07686d3bc"
+    },
+    {
+      "final": "controls/mycelium.png",
+      "path": "controls/mycelium.png",
+      "role": "control",
+      "source_round": 3,
+      "source_engine": "zimage",
+      "source_shot": "base-mycelium",
+      "source_file": "work/lichen/r3/bs-lc-r3-base-mycelium_00001_.png",
+      "seed": 8101,
+      "prompt_id": "93411097-f4ca-4a84-b6f0-8f4df736dcf0",
+      "prompt": "微距特写，一个生物体独自占据画面：它立在冻原的石面上、整体朝向镜头：a dense mat of pale fungal mycelium with fine branching threads and a soft dusty surface. on a frost-covered stone in open tundra. low backlight through ice fog, rimming every tip. a low three-quarter macro view, 90mm macro lens at f/8, macro photograph, focus-stacked, fine surface detail, natural colour, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "0f7b6fad14696ff5497a3f6774cec8d8d030b1e14254d118a874a60438f1f605"
+    }
+  ]
+}

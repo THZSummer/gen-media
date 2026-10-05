@@ -1,0 +1,52 @@
+{
+  "period": "period-05",
+  "note": "第五期：玄武（N1+N2+N3）——暮色水面·逆光剪影·平视广角 35mm·横幅",
+  "from": "work/turtle-snake/r6/round.json",
+  "entries": [
+    {
+      "final": "01-turtle-xuanwu.png",
+      "path": "01-turtle-xuanwu.png",
+      "role": "final",
+      "source_round": 6,
+      "source_engine": "zimage",
+      "source_shot": "turtle-all3",
+      "source_file": "work/turtle-snake/r6/bs-ts-r6-turtle-all3_00001_.png",
+      "seed": 5101,
+      "prompt_id": "707c87f7-6075-46d6-a7d5-f88a0ddb47f8",
+      "prompt": "全身像，一只动物独自占据画面：它伏在水边的石台上、身体横向展开：a large wild river turtle with a long sinuous snake's neck with fine keeled scales and a long tapering snake's tail with keeled scales and thick snake coils around its shell, a dark domed shell, a small wrinkled head, four short webbed legs. on a flat stone at the edge of dark water at dusk. low backlight from across the water, throwing the animal into near-silhouette. Wildlife photograph, a wide-angle 35mm lens at eye height, f/4, the whole animal and its reflection in frame, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "78ef41eb7c8f3114cf5c8375b88ca61856eb6c2cb2087b7896663a602573669d"
+    },
+    {
+      "final": "02-turtle-xuanwu-coiled.png",
+      "path": "02-turtle-xuanwu-coiled.png",
+      "role": "final",
+      "source_round": 6,
+      "source_engine": "zimage",
+      "source_shot": "turtle-all3-b",
+      "source_file": "work/turtle-snake/r6/bs-ts-r6-turtle-all3-b_00001_.png",
+      "seed": 5102,
+      "prompt_id": "d267d6c0-2d61-4f7e-ac95-ab0169584ba1",
+      "prompt": "全身像，一只动物独自占据画面：它伏在水边的石台上、身体横向展开：a large wild river turtle with a long sinuous snake's neck with fine keeled scales and a long tapering snake's tail with keeled scales and thick snake coils around its shell, a dark domed shell, a small wrinkled head, four short webbed legs. on a flat stone at the edge of dark water at dusk. low backlight from across the water, throwing the animal into near-silhouette. Wildlife photograph, a wide-angle 35mm lens at eye height, f/4, the whole animal and its reflection in frame, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "c76b0f0f0418a35b0a7600c0b381a2e2eaa152bc90510ab1d1a44ca3be3e27dd"
+    },
+    {
+      "final": "controls/turtle.png",
+      "path": "controls/turtle.png",
+      "role": "control",
+      "source_round": 6,
+      "source_engine": "zimage",
+      "source_shot": "base-turtle",
+      "source_file": "work/turtle-snake/r6/bs-ts-r6-base-turtle_00001_.png",
+      "seed": 5101,
+      "prompt_id": "94552376-c058-4738-9b3e-60f654381229",
+      "prompt": "全身像，一只动物独自占据画面：它伏在水边的石台上、身体横向展开：a large wild river turtle with a dark domed shell, a small wrinkled head, four short webbed legs. on a flat stone at the edge of dark water at dusk. low backlight from across the water, throwing the animal into near-silhouette. Wildlife photograph, a wide-angle 35mm lens at eye height, f/4, the whole animal and its reflection in frame, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "bfb766f919d4998f9b320705850d3c7bc7996290db3081eb1928c4d88f0cab18"
+    }
+  ]
+}

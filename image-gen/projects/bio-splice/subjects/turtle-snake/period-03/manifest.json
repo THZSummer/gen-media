@@ -1,0 +1,67 @@
+{
+  "period": "period-03",
+  "note": "第三期：缠体的龟（N3）——古井石台·侧光·侧俯视 100mm",
+  "from": "work/turtle-snake/r2/round.json",
+  "entries": [
+    {
+      "final": "01-turtle-coil-ground.png",
+      "path": "01-turtle-coil-ground.png",
+      "role": "final",
+      "source_round": 2,
+      "source_engine": "zimage",
+      "source_shot": "coil-ground",
+      "source_file": "work/turtle-snake/r2/bs-ts-r2-coil-ground_00001_.png",
+      "seed": 5101,
+      "prompt_id": "a8d7b0f9-2f4f-4e80-91ba-2e2acdf9c4bb",
+      "prompt": "全身像，一只动物独自占据画面：它伏在井边的石台上、龟壳朝向镜头：a large wild river turtle with a thick snake's body coiled on the stones beneath it, its coils visible on both sides, a dark domed shell, a small wrinkled head, four short webbed legs. on a mossy stone ledge beside an old stone well. hard side light raking across the shell. Wildlife photograph, a view from slightly above, 100mm lens at f/5.6, the whole shell in frame, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "b1248558db296b6b00aed883abc17739f2ceeaf5d2a3f58273e44f6251ab852b"
+    },
+    {
+      "final": "02-turtle-coil-min.png",
+      "path": "02-turtle-coil-min.png",
+      "role": "final",
+      "source_round": 2,
+      "source_engine": "zimage",
+      "source_shot": "coil-min",
+      "source_file": "work/turtle-snake/r2/bs-ts-r2-coil-min_00001_.png",
+      "seed": 5101,
+      "prompt_id": "93223dcd-c9fe-47bb-9d92-e225f12f35c6",
+      "prompt": "全身像，一只动物独自占据画面：它伏在井边的石台上、龟壳朝向镜头：a large wild river turtle with thick snake coils around its shell, a dark domed shell, a small wrinkled head, four short webbed legs. on a mossy stone ledge beside an old stone well. hard side light raking across the shell. Wildlife photograph, a view from slightly above, 100mm lens at f/5.6, the whole shell in frame, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "766047844db9566a3ba9551c5d221c78a079d7fb7ee656aeafd035973ebe967f"
+    },
+    {
+      "final": "03-turtle-coil-rim.png",
+      "path": "03-turtle-coil-rim.png",
+      "role": "final",
+      "source_round": 2,
+      "source_engine": "zimage",
+      "source_shot": "coil-rim",
+      "source_file": "work/turtle-snake/r2/bs-ts-r2-coil-rim_00001_.png",
+      "seed": 5101,
+      "prompt_id": "1e1960d7-dbc2-4f63-9a2c-f894564468b0",
+      "prompt": "全身像，一只动物独自占据画面：它伏在井边的石台上、龟壳朝向镜头：a large wild river turtle with thick snake coils around the rim of its shell, a dark domed shell, a small wrinkled head, four short webbed legs. on a mossy stone ledge beside an old stone well. hard side light raking across the shell. Wildlife photograph, a view from slightly above, 100mm lens at f/5.6, the whole shell in frame, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "bc71b31a12802848e0276d4e4f5ae3282e06d67ca32e94e00cfbbcc6e65eccce"
+    },
+    {
+      "final": "controls/turtle.png",
+      "path": "controls/turtle.png",
+      "role": "control",
+      "source_round": 2,
+      "source_engine": "zimage",
+      "source_shot": "base-turtle",
+      "source_file": "work/turtle-snake/r2/bs-ts-r2-base-turtle_00001_.png",
+      "seed": 5101,
+      "prompt_id": "c33cf925-4859-404e-9825-322144bc3059",
+      "prompt": "全身像，一只动物独自占据画面：它伏在井边的石台上、龟壳朝向镜头：a large wild river turtle with a dark domed shell, a small wrinkled head, four short webbed legs. on a mossy stone ledge beside an old stone well. hard side light raking across the shell. Wildlife photograph, a view from slightly above, 100mm lens at f/5.6, the whole shell in frame, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "ab94ab042c8bb2eee8a698d7ab91f23480d1b5d06e73fad0f147174371196a15"
+    }
+  ]
+}

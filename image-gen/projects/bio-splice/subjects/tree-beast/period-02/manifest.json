@@ -1,0 +1,52 @@
+{
+  "period": "period-02",
+  "note": "第二期：有角的树（K4·树干空面）——霜林·侧逆光·方",
+  "from": "work/tree-beast/r4/round.json",
+  "entries": [
+    {
+      "final": "01-tree-horns.png",
+      "path": "01-tree-horns.png",
+      "role": "final",
+      "source_round": 4,
+      "source_engine": "zimage",
+      "source_shot": "tree-horns",
+      "source_file": "work/tree-beast/r4/bs-tb-r4-tree-horns_00001_.png",
+      "seed": 12101,
+      "prompt_id": "b331b81c-e770-4dc2-8536-0c4af274bd5e",
+      "prompt": "全身像，一个生物体独自占据画面：它立在霜林里、树干侧面朝向镜头：an old gnarled tree with a pair of massive curved mammal horns rising from the trunk, rough fissured bark, thick roots spreading over the ground and a massive trunk. in a frost-covered forest, bare branches around it. low side-backlight, frost glittering on the bark. a level view at eye height, 50mm lens at f/8, fine surface detail, natural colour, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "e362d2631357a6503f3b9c9712545f08267e9730897dee8e1d388685f6708a8c"
+    },
+    {
+      "final": "02-tree-horns-b.png",
+      "path": "02-tree-horns-b.png",
+      "role": "final",
+      "source_round": 4,
+      "source_engine": "zimage",
+      "source_shot": "tree-horns-b",
+      "source_file": "work/tree-beast/r4/bs-tb-r4-tree-horns-b_00001_.png",
+      "seed": 12102,
+      "prompt_id": "643fe056-1ee0-4cea-8537-351c2f9c744a",
+      "prompt": "全身像，一个生物体独自占据画面：它立在霜林里、树干侧面朝向镜头：an old gnarled tree with a pair of massive curved mammal horns rising from the trunk, rough fissured bark, thick roots spreading over the ground and a massive trunk. in a frost-covered forest, bare branches around it. low side-backlight, frost glittering on the bark. a level view at eye height, 50mm lens at f/8, fine surface detail, natural colour, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "0f4d829360196c547b5078077a6e441ab82bf2cdd33c501c6633e7a84dbc44e1"
+    },
+    {
+      "final": "controls/tree.png",
+      "path": "controls/tree.png",
+      "role": "control",
+      "source_round": 4,
+      "source_engine": "zimage",
+      "source_shot": "base-tree",
+      "source_file": "work/tree-beast/r4/bs-tb-r4-base-tree_00001_.png",
+      "seed": 12101,
+      "prompt_id": "7f5485e6-267a-4c68-a714-1c214bece4a1",
+      "prompt": "全身像，一个生物体独自占据画面：它立在霜林里、树干侧面朝向镜头：an old gnarled tree with rough fissured bark, thick roots spreading over the ground and a massive trunk. in a frost-covered forest, bare branches around it. low side-backlight, frost glittering on the bark. a level view at eye height, 50mm lens at f/8, fine surface detail, natural colour, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "1813cfd780688ac9300871c02f22617e4af6a9d1b38340e645fabf9f17c88f8f"
+    }
+  ]
+}

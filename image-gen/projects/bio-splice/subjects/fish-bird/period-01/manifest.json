@@ -1,0 +1,52 @@
+{
+  "period": "period-01",
+  "note": "第一期：有翅的鱼——跃出水面·水花未落·平视 100mm·横幅",
+  "from": "work/fish-bird/r6/round.json",
+  "entries": [
+    {
+      "final": "01-fish-wings.png",
+      "path": "01-fish-wings.png",
+      "role": "final",
+      "source_round": 6,
+      "source_engine": "zimage",
+      "source_shot": "fish-wings",
+      "source_file": "work/fish-bird/r6/bs-fb-r6-fish-wings_00001_.png",
+      "seed": 6101,
+      "prompt_id": "0e9dd46a-20e1-4f6e-b324-c72ae2ca559c",
+      "prompt": "全身像，一只动物独自占据画面：它刚从水里跃出、身体还在往上冲：a large wild carp with broad feathered bird wings on both sides of its body, a long scaled body, a blunt head, small eyes and a dorsal fin. in open air just above the surface, spray still falling from its body. low backlight through the flying spray. Photograph, a level view from the side, 100mm lens at f/4, the whole body in frame, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "a172b859b4d2f6cda002b60607c18b510c8e8991cdb174f976b219f9d654b9a2"
+    },
+    {
+      "final": "02-fish-wings-spread.png",
+      "path": "02-fish-wings-spread.png",
+      "role": "final",
+      "source_round": 6,
+      "source_engine": "zimage",
+      "source_shot": "fish-wings-spread",
+      "source_file": "work/fish-bird/r6/bs-fb-r6-fish-wings-spread_00001_.png",
+      "seed": 6102,
+      "prompt_id": "1ffb64a8-4abf-4c30-9932-af4b1ae6833c",
+      "prompt": "全身像，一只动物独自占据画面：它刚从水里跃出、身体还在往上冲：a large wild carp with a pair of broad feathered bird wings spread wide from its back, a long scaled body, a blunt head, small eyes and a dorsal fin. in open air just above the surface, spray still falling from its body. low backlight through the flying spray. Photograph, a level view from the side, 100mm lens at f/4, the whole body in frame, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "b4876ccbe6d49936f34847dcc5659d5a1b3ad63cb803760b874cb02045ba41a0"
+    },
+    {
+      "final": "controls/fish.png",
+      "path": "controls/fish.png",
+      "role": "control",
+      "source_round": 6,
+      "source_engine": "zimage",
+      "source_shot": "base-fish",
+      "source_file": "work/fish-bird/r6/bs-fb-r6-base-fish_00001_.png",
+      "seed": 6101,
+      "prompt_id": "c0ce135c-ea09-4e13-a910-26a488ac0b11",
+      "prompt": "全身像，一只动物独自占据画面：它刚从水里跃出、身体还在往上冲：a large wild carp with a long scaled body, a blunt head, small eyes and a dorsal fin. in open air just above the surface, spray still falling from its body. low backlight through the flying spray. Photograph, a level view from the side, 100mm lens at f/4, the whole body in frame, fine surface detail, slight film grain, no digital sharpening, no text, no watermark.",
+      "negative": "",
+      "unapplied": {},
+      "sha256": "58d7aa7eaf7c9b4d7c5c66cd07d18bec6e3cb67b2b024c1bf3e4676a58f5ec24"
+    }
+  ]
+}
