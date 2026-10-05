@@ -21,9 +21,17 @@
 
 - `tools/build_site.py` **只读源素材**（不碰成品、不改 manifest）、**幂等**（同输入产出逐字节相同的 JSON）。
 - 数据源：`projects/*/subjects/*/period-*/manifest.json`、`rounds/*-review.md` 的评分表、目录扫描。
-- **项目卡片是扫描出来的**，不是硬编码清单：`projects/` 下 `_` 开头跳过、`bio-splice` 单独成卡、
-  含 `.mp4` 的归视频汇总卡、其余各成一卡。新增项目放进 `projects/` 就自动进画廊
-  （标题/说明/封面可用 `PROJECTS` / `DOCS` / `COVERS` 覆写）。**别再退回硬编码**——实测漏掉过整个项目。
+- **项目卡片是扫描出来的**，不是硬编码清单。`classify_project()` 按**结构**归类，不按名字：
+  | kind | 判据 | 前端表现 |
+  |------|------|----------|
+  | `periods` | 有 `subjects/*/period-*/manifest.json` | 期详情页（`#/p/<id>`，子主题页 `#/p/<id>/s/<sid>`） |
+  | `gallery` | 有图片、但没有期 manifest 也没 mp4 | 图集页（`#/p/<id>`，成品在前、其余按目录分组） |
+  | `videos` | 含 `.mp4` | 视频汇总页（`#/videos`） |
+  | `project` | 都没有（如 character-lookbook 尚无成品） | 外链 README |
+  `_` 开头（`_template`）跳过。**别再退回硬编码**——实测漏掉过整个项目，也实测过
+  "同构的项目因为没有 SUMMARY.md 而进不去详情页"。
+- **子主题元数据**：有 `SUMMARY.md` 就用它（bio-splice）；没有就 `discover_subjects()` 扫目录自建
+  （shanhai-jing）——**不该因为没有 SUMMARY 就没有详情页**。
 - 轮次文件名要用**宽容正则**：实测有 `r01-review.md`、`ts-r3-review.md`、`fb2-r1-review.md`、`dn-r10-review.md`：
   `^(?:[A-Za-z0-9]+-)?r(\d+)-(review|audit)\.(jpg|md)$`
 - **评分维度随项目走**（`RUBRICS`，写进 JSON 由前端读），不要写进 `app.js`——

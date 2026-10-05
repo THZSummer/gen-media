@@ -1,0 +1,128 @@
+{
+ "id": "shanhai-jing",
+ "title": {
+  "zh": "山海经 · 图赞",
+  "en": "Shan Hai Jing · Illustrated Verses"
+ },
+ "desc": {
+  "zh": "以《山海经》原文为纲的图赞连载：一兽一期，标注卷次 + 原文 + 郭璞注，面向小红书竖版；出图到制版的完整过程（含失败迭代）都留档。",
+  "en": "Illustrated-verse series driven by the verbatim Shan Hai Jing: one creature per period with volume, original passage and commentary; the full generate-to-typeset process is recorded."
+ },
+ "readme": "projects/shanhai-jing/README.md",
+ "summary": null,
+ "plan": "projects/shanhai-jing/PLAN.md",
+ "data": "shanhai-jing.json",
+ "rubric": {
+  "zh": "A 考据准确 .25 ｜ F 气韵生动 .25 ｜ B 骨法纯正 .15 ｜ C 制式完整 .15 ｜ D 辨识度 .10 ｜ E 系列一致 .10",
+  "en": "A sourcing accuracy .25 | F vitality of brushwork .25 | B bone purity .15 | C format completeness .15 | D legibility .10 | E series consistency .10"
+ },
+ "sheet": null,
+ "sheet_thumb": null,
+ "groups": [],
+ "subjects": [
+  {
+   "id": "jiu-wei-hu",
+   "title": {
+    "zh": "jiu-wei-hu",
+    "en": "jiu-wei-hu"
+   },
+   "group": "",
+   "stats": {
+    "periods": 1,
+    "finals": 3,
+    "controls": 2,
+    "mean": 0.0,
+    "bytes": 3498133
+   },
+   "thumb": null,
+   "sheet": null,
+   "readme": null,
+   "parts": null,
+   "audits": [],
+   "periods": [
+    {
+     "id": "period-01",
+     "note": "定调期首件：九尾狐（南山經 · 青丘之山）。骨法为赭石设色工笔；出图为纯文生图 + **点名神话生物的 prompt 写法**（8/8 出九尾），已撤销程序化控制图装置（见 rounds/r05-review.md）。已制版产出图赞主图与原文卡；印章层因篆体字库未解决而暂缺。",
+     "sheet": null,
+     "thumb": null,
+     "readme": null,
+     "bytes": 3498133,
+     "entries": [
+      {
+       "file": "01-jiu-wei-hu.png",
+       "path": "projects/shanhai-jing/subjects/jiu-wei-hu/period-01/01-jiu-wei-hu.png",
+       "thumb": "site/thumbs/projects/shanhai-jing/subjects/jiu-wei-hu/period-01/01-jiu-wei-hu.jpg",
+       "size": 2309083,
+       "role": "final",
+       "shot": "m202",
+       "round": 7,
+       "engine": "z-image-turbo",
+       "seed": 202,
+       "sha256": "",
+       "prompt": "The nine-tailed fox of Chinese mythology, standing on a rocky outcrop and looking back over its shoulder. Its nine long tails spread out behind it, thick and full of fur. Painted in the manner of a traditional Chinese album leaf, fine ink brushwork, delicate fur strokes, ink and pale colour on aged paper.",
+       "scores": null
+      },
+      {
+       "file": "02-jiu-wei-hu-zan.png",
+       "path": "projects/shanhai-jing/subjects/jiu-wei-hu/period-01/02-jiu-wei-hu-zan.png",
+       "thumb": "site/thumbs/projects/shanhai-jing/subjects/jiu-wei-hu/period-01/02-jiu-wei-hu-zan.jpg",
+       "size": 1072964,
+       "role": "final",
+       "shot": "",
+       "round": null,
+       "engine": "",
+       "seed": null,
+       "sha256": "",
+       "prompt": ""
+      },
+      {
+       "file": "03-jiu-wei-hu-wen.png",
+       "path": "projects/shanhai-jing/subjects/jiu-wei-hu/period-01/03-jiu-wei-hu-wen.png",
+       "thumb": "site/thumbs/projects/shanhai-jing/subjects/jiu-wei-hu/period-01/03-jiu-wei-hu-wen.jpg",
+       "size": 102873,
+       "role": "final",
+       "shot": "",
+       "round": null,
+       "engine": "",
+       "seed": null,
+       "sha256": "",
+       "prompt": ""
+      },
+      {
+       "file": "controls/nine-tails-control.png",
+       "path": "projects/shanhai-jing/subjects/jiu-wei-hu/period-01/controls/nine-tails-control.png",
+       "thumb": "site/thumbs/projects/shanhai-jing/subjects/jiu-wei-hu/period-01/controls/nine-tails-control.jpg",
+       "size": 6504,
+       "role": "retired-control",
+       "shot": "",
+       "round": null,
+       "engine": "",
+       "seed": null,
+       "sha256": "",
+       "prompt": ""
+      },
+      {
+       "file": "controls/nine-tails-control-plume.png",
+       "path": "projects/shanhai-jing/subjects/jiu-wei-hu/period-01/controls/nine-tails-control-plume.png",
+       "thumb": "site/thumbs/projects/shanhai-jing/subjects/jiu-wei-hu/period-01/controls/nine-tails-control-plume.jpg",
+       "size": 6709,
+       "role": "retired-control",
+       "shot": "",
+       "round": null,
+       "engine": "",
+       "seed": null,
+       "sha256": "",
+       "prompt": ""
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "stats": {
+  "subjects": 1,
+  "periods": 1,
+  "finals": 3,
+  "controls": 0
+ }
+}

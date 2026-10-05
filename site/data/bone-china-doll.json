@@ -1,0 +1,234 @@
+{
+ "id": "bone-china-doll",
+ "title": {
+  "zh": "骨瓷人偶",
+  "en": "Bone-China Doll"
+ },
+ "desc": {
+  "zh": "以「骨瓷」质感为统一材质约束的人偶形象系列，逐轮做 A/B 消融对照。",
+  "en": "A doll series under one material constraint (bone china), developed with round-by-round A/B ablations."
+ },
+ "readme": "projects/bone-china-doll/README.md",
+ "data": "bone-china-doll.json",
+ "images": [
+  {
+   "file": "final-bone-china-princess-east.png",
+   "path": "projects/bone-china-doll/out/final-bone-china-princess-east.png",
+   "thumb": "site/thumbs/projects/bone-china-doll/out/final-bone-china-princess-east.jpg",
+   "size": 4081240,
+   "group": "out",
+   "final": true
+  },
+  {
+   "file": "final-bone-china-princess-gauze.png",
+   "path": "projects/bone-china-doll/out/final-bone-china-princess-gauze.png",
+   "thumb": "site/thumbs/projects/bone-china-doll/out/final-bone-china-princess-gauze.jpg",
+   "size": 1922949,
+   "group": "out",
+   "final": true
+  },
+  {
+   "file": "final-bone-china-princess-life.png",
+   "path": "projects/bone-china-doll/out/final-bone-china-princess-life.png",
+   "thumb": "site/thumbs/projects/bone-china-doll/out/final-bone-china-princess-life.jpg",
+   "size": 1827133,
+   "group": "out",
+   "final": true
+  },
+  {
+   "file": "final-bone-china-princess-v2.png",
+   "path": "projects/bone-china-doll/out/final-bone-china-princess-v2.png",
+   "thumb": "site/thumbs/projects/bone-china-doll/out/final-bone-china-princess-v2.jpg",
+   "size": 2751070,
+   "group": "out",
+   "final": true
+  },
+  {
+   "file": "final-bone-china-princess.png",
+   "path": "projects/bone-china-doll/out/final-bone-china-princess.png",
+   "thumb": "site/thumbs/projects/bone-china-doll/out/final-bone-china-princess.jpg",
+   "size": 1450675,
+   "group": "out",
+   "final": true
+  },
+  {
+   "file": "detail-study-joint-hand.png",
+   "path": "projects/bone-china-doll/out/detail-study-joint-hand.png",
+   "thumb": "site/thumbs/projects/bone-china-doll/out/detail-study-joint-hand.jpg",
+   "size": 2300144,
+   "group": "out",
+   "final": false
+  },
+  {
+   "file": "full-figure.png",
+   "path": "projects/bone-china-doll/out/final-set-east/full-figure.png",
+   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-east/full-figure.jpg",
+   "size": 1851372,
+   "group": "final-set-east",
+   "final": false
+  },
+  {
+   "file": "hero.png",
+   "path": "projects/bone-china-doll/out/final-set-east/hero.png",
+   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-east/hero.jpg",
+   "size": 4081240,
+   "group": "final-set-east",
+   "final": false
+  },
+  {
+   "file": "portrait.png",
+   "path": "projects/bone-china-doll/out/final-set-east/portrait.png",
+   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-east/portrait.jpg",
+   "size": 2760979,
+   "group": "final-set-east",
+   "final": false
+  },
+  {
+   "file": "seated.png",
+   "path": "projects/bone-china-doll/out/final-set-east/seated.png",
+   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-east/seated.jpg",
+   "size": 3026531,
+   "group": "final-set-east",
+   "final": false
+  },
+  {
+   "file": "tang-portrait.png",
+   "path": "projects/bone-china-doll/out/final-set-east/tang-portrait.png",
+   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-east/tang-portrait.jpg",
+   "size": 2791851,
+   "group": "final-set-east",
+   "final": false
+  },
+  {
+   "file": "airy-turn.png",
+   "path": "projects/bone-china-doll/out/final-set-gauze/airy-turn.png",
+   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-gauze/airy-turn.jpg",
+   "size": 3005604,
+   "group": "final-set-gauze",
+   "final": false
+  },
+  {
+   "file": "gauze-macro.png",
+   "path": "projects/bone-china-doll/out/final-set-gauze/gauze-macro.png",
+   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-gauze/gauze-macro.jpg",
+   "size": 1267612,
+   "group": "final-set-gauze",
+   "final": false
+  },
+  {
+   "file": "hero.png",
+   "path": "projects/bone-china-doll/out/final-set-gauze/hero.png",
+   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-gauze/hero.jpg",
+   "size": 1922949,
+   "group": "final-set-gauze",
+   "final": false
+  },
+  {
+   "file": "portrait.png",
+   "path": "projects/bone-china-doll/out/final-set-gauze/portrait.png",
+   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-gauze/portrait.jpg",
+   "size": 2709040,
+   "group": "final-set-gauze",
+   "final": false
+  },
+  {
+   "file": "skin-macro.png",
+   "path": "projects/bone-china-doll/out/final-set-gauze/skin-macro.png",
+   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-gauze/skin-macro.jpg",
+   "size": 1364422,
+   "group": "final-set-gauze",
+   "final": false
+  },
+  {
+   "file": "doze.png",
+   "path": "projects/bone-china-doll/out/final-set-life/doze.png",
+   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-life/doze.jpg",
+   "size": 1845561,
+   "group": "final-set-life",
+   "final": false
+  },
+  {
+   "file": "gauze-macro.png",
+   "path": "projects/bone-china-doll/out/final-set-life/gauze-macro.png",
+   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-life/gauze-macro.jpg",
+   "size": 1267612,
+   "group": "final-set-life",
+   "final": false
+  },
+  {
+   "file": "hero.png",
+   "path": "projects/bone-china-doll/out/final-set-life/hero.png",
+   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-life/hero.jpg",
+   "size": 1827133,
+   "group": "final-set-life",
+   "final": false
+  },
+  {
+   "file": "mat-by-window.png",
+   "path": "projects/bone-china-doll/out/final-set-life/mat-by-window.png",
+   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-life/mat-by-window.jpg",
+   "size": 2210077,
+   "group": "final-set-life",
+   "final": false
+  },
+  {
+   "file": "prone.png",
+   "path": "projects/bone-china-doll/out/final-set-life/prone.png",
+   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-life/prone.jpg",
+   "size": 1887619,
+   "group": "final-set-life",
+   "final": false
+  },
+  {
+   "file": "recline.png",
+   "path": "projects/bone-china-doll/out/final-set-life/recline.png",
+   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-life/recline.jpg",
+   "size": 1895333,
+   "group": "final-set-life",
+   "final": false
+  },
+  {
+   "file": "seated.png",
+   "path": "projects/bone-china-doll/out/final-set-life/seated.png",
+   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-life/seated.jpg",
+   "size": 2180537,
+   "group": "final-set-life",
+   "final": false
+  },
+  {
+   "file": "skin-macro.png",
+   "path": "projects/bone-china-doll/out/final-set-life/skin-macro.png",
+   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-life/skin-macro.jpg",
+   "size": 1364422,
+   "group": "final-set-life",
+   "final": false
+  },
+  {
+   "file": "full-figure.png",
+   "path": "projects/bone-china-doll/out/final-set/full-figure.png",
+   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set/full-figure.jpg",
+   "size": 2850012,
+   "group": "final-set",
+   "final": false
+  },
+  {
+   "file": "portrait.png",
+   "path": "projects/bone-china-doll/out/final-set/portrait.png",
+   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set/portrait.jpg",
+   "size": 2775911,
+   "group": "final-set",
+   "final": false
+  },
+  {
+   "file": "seated.png",
+   "path": "projects/bone-china-doll/out/final-set/seated.png",
+   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set/seated.jpg",
+   "size": 3166827,
+   "group": "final-set",
+   "final": false
+  }
+ ],
+ "stats": {
+  "finals": 5
+ }
+}

@@ -173,6 +173,12 @@ RUBRICS = {
         "en": "A transplant fidelity .30 | B base integrity .20 | C anatomy .20 | "
               "D photographic unity .15 | E concept readability .15",
     },
+    "shanhai-jing": {
+        "zh": "A 考据准确 .25 ｜ F 气韵生动 .25 ｜ B 骨法纯正 .15 ｜ C 制式完整 .15 ｜ "
+              "D 辨识度 .10 ｜ E 系列一致 .10",
+        "en": "A sourcing accuracy .25 | F vitality of brushwork .25 | B bone purity .15 | "
+              "C format completeness .15 | D legibility .10 | E series consistency .10",
+    },
 }
 
 # 视频项目的一句话说明（**双语**，与 projects/README.md 的项目表同源）。
@@ -310,11 +316,12 @@ def parse_review(path):
     return scores
 
 
-def build_subject(sid, meta):
-    sdir = os.path.join(BIO, "subjects", sid)
+def build_subject(sid, meta, proot=None):
+    """装配一个子主题。`proot` 是项目根（默认 bio-splice）——扁平化后不止一个项目有期结构。"""
+    sdir = os.path.join(proot or BIO, "subjects", sid)
     if not os.path.isdir(sdir):
         return None
-    zh, en = SUBJECT_TITLES.get(sid, (meta["zh_title"] or sid, sid))
+    zh, en = SUBJECT_TITLES.get(sid, (meta.get("zh_title") or sid, sid))
 
     reviews, audit_files = index_rounds(sdir)
     cache = {}
@@ -416,61 +423,221 @@ def pick_cover(pid, pdir):
     return rel(imgs[0]) if imgs else None
 
 
-def count_finals(pdir):
-    """数成品：优先读 manifest.json 里 role=final 的条目，退化到文件名含 final。"""
-    n = 0
-    for p in walk_files(pdir):
-        if not p.endswith("manifest.json"):
+def discover_subjects(pdir):
+    """**没有 SUMMARY.md 的项目**：扫 `subjects/*/period-*/manifest.json` 自建子主题元数据。
+
+    bio-splice 的交付清单表写在 SUMMARY.md 里；shanhai-jing 这类新项目没有那份表，
+    但目录结构与 manifest 完全同构，所以照样能装配——**不该因为没有 SUMMARY 就没有详情页**。
+    """
+    sroot = os.path.join(pdir, "subjects")
+    rows = []
+    if not os.path.isdir(sroot):
+        return rows
+    for sid in sorted(os.listdir(sroot)):
+        sdir = os.path.join(sroot, sid)
+        if not os.path.isdir(sdir):
             continue
-        try:
-            with open(p, encoding="utf-8") as fh:
-                data = json.load(fh)
-        except (OSError, ValueError):
+        periods, finals, controls = [], 0, 0
+        for name in sorted(os.listdir(sdir)):
+            if not re.fullmatch(r"period-\d+", name):
+                continue
+            mpath = os.path.join(sdir, name, "manifest.json")
+            if not os.path.isfile(mpath):
+                continue
+            periods.append(name)
+            try:
+                with open(mpath, encoding="utf-8") as fh:
+                    man = json.load(fh)
+            except ValueError:
+                continue
+            for e in man.get("entries", []):
+                if e.get("role") == "final":
+                    finals += 1
+                else:
+                    controls += 1
+        if not periods:
             continue
-        for e in data.get("entries", []):
-            if e.get("role") == "final":
-                n += 1
-    return n
+        rows.append({
+            "id": sid, "zh_title": sid, "group": "",
+            "periods": len(periods), "finals": finals, "controls": controls, "mean": 0.0,
+        })
+    return rows
+
+
+def build_periods_project(pid, pdir):
+    """装配一个「期结构」项目（有 subjects/*/period-*/manifest.json）。
+
+    返回 (card, data)；数据另存为 `site/data/<pid>.json`，前端按 `#/p/<pid>` 懒加载。
+    子主题元数据：有 SUMMARY.md 就用它，没有就自动发现。
+    """
+    summary = os.path.join(pdir, "SUMMARY.md")
+    rows = parse_summary(summary) if os.path.isfile(summary) else discover_subjects(pdir)
+    subjects = [s for s in (build_subject(m["id"], m, pdir) for m in rows) if s]
+    if not subjects:
+        return None, None
+
+    def gkey(s):
+        return {"甲": 0, "乙": 1, "丙": 2}.get(s["group"], 9)
+    subjects.sort(key=lambda s: (gkey(s), -s["stats"]["mean"]))
+
+    groups = []
+    for g in ("甲", "乙", "丙"):
+        members = [s["id"] for s in subjects if s["group"] == g]
+        if members:
+            groups.append({"id": g, "title": {"zh": GROUPS[g][0], "en": GROUPS[g][1]},
+                           "subjects": members})
+
+    finals = sum(1 for s in subjects for p in s["periods"] for e in p["entries"] if e["role"] == "final")
+    controls = sum(1 for s in subjects for p in s["periods"] for e in p["entries"] if e["role"] == "control")
+    periods = sum(len(s["periods"]) for s in subjects)
+
+    title = PROJECTS.get(pid, (pid, pid))
+    desc = DOCS.get(pid, ("", ""))
+    cover = pick_cover(pid, pdir)
+    card = {
+        "id": pid, "kind": "periods",
+        "title": {"zh": title[0], "en": title[1]},
+        "desc": {"zh": desc[0], "en": desc[1]},
+        "cover": thumb_of(os.path.join(ROOT, cover)) if cover else None,
+        "readme": maybe_path(os.path.join(pdir, "README.md")),
+        "summary": maybe_path(summary),
+        "data": pid + ".json",
+        "stats": {"subjects": len(subjects), "periods": periods,
+                  "finals": finals, "controls": controls},
+        "groups": [g["id"] for g in groups],
+    }
+    # 首个合图当页首大图（bio-splice 固定用 horn-atlas；其它项目取第一个有合图的子主题）
+    feat = None
+    for s in subjects:
+        if s.get("sheet"):
+            feat = s
+            break
+    data = {
+        "id": pid,
+        "title": {"zh": title[0], "en": title[1]},
+        "desc": {"zh": desc[0], "en": desc[1]},
+        "readme": card["readme"],
+        "summary": card["summary"],
+        "plan": maybe_path(os.path.join(pdir, "PLAN.md")),
+        "data": pid + ".json",
+        "rubric": RUBRICS.get(pid),
+        "sheet": feat["sheet"] if feat else None,
+        "sheet_thumb": feat.get("thumb") if feat else None,
+        "groups": groups,
+        "subjects": subjects,
+        "stats": card["stats"],
+    }
+    return card, data
+
+
+# ── 扁平图集项目（无 manifest，只有一堆成品图）────────────────────────────────
+GALLERY_SKIP = re.compile(r"(^|/)(controls?|audit|macro|refs?|storyboard|frame)", re.I)
+
+
+def build_gallery_project(pid, pdir):
+    """装配一个「图集」项目：把项目里的成品图平铺成网格。
+
+    适用于 bone-china-doll 这种**没有 manifest**、成品直接摊在 `out/` 下的项目。
+    成品判定：文件名以 `final` 开头优先；其余图片按目录分组展示（排除中间件/对照/审计）。
+    """
+    imgs = [p for p in walk_files(pdir) if IMG_RE.search(p)]
+    imgs = [p for p in imgs if not GALLERY_SKIP.search(rel(p))]
+    if not imgs:
+        return None, None
+    finals = [p for p in imgs if os.path.basename(p).lower().startswith("final")]
+    rest = [p for p in imgs if p not in finals]
+    ordered = sorted(finals) + sorted(rest)
+
+    items = []
+    for p in ordered:
+        items.append({
+            "file": os.path.basename(p),
+            "path": rel(p),
+            "thumb": thumb_of(p),
+            "size": os.path.getsize(p),
+            "group": os.path.basename(os.path.dirname(p)),
+            "final": p in finals,
+        })
+    title = PROJECTS.get(pid, (pid, pid))
+    desc = DOCS.get(pid, ("", ""))
+    cover = pick_cover(pid, pdir)
+    card = {
+        "id": pid, "kind": "gallery",
+        "title": {"zh": title[0], "en": title[1]},
+        "desc": {"zh": desc[0], "en": desc[1]},
+        "cover": thumb_of(os.path.join(ROOT, cover)) if cover else None,
+        "readme": maybe_path(os.path.join(pdir, "README.md")),
+        "data": pid + ".json",
+        "stats": {"finals": len(finals)} if finals else {"images": len(items)},
+    }
+    data = {
+        "id": pid,
+        "title": card["title"],
+        "desc": card["desc"],
+        "readme": card["readme"],
+        "data": pid + ".json",
+        "images": items,
+        "stats": card["stats"],
+    }
+    return card, data
+
+
+def classify_project(pid, pdir):
+    """项目归类：periods（有期 manifest）/ videos（有 mp4）/ gallery（有图）/ empty。"""
+    if discover_subjects(pdir):
+        return "periods"
+    if any(p.lower().endswith(".mp4") for p in walk_files(pdir)):
+        return "videos"
+    if any(IMG_RE.search(p) for p in walk_files(pdir)):
+        return "gallery"
+    return "empty"
 
 
 def build_other_projects():
     """**扫描 `projects/` 自动收录**项目卡片。
 
-    以前这里硬编码 bone-china-doll / character-lookbook 两个项目，新建的项目
-    （shanhai-jing）建好后不会出现在画廊里。改为扫描后，新增项目放进 `projects/`
-    就自动进画廊；标题/说明/封面可用 PROJECTS / DOCS / COVERS 覆写。
-
-    口径：
+    口径（与 classify_project 一致）：
       * `_` 开头（_template）跳过
-      * `bio-splice` 单独成卡（kind=periods，见 build_bio）
-      * **含 `.mp4` 的项目归视频汇总卡**（kind=videos，见 build_videos）
-      * 其余各成一卡（kind=project，点击在新标签打开它的 README）
+      * 含 `.mp4` 的归视频汇总卡（kind=videos，见 build_videos）
+      * 有 `subjects/*/period-*/manifest.json` 的走期结构（kind=periods，前端有详情页）
+      * 有图的走图集（kind=gallery，前端也有详情页）
+      * 都没有的（character-lookbook）仍外链 README
+    返回 (cards, data_files)：data_files 是 {文件名: 对象}，由 main 落盘。
     """
-    items = []
+    cards, data_files = [], {}
     if not os.path.isdir(PROJECTS_DIR):
-        return items
+        return cards, data_files
     for pid in sorted(os.listdir(PROJECTS_DIR)):
         pdir = os.path.join(PROJECTS_DIR, pid)
         if not os.path.isdir(pdir) or pid.startswith("_"):
             continue
         if pid == "bio-splice":
-            continue
-        if any(p.lower().endswith(".mp4") for p in walk_files(pdir)):
+            continue          # 旗舰项目单独装配（页首大图固定用 horn-atlas，见 main）
+        kind = classify_project(pid, pdir)
+        if kind == "videos":
             continue                              # 视频项目 → 汇总卡
+        if kind == "periods":
+            card, data = build_periods_project(pid, pdir)
+        elif kind == "gallery":
+            card, data = build_gallery_project(pid, pdir)
+        else:
+            card, data = None, None
+        if card:
+            cards.append(card)
+            data_files[card["data"]] = data
+            continue
+        # 无内容：保留外链卡片，明确显示"暂无成品"
         title = PROJECTS.get(pid, (pid, pid))
         desc = DOCS.get(pid, ("", ""))
-        finals = count_finals(pdir)
-        cover = pick_cover(pid, pdir)
-        items.append({
+        cards.append({
             "id": pid, "kind": "project",
             "title": {"zh": title[0], "en": title[1]},
             "desc": {"zh": desc[0], "en": desc[1]},
-            # 卡片用缩略图（首页封面曾合计 5.3 MB，bone-china-doll 单张就 3.89 MB）
-            "cover": thumb_of(os.path.join(ROOT, cover)) if cover else None,
+            "cover": None,
             "readme": maybe_path(os.path.join(pdir, "README.md")),
-            "stats": {"finals": finals} if finals else {},
+            "stats": {},
         })
-    return items
+    return cards, data_files
 
 
 def maybe_path(p):
@@ -590,43 +757,27 @@ def main():
     THUMB_STATE["enabled"] = "--no-thumbs" not in sys.argv
     os.makedirs(OUT_DIR, exist_ok=True)
 
-    summary_path = os.path.join(BIO, "SUMMARY.md")
-    rows = parse_summary(summary_path)
-
-    subjects = []
-    for meta in rows:
-        s = build_subject(meta["id"], meta)
-        if s:
-            subjects.append(s)
-
-    subjects.sort(key=lambda s: ({"甲": 0, "乙": 1, "丙": 2}[s["group"]], -s["stats"]["mean"]))
-
-    groups = []
-    for g in ("甲", "乙", "丙"):
-        members = [s["id"] for s in subjects if s["group"] == g]
-        if members:
-            groups.append({"id": g, "title": {"zh": GROUPS[g][0], "en": GROUPS[g][1]}, "subjects": members})
-
+    # bio-splice 也走**通用的「期结构」装配**，不再内联特写——
+    # 这样 shanhai-jing 这类同构项目自动获得同样的详情页。
+    bio_card, bio = build_periods_project("bio-splice", BIO)
+    subjects = bio["subjects"]
+    groups = bio["groups"]
     finals = sum(1 for s in subjects for p in s["periods"] for e in p["entries"] if e["role"] == "final")
     controls = sum(1 for s in subjects for p in s["periods"] for e in p["entries"] if e["role"] == "control")
     periods = sum(len(s["periods"]) for s in subjects)
     scored = sum(1 for s in subjects for p in s["periods"] for e in p["entries"] if e.get("scores"))
+    # bio 的页首大图固定用 horn-atlas（封面与合图都从它取，保持既有观感）
+    horn = os.path.join(BIO, "subjects", "horn-atlas", "sheet.jpg")
+    if os.path.isfile(horn):
+        bio["sheet"] = rel(horn)
+        bio["sheet_thumb"] = thumb_of(horn)
+        bio["cover"] = rel(os.path.join(BIO, "subjects", "horn-atlas", "sheet-thumb.jpg"))
+        bio_card["cover"] = bio["cover"]
 
     videos = build_videos()
-    others = build_other_projects()
+    others, other_data = build_other_projects()
 
     zh, en = PROJECTS["bio-splice"]
-    bio_card = {
-        "id": "bio-splice", "kind": "periods",
-        "title": {"zh": zh, "en": en},
-        "desc": {"zh": DOCS["bio-splice"][0], "en": DOCS["bio-splice"][1]},
-        "cover": rel(os.path.join(BIO, "subjects", "horn-atlas", "sheet-thumb.jpg")),
-        "readme": maybe_path(os.path.join(BIO, "README.md")),
-        "summary": maybe_path(os.path.join(BIO, "SUMMARY.md")),
-        "stats": {"subjects": len(subjects), "periods": periods, "finals": finals, "controls": controls},
-        "groups": [g["id"] for g in groups],
-    }
-
     vz, ve = PROJECTS["video-projects"]
     video_card = {
         "id": "video-projects", "kind": "videos",
@@ -653,23 +804,6 @@ def main():
         "projects": [bio_card, video_card] + others,
     }
 
-    bio = {
-        "id": "bio-splice",
-        "title": {"zh": zh, "en": en},
-        "desc": {"zh": DOCS["bio-splice"][0], "en": DOCS["bio-splice"][1]},
-        "readme": bio_card["readme"],
-        "summary": bio_card["summary"],
-        "plan": maybe_path(os.path.join(BIO, "PLAN.md")),
-        "sheet": rel(os.path.join(BIO, "subjects", "horn-atlas", "sheet.jpg")),
-        # 首个子主题合图的缩略图（8.1 MB 的子主题合图不该直接进首屏）
-        "sheet_thumb": thumb_of(os.path.join(BIO, "subjects", "horn-atlas", "sheet.jpg")),
-        # 评分维度随项目走：bio-splice 是 A–E 五维，shanhai-jing 是 A–F 六维。
-        # 写死在 app.js 里的话，第二个项目的期详情页就会说错。
-        "rubric": RUBRICS.get("bio-splice"),
-        "groups": groups,
-        "subjects": subjects,
-    }
-
     def dump(name, obj):
         p = os.path.join(OUT_DIR, name)
         with open(p, "w", encoding="utf-8") as fh:
@@ -677,11 +811,13 @@ def main():
             fh.write("\n")
         return os.path.getsize(p)
 
-    sizes = [
-        ("index.json", dump("index.json", index)),
-        ("bio-splice.json", dump("bio-splice.json", bio)),
-        ("videos.json", dump("videos.json", videos)),
-    ]
+    # 每个有详情页的项目各存一份 `<pid>.json`（前端按 #/p/<pid> 懒加载）
+    project_files = dict(other_data)
+    project_files[bio["data"]] = bio
+
+    sizes = [("index.json", dump("index.json", index))]
+    sizes += [(n, dump(n, o)) for n, o in sorted(project_files.items())]
+    sizes += [("videos.json", dump("videos.json", videos))]
 
     if not quiet:
         print("生成完毕 → site/data/")

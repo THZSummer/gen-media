@@ -23,6 +23,7 @@
    "cover": "projects/bio-splice/subjects/horn-atlas/sheet-thumb.jpg",
    "readme": "projects/bio-splice/README.md",
    "summary": "projects/bio-splice/SUMMARY.md",
+   "data": "bio-splice.json",
    "stats": {
     "subjects": 12,
     "periods": 60,
@@ -55,7 +56,7 @@
   },
   {
    "id": "bone-china-doll",
-   "kind": "project",
+   "kind": "gallery",
    "title": {
     "zh": "骨瓷人偶",
     "en": "Bone-China Doll"
@@ -66,7 +67,10 @@
    },
    "cover": "site/thumbs/projects/bone-china-doll/out/final-bone-china-princess-east.jpg",
    "readme": "projects/bone-china-doll/README.md",
-   "stats": {}
+   "data": "bone-china-doll.json",
+   "stats": {
+    "finals": 5
+   }
   },
   {
    "id": "character-lookbook",
@@ -85,7 +89,7 @@
   },
   {
    "id": "shanhai-jing",
-   "kind": "project",
+   "kind": "periods",
    "title": {
     "zh": "山海经 · 图赞",
     "en": "Shan Hai Jing · Illustrated Verses"
@@ -96,9 +100,15 @@
    },
    "cover": "site/thumbs/projects/shanhai-jing/subjects/jiu-wei-hu/period-01/02-jiu-wei-hu-zan.jpg",
    "readme": "projects/shanhai-jing/README.md",
+   "summary": null,
+   "data": "shanhai-jing.json",
    "stats": {
-    "finals": 3
-   }
+    "subjects": 1,
+    "periods": 1,
+    "finals": 3,
+    "controls": 0
+   },
+   "groups": []
   }
  ]
 }

@@ -31,11 +31,9 @@
           + '视频由本地 FastH3 出片；各项目的成品、提示词、种子与评分记录都留档可查。',
       subjects: '子主题', periods: '期', finals: '成品', controls: '对照', mean: '均分',
       clips: '视频', projects: '项目', videosN: '视频', scored: '带评分',
-      bioLead: '跨物种、跨界的“部位移植”实验：12 个子主题 × 5 期，每期一个恒定生境，'
-             + '每轮带同轮底座对照，成品全部经评分过关。',
       openProject: '项目主页', summary: '全线总结', plan: '规划', readme: '说明',
       parts: '部位表', sheet: '合图', openFull: '看原图', backHome: '← 返回首页',
-      backBio: '← 生物拼接', prev: '← 上一张', next: '下一张 →',
+      backProject: '← 返回项目', prev: '← 上一张', next: '下一张 →',
       score: '评分', seed: '种子', round: '轮次', engine: '引擎', shot: '镜头',
       sha: 'SHA-256', prompt: '提示词', copy: '复制', copied: '已复制',
       controlsTitle: '对照图（同轮底座，未评分）',
@@ -56,12 +54,9 @@
           + 'finals, prompts, seeds and review records are archived per project.',
       subjects: 'sub-themes', periods: 'periods', finals: 'finals', controls: 'controls', mean: 'mean',
       clips: 'videos', projects: 'projects', videosN: 'videos', scored: 'scored',
-      bioLead: 'Cross-species / cross-kingdom part-transplant studies: 12 sub-themes × 5 periods, '
-             + 'one fixed habitat per period, a same-round base control in every round, '
-             + 'and every final admitted only after passing review.',
       openProject: 'Project home', summary: 'Full summary', plan: 'Plan', readme: 'Readme',
       parts: 'Part table', sheet: 'Contact sheet', openFull: 'Open original', backHome: '← Home',
-      backBio: '← Bio Splice', prev: '← Prev', next: 'Next →',
+      backProject: '← Project', prev: '← Prev', next: 'Next →',
       score: 'score', seed: 'seed', round: 'round', engine: 'engine', shot: 'shot',
       sha: 'SHA-256', prompt: 'Prompt', copy: 'copy', copied: 'copied',
       controlsTitle: 'Controls (same-round base, not scored)',
@@ -88,13 +83,26 @@
   var app = $('#app');
 
   function load() {
-    var names = ['index', 'bio-splice', 'videos'];
+    // 只预载索引与视频（小）；**项目详情按需懒加载**（#/p/<id> → site/data/<id>.json），
+    // 这样新增项目不用改这里，也不会一次性把 270 KB 的 bio-splice.json 都拉下来。
+    var names = ['index', 'videos'];
     return Promise.all(names.map(function (n) {
       return fetch(BASE + 'site/data/' + n + '.json', { cache: 'no-cache' }).then(function (r) {
         if (!r.ok) throw new Error(n + ': HTTP ' + r.status);
         return r.json();
       });
-    })).then(function (d) { IDX = d[0]; BIO = d[1]; VID = d[2]; });
+    })).then(function (d) { IDX = d[0]; VID = d[1]; });
+  }
+
+  var PROJ_CACHE = {};
+  function ensureProject(id) {
+    if (PROJ_CACHE[id]) { BIO = PROJ_CACHE[id]; return Promise.resolve(BIO); }
+    var card = IDX.projects.filter(function (p) { return p.id === id; })[0];
+    var file = (card && card.data) || (id + '.json');
+    return fetch(BASE + 'site/data/' + file, { cache: 'no-cache' }).then(function (r) {
+      if (!r.ok) throw new Error(file + ': HTTP ' + r.status);
+      return r.json();
+    }).then(function (d) { PROJ_CACHE[id] = d; BIO = d; return d; });
   }
 
   /* ── 顶栏 / 页脚 ───────────────────────────────────────────── */
@@ -104,16 +112,17 @@
     $('#brand-zh').style.display = LANG === 'en' ? 'none' : 'inline';
     $('#brand-en').style.display = LANG === 'en' ? 'inline' : 'none';
 
-    var route = (location.hash || '#/').replace(/^#\/?/, '').split('/')[0];
-    // 导航**从 index.json 派生**：有内页的项目（期结构 / 视频汇总）自动进导航，
-    // 不再把某一个项目（bio-splice）写死成顶级项。
+    var full = (location.hash || '#/').replace(/^#\/?/, '');
+    // 导航**从 index.json 派生**：**凡是有站内详情页的项目**都进导航
+    // （期结构 / 图集 / 视频汇总），不再把某一个项目写死成顶级项。
     var items = [['#/', t('home'), '']];
     IDX.projects.forEach(function (p) {
-      var r = p.kind === 'periods' ? 'bio-splice' : (p.kind === 'videos' ? 'videos' : null);
-      if (r) items.push(['#/' + r, title(p.title), r]);
+      var key = p.kind === 'videos' ? 'videos' : (p.data ? 'p/' + p.id : null);
+      if (key) items.push(['#/' + key, title(p.title), key]);
     });
     $('#nav').innerHTML = items.map(function (it) {
-      var on = (it[2] === '' && route === '') || it[2] === route;
+      var on = it[2] === '' ? full === ''
+        : (full === it[2] || full.indexOf(it[2] + '/') === 0);
       return '<a href="' + it[0] + '"' + (on ? ' class="on"' : '') + '>' + esc(it[1]) + '</a>';
     }).join('') + '<a href="' + REPO + '" target="_blank" rel="noopener">GitHub ↗</a>';
 
@@ -148,10 +157,11 @@
     ]);
     h += '<h2>' + esc(t('projects')) + '</h2><div class="grid">';
     IDX.projects.forEach(function (p) {
-      var href = p.kind === 'periods' ? '#/bio-splice'
-        : p.kind === 'videos' ? '#/videos'
-        : (p.readme ? docURL(p.readme) : REPO);
-      var ext = p.kind === 'project' ? ' target="_blank" rel="noopener"' : '';
+      // 有站内详情页的（期结构 / 图集）走 #/p/<id>；视频汇总走 #/videos；
+      // 都没有的（无成品的项目）才外链 README。
+      var inSite = p.kind === 'videos' ? '#/videos' : (p.data ? '#/p/' + p.id : null);
+      var href = inSite || (p.readme ? docURL(p.readme) : REPO);
+      var ext = inSite ? '' : ' target="_blank" rel="noopener"';
       var meta = [];
       if (p.stats.subjects) meta.push(p.stats.subjects + ' ' + t('subjects'));
       if (p.stats.periods) meta.push(p.stats.periods + ' ' + t('periods'));
@@ -174,12 +184,15 @@
       + '" alt="' + esc(alt) + '"></div>';
   }
 
-  /* ── 生物拼接总览 ──────────────────────────────────────────── */
+  /* ── 期结构项目总览（bio-splice / shanhai-jing 通用）────────── */
   function viewBio() {
+    var pid = BIO.id;
     var h = '<div class="crumb"><a href="#/">' + esc(t('backHome')) + '</a></div>'
       + '<h1>' + esc(title(BIO.title)) + ' <span class="sub" style="color:var(--muted);font-size:15px">'
-      + esc(subTitle(BIO.title)) + '</span></h1>'
-      + '<p class="lead">' + esc(t('bioLead')) + '</p>';
+      + esc(subTitle(BIO.title)) + '</span></h1>';
+    // 说明取自数据（原来是写死的 bioLead，第二个项目会显示错的文案）
+    var lead = BIO.desc && (BIO.desc[LANG] || BIO.desc.zh);
+    if (lead) h += '<p class="lead">' + esc(lead) + '</p>';
     h += statList([
       [t('subjects'), BIO.subjects.length],
       [t('periods'), BIO.subjects.reduce(function (a, s) { return a + s.stats.periods; }, 0)],
@@ -188,7 +201,6 @@
     ]);
     h += '<p class="lead" style="font-size:13px">' + esc(t('gridHint')) + '</p>';
     // 评分维度**按项目从数据取**：bio-splice 是 A–E 五维，shanhai-jing 是 A–F 六维。
-    // 写死在这里的话，第二个项目的期详情页就会说错。
     var rub = BIO.rubric && (BIO.rubric[LANG] || BIO.rubric.zh);
     if (rub) h += '<ul class="chips"><li>' + esc(rub) + '</li></ul>';
 
@@ -199,21 +211,72 @@
       });
     if (links.length) h += '<p class="lead" style="font-size:13px">' + links.join(' ｜ ') + '</p>';
 
-    BIO.groups.forEach(function (g) {
-      h += '<h2>' + esc(g.id) + ' 组 · ' + esc(title(g.title)) + '</h2>'
-        + '<p class="lead" style="font-size:13px;margin-top:-6px">' + esc(subTitle(g.title)) + '</p>'
-        + '<div class="grid">';
-      g.subjects.forEach(function (sid) {
+    // 子主题卡片：**有分组就分组渲染，没有就平铺**
+    // （bio-splice 分甲/乙/丙；shanhai-jing 只有一个子主题、没有分组）
+    var blocks = (BIO.groups && BIO.groups.length)
+      ? BIO.groups.map(function (g) {
+          return { label: g.id + (LANG === 'en' ? '' : ' 组'), title: g.title,
+                   sub: subTitle(g.title), ids: g.subjects };
+        })
+      : [{ label: null, title: null, sub: '', ids: BIO.subjects.map(function (s) { return s.id; }) }];
+
+    blocks.forEach(function (b) {
+      if (b.title) {
+        h += '<h2>' + esc(b.label) + ' · ' + esc(title(b.title)) + '</h2>'
+          + '<p class="lead" style="font-size:13px;margin-top:-6px">' + esc(b.sub) + '</p>';
+      }
+      h += '<div class="grid">';
+      b.ids.forEach(function (sid) {
         var s = BIO.subjects.filter(function (x) { return x.id === sid; })[0];
         if (!s) return;
-        h += '<a class="card" href="#/s/' + esc(s.id) + '">'
+        var meta = s.stats.periods + ' ' + esc(t('periods')) + ' · ' + s.stats.finals + ' ' + esc(t('finals'));
+        if (s.stats.mean > 0) meta += ' · ' + esc(t('mean')) + ' <b>' + s.stats.mean.toFixed(2) + '</b>';
+        h += '<a class="card" href="#/p/' + esc(pid) + '/s/' + esc(s.id) + '">'
           + thumbHTML(s.thumb, s.id)
           + '<div class="body"><div class="t">' + esc(title(s.title)) + '</div>'
           + '<div class="sub">' + esc(subTitle(s.title)) + '</div>'
-          + '<div class="meta">' + s.stats.periods + ' ' + esc(t('periods'))
-          + ' · ' + s.stats.finals + ' ' + esc(t('finals'))
-          + ' · ' + esc(t('mean')) + ' <b>' + s.stats.mean.toFixed(2) + '</b></div>'
+          + '<div class="meta">' + meta + '</div>'
           + '</div></a>';
+      });
+      h += '</div>';
+    });
+    return h;
+  }
+
+  /* ── 图集项目（无 manifest，成品平铺）──────────────────────── */
+  function viewGallery() {
+    var h = '<div class="crumb"><a href="#/">' + esc(t('backHome')) + '</a></div>'
+      + '<h1>' + esc(title(BIO.title)) + ' <span class="sub" style="color:var(--muted);font-size:15px">'
+      + esc(subTitle(BIO.title)) + '</span></h1>';
+    var lead = BIO.desc && (BIO.desc[LANG] || BIO.desc.zh);
+    if (lead) h += '<p class="lead">' + esc(lead) + '</p>';
+    var nf = BIO.images.filter(function (i) { return i.final; }).length;
+    h += statList([[t('finals'), nf || BIO.images.length]]);
+    if (BIO.readme) {
+      h += '<p class="lead" style="font-size:13px"><a href="' + docURL(BIO.readme)
+        + '" target="_blank" rel="noopener">' + esc(t('readme')) + ' ↗</a></p>';
+    }
+    h += '<p class="lead" style="font-size:13px">' + esc(t('gridHint')) + '</p>';
+
+    if (!BIO.images.length) {
+      return h + '<p class="lead">' + esc(t('noCover')) + '</p>';
+    }
+    // 成品在前，其余在后；按目录分组起小标题
+    var groups = [], seen = {};
+    BIO.images.forEach(function (img) {
+      var g = img.final ? '' : (img.group || '');
+      if (!seen[g]) { seen[g] = []; groups.push(g); }
+      seen[g].push(img);
+    });
+    groups.forEach(function (g) {
+      if (g) h += '<h2>' + esc(g) + '</h2>';
+      h += '<div class="finals">';
+      seen[g].forEach(function (img) {
+        h += '<div class="fin' + (img.final ? '' : ' ctrl') + '" data-lb-path="' + esc(img.path) + '">'
+          + '<img loading="lazy" decoding="async" src="' + esc(asset(img.thumb || img.path))
+          + '" alt="' + esc(img.file) + '">'
+          + '<div class="fmeta"><span>' + esc(img.file) + '</span>'
+          + '<span>' + mb(img.size) + '</span></div></div>';
       });
       h += '</div>';
     });
@@ -236,7 +299,7 @@
     var s = BIO.subjects.filter(function (x) { return x.id === sid; })[0];
     if (!s) return '<p class="lead">404 · ' + esc(sid) + '</p>';
     var h = '<div class="crumb"><a href="#/">' + esc(t('backHome')) + '</a> · '
-      + '<a href="#/bio-splice">' + esc(t('backBio')) + '</a></div>'
+      + '<a href="#/p/' + esc(BIO.id) + '">' + esc(t('backProject')) + '</a></div>'
       + '<h1>' + esc(title(s.title)) + ' <span style="color:var(--muted);font-size:15px">'
       + esc(subTitle(s.title)) + '</span></h1>';
 
@@ -410,6 +473,13 @@
     }
   }
 
+  function buildLBGallery(proj) {
+    /* 图集项目的灯箱列表：就是它的图片清单（成品在前） */
+    return (proj.images || []).map(function (img) {
+      return { src: img.path, kind: img.final ? 'final' : 'image', label: img.file };
+    });
+  }
+
   function openLB(list, i) {
     LB.items = list; LB.i = Math.max(0, Math.min(i, list.length - 1));
     if (!dlg.open) dlg.showModal();
@@ -423,20 +493,47 @@
   }
 
   /* ── 路由与事件 ────────────────────────────────────────────── */
-  var CURRENT = { subject: null };
+  var CURRENT = { subject: null, project: null };
 
   function render() {
     var r = (location.hash || '#/').replace(/^#\/?/, '');
     var parts = r.split('/');
     CURRENT.subject = null;
+    CURRENT.project = null;
 
-    if (parts[0] === 'bio-splice') {
-      app.innerHTML = viewBio();
+    // 统一路由：#/p/<项目id> 与 #/p/<项目id>/s/<子主题id>
+    // 兼容旧链接：#/bio-splice → #/p/bio-splice；#/s/<sid> → #/p/bio-splice/s/<sid>
+    var pid = null, sub = null;
+    if (parts[0] === 'p' && parts[1]) {
+      pid = parts[1];
+      if (parts[2] === 's' && parts[3]) sub = parts[3];
+    } else if (parts[0] === 'bio-splice') {
+      pid = 'bio-splice'; sub = parts[1] || null;
     } else if (parts[0] === 's' && parts[1]) {
-      var s = BIO.subjects.filter(function (x) { return x.id === parts[1]; })[0];
-      app.innerHTML = viewSubject(parts[1]);
-      CURRENT.subject = s || null;
-    } else if (parts[0] === 'videos') {
+      pid = 'bio-splice'; sub = parts[1];
+    }
+
+    if (pid) {
+      app.innerHTML = '<p class="loading">载入中… / Loading…</p>';
+      ensureProject(pid).then(function (proj) {
+        CURRENT.project = proj;
+        if (sub) {
+          var s = (proj.subjects || []).filter(function (x) { return x.id === sub; })[0];
+          app.innerHTML = viewSubject(sub);
+          CURRENT.subject = s || null;
+        } else if (proj.images) {
+          app.innerHTML = viewGallery();
+        } else {
+          app.innerHTML = viewBio();
+        }
+        window.scrollTo(0, 0);
+      }).catch(function (e) {
+        app.innerHTML = '<div class="crumb"><a href="#/">' + esc(t('backHome')) + '</a></div>'
+          + '<p class="lead">' + esc(String(e.message || e)) + '</p>';
+      });
+      return;
+    }
+    if (parts[0] === 'videos') {
       app.innerHTML = viewVideos();
     } else {
       app.innerHTML = viewHome();
@@ -446,10 +543,13 @@
 
   function onClick(ev) {
     var tgt = ev.target.closest ? ev.target.closest('[data-lb-path]') : null;
-    if (!tgt || !CURRENT.subject) return;
-    ev.preventDefault();
+    if (!tgt) return;
     var path = tgt.getAttribute('data-lb-path');
-    var list = buildLB(CURRENT.subject);
+    // 期详情页走子主题列表；图集项目走图片清单
+    var list = CURRENT.subject ? buildLB(CURRENT.subject)
+      : (CURRENT.project && CURRENT.project.images ? buildLBGallery(CURRENT.project) : []);
+    if (!list.length) return;
+    ev.preventDefault();
     var idx = list.findIndex(function (x) { return x.src === path; });
     openLB(list, idx < 0 ? 0 : idx);
   }

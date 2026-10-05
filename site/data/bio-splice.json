@@ -11,12 +11,13 @@
  "readme": "projects/bio-splice/README.md",
  "summary": "projects/bio-splice/SUMMARY.md",
  "plan": "projects/bio-splice/PLAN.md",
- "sheet": "projects/bio-splice/subjects/horn-atlas/sheet.jpg",
- "sheet_thumb": "site/thumbs/projects/bio-splice/subjects/horn-atlas/sheet.jpg",
+ "data": "bio-splice.json",
  "rubric": {
   "zh": "A 移植到位 .30 ｜ B 底座完整 .20 ｜ C 解剖可信 .20 ｜ D 摄影统一 .15 ｜ E 概念可读 .15",
   "en": "A transplant fidelity .30 | B base integrity .20 | C anatomy .20 | D photographic unity .15 | E concept readability .15"
  },
+ "sheet": "projects/bio-splice/subjects/horn-atlas/sheet.jpg",
+ "sheet_thumb": "site/thumbs/projects/bio-splice/subjects/horn-atlas/sheet.jpg",
  "groups": [
   {
    "id": "甲",
@@ -5412,5 +5413,12 @@
     }
    ]
   }
- ]
+ ],
+ "stats": {
+  "subjects": 12,
+  "periods": 60,
+  "finals": 135,
+  "controls": 59
+ },
+ "cover": "projects/bio-splice/subjects/horn-atlas/sheet-thumb.jpg"
 }
