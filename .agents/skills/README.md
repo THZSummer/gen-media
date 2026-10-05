@@ -1,12 +1,9 @@
----
-name: gen-media-skills-index
-description: gen-media 技能库总览：5 个可执行技能（文生图 / 控制图生图 / 确定性图像工具 / 文生视频 / 图生视频）的能力地图、按素材与条件的选路表、运行前提与自检命令。触发词：图片生成怎么开始、视频生成用哪个技能、能力地图、文生图/图生图/速览图/FastH3/ComfyUI 怎么选。
-whenToUse: 当不确定该用哪个技能、需要总览能力地图、或要确认环境是否健康时使用。确定任务后加载对应技能目录的 SKILL.md。
----
-
 # gen-media 技能库总览（Skills Index）
 
 > 返回[首页](../../README.md) ｜ 项目实践见 [../projects/](../../projects/README.md) ｜ 视频方法手册见 [../methods/](../../methods/README.md)
+
+> ⚠️ **本文件是索引，不是技能。** `.agents/skills/` 是技能根，**任何带 frontmatter 的 md 都会被当作技能加载**，
+> 所以本 README **刻意不写 frontmatter**，按普通文档写。真正的技能是各子目录里的 `SKILL.md`。
 
 > 本目录是**技能库**：每个子目录一个技能，入口为 `SKILL.md`（YAML frontmatter 含 `name` / `description` / `whenToUse`）。
 > 技能讲「**怎么做**」，具体项目（「**做什么**」）见 [projects/](../../projects/README.md)。

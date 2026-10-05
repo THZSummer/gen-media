@@ -30,7 +30,8 @@ gen-media 是"图片生成 + 视频生成"的作品集仓库，**扁平化为三
 | 4 | **大体积中间产物不入库**：`work/`、`out/r*/`、逐镜头 mp4 等留本地 | `git status` 里看不到；文档指向它们的链接属"预期断链" |
 | 5 | **定稿必须经评分过关**才进期目录；**每轮必带同轮底座对照** | 期目录有 `manifest.json`（`role: final` / `control`）与 `controls/` |
 | 6 | **新增技能要能被 DSH 发现**：放在 `.agents/skills/<kebab-name>/SKILL.md` | 目录名 = frontmatter `name`；见 [references/skills.md](references/skills.md) |
-| 7 | **图片不成对改**：成品与对照用 PNG，合图/审计图用 JPEG | 见 [references/assets.md](references/assets.md) |
+| 7 | **技能根下的索引 README 不写 frontmatter**（写了会被当成技能加载） | `.agents/skills/README.md` 无 YAML 头；见 [references/skills.md](references/skills.md) |
+| 8 | **图片不成对改**：成品与对照用 PNG，合图/审计图用 JPEG | 见 [references/assets.md](references/assets.md) |
 
 ## 工作流
 
@@ -119,3 +120,4 @@ cd ../.. && git submodule update --remote GitHub/gen-media && git add GitHub/gen
 | 2026-10-05 | v1.0 | 建立：按 DSH 项目技能规范（`.agents/skills/<name>/SKILL.md`）落位，收录双语、站点、技能、生成、资产、协作六类规范与交付前检查脚本 |
 | 2026-10-05 | v1.1 | **随扁平化重构同步**：结构描述从"两个内容库"改为三块（`.agents/skills/` / `projects/` / `methods/`）；技能路径 `image-gen/skills/**`、`video-gen/skills/**` → `.agents/skills/**`；`i18n` 排除前缀随之收敛；站点文档的示例路径改为 `projects/...`；协作文档订正 submodule 事实（`gits` 以指针引用本仓库） | 小七 |
 | 2026-10-05 | v1.2 | **dev-guide 自身迁入 `.agents/skills/`**：与 5 个执行技能并列（技能根 rank 从 `project-dsh` 换到 `project-agents`），`.dsh/` 目录随之移除；`i18n` 排除前缀收敛为 `(".agents/skills/",)`；`check.sh` 的 `ROOT` 推导注释同步（深度未变，`../../..` 仍指向仓库根）；清理此前替换遗留的重复枚举 | 小七 |
+| 2026-10-05 | v1.3 | **索引 README 不写 frontmatter**：`.agents/skills/README.md` 去掉 YAML 头（带 frontmatter 的 md 在技能根下会被当成技能加载，实测它曾以 `gen-media-skills-index` 身份出现在技能目录里）；硬性要求新增第 7 条 + `references/skills.md` 补判断标准 | 小七 |

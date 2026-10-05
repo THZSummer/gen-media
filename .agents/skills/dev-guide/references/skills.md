@@ -32,6 +32,12 @@ gen-media/.agents/skills/dev-guide/
 - 资源文件（`references/`、`scripts/`、`templates/`）用**相对本技能目录**的路径引用；加载时才按需解析，目录不会被枚举。
 - 改了技能正文，下一次工具调用即可见（无需重载目录）；改目录结构由 watcher 感知。
 
+> ⛔ **技能根下的索引 README 不要写 frontmatter。**
+> `.agents/skills/` 是技能根，**任何带 frontmatter 的 md 都会被当成技能加载**——哪怕文件叫 `README.md`。
+> 实测：`.agents/skills/README.md` 曾带 `name: gen-media-skills-index`，于是它以"技能"身份出现在技能目录里。
+> 索引是给人看的普通文档，**按普通 README 写**（H1 + 正文），不加 YAML 头。
+> 判断标准很简单：**要能被加载执行的才是技能**；只是"指路"的，就是普通 README。
+
 ## 2. frontmatter
 
 ```yaml
