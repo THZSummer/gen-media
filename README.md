@@ -84,8 +84,24 @@ gen-media/
 
 ---
 
+## 七、维护：从 gits 同步
+
+内容源头是作者工作机上的 `gits` 工作区（`Book/image-gen`、`Book/video-gen`）——那两个目录已从 Gitee 仓库的索引与历史中移除（本地磁盘保留），本仓库是它们的发布镜像。
+
+```bash
+tools/sync-from-gits.sh -n    # 预览：从 gits 重新导出并与本仓库比对
+tools/sync-from-gits.sh       # 同步 + 提交 + 推送
+```
+
+同步只覆盖 `image-gen/` 与 `video-gen/` 两个子目录（严格对齐，源头没有的文件会被删除）；本仓库根的 `README.md`、`.gitignore`、`tools/` 属于本仓库自有内容，不参与同步。
+
+> ⚠️ 该脚本依赖工作机的目录布局，可用 `GITS=<路径>` 覆盖；换机器使用需要先有对应的 gits 检出。
+
+---
+
 ## 文档修订记录
 
 | 日期 | 版本 | 变更内容 | 作者 |
 |------|------|----------|------|
 | 2026-10-05 | v1.0 | 从 `gits` 拆出 `Book/image-gen` 与 `Book/video-gen`，独立成库 | 小七 |
+| 2026-10-05 | v1.1 | 新增 `tools/sync-from-gits.sh` 与「维护」章节 | 小七 |
