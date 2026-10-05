@@ -7,8 +7,8 @@
     "en": "giant-kingdom"
    },
    "desc": {
-    "zh": "",
-    "en": ""
+    "zh": "穿越到巨人女儿国：体型反差的视觉奇观（巨手遮天 / 掌心如地 / 一肩一世界）。",
+    "en": "Into the giant kingdom: a body-scale contrast spectacle (a hand blotting out the sky, a palm for ground, a shoulder for a world)."
    },
    "readme": "projects/giant-kingdom/README.md",
    "clips": [
@@ -16,7 +16,8 @@
      "file": "butterfly_girl_v3_full.mp4",
      "path": "projects/giant-kingdom/out/video/butterfly_girl_v3_full.mp4",
      "size": 13154449,
-     "poster": "projects/giant-kingdom/out/storyboard/shot1_final.jpg"
+     "poster": "projects/giant-kingdom/out/storyboard/shot1_final.jpg",
+     "thumb": "site/thumbs/projects/giant-kingdom/out/storyboard/shot1_final.jpg"
     }
    ],
    "poster": "projects/giant-kingdom/out/storyboard/shot1_final.jpg",
@@ -30,8 +31,8 @@
     "en": "step-scenery"
    },
    "desc": {
-    "zh": "",
-    "en": ""
+    "zh": "移步换景：少女穿越时空，一步一世界（茶室 → 竹林 → 沙漠 → 赛博 → 星空 → 雪原 → 茶室闭环）。",
+    "en": "Step scenery: a girl crossing time, one step one world (tea room → bamboo → desert → cyber → starfield → snow → back to the tea room)."
    },
    "readme": "projects/step-scenery/README.md",
    "clips": [
@@ -39,7 +40,8 @@
      "file": "step_scenery_full.mp4",
      "path": "projects/step-scenery/out/video/v1-mini/step_scenery_full.mp4",
      "size": 13519504,
-     "poster": "projects/step-scenery/out/storyboard/shot1.jpg"
+     "poster": "projects/step-scenery/out/storyboard/shot1.jpg",
+     "thumb": "site/thumbs/projects/step-scenery/out/storyboard/shot1.jpg"
     }
    ],
    "poster": "projects/step-scenery/out/storyboard/shot1.jpg",
@@ -53,8 +55,8 @@
     "en": "step-scenery-v2"
    },
    "desc": {
-    "zh": "",
-    "en": ""
+    "zh": "移步换景 v2：同故事，seedance-2.0 原生音频版（每镜自带场景音效）。",
+    "en": "Step scenery v2: same story, seedance-2.0 native-audio version, each shot with its own ambience."
    },
    "readme": "projects/step-scenery-v2/README.md",
    "clips": [
@@ -62,13 +64,15 @@
      "file": "step_scenery_15s.mp4",
      "path": "projects/step-scenery-v2/out/video/step_scenery_15s.mp4",
      "size": 5919737,
-     "poster": "projects/step-scenery-v2/out/storyboard/shot1.jpg"
+     "poster": "projects/step-scenery-v2/out/storyboard/shot1.jpg",
+     "thumb": "site/thumbs/projects/step-scenery-v2/out/storyboard/shot1.jpg"
     },
     {
      "file": "step_scenery_15s_v2.mp4",
      "path": "projects/step-scenery-v2/out/video/step_scenery_15s_v2.mp4",
      "size": 5427764,
-     "poster": "projects/step-scenery-v2/out/storyboard/shot1.jpg"
+     "poster": "projects/step-scenery-v2/out/storyboard/shot1.jpg",
+     "thumb": "site/thumbs/projects/step-scenery-v2/out/storyboard/shot1.jpg"
     }
    ],
    "poster": "projects/step-scenery-v2/out/storyboard/shot1.jpg",
@@ -82,8 +86,8 @@
     "en": "survival-island"
    },
    "desc": {
-    "zh": "",
-    "en": ""
+    "zh": "荒岛求生：6 镜 30s 剧情短片，18 岁东方少女 × 极致反差（荒岛不荒、人更惨）。",
+    "en": "Survival island: a 6-shot 30s narrative short — an 18-year-old Eastern girl and extreme contrast."
    },
    "readme": "projects/survival-island/README.md",
    "clips": [
@@ -91,13 +95,15 @@
      "file": "survival_island_full.mp4",
      "path": "projects/survival-island/out/survival_island_full.mp4",
      "size": 10960323,
-     "poster": "projects/survival-island/out/seam_after.jpg"
+     "poster": "projects/survival-island/out/seam_after.jpg",
+     "thumb": "site/thumbs/projects/survival-island/out/seam_after.jpg"
     },
     {
      "file": "survival_island_narrated.mp4",
      "path": "projects/survival-island/out/survival_island_narrated.mp4",
      "size": 10939181,
-     "poster": "projects/survival-island/out/seam_after.jpg"
+     "poster": "projects/survival-island/out/seam_after.jpg",
+     "thumb": "site/thumbs/projects/survival-island/out/seam_after.jpg"
     }
    ],
    "poster": "projects/survival-island/out/seam_after.jpg",
@@ -111,8 +117,8 @@
     "en": "tea-shake-dance"
    },
    "desc": {
-    "zh": "",
-    "en": ""
+    "zh": "来杯好茶摇一摇：艺术舞蹈短片，以「摇一摇」为动作母题，茶文化跳成现代舞（6 镜逐镜详解）。",
+    "en": "Tea shake dance: an art-dance short built on the \"shake\" motif, turning tea culture into modern dance (all 6 shots detailed)."
    },
    "readme": "projects/tea-shake-dance/README.md",
    "clips": [
@@ -120,7 +126,8 @@
      "file": "tea_shake_narrated.mp4",
      "path": "projects/tea-shake-dance/out/video/tea_shake_narrated.mp4",
      "size": 12325377,
-     "poster": "projects/tea-shake-dance/out/storyboard/shot1_final.jpg"
+     "poster": "projects/tea-shake-dance/out/storyboard/shot1_final.jpg",
+     "thumb": "site/thumbs/projects/tea-shake-dance/out/storyboard/shot1_final.jpg"
     }
    ],
    "poster": "projects/tea-shake-dance/out/storyboard/shot1_final.jpg",

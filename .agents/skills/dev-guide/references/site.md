@@ -19,17 +19,42 @@
 
 ## 3. 数据层
 
-- `tools/build_site.py` **只读**（不碰图片、不改 manifest）、**幂等**（同输入产出逐字节相同的 JSON）。
-- 数据源：`subjects/*/period-*/manifest.json`、`rounds/*-review.md` 的评分表、目录扫描。
+- `tools/build_site.py` **只读源素材**（不碰成品、不改 manifest）、**幂等**（同输入产出逐字节相同的 JSON）。
+- 数据源：`projects/*/subjects/*/period-*/manifest.json`、`rounds/*-review.md` 的评分表、目录扫描。
+- **项目卡片是扫描出来的**，不是硬编码清单：`projects/` 下 `_` 开头跳过、`bio-splice` 单独成卡、
+  含 `.mp4` 的归视频汇总卡、其余各成一卡。新增项目放进 `projects/` 就自动进画廊
+  （标题/说明/封面可用 `PROJECTS` / `DOCS` / `COVERS` 覆写）。**别再退回硬编码**——实测漏掉过整个项目。
 - 轮次文件名要用**宽容正则**：实测有 `r01-review.md`、`ts-r3-review.md`、`fb2-r1-review.md`、`dn-r10-review.md`：
   `^(?:[A-Za-z0-9]+-)?r(\d+)-(review|audit)\.(jpg|md)$`
+- **评分维度随项目走**（`RUBRICS`，写进 JSON 由前端读），不要写进 `app.js`——
+  bio-splice 是 A–E 五维、shanhai-jing 是 A–F 六维，写死会让第二个项目的期详情页说错。
 - 新增内容后重跑生成器；首页/项目页统计数字应随之变化。
+
+### 缩略图（网格与封面**不得直出原图**）
+
+`build_site.py` 会在生成数据的同时产出 `site/thumbs/`（最长边 480px、JPEG）：
+
+| 字段 | 用途 | 谁加载 |
+|------|------|--------|
+| `thumb` | 网格 / 封面显示的缩略图 | 首屏与滚动时 |
+| `path` / `sheet` / `poster` | **原图**，灯箱与播放用 | 点击后才加载 |
+
+- 收益实测：bio-splice 单页 **306 MB → 9.5 MB**；首页封面 **5.34 MB → 0.13 MB**。
+- **增量**：缩略图存在且不比源新就跳过 → 重跑几乎零成本。
+- **优雅退化**：没有 `ffmpeg` 时返回原图（页面变重但不报错）；`--no-thumbs` 显式跳过。
+- ⛔ **两个必须守住的约束**（都实际踩过，见 `thumb_of()` 的注释与断言）：
+  1. `src` 可能是**绝对路径**——直接 `os.path.join(THUMB_DIR, src)` 会丢掉前缀、写进源目录；
+     所以一律先 `os.path.relpath(src, ROOT)` 归一。
+  2. 源本身是 `.jpg` 时，上面那个 bug 会让输出路径**正好等于源路径**，`ffmpeg -y` 直接覆盖原图。
+     所以 `thumb_of()` 里有两道 `RuntimeError` 断言：输出必须在 `THUMB_DIR` 内、且不等于源。
+- 前端一律写 `e.thumb || e.path`（缺字段时自然退回原图，不会白屏）。
 
 ## 4. 前端
 
 - 纯 vanilla：**无框架、无 CDN、无构建**；只加 `site/app.{css,js}` 与 `site/data/*.json`。
 - 图片 `loading="lazy" decoding="async"`；视频 `preload="none"` + 分镜图 `poster`（不点不下载）。
-- 点击放大用原生 `<dialog>` 灯箱，左右方向键切换。
+- **导航从 `index.json` 派生**（有内页的 kind 自动进导航），不要把某个项目写死成顶级项。
+- 点击放大用原生 `<dialog>` 灯箱，左右方向键切换；灯箱始终用 `path`（原图）。
 
 ## 5. 本地预览
 

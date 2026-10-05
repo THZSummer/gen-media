@@ -12,6 +12,11 @@
  "summary": "projects/bio-splice/SUMMARY.md",
  "plan": "projects/bio-splice/PLAN.md",
  "sheet": "projects/bio-splice/subjects/horn-atlas/sheet.jpg",
+ "sheet_thumb": "site/thumbs/projects/bio-splice/subjects/horn-atlas/sheet.jpg",
+ "rubric": {
+  "zh": "A 移植到位 .30 ｜ B 底座完整 .20 ｜ C 解剖可信 .20 ｜ D 摄影统一 .15 ｜ E 概念可读 .15",
+  "en": "A transplant fidelity .30 | B base integrity .20 | C anatomy .20 | D photographic unity .15 | E concept readability .15"
+ },
  "groups": [
   {
    "id": "甲",
@@ -75,27 +80,33 @@
    "audits": [
     {
      "round": 1,
-     "path": "projects/bio-splice/subjects/turtle-snake/rounds/ts-r1-audit.jpg"
+     "path": "projects/bio-splice/subjects/turtle-snake/rounds/ts-r1-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/turtle-snake/rounds/ts-r1-audit.jpg"
     },
     {
      "round": 2,
-     "path": "projects/bio-splice/subjects/turtle-snake/rounds/ts-r2-audit.jpg"
+     "path": "projects/bio-splice/subjects/turtle-snake/rounds/ts-r2-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/turtle-snake/rounds/ts-r2-audit.jpg"
     },
     {
      "round": 3,
-     "path": "projects/bio-splice/subjects/turtle-snake/rounds/ts-r3-audit.jpg"
+     "path": "projects/bio-splice/subjects/turtle-snake/rounds/ts-r3-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/turtle-snake/rounds/ts-r3-audit.jpg"
     },
     {
      "round": 4,
-     "path": "projects/bio-splice/subjects/turtle-snake/rounds/ts-r4-audit.jpg"
+     "path": "projects/bio-splice/subjects/turtle-snake/rounds/ts-r4-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/turtle-snake/rounds/ts-r4-audit.jpg"
     },
     {
      "round": 5,
-     "path": "projects/bio-splice/subjects/turtle-snake/rounds/ts-r5-audit.jpg"
+     "path": "projects/bio-splice/subjects/turtle-snake/rounds/ts-r5-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/turtle-snake/rounds/ts-r5-audit.jpg"
     },
     {
      "round": 6,
-     "path": "projects/bio-splice/subjects/turtle-snake/rounds/ts-r6-audit.jpg"
+     "path": "projects/bio-splice/subjects/turtle-snake/rounds/ts-r6-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/turtle-snake/rounds/ts-r6-audit.jpg"
     }
    ],
    "periods": [
@@ -103,12 +114,14 @@
      "id": "period-01",
      "note": "第一期：蛇颈的龟（N1）——溪石浅滩·晨光·平视 600mm",
      "sheet": "projects/bio-splice/subjects/turtle-snake/period-01/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/turtle-snake/period-01/sheet.jpg",
      "readme": "projects/bio-splice/subjects/turtle-snake/period-01/README.md",
      "bytes": 6171254,
      "entries": [
       {
        "file": "01-turtle-snakeneck.png",
        "path": "projects/bio-splice/subjects/turtle-snake/period-01/01-turtle-snakeneck.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/turtle-snake/period-01/01-turtle-snakeneck.jpg",
        "size": 1593771,
        "role": "final",
        "shot": "turtle-snakeneck",
@@ -132,6 +145,7 @@
       {
        "file": "02-turtle-snakeneck-b.png",
        "path": "projects/bio-splice/subjects/turtle-snake/period-01/02-turtle-snakeneck-b.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/turtle-snake/period-01/02-turtle-snakeneck-b.jpg",
        "size": 1589867,
        "role": "final",
        "shot": "turtle-snakeneck-b",
@@ -155,6 +169,7 @@
       {
        "file": "03-turtle-snakeneck-c.png",
        "path": "projects/bio-splice/subjects/turtle-snake/period-01/03-turtle-snakeneck-c.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/turtle-snake/period-01/03-turtle-snakeneck-c.jpg",
        "size": 1427962,
        "role": "final",
        "shot": "turtle-snakeneck-c",
@@ -178,6 +193,7 @@
       {
        "file": "controls/turtle.png",
        "path": "projects/bio-splice/subjects/turtle-snake/period-01/controls/turtle.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/turtle-snake/period-01/controls/turtle.jpg",
        "size": 1559654,
        "role": "control",
        "shot": "base-turtle",
@@ -193,12 +209,14 @@
      "id": "period-02",
      "note": "第二期：蛇尾的龟（N2）——湿地泥岸·阴天·平视全身 400mm",
      "sheet": "projects/bio-splice/subjects/turtle-snake/period-02/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/turtle-snake/period-02/sheet.jpg",
      "readme": "projects/bio-splice/subjects/turtle-snake/period-02/README.md",
      "bytes": 7126039,
      "entries": [
       {
        "file": "01-turtle-snaketail.png",
        "path": "projects/bio-splice/subjects/turtle-snake/period-02/01-turtle-snaketail.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/turtle-snake/period-02/01-turtle-snaketail.jpg",
        "size": 1717231,
        "role": "final",
        "shot": "turtle-snaketail-c",
@@ -222,6 +240,7 @@
       {
        "file": "02-turtle-snaketail-b.png",
        "path": "projects/bio-splice/subjects/turtle-snake/period-02/02-turtle-snaketail-b.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/turtle-snake/period-02/02-turtle-snaketail-b.jpg",
        "size": 1884522,
        "role": "final",
        "shot": "turtle-snaketail-b",
@@ -245,6 +264,7 @@
       {
        "file": "03-turtle-snaketail.png",
        "path": "projects/bio-splice/subjects/turtle-snake/period-02/03-turtle-snaketail.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/turtle-snake/period-02/03-turtle-snaketail.jpg",
        "size": 1808070,
        "role": "final",
        "shot": "turtle-snaketail",
@@ -268,6 +288,7 @@
       {
        "file": "controls/turtle.png",
        "path": "projects/bio-splice/subjects/turtle-snake/period-02/controls/turtle.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/turtle-snake/period-02/controls/turtle.jpg",
        "size": 1716216,
        "role": "control",
        "shot": "base-turtle",
@@ -283,12 +304,14 @@
      "id": "period-03",
      "note": "第三期：缠体的龟（N3）——古井石台·侧光·侧俯视 100mm",
      "sheet": "projects/bio-splice/subjects/turtle-snake/period-03/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/turtle-snake/period-03/sheet.jpg",
      "readme": "projects/bio-splice/subjects/turtle-snake/period-03/README.md",
      "bytes": 7135831,
      "entries": [
       {
        "file": "01-turtle-coil-ground.png",
        "path": "projects/bio-splice/subjects/turtle-snake/period-03/01-turtle-coil-ground.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/turtle-snake/period-03/01-turtle-coil-ground.jpg",
        "size": 1882655,
        "role": "final",
        "shot": "coil-ground",
@@ -312,6 +335,7 @@
       {
        "file": "02-turtle-coil-min.png",
        "path": "projects/bio-splice/subjects/turtle-snake/period-03/02-turtle-coil-min.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/turtle-snake/period-03/02-turtle-coil-min.jpg",
        "size": 1745566,
        "role": "final",
        "shot": "coil-min",
@@ -335,6 +359,7 @@
       {
        "file": "03-turtle-coil-rim.png",
        "path": "projects/bio-splice/subjects/turtle-snake/period-03/03-turtle-coil-rim.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/turtle-snake/period-03/03-turtle-coil-rim.jpg",
        "size": 1755848,
        "role": "final",
        "shot": "coil-rim",
@@ -358,6 +383,7 @@
       {
        "file": "controls/turtle.png",
        "path": "projects/bio-splice/subjects/turtle-snake/period-03/controls/turtle.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/turtle-snake/period-03/controls/turtle.jpg",
        "size": 1751762,
        "role": "control",
        "shot": "base-turtle",
@@ -373,12 +399,14 @@
      "id": "period-04",
      "note": "第四期：颈尾俱全（N1+N2）——雨后溪石·逆光·平视 400mm·横",
      "sheet": "projects/bio-splice/subjects/turtle-snake/period-04/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/turtle-snake/period-04/sheet.jpg",
      "readme": "projects/bio-splice/subjects/turtle-snake/period-04/README.md",
      "bytes": 6152176,
      "entries": [
       {
        "file": "01-turtle-neck-tail.png",
        "path": "projects/bio-splice/subjects/turtle-snake/period-04/01-turtle-neck-tail.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/turtle-snake/period-04/01-turtle-neck-tail.jpg",
        "size": 2048604,
        "role": "final",
        "shot": "turtle-neck-tail",
@@ -402,6 +430,7 @@
       {
        "file": "02-turtle-neck-tail-b.png",
        "path": "projects/bio-splice/subjects/turtle-snake/period-04/02-turtle-neck-tail-b.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/turtle-snake/period-04/02-turtle-neck-tail-b.jpg",
        "size": 2064632,
        "role": "final",
        "shot": "turtle-neck-tail-b",
@@ -425,6 +454,7 @@
       {
        "file": "controls/turtle.png",
        "path": "projects/bio-splice/subjects/turtle-snake/period-04/controls/turtle.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/turtle-snake/period-04/controls/turtle.jpg",
        "size": 2038940,
        "role": "control",
        "shot": "base-turtle",
@@ -440,12 +470,14 @@
      "id": "period-05",
      "note": "第五期：玄武（N1+N2+N3）——暮色水面·逆光剪影·平视广角 35mm·横幅",
      "sheet": "projects/bio-splice/subjects/turtle-snake/period-05/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/turtle-snake/period-05/sheet.jpg",
      "readme": "projects/bio-splice/subjects/turtle-snake/period-05/README.md",
      "bytes": 4955288,
      "entries": [
       {
        "file": "01-turtle-xuanwu.png",
        "path": "projects/bio-splice/subjects/turtle-snake/period-05/01-turtle-xuanwu.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/turtle-snake/period-05/01-turtle-xuanwu.jpg",
        "size": 1639278,
        "role": "final",
        "shot": "turtle-all3",
@@ -469,6 +501,7 @@
       {
        "file": "02-turtle-xuanwu-coiled.png",
        "path": "projects/bio-splice/subjects/turtle-snake/period-05/02-turtle-xuanwu-coiled.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/turtle-snake/period-05/02-turtle-xuanwu-coiled.jpg",
        "size": 1717603,
        "role": "final",
        "shot": "turtle-all3-b",
@@ -492,6 +525,7 @@
       {
        "file": "controls/turtle.png",
        "path": "projects/bio-splice/subjects/turtle-snake/period-05/controls/turtle.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/turtle-snake/period-05/controls/turtle.jpg",
        "size": 1598407,
        "role": "control",
        "shot": "base-turtle",
@@ -526,43 +560,53 @@
    "audits": [
     {
      "round": 1,
-     "path": "projects/bio-splice/subjects/cat-eagle/rounds/r01-audit.jpg"
+     "path": "projects/bio-splice/subjects/cat-eagle/rounds/r01-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/cat-eagle/rounds/r01-audit.jpg"
     },
     {
      "round": 6,
-     "path": "projects/bio-splice/subjects/cat-eagle/rounds/r06-audit.jpg"
+     "path": "projects/bio-splice/subjects/cat-eagle/rounds/r06-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/cat-eagle/rounds/r06-audit.jpg"
     },
     {
      "round": 7,
-     "path": "projects/bio-splice/subjects/cat-eagle/rounds/r07-audit.jpg"
+     "path": "projects/bio-splice/subjects/cat-eagle/rounds/r07-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/cat-eagle/rounds/r07-audit.jpg"
     },
     {
      "round": 8,
-     "path": "projects/bio-splice/subjects/cat-eagle/rounds/r08-audit.jpg"
+     "path": "projects/bio-splice/subjects/cat-eagle/rounds/r08-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/cat-eagle/rounds/r08-audit.jpg"
     },
     {
      "round": 9,
-     "path": "projects/bio-splice/subjects/cat-eagle/rounds/r09-audit.jpg"
+     "path": "projects/bio-splice/subjects/cat-eagle/rounds/r09-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/cat-eagle/rounds/r09-audit.jpg"
     },
     {
      "round": 13,
-     "path": "projects/bio-splice/subjects/cat-eagle/rounds/r13-audit.jpg"
+     "path": "projects/bio-splice/subjects/cat-eagle/rounds/r13-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/cat-eagle/rounds/r13-audit.jpg"
     },
     {
      "round": 14,
-     "path": "projects/bio-splice/subjects/cat-eagle/rounds/r14-audit.jpg"
+     "path": "projects/bio-splice/subjects/cat-eagle/rounds/r14-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/cat-eagle/rounds/r14-audit.jpg"
     },
     {
      "round": 15,
-     "path": "projects/bio-splice/subjects/cat-eagle/rounds/r15-audit.jpg"
+     "path": "projects/bio-splice/subjects/cat-eagle/rounds/r15-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/cat-eagle/rounds/r15-audit.jpg"
     },
     {
      "round": 16,
-     "path": "projects/bio-splice/subjects/cat-eagle/rounds/r16-audit.jpg"
+     "path": "projects/bio-splice/subjects/cat-eagle/rounds/r16-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/cat-eagle/rounds/r16-audit.jpg"
     },
     {
      "round": 17,
-     "path": "projects/bio-splice/subjects/cat-eagle/rounds/r17-audit.jpg"
+     "path": "projects/bio-splice/subjects/cat-eagle/rounds/r17-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/cat-eagle/rounds/r17-audit.jpg"
     }
    ],
    "periods": [
@@ -570,12 +614,14 @@
      "id": "period-01",
      "note": "第一期：猫头鹰（猫的头 + 鹰的身体）—— 本子主题唯一成立的方向，三种拼接语义各一张，另附两个退化角对照",
      "sheet": "projects/bio-splice/subjects/cat-eagle/period-01/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/cat-eagle/period-01/sheet.jpg",
      "readme": "projects/bio-splice/subjects/cat-eagle/period-01/README.md",
      "bytes": 6191303,
      "entries": [
       {
        "file": "01-owl-seamless.png",
        "path": "projects/bio-splice/subjects/cat-eagle/period-01/01-owl-seamless.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/cat-eagle/period-01/01-owl-seamless.jpg",
        "size": 1219491,
        "role": "final",
        "shot": "owl-seamless",
@@ -599,6 +645,7 @@
       {
        "file": "02-owl-seam.png",
        "path": "projects/bio-splice/subjects/cat-eagle/period-01/02-owl-seam.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/cat-eagle/period-01/02-owl-seam.jpg",
        "size": 1230665,
        "role": "final",
        "shot": "owl-seam",
@@ -622,6 +669,7 @@
       {
        "file": "03-owl-surreal.png",
        "path": "projects/bio-splice/subjects/cat-eagle/period-01/03-owl-surreal.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/cat-eagle/period-01/03-owl-surreal.jpg",
        "size": 1216850,
        "role": "final",
        "shot": "owl-surreal",
@@ -645,6 +693,7 @@
       {
        "file": "controls/cat.png",
        "path": "projects/bio-splice/subjects/cat-eagle/period-01/controls/cat.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/cat-eagle/period-01/controls/cat.jpg",
        "size": 1316251,
        "role": "control",
        "shot": "cat",
@@ -657,6 +706,7 @@
       {
        "file": "controls/eagle.png",
        "path": "projects/bio-splice/subjects/cat-eagle/period-01/controls/eagle.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/cat-eagle/period-01/controls/eagle.jpg",
        "size": 1208046,
        "role": "control",
        "shot": "eagle",
@@ -672,12 +722,14 @@
      "id": "period-02",
      "note": "第二期：鹰底座 + 猫的小件（C1 猫耳 / C5 猫尾）。呈现=黄昏湿草地·暖侧逆光·平视全身 400mm",
      "sheet": "projects/bio-splice/subjects/cat-eagle/period-02/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/cat-eagle/period-02/sheet.jpg",
      "readme": "projects/bio-splice/subjects/cat-eagle/period-02/README.md",
      "bytes": 5478691,
      "entries": [
       {
        "file": "01-eagle-cat-ears.png",
        "path": "projects/bio-splice/subjects/cat-eagle/period-02/01-eagle-cat-ears.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/cat-eagle/period-02/01-eagle-cat-ears.jpg",
        "size": 1356778,
        "role": "final",
        "shot": "e-cat-ears",
@@ -701,6 +753,7 @@
       {
        "file": "02-eagle-cat-tail.png",
        "path": "projects/bio-splice/subjects/cat-eagle/period-02/02-eagle-cat-tail.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/cat-eagle/period-02/02-eagle-cat-tail.jpg",
        "size": 1360494,
        "role": "final",
        "shot": "e-cat-tail",
@@ -724,6 +777,7 @@
       {
        "file": "03-eagle-cat-ears-tail.png",
        "path": "projects/bio-splice/subjects/cat-eagle/period-02/03-eagle-cat-ears-tail.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/cat-eagle/period-02/03-eagle-cat-ears-tail.jpg",
        "size": 1387576,
        "role": "final",
        "shot": "e-cat-ears-tail",
@@ -747,6 +801,7 @@
       {
        "file": "controls/eagle.png",
        "path": "projects/bio-splice/subjects/cat-eagle/period-02/controls/eagle.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/cat-eagle/period-02/controls/eagle.jpg",
        "size": 1373843,
        "role": "control",
        "shot": "base-eagle",
@@ -762,12 +817,14 @@
      "id": "period-03",
      "note": "第三期：猫底座 + 鹰的局部件（E2 鹰翼 / E5 鹰尾羽）。呈现=雨后林地·逆光·广角低机位翼展·竖",
      "sheet": "projects/bio-splice/subjects/cat-eagle/period-03/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/cat-eagle/period-03/sheet.jpg",
      "readme": "projects/bio-splice/subjects/cat-eagle/period-03/README.md",
      "bytes": 8157430,
      "entries": [
       {
        "file": "01-cat-eagle-wings.png",
        "path": "projects/bio-splice/subjects/cat-eagle/period-03/01-cat-eagle-wings.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/cat-eagle/period-03/01-cat-eagle-wings.jpg",
        "size": 2013604,
        "role": "final",
        "shot": "c-eagle-wings",
@@ -791,6 +848,7 @@
       {
        "file": "02-cat-eagle-tail.png",
        "path": "projects/bio-splice/subjects/cat-eagle/period-03/02-cat-eagle-tail.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/cat-eagle/period-03/02-cat-eagle-tail.jpg",
        "size": 2087064,
        "role": "final",
        "shot": "c-eagle-tail",
@@ -814,6 +872,7 @@
       {
        "file": "03-cat-eagle-wings-tail.png",
        "path": "projects/bio-splice/subjects/cat-eagle/period-03/03-cat-eagle-wings-tail.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/cat-eagle/period-03/03-cat-eagle-wings-tail.jpg",
        "size": 2018894,
        "role": "final",
        "shot": "c-eagle-wings-tail",
@@ -837,6 +896,7 @@
       {
        "file": "controls/cat.png",
        "path": "projects/bio-splice/subjects/cat-eagle/period-03/controls/cat.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/cat-eagle/period-03/controls/cat.jpg",
        "size": 2037868,
        "role": "control",
        "shot": "base-cat",
@@ -852,12 +912,14 @@
      "id": "period-04",
      "note": "第四期：鹰底座 + 猫的面部件（C6 胡须 / C1 耳+胡须）。呈现=暗背景·侧光勾胡须·贴面特写（原定正午硬光，实测胡须不可读故改）",
      "sheet": "projects/bio-splice/subjects/cat-eagle/period-04/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/cat-eagle/period-04/sheet.jpg",
      "readme": "projects/bio-splice/subjects/cat-eagle/period-04/README.md",
      "bytes": 3959414,
      "entries": [
       {
        "file": "01-eagle-cat-whiskers.png",
        "path": "projects/bio-splice/subjects/cat-eagle/period-04/01-eagle-cat-whiskers.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/cat-eagle/period-04/01-eagle-cat-whiskers.jpg",
        "size": 1315420,
        "role": "final",
        "shot": "e-cat-whiskers",
@@ -881,6 +943,7 @@
       {
        "file": "02-eagle-cat-ears-whiskers.png",
        "path": "projects/bio-splice/subjects/cat-eagle/period-04/02-eagle-cat-ears-whiskers.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/cat-eagle/period-04/02-eagle-cat-ears-whiskers.jpg",
        "size": 1317352,
        "role": "final",
        "shot": "e-cat-ears-whiskers",
@@ -904,6 +967,7 @@
       {
        "file": "controls/eagle.png",
        "path": "projects/bio-splice/subjects/cat-eagle/period-04/controls/eagle.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/cat-eagle/period-04/controls/eagle.jpg",
        "size": 1326642,
        "role": "control",
        "shot": "base-eagle",
@@ -919,12 +983,14 @@
      "id": "period-05",
      "note": "第五期：猫底座 + 鹰的三处（E6 颈羽 / E5 尾羽+E6 / E2 翼+E5+E6）。呈现=雪原雨雾·长焦压缩·横幅",
      "sheet": "projects/bio-splice/subjects/cat-eagle/period-05/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/cat-eagle/period-05/sheet.jpg",
      "readme": "projects/bio-splice/subjects/cat-eagle/period-05/README.md",
      "bytes": 5577390,
      "entries": [
       {
        "file": "01-cat-eagle-ruff.png",
        "path": "projects/bio-splice/subjects/cat-eagle/period-05/01-cat-eagle-ruff.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/cat-eagle/period-05/01-cat-eagle-ruff.jpg",
        "size": 1366031,
        "role": "final",
        "shot": "c-eagle-ruff",
@@ -948,6 +1014,7 @@
       {
        "file": "02-cat-eagle-tail-ruff.png",
        "path": "projects/bio-splice/subjects/cat-eagle/period-05/02-cat-eagle-tail-ruff.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/cat-eagle/period-05/02-cat-eagle-tail-ruff.jpg",
        "size": 1377469,
        "role": "final",
        "shot": "c-eagle-tail-ruff",
@@ -971,6 +1038,7 @@
       {
        "file": "03-cat-eagle-wings-tail-ruff.png",
        "path": "projects/bio-splice/subjects/cat-eagle/period-05/03-cat-eagle-wings-tail-ruff.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/cat-eagle/period-05/03-cat-eagle-wings-tail-ruff.jpg",
        "size": 1455395,
        "role": "final",
        "shot": "c-eagle-3parts",
@@ -994,6 +1062,7 @@
       {
        "file": "controls/cat.png",
        "path": "projects/bio-splice/subjects/cat-eagle/period-05/controls/cat.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/cat-eagle/period-05/controls/cat.jpg",
        "size": 1378495,
        "role": "control",
        "shot": "base-cat",
@@ -1028,43 +1097,53 @@
    "audits": [
     {
      "round": 1,
-     "path": "projects/bio-splice/subjects/dragon-nines/rounds/dn-r1-audit.jpg"
+     "path": "projects/bio-splice/subjects/dragon-nines/rounds/dn-r1-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/dragon-nines/rounds/dn-r1-audit.jpg"
     },
     {
      "round": 2,
-     "path": "projects/bio-splice/subjects/dragon-nines/rounds/dn-r2-audit.jpg"
+     "path": "projects/bio-splice/subjects/dragon-nines/rounds/dn-r2-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/dragon-nines/rounds/dn-r2-audit.jpg"
     },
     {
      "round": 3,
-     "path": "projects/bio-splice/subjects/dragon-nines/rounds/dn-r3-audit.jpg"
+     "path": "projects/bio-splice/subjects/dragon-nines/rounds/dn-r3-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/dragon-nines/rounds/dn-r3-audit.jpg"
     },
     {
      "round": 4,
-     "path": "projects/bio-splice/subjects/dragon-nines/rounds/dn-r4-audit.jpg"
+     "path": "projects/bio-splice/subjects/dragon-nines/rounds/dn-r4-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/dragon-nines/rounds/dn-r4-audit.jpg"
     },
     {
      "round": 5,
-     "path": "projects/bio-splice/subjects/dragon-nines/rounds/dn-r5-audit.jpg"
+     "path": "projects/bio-splice/subjects/dragon-nines/rounds/dn-r5-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/dragon-nines/rounds/dn-r5-audit.jpg"
     },
     {
      "round": 6,
-     "path": "projects/bio-splice/subjects/dragon-nines/rounds/dn-r6-audit.jpg"
+     "path": "projects/bio-splice/subjects/dragon-nines/rounds/dn-r6-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/dragon-nines/rounds/dn-r6-audit.jpg"
     },
     {
      "round": 7,
-     "path": "projects/bio-splice/subjects/dragon-nines/rounds/dn-r7-audit.jpg"
+     "path": "projects/bio-splice/subjects/dragon-nines/rounds/dn-r7-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/dragon-nines/rounds/dn-r7-audit.jpg"
     },
     {
      "round": 8,
-     "path": "projects/bio-splice/subjects/dragon-nines/rounds/r8-audit.jpg"
+     "path": "projects/bio-splice/subjects/dragon-nines/rounds/r8-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/dragon-nines/rounds/r8-audit.jpg"
     },
     {
      "round": 9,
-     "path": "projects/bio-splice/subjects/dragon-nines/rounds/r9-audit.jpg"
+     "path": "projects/bio-splice/subjects/dragon-nines/rounds/r9-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/dragon-nines/rounds/r9-audit.jpg"
     },
     {
      "round": 10,
-     "path": "projects/bio-splice/subjects/dragon-nines/rounds/r10-audit.jpg"
+     "path": "projects/bio-splice/subjects/dragon-nines/rounds/r10-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/dragon-nines/rounds/r10-audit.jpg"
     }
    ],
    "periods": [
@@ -1072,12 +1151,14 @@
      "id": "period-01",
      "note": "龙·九似 第一期：蛇底座 + 鹿角 D1（+ 牛耳 D9）。鹰爪 D7 未成立——蛇无四肢，爪无处可长",
      "sheet": "projects/bio-splice/subjects/dragon-nines/period-01/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/dragon-nines/period-01/sheet.jpg",
      "readme": "projects/bio-splice/subjects/dragon-nines/period-01/README.md",
      "bytes": 3729346,
      "entries": [
       {
        "file": "01-snake-antler.png",
        "path": "projects/bio-splice/subjects/dragon-nines/period-01/01-snake-antler.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/dragon-nines/period-01/01-snake-antler.jpg",
        "size": 1244663,
        "role": "final",
        "shot": "snake-antler",
@@ -1101,6 +1182,7 @@
       {
        "file": "02-snake-antler-ox-ear.png",
        "path": "projects/bio-splice/subjects/dragon-nines/period-01/02-snake-antler-ox-ear.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/dragon-nines/period-01/02-snake-antler-ox-ear.jpg",
        "size": 1261714,
        "role": "final",
        "shot": "snake-antler-oxear",
@@ -1124,6 +1206,7 @@
       {
        "file": "controls/snake.png",
        "path": "projects/bio-splice/subjects/dragon-nines/period-01/controls/snake.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/dragon-nines/period-01/controls/snake.jpg",
        "size": 1222969,
        "role": "control",
        "shot": "base-snake",
@@ -1139,12 +1222,14 @@
      "id": "period-02",
      "note": "期02【卵石河滩·雨后·低机位聚焦前足·竖幅】蜥蜴底座 + 鹰爪 D7 / 虎掌 D8",
      "sheet": "projects/bio-splice/subjects/dragon-nines/period-02/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/dragon-nines/period-02/sheet.jpg",
      "readme": "projects/bio-splice/subjects/dragon-nines/period-02/README.md",
      "bytes": 5927488,
      "entries": [
       {
        "file": "01-lizard-talons.png",
        "path": "projects/bio-splice/subjects/dragon-nines/period-02/01-lizard-talons.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/dragon-nines/period-02/01-lizard-talons.jpg",
        "size": 1957800,
        "role": "final",
        "shot": "lizard-talons",
@@ -1168,6 +1253,7 @@
       {
        "file": "02-lizard-talons-paws.png",
        "path": "projects/bio-splice/subjects/dragon-nines/period-02/02-lizard-talons-paws.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/dragon-nines/period-02/02-lizard-talons-paws.jpg",
        "size": 1935944,
        "role": "final",
        "shot": "lizard-talons-paws",
@@ -1191,6 +1277,7 @@
       {
        "file": "controls/lizard.png",
        "path": "projects/bio-splice/subjects/dragon-nines/period-02/controls/lizard.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/dragon-nines/period-02/controls/lizard.jpg",
        "size": 2033744,
        "role": "control",
        "shot": "base-lizard",
@@ -1206,12 +1293,14 @@
      "id": "period-03",
      "note": "期03【林下枯叶·斑驳林光·侧俯贴体看鳞】蛇底座（腾出鳞占位）+ 鱼鳞 D6 / 鹿角+鱼鳞",
      "sheet": "projects/bio-splice/subjects/dragon-nines/period-03/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/dragon-nines/period-03/sheet.jpg",
      "readme": "projects/bio-splice/subjects/dragon-nines/period-03/README.md",
      "bytes": 4878121,
      "entries": [
       {
        "file": "01-snake-fishscale.png",
        "path": "projects/bio-splice/subjects/dragon-nines/period-03/01-snake-fishscale.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/dragon-nines/period-03/01-snake-fishscale.jpg",
        "size": 1627813,
        "role": "final",
        "shot": "snake-fishscale",
@@ -1235,6 +1324,7 @@
       {
        "file": "02-snake-antler-fishscale.png",
        "path": "projects/bio-splice/subjects/dragon-nines/period-03/02-snake-antler-fishscale.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/dragon-nines/period-03/02-snake-antler-fishscale.jpg",
        "size": 1669126,
        "role": "final",
        "shot": "snake-fishscale-antler",
@@ -1258,6 +1348,7 @@
       {
        "file": "controls/snake-clean.png",
        "path": "projects/bio-splice/subjects/dragon-nines/period-03/controls/snake-clean.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/dragon-nines/period-03/controls/snake-clean.jpg",
        "size": 1581182,
        "role": "control",
        "shot": "base-snake",
@@ -1273,12 +1364,14 @@
      "id": "period-04",
      "note": "期04【雨中岩石·黄昏逆光+雨丝·广角低机位·横幅】合龙：蜥蜴底座 + 角/耳/爪/掌",
      "sheet": "projects/bio-splice/subjects/dragon-nines/period-04/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/dragon-nines/period-04/sheet.jpg",
      "readme": "projects/bio-splice/subjects/dragon-nines/period-04/README.md",
      "bytes": 5354315,
      "entries": [
       {
        "file": "01-dragon-3parts.png",
        "path": "projects/bio-splice/subjects/dragon-nines/period-04/01-dragon-3parts.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/dragon-nines/period-04/01-dragon-3parts.jpg",
        "size": 1706342,
        "role": "final",
        "shot": "dragon-3parts",
@@ -1302,6 +1395,7 @@
       {
        "file": "02-dragon-4parts.png",
        "path": "projects/bio-splice/subjects/dragon-nines/period-04/02-dragon-4parts.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/dragon-nines/period-04/02-dragon-4parts.jpg",
        "size": 1726890,
        "role": "final",
        "shot": "dragon-4parts",
@@ -1325,6 +1419,7 @@
       {
        "file": "controls/lizard.png",
        "path": "projects/bio-splice/subjects/dragon-nines/period-04/controls/lizard.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/dragon-nines/period-04/controls/lizard.jpg",
        "size": 1921083,
        "role": "control",
        "shot": "base-lizard",
@@ -1340,12 +1435,14 @@
      "id": "period-05",
      "note": "期05【晨雾芦苇·侧逆光勾轮廓·龙首特写】蛇底座 + 鹿角 D1 / 牛耳 D9（+鱼鳞 D6）",
      "sheet": "projects/bio-splice/subjects/dragon-nines/period-05/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/dragon-nines/period-05/sheet.jpg",
      "readme": "projects/bio-splice/subjects/dragon-nines/period-05/README.md",
      "bytes": 3421375,
      "entries": [
       {
        "file": "01-dragon-head.png",
        "path": "projects/bio-splice/subjects/dragon-nines/period-05/01-dragon-head.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/dragon-nines/period-05/01-dragon-head.jpg",
        "size": 1150771,
        "role": "final",
        "shot": "dragon-head",
@@ -1369,6 +1466,7 @@
       {
        "file": "02-dragon-head-scale.png",
        "path": "projects/bio-splice/subjects/dragon-nines/period-05/02-dragon-head-scale.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/dragon-nines/period-05/02-dragon-head-scale.jpg",
        "size": 1149660,
        "role": "final",
        "shot": "dragon-head-scale",
@@ -1392,6 +1490,7 @@
       {
        "file": "controls/snake.png",
        "path": "projects/bio-splice/subjects/dragon-nines/period-05/controls/snake.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/dragon-nines/period-05/controls/snake.jpg",
        "size": 1120944,
        "role": "control",
        "shot": "base-snake",
@@ -1426,47 +1525,58 @@
    "audits": [
     {
      "round": 1,
-     "path": "projects/bio-splice/subjects/fish-bird/rounds/fb-r1-audit.jpg"
+     "path": "projects/bio-splice/subjects/fish-bird/rounds/fb-r1-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/fish-bird/rounds/fb-r1-audit.jpg"
     },
     {
      "round": 2,
-     "path": "projects/bio-splice/subjects/fish-bird/rounds/fb-r2-audit.jpg"
+     "path": "projects/bio-splice/subjects/fish-bird/rounds/fb-r2-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/fish-bird/rounds/fb-r2-audit.jpg"
     },
     {
      "round": 3,
-     "path": "projects/bio-splice/subjects/fish-bird/rounds/fb-r3-audit.jpg"
+     "path": "projects/bio-splice/subjects/fish-bird/rounds/fb-r3-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/fish-bird/rounds/fb-r3-audit.jpg"
     },
     {
      "round": 4,
-     "path": "projects/bio-splice/subjects/fish-bird/rounds/fb-r4-audit.jpg"
+     "path": "projects/bio-splice/subjects/fish-bird/rounds/fb-r4-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/fish-bird/rounds/fb-r4-audit.jpg"
     },
     {
      "round": 5,
-     "path": "projects/bio-splice/subjects/fish-bird/rounds/fb-r5-audit.jpg"
+     "path": "projects/bio-splice/subjects/fish-bird/rounds/fb-r5-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/fish-bird/rounds/fb-r5-audit.jpg"
     },
     {
      "round": 6,
-     "path": "projects/bio-splice/subjects/fish-bird/rounds/fb-r6-audit.jpg"
+     "path": "projects/bio-splice/subjects/fish-bird/rounds/fb-r6-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/fish-bird/rounds/fb-r6-audit.jpg"
     },
     {
      "round": 7,
-     "path": "projects/bio-splice/subjects/fish-bird/rounds/fb-r7-audit.jpg"
+     "path": "projects/bio-splice/subjects/fish-bird/rounds/fb-r7-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/fish-bird/rounds/fb-r7-audit.jpg"
     },
     {
      "round": 8,
-     "path": "projects/bio-splice/subjects/fish-bird/rounds/fb-r8-audit.jpg"
+     "path": "projects/bio-splice/subjects/fish-bird/rounds/fb-r8-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/fish-bird/rounds/fb-r8-audit.jpg"
     },
     {
      "round": 9,
-     "path": "projects/bio-splice/subjects/fish-bird/rounds/fb-r9-audit.jpg"
+     "path": "projects/bio-splice/subjects/fish-bird/rounds/fb-r9-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/fish-bird/rounds/fb-r9-audit.jpg"
     },
     {
      "round": 10,
-     "path": "projects/bio-splice/subjects/fish-bird/rounds/fb-r10-audit.jpg"
+     "path": "projects/bio-splice/subjects/fish-bird/rounds/fb-r10-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/fish-bird/rounds/fb-r10-audit.jpg"
     },
     {
      "round": 11,
-     "path": "projects/bio-splice/subjects/fish-bird/rounds/fb-r11-audit.jpg"
+     "path": "projects/bio-splice/subjects/fish-bird/rounds/fb-r11-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/fish-bird/rounds/fb-r11-audit.jpg"
     }
    ],
    "periods": [
@@ -1474,12 +1584,14 @@
      "id": "period-01",
      "note": "第一期：有翅的鱼——跃出水面·水花未落·平视 100mm·横幅",
      "sheet": "projects/bio-splice/subjects/fish-bird/period-01/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/fish-bird/period-01/sheet.jpg",
      "readme": "projects/bio-splice/subjects/fish-bird/period-01/README.md",
      "bytes": 5476163,
      "entries": [
       {
        "file": "01-fish-wings.png",
        "path": "projects/bio-splice/subjects/fish-bird/period-01/01-fish-wings.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/fish-bird/period-01/01-fish-wings.jpg",
        "size": 1682155,
        "role": "final",
        "shot": "fish-wings",
@@ -1503,6 +1615,7 @@
       {
        "file": "02-fish-wings-spread.png",
        "path": "projects/bio-splice/subjects/fish-bird/period-01/02-fish-wings-spread.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/fish-bird/period-01/02-fish-wings-spread.jpg",
        "size": 1975948,
        "role": "final",
        "shot": "fish-wings-spread",
@@ -1526,6 +1639,7 @@
       {
        "file": "controls/fish.png",
        "path": "projects/bio-splice/subjects/fish-bird/period-01/controls/fish.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/fish-bird/period-01/controls/fish.jpg",
        "size": 1818060,
        "role": "control",
        "shot": "base-fish",
@@ -1541,12 +1655,14 @@
      "id": "period-02",
      "note": "第二期：半出水——水线穿过身体·侧光·平视 135mm·方",
      "sheet": "projects/bio-splice/subjects/fish-bird/period-02/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/fish-bird/period-02/sheet.jpg",
      "readme": "projects/bio-splice/subjects/fish-bird/period-02/README.md",
      "bytes": 5233492,
      "entries": [
       {
        "file": "01-fish-wings-half.png",
        "path": "projects/bio-splice/subjects/fish-bird/period-02/01-fish-wings-half.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/fish-bird/period-02/01-fish-wings-half.jpg",
        "size": 1308140,
        "role": "final",
        "shot": "fish-wings-half",
@@ -1570,6 +1686,7 @@
       {
        "file": "02-fish-wings-half-b.png",
        "path": "projects/bio-splice/subjects/fish-bird/period-02/02-fish-wings-half-b.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/fish-bird/period-02/02-fish-wings-half-b.jpg",
        "size": 1330847,
        "role": "final",
        "shot": "fish-wings-half-b",
@@ -1593,6 +1710,7 @@
       {
        "file": "03-fish-wings-half-c.png",
        "path": "projects/bio-splice/subjects/fish-bird/period-02/03-fish-wings-half-c.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/fish-bird/period-02/03-fish-wings-half-c.jpg",
        "size": 1369805,
        "role": "final",
        "shot": "fish-wings-half-c",
@@ -1616,6 +1734,7 @@
       {
        "file": "controls/fish.png",
        "path": "projects/bio-splice/subjects/fish-bird/period-02/controls/fish.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/fish-bird/period-02/controls/fish.jpg",
        "size": 1224700,
        "role": "control",
        "shot": "base-fish",
@@ -1631,12 +1750,14 @@
      "id": "period-03",
      "note": "第三期：完全离水·双翼全展——侧上方视角·逆光勾羽·方",
      "sheet": "projects/bio-splice/subjects/fish-bird/period-03/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/fish-bird/period-03/sheet.jpg",
      "readme": "projects/bio-splice/subjects/fish-bird/period-03/README.md",
      "bytes": 3236532,
      "entries": [
       {
        "file": "01-fish-wings-spread.png",
        "path": "projects/bio-splice/subjects/fish-bird/period-03/01-fish-wings-spread.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/fish-bird/period-03/01-fish-wings-spread.jpg",
        "size": 1109246,
        "role": "final",
        "shot": "fish-wings-spread",
@@ -1660,6 +1781,7 @@
       {
        "file": "02-fish-wings-spread-b.png",
        "path": "projects/bio-splice/subjects/fish-bird/period-03/02-fish-wings-spread-b.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/fish-bird/period-03/02-fish-wings-spread-b.jpg",
        "size": 1093022,
        "role": "final",
        "shot": "fish-wings-spread-b",
@@ -1683,6 +1805,7 @@
       {
        "file": "controls/fish.png",
        "path": "projects/bio-splice/subjects/fish-bird/period-03/controls/fish.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/fish-bird/period-03/controls/fish.jpg",
        "size": 1034264,
        "role": "control",
        "shot": "base-fish",
@@ -1698,12 +1821,14 @@
      "id": "period-04",
      "note": "第四期：低空掠水——长焦压缩·平光灰水·横幅",
      "sheet": "projects/bio-splice/subjects/fish-bird/period-04/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/fish-bird/period-04/sheet.jpg",
      "readme": "projects/bio-splice/subjects/fish-bird/period-04/README.md",
      "bytes": 4085367,
      "entries": [
       {
        "file": "01-fish-wings.png",
        "path": "projects/bio-splice/subjects/fish-bird/period-04/01-fish-wings.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/fish-bird/period-04/01-fish-wings.jpg",
        "size": 1340379,
        "role": "final",
        "shot": "fish-wings",
@@ -1727,6 +1852,7 @@
       {
        "file": "02-fish-wings-spread.png",
        "path": "projects/bio-splice/subjects/fish-bird/period-04/02-fish-wings-spread.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/fish-bird/period-04/02-fish-wings-spread.jpg",
        "size": 1382028,
        "role": "final",
        "shot": "fish-wings-spread",
@@ -1750,6 +1876,7 @@
       {
        "file": "controls/fish.png",
        "path": "projects/bio-splice/subjects/fish-bird/period-04/controls/fish.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/fish-bird/period-04/controls/fish.jpg",
        "size": 1362960,
        "role": "control",
        "shot": "base-fish",
@@ -1765,12 +1892,14 @@
      "id": "period-05",
      "note": "第五期：鲲鹏（收官）——暮色海面·逆光剪影·广角·横幅",
      "sheet": "projects/bio-splice/subjects/fish-bird/period-05/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/fish-bird/period-05/sheet.jpg",
      "readme": "projects/bio-splice/subjects/fish-bird/period-05/README.md",
      "bytes": 4471249,
      "entries": [
       {
        "file": "01-kunpeng.png",
        "path": "projects/bio-splice/subjects/fish-bird/period-05/01-kunpeng.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/fish-bird/period-05/01-kunpeng.jpg",
        "size": 1494949,
        "role": "final",
        "shot": "fish-wings-spread",
@@ -1794,6 +1923,7 @@
       {
        "file": "02-kunpeng-spread.png",
        "path": "projects/bio-splice/subjects/fish-bird/period-05/02-kunpeng-spread.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/fish-bird/period-05/02-kunpeng-spread.jpg",
        "size": 1514041,
        "role": "final",
        "shot": "fish-wings-spread-b",
@@ -1817,6 +1947,7 @@
       {
        "file": "controls/fish.png",
        "path": "projects/bio-splice/subjects/fish-bird/period-05/controls/fish.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/fish-bird/period-05/controls/fish.jpg",
        "size": 1462259,
        "role": "control",
        "shot": "base-fish",
@@ -1851,31 +1982,38 @@
    "audits": [
     {
      "round": 1,
-     "path": "projects/bio-splice/subjects/deer-crane/rounds/dc-r1-audit.jpg"
+     "path": "projects/bio-splice/subjects/deer-crane/rounds/dc-r1-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/deer-crane/rounds/dc-r1-audit.jpg"
     },
     {
      "round": 2,
-     "path": "projects/bio-splice/subjects/deer-crane/rounds/dc-r2-audit.jpg"
+     "path": "projects/bio-splice/subjects/deer-crane/rounds/dc-r2-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/deer-crane/rounds/dc-r2-audit.jpg"
     },
     {
      "round": 3,
-     "path": "projects/bio-splice/subjects/deer-crane/rounds/dc-r3-audit.jpg"
+     "path": "projects/bio-splice/subjects/deer-crane/rounds/dc-r3-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/deer-crane/rounds/dc-r3-audit.jpg"
     },
     {
      "round": 4,
-     "path": "projects/bio-splice/subjects/deer-crane/rounds/dc-r4-audit.jpg"
+     "path": "projects/bio-splice/subjects/deer-crane/rounds/dc-r4-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/deer-crane/rounds/dc-r4-audit.jpg"
     },
     {
      "round": 5,
-     "path": "projects/bio-splice/subjects/deer-crane/rounds/dc-r5-audit.jpg"
+     "path": "projects/bio-splice/subjects/deer-crane/rounds/dc-r5-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/deer-crane/rounds/dc-r5-audit.jpg"
     },
     {
      "round": 6,
-     "path": "projects/bio-splice/subjects/deer-crane/rounds/dc-r6-audit.jpg"
+     "path": "projects/bio-splice/subjects/deer-crane/rounds/dc-r6-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/deer-crane/rounds/dc-r6-audit.jpg"
     },
     {
      "round": 7,
-     "path": "projects/bio-splice/subjects/deer-crane/rounds/dc-r7-audit.jpg"
+     "path": "projects/bio-splice/subjects/deer-crane/rounds/dc-r7-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/deer-crane/rounds/dc-r7-audit.jpg"
     }
    ],
    "periods": [
@@ -1883,12 +2021,14 @@
      "id": "period-01",
      "note": "第一期：长颈的鹿（G1）——晨雾竹林·柔光·平视 400mm·方（部分成立）",
      "sheet": "projects/bio-splice/subjects/deer-crane/period-01/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/deer-crane/period-01/sheet.jpg",
      "readme": "projects/bio-splice/subjects/deer-crane/period-01/README.md",
      "bytes": 3990909,
      "entries": [
       {
        "file": "01-deer-craneneck.png",
        "path": "projects/bio-splice/subjects/deer-crane/period-01/01-deer-craneneck.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/deer-crane/period-01/01-deer-craneneck.jpg",
        "size": 1312469,
        "role": "final",
        "shot": "deer-craneneck",
@@ -1912,6 +2052,7 @@
       {
        "file": "02-deer-craneneck-b.png",
        "path": "projects/bio-splice/subjects/deer-crane/period-01/02-deer-craneneck-b.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/deer-crane/period-01/02-deer-craneneck-b.jpg",
        "size": 1381238,
        "role": "final",
        "shot": "deer-craneneck-b",
@@ -1935,6 +2076,7 @@
       {
        "file": "controls/deer.png",
        "path": "projects/bio-splice/subjects/deer-crane/period-01/controls/deer.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/deer-crane/period-01/controls/deer.jpg",
        "size": 1297202,
        "role": "control",
        "shot": "base-deer",
@@ -1950,12 +2092,14 @@
      "id": "period-02",
      "note": "第二期：鹤腿的鹿（G2·腾出腿位）——浅水沼泽·晨光·平视全身·方（部分成立）",
      "sheet": "projects/bio-splice/subjects/deer-crane/period-02/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/deer-crane/period-02/sheet.jpg",
      "readme": "projects/bio-splice/subjects/deer-crane/period-02/README.md",
      "bytes": 4573243,
      "entries": [
       {
        "file": "01-deer-cranelegs.png",
        "path": "projects/bio-splice/subjects/deer-crane/period-02/01-deer-cranelegs.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/deer-crane/period-02/01-deer-cranelegs.jpg",
        "size": 1507195,
        "role": "final",
        "shot": "deer-cranelegs",
@@ -1979,6 +2123,7 @@
       {
        "file": "02-deer-cranelegs-b.png",
        "path": "projects/bio-splice/subjects/deer-crane/period-02/02-deer-cranelegs-b.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/deer-crane/period-02/02-deer-cranelegs-b.jpg",
        "size": 1558060,
        "role": "final",
        "shot": "deer-cranelegs-b",
@@ -2002,6 +2147,7 @@
       {
        "file": "controls/deer.png",
        "path": "projects/bio-splice/subjects/deer-crane/period-02/controls/deer.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/deer-crane/period-02/controls/deer.jpg",
        "size": 1507988,
        "role": "control",
        "shot": "base-deer",
@@ -2017,12 +2163,14 @@
      "id": "period-03",
      "note": "第三期：鹤尾的鹿（G6·真空位）——芦苇荡·逆光·平视 600mm·方（1/4 命中，完整成立）",
      "sheet": "projects/bio-splice/subjects/deer-crane/period-03/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/deer-crane/period-03/sheet.jpg",
      "readme": "projects/bio-splice/subjects/deer-crane/period-03/README.md",
      "bytes": 3669980,
      "entries": [
       {
        "file": "01-deer-cranetait.png",
        "path": "projects/bio-splice/subjects/deer-crane/period-03/01-deer-cranetait.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/deer-crane/period-03/01-deer-cranetait.jpg",
        "size": 1869502,
        "role": "final",
        "shot": "deer-cranetait",
@@ -2046,6 +2194,7 @@
       {
        "file": "controls/deer.png",
        "path": "projects/bio-splice/subjects/deer-crane/period-03/controls/deer.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/deer-crane/period-03/controls/deer.jpg",
        "size": 1800478,
        "role": "control",
        "shot": "base-deer",
@@ -2061,12 +2210,14 @@
      "id": "period-04",
      "note": "第四期：颈腿俱全（G1+G2）——霜晨草地·冷光·平视·横",
      "sheet": "projects/bio-splice/subjects/deer-crane/period-04/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/deer-crane/period-04/sheet.jpg",
      "readme": "projects/bio-splice/subjects/deer-crane/period-04/README.md",
      "bytes": 6072977,
      "entries": [
       {
        "file": "01-deer-neck-legs.png",
        "path": "projects/bio-splice/subjects/deer-crane/period-04/01-deer-neck-legs.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/deer-crane/period-04/01-deer-neck-legs.jpg",
        "size": 2039450,
        "role": "final",
        "shot": "deer-neck-legs",
@@ -2090,6 +2241,7 @@
       {
        "file": "02-deer-neck-legs-b.png",
        "path": "projects/bio-splice/subjects/deer-crane/period-04/02-deer-neck-legs-b.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/deer-crane/period-04/02-deer-neck-legs-b.jpg",
        "size": 1972877,
        "role": "final",
        "shot": "deer-neck-legs-b",
@@ -2113,6 +2265,7 @@
       {
        "file": "controls/deer.png",
        "path": "projects/bio-splice/subjects/deer-crane/period-04/controls/deer.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/deer-crane/period-04/controls/deer.jpg",
        "size": 2060650,
        "role": "control",
        "shot": "base-deer",
@@ -2128,12 +2281,14 @@
      "id": "period-05",
      "note": "第五期：鹿鹤同春（G1+G2+G6·收官）——春日梅林·柔散光·广角·横幅",
      "sheet": "projects/bio-splice/subjects/deer-crane/period-05/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/deer-crane/period-05/sheet.jpg",
      "readme": "projects/bio-splice/subjects/deer-crane/period-05/README.md",
      "bytes": 5729004,
      "entries": [
       {
        "file": "01-deer-crane-3parts.png",
        "path": "projects/bio-splice/subjects/deer-crane/period-05/01-deer-crane-3parts.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/deer-crane/period-05/01-deer-crane-3parts.jpg",
        "size": 1956579,
        "role": "final",
        "shot": "deer-crane-3parts",
@@ -2157,6 +2312,7 @@
       {
        "file": "02-deer-crane-3parts-b.png",
        "path": "projects/bio-splice/subjects/deer-crane/period-05/02-deer-crane-3parts-b.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/deer-crane/period-05/02-deer-crane-3parts-b.jpg",
        "size": 1857884,
        "role": "final",
        "shot": "deer-crane-3parts-b",
@@ -2180,6 +2336,7 @@
       {
        "file": "controls/deer.png",
        "path": "projects/bio-splice/subjects/deer-crane/period-05/controls/deer.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/deer-crane/period-05/controls/deer.jpg",
        "size": 1914541,
        "role": "control",
        "shot": "base-deer",
@@ -2214,31 +2371,38 @@
    "audits": [
     {
      "round": 1,
-     "path": "projects/bio-splice/subjects/flytrap-fang/rounds/ff-r1-audit.jpg"
+     "path": "projects/bio-splice/subjects/flytrap-fang/rounds/ff-r1-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/flytrap-fang/rounds/ff-r1-audit.jpg"
     },
     {
      "round": 2,
-     "path": "projects/bio-splice/subjects/flytrap-fang/rounds/ff-r2-audit.jpg"
+     "path": "projects/bio-splice/subjects/flytrap-fang/rounds/ff-r2-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/flytrap-fang/rounds/ff-r2-audit.jpg"
     },
     {
      "round": 3,
-     "path": "projects/bio-splice/subjects/flytrap-fang/rounds/ff-r3-audit.jpg"
+     "path": "projects/bio-splice/subjects/flytrap-fang/rounds/ff-r3-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/flytrap-fang/rounds/ff-r3-audit.jpg"
     },
     {
      "round": 4,
-     "path": "projects/bio-splice/subjects/flytrap-fang/rounds/ff-r4-audit.jpg"
+     "path": "projects/bio-splice/subjects/flytrap-fang/rounds/ff-r4-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/flytrap-fang/rounds/ff-r4-audit.jpg"
     },
     {
      "round": 5,
-     "path": "projects/bio-splice/subjects/flytrap-fang/rounds/ff-r5-audit.jpg"
+     "path": "projects/bio-splice/subjects/flytrap-fang/rounds/ff-r5-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/flytrap-fang/rounds/ff-r5-audit.jpg"
     },
     {
      "round": 6,
-     "path": "projects/bio-splice/subjects/flytrap-fang/rounds/ff-r6-audit.jpg"
+     "path": "projects/bio-splice/subjects/flytrap-fang/rounds/ff-r6-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/flytrap-fang/rounds/ff-r6-audit.jpg"
     },
     {
      "round": 7,
-     "path": "projects/bio-splice/subjects/flytrap-fang/rounds/ff-r7-audit.jpg"
+     "path": "projects/bio-splice/subjects/flytrap-fang/rounds/ff-r7-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/flytrap-fang/rounds/ff-r7-audit.jpg"
     }
    ],
    "periods": [
@@ -2246,12 +2410,14 @@
      "id": "period-01",
      "note": "第一期：有牙的捕蝇草（T1·腾出版）——沼泽·侧逆光·微距 100mm·方",
      "sheet": "projects/bio-splice/subjects/flytrap-fang/period-01/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/flytrap-fang/period-01/sheet.jpg",
      "readme": "projects/bio-splice/subjects/flytrap-fang/period-01/README.md",
      "bytes": 5215809,
      "entries": [
       {
        "file": "01-flytrap-fangs.png",
        "path": "projects/bio-splice/subjects/flytrap-fang/period-01/01-flytrap-fangs.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/flytrap-fang/period-01/01-flytrap-fangs.jpg",
        "size": 1308234,
        "role": "final",
        "shot": "flytrap-fangs",
@@ -2275,6 +2441,7 @@
       {
        "file": "02-flytrap-fangs-b.png",
        "path": "projects/bio-splice/subjects/flytrap-fang/period-01/02-flytrap-fangs-b.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/flytrap-fang/period-01/02-flytrap-fangs-b.jpg",
        "size": 1330322,
        "role": "final",
        "shot": "flytrap-fangs-b",
@@ -2298,6 +2465,7 @@
       {
        "file": "03-flytrap-fangs-c.png",
        "path": "projects/bio-splice/subjects/flytrap-fang/period-01/03-flytrap-fangs-c.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/flytrap-fang/period-01/03-flytrap-fangs-c.jpg",
        "size": 1319078,
        "role": "final",
        "shot": "flytrap-fangs-c",
@@ -2321,6 +2489,7 @@
       {
        "file": "controls/flytrap.png",
        "path": "projects/bio-splice/subjects/flytrap-fang/period-01/controls/flytrap.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/flytrap-fang/period-01/controls/flytrap.jpg",
        "size": 1258175,
        "role": "control",
        "shot": "base-flytrap",
@@ -2336,12 +2505,14 @@
      "id": "period-02",
      "note": "第二期：有眼的捕蝇草（T2·叶面真空位）——沼泽·平视叶面·方",
      "sheet": "projects/bio-splice/subjects/flytrap-fang/period-02/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/flytrap-fang/period-02/sheet.jpg",
      "readme": "projects/bio-splice/subjects/flytrap-fang/period-02/README.md",
      "bytes": 4060782,
      "entries": [
       {
        "file": "01-flytrap-eye.png",
        "path": "projects/bio-splice/subjects/flytrap-fang/period-02/01-flytrap-eye.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/flytrap-fang/period-02/01-flytrap-eye.jpg",
        "size": 1305853,
        "role": "final",
        "shot": "flytrap-eye",
@@ -2365,6 +2536,7 @@
       {
        "file": "02-flytrap-eye-b.png",
        "path": "projects/bio-splice/subjects/flytrap-fang/period-02/02-flytrap-eye-b.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/flytrap-fang/period-02/02-flytrap-eye-b.jpg",
        "size": 1380353,
        "role": "final",
        "shot": "flytrap-eye-b",
@@ -2388,6 +2560,7 @@
       {
        "file": "controls/flytrap.png",
        "path": "projects/bio-splice/subjects/flytrap-fang/period-02/controls/flytrap.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/flytrap-fang/period-02/controls/flytrap.jpg",
        "size": 1374576,
        "role": "control",
        "shot": "base-flytrap",
@@ -2403,12 +2576,14 @@
      "id": "period-03",
      "note": "第三期：吐信的捕蝇草（T4·夹子内腔）——苔藓·低机位·竖",
      "sheet": "projects/bio-splice/subjects/flytrap-fang/period-03/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/flytrap-fang/period-03/sheet.jpg",
      "readme": "projects/bio-splice/subjects/flytrap-fang/period-03/README.md",
      "bytes": 4909167,
      "entries": [
       {
        "file": "01-flytrap-tongue.png",
        "path": "projects/bio-splice/subjects/flytrap-fang/period-03/01-flytrap-tongue.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/flytrap-fang/period-03/01-flytrap-tongue.jpg",
        "size": 1651625,
        "role": "final",
        "shot": "flytrap-tongue",
@@ -2432,6 +2607,7 @@
       {
        "file": "02-flytrap-tongue-b.png",
        "path": "projects/bio-splice/subjects/flytrap-fang/period-03/02-flytrap-tongue-b.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/flytrap-fang/period-03/02-flytrap-tongue-b.jpg",
        "size": 1558961,
        "role": "final",
        "shot": "flytrap-tongue-b",
@@ -2455,6 +2631,7 @@
       {
        "file": "controls/flytrap.png",
        "path": "projects/bio-splice/subjects/flytrap-fang/period-03/controls/flytrap.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/flytrap-fang/period-03/controls/flytrap.jpg",
        "size": 1698581,
        "role": "control",
        "shot": "base-flytrap",
@@ -2470,12 +2647,14 @@
      "id": "period-04",
      "note": "第四期：牙舌俱全（T1+T4）——雨后·硬侧光·方",
      "sheet": "projects/bio-splice/subjects/flytrap-fang/period-04/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/flytrap-fang/period-04/sheet.jpg",
      "readme": "projects/bio-splice/subjects/flytrap-fang/period-04/README.md",
      "bytes": 3950588,
      "entries": [
       {
        "file": "01-flytrap-fangs-tongue.png",
        "path": "projects/bio-splice/subjects/flytrap-fang/period-04/01-flytrap-fangs-tongue.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/flytrap-fang/period-04/01-flytrap-fangs-tongue.jpg",
        "size": 1318273,
        "role": "final",
        "shot": "flytrap-fangs-tongue",
@@ -2499,6 +2678,7 @@
       {
        "file": "02-flytrap-fangs-tongue-b.png",
        "path": "projects/bio-splice/subjects/flytrap-fang/period-04/02-flytrap-fangs-tongue-b.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/flytrap-fang/period-04/02-flytrap-fangs-tongue-b.jpg",
        "size": 1332840,
        "role": "final",
        "shot": "flytrap-fangs-tongue-b",
@@ -2522,6 +2702,7 @@
       {
        "file": "controls/flytrap.png",
        "path": "projects/bio-splice/subjects/flytrap-fang/period-04/controls/flytrap.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/flytrap-fang/period-04/controls/flytrap.jpg",
        "size": 1299475,
        "role": "control",
        "shot": "base-flytrap",
@@ -2537,12 +2718,14 @@
      "id": "period-05",
      "note": "第五期：食肉植物（T1+T2+T4·收官）——晨雾沼泽·逆光·广角·横幅",
      "sheet": "projects/bio-splice/subjects/flytrap-fang/period-05/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/flytrap-fang/period-05/sheet.jpg",
      "readme": "projects/bio-splice/subjects/flytrap-fang/period-05/README.md",
      "bytes": 4294695,
      "entries": [
       {
        "file": "01-flytrap-all3.png",
        "path": "projects/bio-splice/subjects/flytrap-fang/period-05/01-flytrap-all3.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/flytrap-fang/period-05/01-flytrap-all3.jpg",
        "size": 1413611,
        "role": "final",
        "shot": "flytrap-all3-b",
@@ -2566,6 +2749,7 @@
       {
        "file": "02-flytrap-all3-b.png",
        "path": "projects/bio-splice/subjects/flytrap-fang/period-05/02-flytrap-all3-b.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/flytrap-fang/period-05/02-flytrap-all3-b.jpg",
        "size": 1421596,
        "role": "final",
        "shot": "flytrap-all3",
@@ -2589,6 +2773,7 @@
       {
        "file": "controls/flytrap.png",
        "path": "projects/bio-splice/subjects/flytrap-fang/period-05/controls/flytrap.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/flytrap-fang/period-05/controls/flytrap.jpg",
        "size": 1459488,
        "role": "control",
        "shot": "base-flytrap",
@@ -2623,23 +2808,28 @@
    "audits": [
     {
      "round": 1,
-     "path": "projects/bio-splice/subjects/lichen/rounds/lc-r1-audit.jpg"
+     "path": "projects/bio-splice/subjects/lichen/rounds/lc-r1-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/lichen/rounds/lc-r1-audit.jpg"
     },
     {
      "round": 2,
-     "path": "projects/bio-splice/subjects/lichen/rounds/lc-r2-audit.jpg"
+     "path": "projects/bio-splice/subjects/lichen/rounds/lc-r2-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/lichen/rounds/lc-r2-audit.jpg"
     },
     {
      "round": 3,
-     "path": "projects/bio-splice/subjects/lichen/rounds/lc-r3-audit.jpg"
+     "path": "projects/bio-splice/subjects/lichen/rounds/lc-r3-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/lichen/rounds/lc-r3-audit.jpg"
     },
     {
      "round": 4,
-     "path": "projects/bio-splice/subjects/lichen/rounds/lc-r4-audit.jpg"
+     "path": "projects/bio-splice/subjects/lichen/rounds/lc-r4-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/lichen/rounds/lc-r4-audit.jpg"
     },
     {
      "round": 5,
-     "path": "projects/bio-splice/subjects/lichen/rounds/lc-r5-audit.jpg"
+     "path": "projects/bio-splice/subjects/lichen/rounds/lc-r5-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/lichen/rounds/lc-r5-audit.jpg"
     }
    ],
    "periods": [
@@ -2647,12 +2837,14 @@
      "id": "period-01",
      "note": "第一期：壳状地衣（CR1 + AL1）——岩面·侧光·微距平视 100mm·方",
      "sheet": "projects/bio-splice/subjects/lichen/period-01/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/lichen/period-01/sheet.jpg",
      "readme": "projects/bio-splice/subjects/lichen/period-01/README.md",
      "bytes": 7919226,
      "entries": [
       {
        "file": "01-mycelium-crust.png",
        "path": "projects/bio-splice/subjects/lichen/period-01/01-mycelium-crust.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/lichen/period-01/01-mycelium-crust.jpg",
        "size": 2043860,
        "role": "final",
        "shot": "mycelium-crust",
@@ -2676,6 +2868,7 @@
       {
        "file": "02-mycelium-algae.png",
        "path": "projects/bio-splice/subjects/lichen/period-01/02-mycelium-algae.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/lichen/period-01/02-mycelium-algae.jpg",
        "size": 1918690,
        "role": "final",
        "shot": "mycelium-algae",
@@ -2699,6 +2892,7 @@
       {
        "file": "03-mycelium-crust-algae.png",
        "path": "projects/bio-splice/subjects/lichen/period-01/03-mycelium-crust-algae.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/lichen/period-01/03-mycelium-crust-algae.jpg",
        "size": 2057464,
        "role": "final",
        "shot": "mycelium-crust-algae",
@@ -2722,6 +2916,7 @@
       {
        "file": "controls/mycelium.png",
        "path": "projects/bio-splice/subjects/lichen/period-01/controls/mycelium.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/lichen/period-01/controls/mycelium.jpg",
        "size": 1899212,
        "role": "control",
        "shot": "base-mycelium",
@@ -2737,12 +2932,14 @@
      "id": "period-02",
      "note": "第二期：叶状地衣（FL1 + AL2）——树皮·湿润·微距侧俯·方",
      "sheet": "projects/bio-splice/subjects/lichen/period-02/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/lichen/period-02/sheet.jpg",
      "readme": "projects/bio-splice/subjects/lichen/period-02/README.md",
      "bytes": 4826723,
      "entries": [
       {
        "file": "01-mycelium-foliose.png",
        "path": "projects/bio-splice/subjects/lichen/period-02/01-mycelium-foliose.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/lichen/period-02/01-mycelium-foliose.jpg",
        "size": 1649999,
        "role": "final",
        "shot": "mycelium-foliose",
@@ -2766,6 +2963,7 @@
       {
        "file": "02-mycelium-foliose-algae.png",
        "path": "projects/bio-splice/subjects/lichen/period-02/02-mycelium-foliose-algae.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/lichen/period-02/02-mycelium-foliose-algae.jpg",
        "size": 1566849,
        "role": "final",
        "shot": "mycelium-foliose-algae",
@@ -2789,6 +2987,7 @@
       {
        "file": "controls/mycelium.png",
        "path": "projects/bio-splice/subjects/lichen/period-02/controls/mycelium.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/lichen/period-02/controls/mycelium.jpg",
        "size": 1609875,
        "role": "control",
        "shot": "base-mycelium",
@@ -2804,12 +3003,14 @@
      "id": "period-03",
      "note": "第三期：枝状地衣（FR1）——冻原·逆光·微距低机位·竖",
      "sheet": "projects/bio-splice/subjects/lichen/period-03/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/lichen/period-03/sheet.jpg",
      "readme": "projects/bio-splice/subjects/lichen/period-03/README.md",
      "bytes": 5120814,
      "entries": [
       {
        "file": "01-mycelium-fruticose.png",
        "path": "projects/bio-splice/subjects/lichen/period-03/01-mycelium-fruticose.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/lichen/period-03/01-mycelium-fruticose.jpg",
        "size": 1710928,
        "role": "final",
        "shot": "mycelium-fruticose",
@@ -2833,6 +3034,7 @@
       {
        "file": "02-mycelium-fruticose-b.png",
        "path": "projects/bio-splice/subjects/lichen/period-03/02-mycelium-fruticose-b.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/lichen/period-03/02-mycelium-fruticose-b.jpg",
        "size": 1818959,
        "role": "final",
        "shot": "mycelium-fruticose-b",
@@ -2856,6 +3058,7 @@
       {
        "file": "controls/mycelium.png",
        "path": "projects/bio-splice/subjects/lichen/period-03/controls/mycelium.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/lichen/period-03/controls/mycelium.jpg",
        "size": 1590927,
        "role": "control",
        "shot": "base-mycelium",
@@ -2871,12 +3074,14 @@
      "id": "period-04",
      "note": "第四期：藻层可见（AL1+AL2·拟剖面）——环形光·深景深·方",
      "sheet": "projects/bio-splice/subjects/lichen/period-04/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/lichen/period-04/sheet.jpg",
      "readme": "projects/bio-splice/subjects/lichen/period-04/README.md",
      "bytes": 4027532,
      "entries": [
       {
        "file": "01-mycelium-algal-layer.png",
        "path": "projects/bio-splice/subjects/lichen/period-04/01-mycelium-algal-layer.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/lichen/period-04/01-mycelium-algal-layer.jpg",
        "size": 1416878,
        "role": "final",
        "shot": "mycelium-algal-layer",
@@ -2900,6 +3105,7 @@
       {
        "file": "02-mycelium-algal-layer-b.png",
        "path": "projects/bio-splice/subjects/lichen/period-04/02-mycelium-algal-layer-b.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/lichen/period-04/02-mycelium-algal-layer-b.jpg",
        "size": 1336585,
        "role": "final",
        "shot": "mycelium-algal-layer-b",
@@ -2923,6 +3129,7 @@
       {
        "file": "controls/mycelium.png",
        "path": "projects/bio-splice/subjects/lichen/period-04/controls/mycelium.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/lichen/period-04/controls/mycelium.jpg",
        "size": 1274069,
        "role": "control",
        "shot": "base-mycelium",
@@ -2938,12 +3145,14 @@
      "id": "period-05",
      "note": "第五期：共生体（三种形态±藻·收官）——雾林·散射光·广角·横幅",
      "sheet": "projects/bio-splice/subjects/lichen/period-05/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/lichen/period-05/sheet.jpg",
      "readme": "projects/bio-splice/subjects/lichen/period-05/README.md",
      "bytes": 5564553,
      "entries": [
       {
        "file": "01-mycelium-3forms.png",
        "path": "projects/bio-splice/subjects/lichen/period-05/01-mycelium-3forms.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/lichen/period-05/01-mycelium-3forms.jpg",
        "size": 1950190,
        "role": "final",
        "shot": "mycelium-3forms",
@@ -2967,6 +3176,7 @@
       {
        "file": "02-mycelium-forms-algae.png",
        "path": "projects/bio-splice/subjects/lichen/period-05/02-mycelium-forms-algae.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/lichen/period-05/02-mycelium-forms-algae.jpg",
        "size": 1919334,
        "role": "final",
        "shot": "mycelium-forms-algae",
@@ -2990,6 +3200,7 @@
       {
        "file": "controls/mycelium.png",
        "path": "projects/bio-splice/subjects/lichen/period-05/controls/mycelium.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/lichen/period-05/controls/mycelium.jpg",
        "size": 1695029,
        "role": "control",
        "shot": "base-mycelium",
@@ -3024,31 +3235,38 @@
    "audits": [
     {
      "round": 1,
-     "path": "projects/bio-splice/subjects/cordyceps/rounds/cd-r1-audit.jpg"
+     "path": "projects/bio-splice/subjects/cordyceps/rounds/cd-r1-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/cordyceps/rounds/cd-r1-audit.jpg"
     },
     {
      "round": 2,
-     "path": "projects/bio-splice/subjects/cordyceps/rounds/cd-r2-audit.jpg"
+     "path": "projects/bio-splice/subjects/cordyceps/rounds/cd-r2-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/cordyceps/rounds/cd-r2-audit.jpg"
     },
     {
      "round": 3,
-     "path": "projects/bio-splice/subjects/cordyceps/rounds/cd-r3-audit.jpg"
+     "path": "projects/bio-splice/subjects/cordyceps/rounds/cd-r3-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/cordyceps/rounds/cd-r3-audit.jpg"
     },
     {
      "round": 4,
-     "path": "projects/bio-splice/subjects/cordyceps/rounds/cd-r4-audit.jpg"
+     "path": "projects/bio-splice/subjects/cordyceps/rounds/cd-r4-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/cordyceps/rounds/cd-r4-audit.jpg"
     },
     {
      "round": 5,
-     "path": "projects/bio-splice/subjects/cordyceps/rounds/cd-r5-audit.jpg"
+     "path": "projects/bio-splice/subjects/cordyceps/rounds/cd-r5-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/cordyceps/rounds/cd-r5-audit.jpg"
     },
     {
      "round": 6,
-     "path": "projects/bio-splice/subjects/cordyceps/rounds/cd-r6-audit.jpg"
+     "path": "projects/bio-splice/subjects/cordyceps/rounds/cd-r6-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/cordyceps/rounds/cd-r6-audit.jpg"
     },
     {
      "round": 7,
-     "path": "projects/bio-splice/subjects/cordyceps/rounds/cd-r7-audit.jpg"
+     "path": "projects/bio-splice/subjects/cordyceps/rounds/cd-r7-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/cordyceps/rounds/cd-r7-audit.jpg"
     }
    ],
    "periods": [
@@ -3056,12 +3274,14 @@
      "id": "period-01",
      "note": "第一期：菌丝覆体的虫（MY1·腾出版）——土面·柔光·微距 100mm·方",
      "sheet": "projects/bio-splice/subjects/cordyceps/period-01/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/cordyceps/period-01/sheet.jpg",
      "readme": "projects/bio-splice/subjects/cordyceps/period-01/README.md",
      "bytes": 5246840,
      "entries": [
       {
        "file": "01-larva-mycelium.png",
        "path": "projects/bio-splice/subjects/cordyceps/period-01/01-larva-mycelium.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/cordyceps/period-01/01-larva-mycelium.jpg",
        "size": 1334487,
        "role": "final",
        "shot": "larva-mycelium",
@@ -3085,6 +3305,7 @@
       {
        "file": "02-larva-mycelium-b.png",
        "path": "projects/bio-splice/subjects/cordyceps/period-01/02-larva-mycelium-b.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/cordyceps/period-01/02-larva-mycelium-b.jpg",
        "size": 1279146,
        "role": "final",
        "shot": "larva-mycelium-b",
@@ -3108,6 +3329,7 @@
       {
        "file": "03-larva-mycelium-c.png",
        "path": "projects/bio-splice/subjects/cordyceps/period-01/03-larva-mycelium-c.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/cordyceps/period-01/03-larva-mycelium-c.jpg",
        "size": 1363730,
        "role": "final",
        "shot": "larva-mycelium-c",
@@ -3131,6 +3353,7 @@
       {
        "file": "controls/larva.png",
        "path": "projects/bio-splice/subjects/cordyceps/period-01/controls/larva.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/cordyceps/period-01/controls/larva.jpg",
        "size": 1269477,
        "role": "control",
        "shot": "base-larva",
@@ -3146,12 +3369,14 @@
      "id": "period-02",
      "note": "第二期：单根子座（ST1）——高山草甸·晨光·低机位微距·竖",
      "sheet": "projects/bio-splice/subjects/cordyceps/period-02/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/cordyceps/period-02/sheet.jpg",
      "readme": "projects/bio-splice/subjects/cordyceps/period-02/README.md",
      "bytes": 5067149,
      "entries": [
       {
        "file": "01-larva-stroma.png",
        "path": "projects/bio-splice/subjects/cordyceps/period-02/01-larva-stroma.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/cordyceps/period-02/01-larva-stroma.jpg",
        "size": 1735868,
        "role": "final",
        "shot": "larva-stroma",
@@ -3175,6 +3400,7 @@
       {
        "file": "02-larva-stroma-b.png",
        "path": "projects/bio-splice/subjects/cordyceps/period-02/02-larva-stroma-b.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/cordyceps/period-02/02-larva-stroma-b.jpg",
        "size": 1532845,
        "role": "final",
        "shot": "larva-stroma-b",
@@ -3198,6 +3424,7 @@
       {
        "file": "controls/larva.png",
        "path": "projects/bio-splice/subjects/cordyceps/period-02/controls/larva.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/cordyceps/period-02/controls/larva.jpg",
        "size": 1798436,
        "role": "control",
        "shot": "base-larva",
@@ -3213,12 +3440,14 @@
      "id": "period-03",
      "note": "第三期：多根子座（ST1x）——高山草甸·逆光·方",
      "sheet": "projects/bio-splice/subjects/cordyceps/period-03/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/cordyceps/period-03/sheet.jpg",
      "readme": "projects/bio-splice/subjects/cordyceps/period-03/README.md",
      "bytes": 3772916,
      "entries": [
       {
        "file": "01-larva-stromata.png",
        "path": "projects/bio-splice/subjects/cordyceps/period-03/01-larva-stromata.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/cordyceps/period-03/01-larva-stromata.jpg",
        "size": 1273412,
        "role": "final",
        "shot": "larva-stromata",
@@ -3242,6 +3471,7 @@
       {
        "file": "02-larva-stromata-b.png",
        "path": "projects/bio-splice/subjects/cordyceps/period-03/02-larva-stromata-b.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/cordyceps/period-03/02-larva-stromata-b.jpg",
        "size": 1204868,
        "role": "final",
        "shot": "larva-stromata-b",
@@ -3265,6 +3495,7 @@
       {
        "file": "controls/larva.png",
        "path": "projects/bio-splice/subjects/cordyceps/period-03/controls/larva.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/cordyceps/period-03/controls/larva.jpg",
        "size": 1294636,
        "role": "control",
        "shot": "base-larva",
@@ -3280,12 +3511,14 @@
      "id": "period-04",
      "note": "第四期：子座与孢子（ST1+SP1）——雪线砾石·冷光·横",
      "sheet": "projects/bio-splice/subjects/cordyceps/period-04/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/cordyceps/period-04/sheet.jpg",
      "readme": "projects/bio-splice/subjects/cordyceps/period-04/README.md",
      "bytes": 5025533,
      "entries": [
       {
        "file": "01-larva-stroma-spores.png",
        "path": "projects/bio-splice/subjects/cordyceps/period-04/01-larva-stroma-spores.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/cordyceps/period-04/01-larva-stroma-spores.jpg",
        "size": 1757612,
        "role": "final",
        "shot": "larva-stroma-spores",
@@ -3309,6 +3542,7 @@
       {
        "file": "02-larva-stroma-spores-b.png",
        "path": "projects/bio-splice/subjects/cordyceps/period-04/02-larva-stroma-spores-b.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/cordyceps/period-04/02-larva-stroma-spores-b.jpg",
        "size": 1596139,
        "role": "final",
        "shot": "larva-stroma-spores-b",
@@ -3332,6 +3566,7 @@
       {
        "file": "controls/larva.png",
        "path": "projects/bio-splice/subjects/cordyceps/period-04/controls/larva.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/cordyceps/period-04/controls/larva.jpg",
        "size": 1671782,
        "role": "control",
        "shot": "base-larva",
@@ -3347,12 +3582,14 @@
      "id": "period-05",
      "note": "第五期：冬虫夏草（标本照·收官）——中性背景·环形光·全焦点·方",
      "sheet": "projects/bio-splice/subjects/cordyceps/period-05/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/cordyceps/period-05/sheet.jpg",
      "readme": "projects/bio-splice/subjects/cordyceps/period-05/README.md",
      "bytes": 3153927,
      "entries": [
       {
        "file": "01-cordyceps-specimen.png",
        "path": "projects/bio-splice/subjects/cordyceps/period-05/01-cordyceps-specimen.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/cordyceps/period-05/01-cordyceps-specimen.jpg",
        "size": 1133060,
        "role": "final",
        "shot": "cordyceps-specimen",
@@ -3376,6 +3613,7 @@
       {
        "file": "02-cordyceps-specimen-b.png",
        "path": "projects/bio-splice/subjects/cordyceps/period-05/02-cordyceps-specimen-b.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/cordyceps/period-05/02-cordyceps-specimen-b.jpg",
        "size": 1151666,
        "role": "final",
        "shot": "cordyceps-specimen-b",
@@ -3399,6 +3637,7 @@
       {
        "file": "controls/larva.png",
        "path": "projects/bio-splice/subjects/cordyceps/period-05/controls/larva.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/cordyceps/period-05/controls/larva.jpg",
        "size": 869201,
        "role": "control",
        "shot": "base-larva",
@@ -3433,39 +3672,48 @@
    "audits": [
     {
      "round": 1,
-     "path": "projects/bio-splice/subjects/flower-bird/rounds/fb2-r1-audit.jpg"
+     "path": "projects/bio-splice/subjects/flower-bird/rounds/fb2-r1-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/flower-bird/rounds/fb2-r1-audit.jpg"
     },
     {
      "round": 2,
-     "path": "projects/bio-splice/subjects/flower-bird/rounds/fb2-r2-audit.jpg"
+     "path": "projects/bio-splice/subjects/flower-bird/rounds/fb2-r2-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/flower-bird/rounds/fb2-r2-audit.jpg"
     },
     {
      "round": 3,
-     "path": "projects/bio-splice/subjects/flower-bird/rounds/fb2-r3-audit.jpg"
+     "path": "projects/bio-splice/subjects/flower-bird/rounds/fb2-r3-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/flower-bird/rounds/fb2-r3-audit.jpg"
     },
     {
      "round": 4,
-     "path": "projects/bio-splice/subjects/flower-bird/rounds/fb2-r4-audit.jpg"
+     "path": "projects/bio-splice/subjects/flower-bird/rounds/fb2-r4-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/flower-bird/rounds/fb2-r4-audit.jpg"
     },
     {
      "round": 5,
-     "path": "projects/bio-splice/subjects/flower-bird/rounds/fb2-r5-audit.jpg"
+     "path": "projects/bio-splice/subjects/flower-bird/rounds/fb2-r5-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/flower-bird/rounds/fb2-r5-audit.jpg"
     },
     {
      "round": 6,
-     "path": "projects/bio-splice/subjects/flower-bird/rounds/fb2-r6-audit.jpg"
+     "path": "projects/bio-splice/subjects/flower-bird/rounds/fb2-r6-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/flower-bird/rounds/fb2-r6-audit.jpg"
     },
     {
      "round": 7,
-     "path": "projects/bio-splice/subjects/flower-bird/rounds/fb2-r7-audit.jpg"
+     "path": "projects/bio-splice/subjects/flower-bird/rounds/fb2-r7-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/flower-bird/rounds/fb2-r7-audit.jpg"
     },
     {
      "round": 8,
-     "path": "projects/bio-splice/subjects/flower-bird/rounds/fb2-r8-audit.jpg"
+     "path": "projects/bio-splice/subjects/flower-bird/rounds/fb2-r8-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/flower-bird/rounds/fb2-r8-audit.jpg"
     },
     {
      "round": 9,
-     "path": "projects/bio-splice/subjects/flower-bird/rounds/fb2-r9-audit.jpg"
+     "path": "projects/bio-splice/subjects/flower-bird/rounds/fb2-r9-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/flower-bird/rounds/fb2-r9-audit.jpg"
     }
    ],
    "periods": [
@@ -3473,12 +3721,14 @@
      "id": "period-01",
      "note": "第一期：翎枝的花（P6 翎羽落在花轴）——玉兰·晨露柔光·微距 100mm·方",
      "sheet": "projects/bio-splice/subjects/flower-bird/period-01/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/flower-bird/period-01/sheet.jpg",
      "readme": "projects/bio-splice/subjects/flower-bird/period-01/README.md",
      "bytes": 4098205,
      "entries": [
       {
        "file": "01-flower-plume.png",
        "path": "projects/bio-splice/subjects/flower-bird/period-01/01-flower-plume.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/flower-bird/period-01/01-flower-plume.jpg",
        "size": 1017458,
        "role": "final",
        "shot": "flower-plume",
@@ -3502,6 +3752,7 @@
       {
        "file": "02-flower-plume-b.png",
        "path": "projects/bio-splice/subjects/flower-bird/period-01/02-flower-plume-b.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/flower-bird/period-01/02-flower-plume-b.jpg",
        "size": 1028816,
        "role": "final",
        "shot": "flower-plume-b",
@@ -3525,6 +3776,7 @@
       {
        "file": "03-flower-plume-c.png",
        "path": "projects/bio-splice/subjects/flower-bird/period-01/03-flower-plume-c.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/flower-bird/period-01/03-flower-plume-c.jpg",
        "size": 1094230,
        "role": "final",
        "shot": "flower-plume-c",
@@ -3548,6 +3800,7 @@
       {
        "file": "controls/flower.png",
        "path": "projects/bio-splice/subjects/flower-bird/period-01/controls/flower.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/flower-bird/period-01/controls/flower.jpg",
        "size": 957701,
        "role": "control",
        "shot": "base-flower",
@@ -3563,12 +3816,14 @@
      "id": "period-02",
      "note": "第二期：绒心的花（P5 绒羽落在花心）——玉兰·侧光·方（部分成立）",
      "sheet": "projects/bio-splice/subjects/flower-bird/period-02/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/flower-bird/period-02/sheet.jpg",
      "readme": "projects/bio-splice/subjects/flower-bird/period-02/README.md",
      "bytes": 2980912,
      "entries": [
       {
        "file": "01-flower-down.png",
        "path": "projects/bio-splice/subjects/flower-bird/period-02/01-flower-down.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/flower-bird/period-02/01-flower-down.jpg",
        "size": 1005607,
        "role": "final",
        "shot": "flower-down",
@@ -3592,6 +3847,7 @@
       {
        "file": "02-flower-down-b.png",
        "path": "projects/bio-splice/subjects/flower-bird/period-02/02-flower-down-b.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/flower-bird/period-02/02-flower-down-b.jpg",
        "size": 985159,
        "role": "final",
        "shot": "flower-down-b",
@@ -3615,6 +3871,7 @@
       {
        "file": "controls/flower.png",
        "path": "projects/bio-splice/subjects/flower-bird/period-02/controls/flower.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/flower-bird/period-02/controls/flower.jpg",
        "size": 990146,
        "role": "control",
        "shot": "base-flower",
@@ -3630,12 +3887,14 @@
      "id": "period-03",
      "note": "第三期：翎绒俱全（P6+P5）——玉兰·暗背景硬光·方",
      "sheet": "projects/bio-splice/subjects/flower-bird/period-03/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/flower-bird/period-03/sheet.jpg",
      "readme": "projects/bio-splice/subjects/flower-bird/period-03/README.md",
      "bytes": 3079098,
      "entries": [
       {
        "file": "01-flower-plume-down.png",
        "path": "projects/bio-splice/subjects/flower-bird/period-03/01-flower-plume-down.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/flower-bird/period-03/01-flower-plume-down.jpg",
        "size": 1075901,
        "role": "final",
        "shot": "flower-plume-down",
@@ -3659,6 +3918,7 @@
       {
        "file": "02-flower-plume-down-b.png",
        "path": "projects/bio-splice/subjects/flower-bird/period-03/02-flower-plume-down-b.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/flower-bird/period-03/02-flower-plume-down-b.jpg",
        "size": 1012230,
        "role": "final",
        "shot": "flower-plume-down-b",
@@ -3682,6 +3942,7 @@
       {
        "file": "controls/flower.png",
        "path": "projects/bio-splice/subjects/flower-bird/period-03/controls/flower.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/flower-bird/period-03/controls/flower.jpg",
        "size": 990967,
        "role": "control",
        "shot": "base-flower",
@@ -3697,12 +3958,14 @@
      "id": "period-04",
      "note": "第四期：百合的绒与翎（换花种）——逆光·竖幅",
      "sheet": "projects/bio-splice/subjects/flower-bird/period-04/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/flower-bird/period-04/sheet.jpg",
      "readme": "projects/bio-splice/subjects/flower-bird/period-04/README.md",
      "bytes": 6127648,
      "entries": [
       {
        "file": "01-lily-down-plume.png",
        "path": "projects/bio-splice/subjects/flower-bird/period-04/01-lily-down-plume.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/flower-bird/period-04/01-lily-down-plume.jpg",
        "size": 1547754,
        "role": "final",
        "shot": "lily-down-plume",
@@ -3726,6 +3989,7 @@
       {
        "file": "02-lily-down-plume-c.png",
        "path": "projects/bio-splice/subjects/flower-bird/period-04/02-lily-down-plume-c.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/flower-bird/period-04/02-lily-down-plume-c.jpg",
        "size": 1609163,
        "role": "final",
        "shot": "lily-down-plume-c",
@@ -3749,6 +4013,7 @@
       {
        "file": "03-lily-down-plume-d.png",
        "path": "projects/bio-splice/subjects/flower-bird/period-04/03-lily-down-plume-d.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/flower-bird/period-04/03-lily-down-plume-d.jpg",
        "size": 1577491,
        "role": "final",
        "shot": "lily-down-plume-d",
@@ -3772,6 +4037,7 @@
       {
        "file": "controls/flower.png",
        "path": "projects/bio-splice/subjects/flower-bird/period-04/controls/flower.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/flower-bird/period-04/controls/flower.jpg",
        "size": 1393240,
        "role": "control",
        "shot": "base-flower",
@@ -3787,12 +4053,14 @@
      "id": "period-05",
      "note": "第五期：花鸟（收官·满枝）——玉兰·逆光·广角·横幅",
      "sheet": "projects/bio-splice/subjects/flower-bird/period-05/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/flower-bird/period-05/sheet.jpg",
      "readme": "projects/bio-splice/subjects/flower-bird/period-05/README.md",
      "bytes": 4061881,
      "entries": [
       {
        "file": "01-flower-bird.png",
        "path": "projects/bio-splice/subjects/flower-bird/period-05/01-flower-bird.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/flower-bird/period-05/01-flower-bird.jpg",
        "size": 1403030,
        "role": "final",
        "shot": "flower-bird",
@@ -3816,6 +4084,7 @@
       {
        "file": "02-flower-bird-b.png",
        "path": "projects/bio-splice/subjects/flower-bird/period-05/02-flower-bird-b.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/flower-bird/period-05/02-flower-bird-b.jpg",
        "size": 1362704,
        "role": "final",
        "shot": "flower-bird-b",
@@ -3839,6 +4108,7 @@
       {
        "file": "controls/flower.png",
        "path": "projects/bio-splice/subjects/flower-bird/period-05/controls/flower.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/flower-bird/period-05/controls/flower.jpg",
        "size": 1296147,
        "role": "control",
        "shot": "base-flower",
@@ -3873,39 +4143,48 @@
    "audits": [
     {
      "round": 1,
-     "path": "projects/bio-splice/subjects/tree-beast/rounds/tb-r1-audit.jpg"
+     "path": "projects/bio-splice/subjects/tree-beast/rounds/tb-r1-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/tree-beast/rounds/tb-r1-audit.jpg"
     },
     {
      "round": 2,
-     "path": "projects/bio-splice/subjects/tree-beast/rounds/tb-r2-audit.jpg"
+     "path": "projects/bio-splice/subjects/tree-beast/rounds/tb-r2-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/tree-beast/rounds/tb-r2-audit.jpg"
     },
     {
      "round": 3,
-     "path": "projects/bio-splice/subjects/tree-beast/rounds/tb-r3-audit.jpg"
+     "path": "projects/bio-splice/subjects/tree-beast/rounds/tb-r3-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/tree-beast/rounds/tb-r3-audit.jpg"
     },
     {
      "round": 4,
-     "path": "projects/bio-splice/subjects/tree-beast/rounds/tb-r4-audit.jpg"
+     "path": "projects/bio-splice/subjects/tree-beast/rounds/tb-r4-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/tree-beast/rounds/tb-r4-audit.jpg"
     },
     {
      "round": 5,
-     "path": "projects/bio-splice/subjects/tree-beast/rounds/tb-r5-audit.jpg"
+     "path": "projects/bio-splice/subjects/tree-beast/rounds/tb-r5-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/tree-beast/rounds/tb-r5-audit.jpg"
     },
     {
      "round": 6,
-     "path": "projects/bio-splice/subjects/tree-beast/rounds/tb-r6-audit.jpg"
+     "path": "projects/bio-splice/subjects/tree-beast/rounds/tb-r6-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/tree-beast/rounds/tb-r6-audit.jpg"
     },
     {
      "round": 7,
-     "path": "projects/bio-splice/subjects/tree-beast/rounds/tb-r7-audit.jpg"
+     "path": "projects/bio-splice/subjects/tree-beast/rounds/tb-r7-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/tree-beast/rounds/tb-r7-audit.jpg"
     },
     {
      "round": 8,
-     "path": "projects/bio-splice/subjects/tree-beast/rounds/tb-r8-audit.jpg"
+     "path": "projects/bio-splice/subjects/tree-beast/rounds/tb-r8-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/tree-beast/rounds/tb-r8-audit.jpg"
     },
     {
      "round": 9,
-     "path": "projects/bio-splice/subjects/tree-beast/rounds/tb-r9-audit.jpg"
+     "path": "projects/bio-splice/subjects/tree-beast/rounds/tb-r9-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/tree-beast/rounds/tb-r9-audit.jpg"
     }
    ],
    "periods": [
@@ -3913,12 +4192,14 @@
      "id": "period-01",
      "note": "第一期：兽皮的树（K1·腾出树皮）——雾林·柔光·平视·方",
      "sheet": "projects/bio-splice/subjects/tree-beast/period-01/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/tree-beast/period-01/sheet.jpg",
      "readme": "projects/bio-splice/subjects/tree-beast/period-01/README.md",
      "bytes": 7229687,
      "entries": [
       {
        "file": "01-tree-hide.png",
        "path": "projects/bio-splice/subjects/tree-beast/period-01/01-tree-hide.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/tree-beast/period-01/01-tree-hide.jpg",
        "size": 1841717,
        "role": "final",
        "shot": "tree-hide",
@@ -3942,6 +4223,7 @@
       {
        "file": "02-tree-hide-b.png",
        "path": "projects/bio-splice/subjects/tree-beast/period-01/02-tree-hide-b.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/tree-beast/period-01/02-tree-hide-b.jpg",
        "size": 1772786,
        "role": "final",
        "shot": "tree-hide-b",
@@ -3965,6 +4247,7 @@
       {
        "file": "03-tree-hide-c.png",
        "path": "projects/bio-splice/subjects/tree-beast/period-01/03-tree-hide-c.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/tree-beast/period-01/03-tree-hide-c.jpg",
        "size": 1787314,
        "role": "final",
        "shot": "tree-hide-c",
@@ -3988,6 +4271,7 @@
       {
        "file": "controls/tree.png",
        "path": "projects/bio-splice/subjects/tree-beast/period-01/controls/tree.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/tree-beast/period-01/controls/tree.jpg",
        "size": 1827870,
        "role": "control",
        "shot": "base-tree",
@@ -4003,12 +4287,14 @@
      "id": "period-02",
      "note": "第二期：有角的树（K4·树干空面）——霜林·侧逆光·方",
      "sheet": "projects/bio-splice/subjects/tree-beast/period-02/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/tree-beast/period-02/sheet.jpg",
      "readme": "projects/bio-splice/subjects/tree-beast/period-02/README.md",
      "bytes": 6076036,
      "entries": [
       {
        "file": "01-tree-horns.png",
        "path": "projects/bio-splice/subjects/tree-beast/period-02/01-tree-horns.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/tree-beast/period-02/01-tree-horns.jpg",
        "size": 2030947,
        "role": "final",
        "shot": "tree-horns",
@@ -4032,6 +4318,7 @@
       {
        "file": "02-tree-horns-b.png",
        "path": "projects/bio-splice/subjects/tree-beast/period-02/02-tree-horns-b.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/tree-beast/period-02/02-tree-horns-b.jpg",
        "size": 1953840,
        "role": "final",
        "shot": "tree-horns-b",
@@ -4055,6 +4342,7 @@
       {
        "file": "controls/tree.png",
        "path": "projects/bio-splice/subjects/tree-beast/period-02/controls/tree.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/tree-beast/period-02/controls/tree.jpg",
        "size": 2091249,
        "role": "control",
        "shot": "base-tree",
@@ -4070,12 +4358,14 @@
      "id": "period-03",
      "note": "第三期：皮角俱全（K1+K4）——雨后林·硬光·横",
      "sheet": "projects/bio-splice/subjects/tree-beast/period-03/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/tree-beast/period-03/sheet.jpg",
      "readme": "projects/bio-splice/subjects/tree-beast/period-03/README.md",
      "bytes": 7930052,
      "entries": [
       {
        "file": "01-tree-hide-horns.png",
        "path": "projects/bio-splice/subjects/tree-beast/period-03/01-tree-hide-horns.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/tree-beast/period-03/01-tree-hide-horns.jpg",
        "size": 2630085,
        "role": "final",
        "shot": "tree-hide-horns",
@@ -4099,6 +4389,7 @@
       {
        "file": "02-tree-hide-horns-b.png",
        "path": "projects/bio-splice/subjects/tree-beast/period-03/02-tree-hide-horns-b.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/tree-beast/period-03/02-tree-hide-horns-b.jpg",
        "size": 2635080,
        "role": "final",
        "shot": "tree-hide-horns-b",
@@ -4122,6 +4413,7 @@
       {
        "file": "controls/tree.png",
        "path": "projects/bio-splice/subjects/tree-beast/period-03/controls/tree.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/tree-beast/period-03/controls/tree.jpg",
        "size": 2664887,
        "role": "control",
        "shot": "base-tree",
@@ -4137,12 +4429,14 @@
      "id": "period-04",
      "note": "第四期：枯木的皮与角（换底座·枯立木）——霜晨·平光·方",
      "sheet": "projects/bio-splice/subjects/tree-beast/period-04/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/tree-beast/period-04/sheet.jpg",
      "readme": "projects/bio-splice/subjects/tree-beast/period-04/README.md",
      "bytes": 4042847,
      "entries": [
       {
        "file": "01-deadwood-hide-horns.png",
        "path": "projects/bio-splice/subjects/tree-beast/period-04/01-deadwood-hide-horns.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/tree-beast/period-04/01-deadwood-hide-horns.jpg",
        "size": 1347455,
        "role": "final",
        "shot": "deadwood-hide-horns",
@@ -4166,6 +4460,7 @@
       {
        "file": "02-deadwood-hide-horns-b.png",
        "path": "projects/bio-splice/subjects/tree-beast/period-04/02-deadwood-hide-horns-b.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/tree-beast/period-04/02-deadwood-hide-horns-b.jpg",
        "size": 1385958,
        "role": "final",
        "shot": "deadwood-hide-horns-b",
@@ -4189,6 +4484,7 @@
       {
        "file": "controls/tree.png",
        "path": "projects/bio-splice/subjects/tree-beast/period-04/controls/tree.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/tree-beast/period-04/controls/tree.jpg",
        "size": 1309434,
        "role": "control",
        "shot": "base-tree",
@@ -4204,12 +4500,14 @@
      "id": "period-05",
      "note": "第五期：树兽（收官·K1+K4，兽足未落地）——暮色林·逆光剪影·广角·横幅",
      "sheet": "projects/bio-splice/subjects/tree-beast/period-05/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/tree-beast/period-05/sheet.jpg",
      "readme": "projects/bio-splice/subjects/tree-beast/period-05/README.md",
      "bytes": 6692309,
      "entries": [
       {
        "file": "01-tree-beast.png",
        "path": "projects/bio-splice/subjects/tree-beast/period-05/01-tree-beast.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/tree-beast/period-05/01-tree-beast.jpg",
        "size": 2226702,
        "role": "final",
        "shot": "tree-beast",
@@ -4233,6 +4531,7 @@
       {
        "file": "02-tree-beast-b.png",
        "path": "projects/bio-splice/subjects/tree-beast/period-05/02-tree-beast-b.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/tree-beast/period-05/02-tree-beast-b.jpg",
        "size": 2239143,
        "role": "final",
        "shot": "tree-beast-b",
@@ -4256,6 +4555,7 @@
       {
        "file": "controls/tree.png",
        "path": "projects/bio-splice/subjects/tree-beast/period-05/controls/tree.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/tree-beast/period-05/controls/tree.jpg",
        "size": 2226464,
        "role": "control",
        "shot": "base-tree",
@@ -4290,23 +4590,28 @@
    "audits": [
     {
      "round": 1,
-     "path": "projects/bio-splice/subjects/horn-atlas/rounds/ha-r1-audit.jpg"
+     "path": "projects/bio-splice/subjects/horn-atlas/rounds/ha-r1-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/horn-atlas/rounds/ha-r1-audit.jpg"
     },
     {
      "round": 2,
-     "path": "projects/bio-splice/subjects/horn-atlas/rounds/ha-r2-audit.jpg"
+     "path": "projects/bio-splice/subjects/horn-atlas/rounds/ha-r2-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/horn-atlas/rounds/ha-r2-audit.jpg"
     },
     {
      "round": 3,
-     "path": "projects/bio-splice/subjects/horn-atlas/rounds/ha-r3-audit.jpg"
+     "path": "projects/bio-splice/subjects/horn-atlas/rounds/ha-r3-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/horn-atlas/rounds/ha-r3-audit.jpg"
     },
     {
      "round": 4,
-     "path": "projects/bio-splice/subjects/horn-atlas/rounds/ha-r4-audit.jpg"
+     "path": "projects/bio-splice/subjects/horn-atlas/rounds/ha-r4-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/horn-atlas/rounds/ha-r4-audit.jpg"
     },
     {
      "round": 5,
-     "path": "projects/bio-splice/subjects/horn-atlas/rounds/ha-r5-audit.jpg"
+     "path": "projects/bio-splice/subjects/horn-atlas/rounds/ha-r5-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/horn-atlas/rounds/ha-r5-audit.jpg"
     }
    ],
    "periods": [
@@ -4314,12 +4619,14 @@
      "id": "period-01",
      "note": "第一部分：无角基准（无移植件，作为后四部分的参照）——晨雾草场·柔光·平视·方",
      "sheet": "projects/bio-splice/subjects/horn-atlas/period-01/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/horn-atlas/period-01/sheet.jpg",
      "readme": "projects/bio-splice/subjects/horn-atlas/period-01/README.md",
      "bytes": 3722939,
      "entries": [
       {
        "file": "01-horse-baseline.png",
        "path": "projects/bio-splice/subjects/horn-atlas/period-01/01-horse-baseline.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/horn-atlas/period-01/01-horse-baseline.jpg",
        "size": 1183964,
        "role": "final",
        "shot": "base-horse",
@@ -4343,6 +4650,7 @@
       {
        "file": "02-horse-baseline-b.png",
        "path": "projects/bio-splice/subjects/horn-atlas/period-01/02-horse-baseline-b.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/horn-atlas/period-01/02-horse-baseline-b.jpg",
        "size": 1223236,
        "role": "final",
        "shot": "base-horse-b",
@@ -4366,6 +4674,7 @@
       {
        "file": "03-horse-baseline-c.png",
        "path": "projects/bio-splice/subjects/horn-atlas/period-01/03-horse-baseline-c.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/horn-atlas/period-01/03-horse-baseline-c.jpg",
        "size": 1315739,
        "role": "final",
        "shot": "base-horse-c",
@@ -4392,12 +4701,14 @@
      "id": "period-02",
      "note": "第二部分：鹿角（H1）——晨雾草场·侧逆光·平视·方",
      "sheet": "projects/bio-splice/subjects/horn-atlas/period-02/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/horn-atlas/period-02/sheet.jpg",
      "readme": "projects/bio-splice/subjects/horn-atlas/period-02/README.md",
      "bytes": 3524670,
      "entries": [
       {
        "file": "01-horse-antlers.png",
        "path": "projects/bio-splice/subjects/horn-atlas/period-02/01-horse-antlers.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/horn-atlas/period-02/01-horse-antlers.jpg",
        "size": 1136731,
        "role": "final",
        "shot": "horse-antlers",
@@ -4421,6 +4732,7 @@
       {
        "file": "02-horse-antlers-b.png",
        "path": "projects/bio-splice/subjects/horn-atlas/period-02/02-horse-antlers-b.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/horn-atlas/period-02/02-horse-antlers-b.jpg",
        "size": 1162363,
        "role": "final",
        "shot": "horse-antlers-b",
@@ -4444,6 +4756,7 @@
       {
        "file": "controls/horse.png",
        "path": "projects/bio-splice/subjects/horn-atlas/period-02/controls/horse.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/horn-atlas/period-02/controls/horse.jpg",
        "size": 1225576,
        "role": "control",
        "shot": "base-horse",
@@ -4459,12 +4772,14 @@
      "id": "period-03",
      "note": "第三部分：牛角（H2）——晨雾草场·顶光·平视·方",
      "sheet": "projects/bio-splice/subjects/horn-atlas/period-03/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/horn-atlas/period-03/sheet.jpg",
      "readme": "projects/bio-splice/subjects/horn-atlas/period-03/README.md",
      "bytes": 3660468,
      "entries": [
       {
        "file": "01-horse-oxhorns.png",
        "path": "projects/bio-splice/subjects/horn-atlas/period-03/01-horse-oxhorns.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/horn-atlas/period-03/01-horse-oxhorns.jpg",
        "size": 1181691,
        "role": "final",
        "shot": "horse-oxhorns",
@@ -4488,6 +4803,7 @@
       {
        "file": "02-horse-oxhorns-b.png",
        "path": "projects/bio-splice/subjects/horn-atlas/period-03/02-horse-oxhorns-b.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/horn-atlas/period-03/02-horse-oxhorns-b.jpg",
        "size": 1212726,
        "role": "final",
        "shot": "horse-oxhorns-b",
@@ -4511,6 +4827,7 @@
       {
        "file": "controls/horse.png",
        "path": "projects/bio-splice/subjects/horn-atlas/period-03/controls/horse.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/horn-atlas/period-03/controls/horse.jpg",
        "size": 1266051,
        "role": "control",
        "shot": "base-horse",
@@ -4526,12 +4843,14 @@
      "id": "period-04",
      "note": "第四部分：羊角（H3）——晨雾草场·侧逆光·平视·方",
      "sheet": "projects/bio-splice/subjects/horn-atlas/period-04/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/horn-atlas/period-04/sheet.jpg",
      "readme": "projects/bio-splice/subjects/horn-atlas/period-04/README.md",
      "bytes": 3441140,
      "entries": [
       {
        "file": "01-horse-ramhorns.png",
        "path": "projects/bio-splice/subjects/horn-atlas/period-04/01-horse-ramhorns.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/horn-atlas/period-04/01-horse-ramhorns.jpg",
        "size": 1136570,
        "role": "final",
        "shot": "horse-ramhorns",
@@ -4555,6 +4874,7 @@
       {
        "file": "02-horse-ramhorns-b.png",
        "path": "projects/bio-splice/subjects/horn-atlas/period-04/02-horse-ramhorns-b.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/horn-atlas/period-04/02-horse-ramhorns-b.jpg",
        "size": 1078994,
        "role": "final",
        "shot": "horse-ramhorns-b",
@@ -4578,6 +4898,7 @@
       {
        "file": "controls/horse.png",
        "path": "projects/bio-splice/subjects/horn-atlas/period-04/controls/horse.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/horn-atlas/period-04/controls/horse.jpg",
        "size": 1225576,
        "role": "control",
        "shot": "base-horse",
@@ -4593,12 +4914,14 @@
      "id": "period-05",
      "note": "第五部分：独角鲸长牙（H5）+ 犀角（H4）——霜晨草原·侧逆光·贴面特写·竖",
      "sheet": "projects/bio-splice/subjects/horn-atlas/period-05/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/horn-atlas/period-05/sheet.jpg",
      "readme": "projects/bio-splice/subjects/horn-atlas/period-05/README.md",
      "bytes": 5371364,
      "entries": [
       {
        "file": "01-horse-narwhal.png",
        "path": "projects/bio-splice/subjects/horn-atlas/period-05/01-horse-narwhal.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/horn-atlas/period-05/01-horse-narwhal.jpg",
        "size": 1822561,
        "role": "final",
        "shot": "horse-narwhal",
@@ -4622,6 +4945,7 @@
       {
        "file": "02-horse-rhino.png",
        "path": "projects/bio-splice/subjects/horn-atlas/period-05/02-horse-rhino.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/horn-atlas/period-05/02-horse-rhino.jpg",
        "size": 1720828,
        "role": "final",
        "shot": "horse-rhino",
@@ -4645,6 +4969,7 @@
       {
        "file": "controls/horse.png",
        "path": "projects/bio-splice/subjects/horn-atlas/period-05/controls/horse.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/horn-atlas/period-05/controls/horse.jpg",
        "size": 1827975,
        "role": "control",
        "shot": "base-horse",
@@ -4679,35 +5004,43 @@
    "audits": [
     {
      "round": 1,
-     "path": "projects/bio-splice/subjects/wing-atlas/rounds/wa-r1-audit.jpg"
+     "path": "projects/bio-splice/subjects/wing-atlas/rounds/wa-r1-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/wing-atlas/rounds/wa-r1-audit.jpg"
     },
     {
      "round": 2,
-     "path": "projects/bio-splice/subjects/wing-atlas/rounds/wa-r2-audit.jpg"
+     "path": "projects/bio-splice/subjects/wing-atlas/rounds/wa-r2-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/wing-atlas/rounds/wa-r2-audit.jpg"
     },
     {
      "round": 3,
-     "path": "projects/bio-splice/subjects/wing-atlas/rounds/wa-r3-audit.jpg"
+     "path": "projects/bio-splice/subjects/wing-atlas/rounds/wa-r3-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/wing-atlas/rounds/wa-r3-audit.jpg"
     },
     {
      "round": 4,
-     "path": "projects/bio-splice/subjects/wing-atlas/rounds/wa-r4-audit.jpg"
+     "path": "projects/bio-splice/subjects/wing-atlas/rounds/wa-r4-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/wing-atlas/rounds/wa-r4-audit.jpg"
     },
     {
      "round": 5,
-     "path": "projects/bio-splice/subjects/wing-atlas/rounds/wa-r5-audit.jpg"
+     "path": "projects/bio-splice/subjects/wing-atlas/rounds/wa-r5-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/wing-atlas/rounds/wa-r5-audit.jpg"
     },
     {
      "round": 6,
-     "path": "projects/bio-splice/subjects/wing-atlas/rounds/wa-r6-audit.jpg"
+     "path": "projects/bio-splice/subjects/wing-atlas/rounds/wa-r6-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/wing-atlas/rounds/wa-r6-audit.jpg"
     },
     {
      "round": 7,
-     "path": "projects/bio-splice/subjects/wing-atlas/rounds/wa-r7-audit.jpg"
+     "path": "projects/bio-splice/subjects/wing-atlas/rounds/wa-r7-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/wing-atlas/rounds/wa-r7-audit.jpg"
     },
     {
      "round": 8,
-     "path": "projects/bio-splice/subjects/wing-atlas/rounds/wa-r8-audit.jpg"
+     "path": "projects/bio-splice/subjects/wing-atlas/rounds/wa-r8-audit.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/wing-atlas/rounds/wa-r8-audit.jpg"
     }
    ],
    "periods": [
@@ -4715,12 +5048,14 @@
      "id": "period-01",
      "note": "第一部分：双翼基准（无移植件，作为后四部分的参照）——枝头·侧逆光·平视·方",
      "sheet": "projects/bio-splice/subjects/wing-atlas/period-01/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/wing-atlas/period-01/sheet.jpg",
      "readme": "projects/bio-splice/subjects/wing-atlas/period-01/README.md",
      "bytes": 4050558,
      "entries": [
       {
        "file": "01-bird-baseline.png",
        "path": "projects/bio-splice/subjects/wing-atlas/period-01/01-bird-baseline.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/wing-atlas/period-01/01-bird-baseline.jpg",
        "size": 1294886,
        "role": "final",
        "shot": "base-bird",
@@ -4744,6 +5079,7 @@
       {
        "file": "02-bird-baseline-b.png",
        "path": "projects/bio-splice/subjects/wing-atlas/period-01/02-bird-baseline-b.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/wing-atlas/period-01/02-bird-baseline-b.jpg",
        "size": 1420195,
        "role": "final",
        "shot": "base-bird-b",
@@ -4767,6 +5103,7 @@
       {
        "file": "03-bird-baseline-c.png",
        "path": "projects/bio-splice/subjects/wing-atlas/period-01/03-bird-baseline-c.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/wing-atlas/period-01/03-bird-baseline-c.jpg",
        "size": 1335477,
        "role": "final",
        "shot": "base-bird-c",
@@ -4793,12 +5130,14 @@
      "id": "period-02",
      "note": "第二部分：四翼（膜）——昆虫膜翅为第二对——枝头·顶光·方",
      "sheet": "projects/bio-splice/subjects/wing-atlas/period-02/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/wing-atlas/period-02/sheet.jpg",
      "readme": "projects/bio-splice/subjects/wing-atlas/period-02/README.md",
      "bytes": 4413063,
      "entries": [
       {
        "file": "01-bird-membrane.png",
        "path": "projects/bio-splice/subjects/wing-atlas/period-02/01-bird-membrane.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/wing-atlas/period-02/01-bird-membrane.jpg",
        "size": 1489720,
        "role": "final",
        "shot": "bird-membrane",
@@ -4822,6 +5161,7 @@
       {
        "file": "02-bird-membrane-b.png",
        "path": "projects/bio-splice/subjects/wing-atlas/period-02/02-bird-membrane-b.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/wing-atlas/period-02/02-bird-membrane-b.jpg",
        "size": 1500111,
        "role": "final",
        "shot": "bird-membrane-b",
@@ -4845,6 +5185,7 @@
       {
        "file": "controls/bird.png",
        "path": "projects/bio-splice/subjects/wing-atlas/period-02/controls/bird.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/wing-atlas/period-02/controls/bird.jpg",
        "size": 1423232,
        "role": "control",
        "shot": "base-bird",
@@ -4860,12 +5201,14 @@
      "id": "period-03",
      "note": "第三部分：四翼（皮）——蝙蝠皮翼为第二对——洞窟口·硬光·方",
      "sheet": "projects/bio-splice/subjects/wing-atlas/period-03/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/wing-atlas/period-03/sheet.jpg",
      "readme": "projects/bio-splice/subjects/wing-atlas/period-03/README.md",
      "bytes": 5056145,
      "entries": [
       {
        "file": "01-bird-bat.png",
        "path": "projects/bio-splice/subjects/wing-atlas/period-03/01-bird-bat.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/wing-atlas/period-03/01-bird-bat.jpg",
        "size": 1700262,
        "role": "final",
        "shot": "bird-bat",
@@ -4889,6 +5232,7 @@
       {
        "file": "02-bird-bat-b.png",
        "path": "projects/bio-splice/subjects/wing-atlas/period-03/02-bird-bat-b.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/wing-atlas/period-03/02-bird-bat-b.jpg",
        "size": 1691320,
        "role": "final",
        "shot": "bird-bat-b",
@@ -4912,6 +5256,7 @@
       {
        "file": "controls/bird.png",
        "path": "projects/bio-splice/subjects/wing-atlas/period-03/controls/bird.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/wing-atlas/period-03/controls/bird.jpg",
        "size": 1664563,
        "role": "control",
        "shot": "base-bird",
@@ -4927,12 +5272,14 @@
      "id": "period-04",
      "note": "第四部分：四翼（飞鱼鳍）——飞鱼长鳍为第二对——水边·湿润光·方",
      "sheet": "projects/bio-splice/subjects/wing-atlas/period-04/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/wing-atlas/period-04/sheet.jpg",
      "readme": "projects/bio-splice/subjects/wing-atlas/period-04/README.md",
      "bytes": 4612171,
      "entries": [
       {
        "file": "01-bird-flyfish.png",
        "path": "projects/bio-splice/subjects/wing-atlas/period-04/01-bird-flyfish.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/wing-atlas/period-04/01-bird-flyfish.jpg",
        "size": 1510832,
        "role": "final",
        "shot": "bird-flyfish",
@@ -4956,6 +5303,7 @@
       {
        "file": "02-bird-flyfish-b.png",
        "path": "projects/bio-splice/subjects/wing-atlas/period-04/02-bird-flyfish-b.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/wing-atlas/period-04/02-bird-flyfish-b.jpg",
        "size": 1614485,
        "role": "final",
        "shot": "bird-flyfish-b",
@@ -4979,6 +5327,7 @@
       {
        "file": "controls/bird.png",
        "path": "projects/bio-splice/subjects/wing-atlas/period-04/controls/bird.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/wing-atlas/period-04/controls/bird.jpg",
        "size": 1486854,
        "role": "control",
        "shot": "base-bird",
@@ -4994,12 +5343,14 @@
      "id": "period-05",
      "note": "第五部分：四翼（鹤羽）——鹤的白翼为第二对——秋林·逆光·广角·横幅",
      "sheet": "projects/bio-splice/subjects/wing-atlas/period-05/sheet.jpg",
+     "thumb": "site/thumbs/projects/bio-splice/subjects/wing-atlas/period-05/sheet.jpg",
      "readme": "projects/bio-splice/subjects/wing-atlas/period-05/README.md",
      "bytes": 5504883,
      "entries": [
       {
        "file": "01-bird-crane.png",
        "path": "projects/bio-splice/subjects/wing-atlas/period-05/01-bird-crane.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/wing-atlas/period-05/01-bird-crane.jpg",
        "size": 1836027,
        "role": "final",
        "shot": "bird-crane",
@@ -5023,6 +5374,7 @@
       {
        "file": "02-bird-crane-b.png",
        "path": "projects/bio-splice/subjects/wing-atlas/period-05/02-bird-crane-b.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/wing-atlas/period-05/02-bird-crane-b.jpg",
        "size": 1823753,
        "role": "final",
        "shot": "bird-crane-b",
@@ -5046,6 +5398,7 @@
       {
        "file": "controls/bird.png",
        "path": "projects/bio-splice/subjects/wing-atlas/period-05/controls/bird.png",
+       "thumb": "site/thumbs/projects/bio-splice/subjects/wing-atlas/period-05/controls/bird.jpg",
        "size": 1845103,
        "role": "control",
        "shot": "base-bird",

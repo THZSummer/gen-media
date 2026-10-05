@@ -27,8 +27,8 @@
   var T = {
     zh: {
       home: '首页', bio: '生物拼接', videos: '视频', gallery: '画廊',
-      lead: '图片生成与视频生成的作品集。全部成品由本机 ComfyUI（Z-Image-Turbo）出图，'
-          + '经五维评分过关后入库；每个成品的提示词、种子与校验和都可查。',
+      lead: '图片与视频生成的作品集。图片由本机 ComfyUI 出图（Z-Image-Turbo / Qwen-Image / ControlNet），'
+          + '视频由本地 FastH3 出片；各项目的成品、提示词、种子与评分记录都留档可查。',
       subjects: '子主题', periods: '期', finals: '成品', controls: '对照', mean: '均分',
       clips: '视频', projects: '项目', videosN: '视频', scored: '带评分',
       bioLead: '跨物种、跨界的“部位移植”实验：12 个子主题 × 5 期，每期一个恒定生境，'
@@ -41,7 +41,6 @@
       controlsTitle: '对照图（同轮底座，未评分）',
       audits: '轮次审计图', allSubjects: '全部子主题',
       noteLang: '期说明为中文原文。',
-      rubric: 'A 移植到位 .30 ｜ B 底座完整 .20 ｜ C 解剖可信 .20 ｜ D 摄影统一 .15 ｜ E 概念可读 .15',
       videoHint: '封面为分镜图，点击播放（不预载，不播放不耗流量）',
       clipN: '个片段', totalSize: '合计',
       perPeriod: '本期',
@@ -52,9 +51,9 @@
     },
     en: {
       home: 'Home', bio: 'Bio Splice', videos: 'Videos', gallery: 'Gallery',
-      lead: 'A portfolio of image and video generation. Every final was rendered by a local '
-          + 'ComfyUI (Z-Image-Turbo) and admitted only after passing a five-axis review; '
-          + 'prompt, seed and checksum are kept for each one.',
+      lead: 'A portfolio of image and video generation. Images are rendered by a local ComfyUI '
+          + '(Z-Image-Turbo / Qwen-Image / ControlNet) and video by a local FastH3; '
+          + 'finals, prompts, seeds and review records are archived per project.',
       subjects: 'sub-themes', periods: 'periods', finals: 'finals', controls: 'controls', mean: 'mean',
       clips: 'videos', projects: 'projects', videosN: 'videos', scored: 'scored',
       bioLead: 'Cross-species / cross-kingdom part-transplant studies: 12 sub-themes × 5 periods, '
@@ -68,7 +67,6 @@
       controlsTitle: 'Controls (same-round base, not scored)',
       audits: 'Round audits', allSubjects: 'All sub-themes',
       noteLang: 'Period notes are in Chinese.',
-      rubric: 'A transplant fidelity .30 | B base integrity .20 | C anatomy .20 | D photographic unity .15 | E concept readability .15',
       videoHint: 'Poster is a storyboard frame; click to play (not preloaded)',
       clipN: 'clips', totalSize: 'total',
       perPeriod: 'this period',
@@ -107,11 +105,13 @@
     $('#brand-en').style.display = LANG === 'en' ? 'inline' : 'none';
 
     var route = (location.hash || '#/').replace(/^#\/?/, '').split('/')[0];
-    var items = [
-      ['#/', t('home'), ''],
-      ['#/bio-splice', t('bio'), 'bio-splice'],
-      ['#/videos', t('videos'), 'videos']
-    ];
+    // 导航**从 index.json 派生**：有内页的项目（期结构 / 视频汇总）自动进导航，
+    // 不再把某一个项目（bio-splice）写死成顶级项。
+    var items = [['#/', t('home'), '']];
+    IDX.projects.forEach(function (p) {
+      var r = p.kind === 'periods' ? 'bio-splice' : (p.kind === 'videos' ? 'videos' : null);
+      if (r) items.push(['#/' + r, title(p.title), r]);
+    });
     $('#nav').innerHTML = items.map(function (it) {
       var on = (it[2] === '' && route === '') || it[2] === route;
       return '<a href="' + it[0] + '"' + (on ? ' class="on"' : '') + '>' + esc(it[1]) + '</a>';
@@ -187,7 +187,10 @@
       [t('controls'), BIO.subjects.reduce(function (a, s) { return a + s.stats.controls; }, 0)]
     ]);
     h += '<p class="lead" style="font-size:13px">' + esc(t('gridHint')) + '</p>';
-    h += '<ul class="chips"><li>' + esc(t('rubric')) + '</li></ul>';
+    // 评分维度**按项目从数据取**：bio-splice 是 A–E 五维，shanhai-jing 是 A–F 六维。
+    // 写死在这里的话，第二个项目的期详情页就会说错。
+    var rub = BIO.rubric && (BIO.rubric[LANG] || BIO.rubric.zh);
+    if (rub) h += '<ul class="chips"><li>' + esc(rub) + '</li></ul>';
 
     var links = [['readme', BIO.readme], ['summary', BIO.summary], ['plan', BIO.plan]]
       .filter(function (x) { return x[1]; })
@@ -252,7 +255,7 @@
       + ' ｜ <span style="color:var(--muted)">' + esc(t('noteLang')) + '</span></p>';
 
     if (s.sheet) {
-      h += '<figure class="sheet"><img loading="lazy" decoding="async" src="' + esc(asset(s.sheet))
+      h += '<figure class="sheet"><img loading="lazy" decoding="async" src="' + esc(asset(s.sheet_thumb || s.sheet))
         + '" alt="' + esc(sid) + ' sheet" data-lb-path="' + esc(s.sheet) + '"></figure>';
     }
 
@@ -266,7 +269,7 @@
         + '</span></div>';
       if (p.note) h += '<p class="note">' + esc(p.note) + '</p>';
       if (p.sheet) {
-        h += '<figure class="sheet"><img loading="lazy" decoding="async" src="' + esc(asset(p.sheet))
+        h += '<figure class="sheet"><img loading="lazy" decoding="async" src="' + esc(asset(p.thumb || p.sheet))
           + '" alt="' + esc(p.id) + ' sheet" data-lb-path="' + esc(p.sheet) + '">'
           + '<figcaption>' + esc(t('sheet')) + ' · ' + esc(t('openFull'))
           + '</figcaption></figure>';
@@ -274,7 +277,7 @@
       h += '<div class="finals">';
       finals.forEach(function (e) {
         h += '<div class="fin" data-lb-path="' + esc(e.path) + '"><img loading="lazy" decoding="async" src="'
-          + esc(asset(e.path)) + '" alt="' + esc(e.file) + '">'
+          + esc(asset(e.thumb || e.path)) + '" alt="' + esc(e.file) + '">'
           + '<div class="fmeta"><span>' + esc(e.shot || e.file) + '</span>'
           + '<span class="score">' + esc(scoreText(e)) + '</span></div></div>';
       });
@@ -283,7 +286,7 @@
         h += '<div class="controls"><div class="ctitle">' + esc(t('controlsTitle')) + '</div><div class="cgrid">';
         ctrls.forEach(function (e) {
           h += '<div class="fin ctrl" data-lb-path="' + esc(e.path) + '"><img loading="lazy" decoding="async" src="'
-            + esc(asset(e.path)) + '" alt="' + esc(e.file) + '">'
+            + esc(asset(e.thumb || e.path)) + '" alt="' + esc(e.file) + '">'
             + '<div class="fmeta"><span>' + esc(e.shot || e.file) + '</span><span></span></div></div>';
         });
         h += '</div></div>';
@@ -294,7 +297,7 @@
     if (s.audits.length) {
       h += '<details><summary>' + esc(t('audits')) + ' · ' + s.audits.length + '</summary><div class="audits">';
       s.audits.forEach(function (a) {
-        h += '<img loading="lazy" decoding="async" src="' + esc(asset(a.path)) + '" alt="audit r'
+        h += '<img loading="lazy" decoding="async" src="' + esc(asset(a.thumb || a.path)) + '" alt="audit r'
           + a.round + '" data-lb-path="' + esc(a.path) + '">';
       });
       h += '</div></details>';
@@ -314,12 +317,17 @@
     ]);
     VID.projects.forEach(function (p) {
       h += '<h2>' + esc(title(p.title)) + '</h2>';
+      if (p.desc && (p.desc[LANG] || p.desc.zh)) {
+        h += '<p class="lead" style="font-size:13px;margin-top:-6px">'
+          + esc(p.desc[LANG] || p.desc.zh) + '</p>';
+      }
       h += '<p class="lead" style="font-size:13px">' + esc(p.count + ' ' + t('clipN') + ' · ' + mb(p.size))
         + (p.readme ? ' ｜ <a href="' + docURL(p.readme) + '" target="_blank" rel="noopener">' + esc(t('readme')) + ' ↗</a>' : '')
         + '</p><div class="vgrid">';
       p.clips.forEach(function (c) {
+        var poster = c.thumb || c.poster;
         h += '<div class="vcard"><video controls preload="none" playsinline'
-          + (c.poster ? ' poster="' + esc(asset(c.poster)) + '"' : '')
+          + (poster ? ' poster="' + esc(asset(poster)) + '"' : '')
           + '><source src="' + esc(asset(c.path)) + '" type="video/mp4"></video>'
           + '<div class="body"><div class="t">' + esc(c.file) + '</div>'
           + '<div class="meta">' + mb(c.size) + '</div></div></div>';

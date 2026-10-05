@@ -22,6 +22,8 @@
 import json
 import os
 import re
+import shutil
+import subprocess
 import sys
 from collections import Counter
 
@@ -29,6 +31,71 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT_DIR = os.path.join(ROOT, "site", "data")
 
 BIO = "projects/bio-splice"
+
+# ── 缩略图 ──────────────────────────────────────────────────────────────────
+# 网格若直出原图，bio-splice 单页要加载 266 张、合计 306 MB（均值 1.47 MB）。
+# 所以 build 时生成 site/thumbs/：**网格与封面用缩略图，灯箱仍用原图**。
+# 命名镜像源路径、扩展名改 .jpg，便于排查对应关系。
+THUMB_DIR = os.path.join("site", "thumbs")
+THUMB_MAX = 480          # 最长边（px）
+THUMB_Q = 4              # ffmpeg -q:v：2 最好 / 31 最差
+THUMB_STATE = {"enabled": True, "made": 0, "skipped": 0, "failed": 0}
+_FFMPEG = None
+
+
+def ffmpeg_bin():
+    global _FFMPEG
+    if _FFMPEG is None:
+        _FFMPEG = shutil.which("ffmpeg") or ""
+        if not _FFMPEG:
+            print("⚠️  找不到 ffmpeg —— 缩略图退化为原图，页面会变重", file=sys.stderr)
+    return _FFMPEG
+
+
+def thumb_of(src):
+    """返回 src 的缩略图（仓库相对路径），必要时生成。
+
+    ⚠️ 两个必须守住的约束（**都实际踩过**）：
+
+    1. `src` 可能是**绝对路径**。直接 `os.path.join(THUMB_DIR, src)` 会丢掉 `THUMB_DIR`
+       前缀（`os.path.join` 遇到绝对分量会丢弃前面的），把缩略图写进源目录。
+       → 一律先用 `os.path.relpath(src, ROOT)` 归一。
+    2. 源本身是 `.jpg` 时，上面那个 bug 会让输出路径**正好等于源路径**，
+       `ffmpeg -y` 会直接把原图覆盖成 480px 缩略图（不可逆的素材损毁）。
+       → 显式断言：输出必须落在 `THUMB_DIR` 内，且不等于源。
+
+    另：**增量**（存在且不比源旧就跳过，保证 build 幂等）；**优雅退化**（没有 ffmpeg 时返回原图）。
+    """
+    if not src or not os.path.isfile(src):
+        return None
+    # 归一为仓库相对路径（CWD == 仓库根 是本脚本的既有前提）
+    srcrel = os.path.relpath(src, ROOT) if os.path.isabs(src) else src
+    srcrel = srcrel.replace(os.sep, "/")
+    if not THUMB_STATE["enabled"]:
+        return srcrel
+    exe = ffmpeg_bin()
+    if not exe:
+        THUMB_STATE["failed"] += 1
+        return srcrel
+    out = os.path.join(THUMB_DIR, os.path.splitext(srcrel)[0] + ".jpg").replace(os.sep, "/")
+    if os.path.normpath(out) == os.path.normpath(srcrel):
+        raise RuntimeError("缩略图输出会覆盖源文件，已中止：%s" % srcrel)
+    if not os.path.normpath(out).startswith(os.path.normpath(THUMB_DIR) + os.sep):
+        raise RuntimeError("缩略图输出越出 %s，已中止：%s" % (THUMB_DIR, out))
+    if os.path.isfile(out) and os.path.getmtime(out) >= os.path.getmtime(src):
+        THUMB_STATE["skipped"] += 1
+        return out
+    os.makedirs(os.path.dirname(out), exist_ok=True)
+    vf = (f"scale='min({THUMB_MAX},iw)':'min({THUMB_MAX},ih)'"
+          f":force_original_aspect_ratio=decrease")
+    r = subprocess.run([exe, "-v", "error", "-y", "-i", srcrel, "-vf", vf,
+                        "-q:v", str(THUMB_Q), out],
+                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    if r.returncode != 0 or not os.path.isfile(out):
+        THUMB_STATE["failed"] += 1
+        return srcrel
+    THUMB_STATE["made"] += 1
+    return out
 
 # ── 双语标题（人工维护一次；其余文案从仓库里现成的中文文档取原文） ──────────────
 SUBJECT_TITLES = {
@@ -95,6 +162,46 @@ PROJECTS_DIR = "projects"
 COVERS = {
     # 图赞主图（成品卡片）比白描画心更适合当画廊封面
     "shanhai-jing": "projects/shanhai-jing/subjects/jiu-wei-hu/period-01/02-jiu-wei-hu-zan.png",
+}
+
+# 各项目的评分维度（**逐项目**，不要写进 app.js）：
+#   bio-splice 用 A–E 五维；shanhai-jing 用 A–F 六维（多一个「气韵生动」）。
+# 未登记的项目不带 rubric，前端就不渲染那一行。
+RUBRICS = {
+    "bio-splice": {
+        "zh": "A 移植到位 .30 ｜ B 底座完整 .20 ｜ C 解剖可信 .20 ｜ D 摄影统一 .15 ｜ E 概念可读 .15",
+        "en": "A transplant fidelity .30 | B base integrity .20 | C anatomy .20 | "
+              "D photographic unity .15 | E concept readability .15",
+    },
+}
+
+# 视频项目的一句话说明（**双语**，与 projects/README.md 的项目表同源）。
+# 以前 videos.json 的 desc 是空字符串；若改成抓 README 首段，抓到的是副标题而不是正文，
+# 而且中英同文。登记过的用这里，未登记的才退回 README 首段。
+VIDEO_DOCS = {
+    "giant-kingdom": (
+        "穿越到巨人女儿国：体型反差的视觉奇观（巨手遮天 / 掌心如地 / 一肩一世界）。",
+        "Into the giant kingdom: a body-scale contrast spectacle (a hand blotting out the sky, "
+        "a palm for ground, a shoulder for a world).",
+    ),
+    "step-scenery": (
+        "移步换景：少女穿越时空，一步一世界（茶室 → 竹林 → 沙漠 → 赛博 → 星空 → 雪原 → 茶室闭环）。",
+        "Step scenery: a girl crossing time, one step one world "
+        "(tea room → bamboo → desert → cyber → starfield → snow → back to the tea room).",
+    ),
+    "step-scenery-v2": (
+        "移步换景 v2：同故事，seedance-2.0 原生音频版（每镜自带场景音效）。",
+        "Step scenery v2: same story, seedance-2.0 native-audio version, each shot with its own ambience.",
+    ),
+    "survival-island": (
+        "荒岛求生：6 镜 30s 剧情短片，18 岁东方少女 × 极致反差（荒岛不荒、人更惨）。",
+        "Survival island: a 6-shot 30s narrative short — an 18-year-old Eastern girl and extreme contrast.",
+    ),
+    "tea-shake-dance": (
+        "来杯好茶摇一摇：艺术舞蹈短片，以「摇一摇」为动作母题，茶文化跳成现代舞（6 镜逐镜详解）。",
+        "Tea shake dance: an art-dance short built on the \"shake\" motif, turning tea culture into "
+        "modern dance (all 6 shots detailed).",
+    ),
 }
 
 VERDICT_OK = "✅"
@@ -238,6 +345,7 @@ def build_subject(sid, meta):
             item = {
                 "file": fn,
                 "path": rel(os.path.join(pdir, fn)),
+                "thumb": thumb_of(os.path.join(pdir, fn)),
                 "size": os.path.getsize(os.path.join(pdir, fn)),
                 "role": ent.get("role", "final"),
                 "shot": ent.get("source_shot", ""),
@@ -255,12 +363,14 @@ def build_subject(sid, meta):
             "id": name,
             "note": man.get("note", ""),
             "sheet": rel(os.path.join(pdir, "sheet.jpg")) if os.path.isfile(os.path.join(pdir, "sheet.jpg")) else None,
+            "thumb": thumb_of(os.path.join(pdir, "sheet.jpg")),
             "readme": rel(os.path.join(pdir, "README.md")) if os.path.isfile(os.path.join(pdir, "README.md")) else None,
             "bytes": sum(e["size"] for e in entries),
             "entries": entries,
         })
 
-    audits = [{"round": n, "path": rel(p)} for n, p in sorted(audit_files.items())]
+    audits = [{"round": n, "path": rel(p), "thumb": thumb_of(p)}
+              for n, p in sorted(audit_files.items())]
 
     def maybe(relpath):
         return rel(relpath) if os.path.isfile(relpath) else None
@@ -350,11 +460,13 @@ def build_other_projects():
         title = PROJECTS.get(pid, (pid, pid))
         desc = DOCS.get(pid, ("", ""))
         finals = count_finals(pdir)
+        cover = pick_cover(pid, pdir)
         items.append({
             "id": pid, "kind": "project",
             "title": {"zh": title[0], "en": title[1]},
             "desc": {"zh": desc[0], "en": desc[1]},
-            "cover": pick_cover(pid, pdir),
+            # 卡片用缩略图（首页封面曾合计 5.3 MB，bone-china-doll 单张就 3.89 MB）
+            "cover": thumb_of(os.path.join(ROOT, cover)) if cover else None,
             "readme": maybe_path(os.path.join(pdir, "README.md")),
             "stats": {"finals": finals} if finals else {},
         })
@@ -407,11 +519,13 @@ def build_videos():
         for clip in sorted(clips):
             size = os.path.getsize(clip)
             total += size
+            poster = pick_poster(clip)
             items.append({
                 "file": os.path.basename(clip),
                 "path": rel(clip),
                 "size": size,
-                "poster": pick_poster(clip),
+                "poster": poster,
+                "thumb": thumb_of(os.path.join(ROOT, poster)) if poster else None,
             })
 
         zh, en = pid, pid
@@ -427,7 +541,8 @@ def build_videos():
         projects.append({
             "id": pid,
             "title": {"zh": title_zh, "en": pid},
-            "desc": {"zh": "", "en": ""},
+            # 说明：登记过的取双语一句话，未登记的退回 README 首段
+            "desc": video_desc(pid, rp),
             "readme": maybe_path(rp),
             "clips": items,
             "poster": items[0]["poster"] if items else None,
@@ -437,8 +552,42 @@ def build_videos():
     return {"projects": projects, "clips": total}
 
 
+def video_desc(pid, readme):
+    """视频项目说明：登记过的用双语一句话，未登记的退化为 README 首段（中英同文）。"""
+    if pid in VIDEO_DOCS:
+        zh, en = VIDEO_DOCS[pid]
+        return {"zh": zh, "en": en}
+    return first_para(readme)
+
+
+def first_para(readme):
+    """取 README 的第一段正文，作为双语说明的兜底（中英同文，取自中文文档）。
+
+    跳过标题 / 引用块（`>`）/ 代码围栏 / 表格 / 图片行，取到第一段连续正文为止。
+    """
+    if not os.path.isfile(readme):
+        return {"zh": "", "en": ""}
+    para = []
+    with open(readme, encoding="utf-8") as fh:
+        for raw in fh:
+            line = raw.strip()
+            if not para:
+                if (not line or line.startswith(("#", ">", "```", "|", "!", "---"))
+                        or line.startswith("<!--")):
+                    continue
+                para.append(line)
+            else:
+                if not line or line.startswith(("#", "```", "|", "---")):
+                    break
+                para.append(line)
+    text = " ".join(para).strip()
+    return {"zh": text, "en": text}
+
+
 def main():
     quiet = "--quiet" in sys.argv
+    # `--no-thumbs`：跳过缩略图（网格直出原图）。给"只想看数据"或没有 ffmpeg 的环境用。
+    THUMB_STATE["enabled"] = "--no-thumbs" not in sys.argv
     os.makedirs(OUT_DIR, exist_ok=True)
 
     summary_path = os.path.join(BIO, "SUMMARY.md")
@@ -483,7 +632,9 @@ def main():
         "id": "video-projects", "kind": "videos",
         "title": {"zh": vz, "en": ve},
         "desc": {"zh": DOCS["video-projects"][0], "en": DOCS["video-projects"][1]},
-        "cover": videos["projects"][0]["poster"] if videos["projects"] else None,
+        # 缩略图挂在 clip 上（poster 是 .jpg，且可能被多个 clip 共用，故取首个 clip 的 thumb）
+        "cover": ((videos["projects"][0]["clips"][0].get("thumb")
+                   or videos["projects"][0].get("poster")) if videos["projects"] else None),
         # 指向项目索引（原 video-gen/README.md 已随扁平化合并删除）
         "readme": maybe_path(os.path.join(PROJECTS_DIR, "README.md")),
         "stats": {"projects": len(videos["projects"]), "clips": sum(p["count"] for p in videos["projects"])},
@@ -510,6 +661,11 @@ def main():
         "summary": bio_card["summary"],
         "plan": maybe_path(os.path.join(BIO, "PLAN.md")),
         "sheet": rel(os.path.join(BIO, "subjects", "horn-atlas", "sheet.jpg")),
+        # 首个子主题合图的缩略图（8.1 MB 的子主题合图不该直接进首屏）
+        "sheet_thumb": thumb_of(os.path.join(BIO, "subjects", "horn-atlas", "sheet.jpg")),
+        # 评分维度随项目走：bio-splice 是 A–E 五维，shanhai-jing 是 A–F 六维。
+        # 写死在 app.js 里的话，第二个项目的期详情页就会说错。
+        "rubric": RUBRICS.get("bio-splice"),
         "groups": groups,
         "subjects": subjects,
     }
@@ -536,6 +692,14 @@ def main():
               % (len(subjects), periods, finals, controls, scored))
         print("  视频 %d 个 / %.1f MB ｜ 其它项目 %d 个"
               % (index["counts"]["videos"], videos["clips"] / 1048576, len(others)))
+        t = THUMB_STATE
+        if not t["enabled"]:
+            print("  缩略图：已禁用（--no-thumbs），网格直出原图")
+        elif t["failed"] and not ffmpeg_bin():
+            print("  缩略图：⚠️  %d 张退化为原图（缺 ffmpeg）" % t["failed"])
+        else:
+            print("  缩略图：新生成 %d ｜ 命中缓存 %d ｜ 失败 %d（最长边 %dpx）"
+                  % (t["made"], t["skipped"], t["failed"], THUMB_MAX))
 
     # 交付基线校验（与 SUMMARY.md 的合计数对齐）
     want = {"subjects": 12, "periods": 60, "finals": 135, "controls": 59}
