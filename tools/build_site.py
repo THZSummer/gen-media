@@ -13,11 +13,10 @@
     python3 tools/build_site.py --quiet    # 只生成
 
 数据来源：
-    image-gen/projects/bio-splice/SUMMARY.md             交付清单表（子主题/组/期/成品/对照/均分）
-    image-gen/projects/bio-splice/subjects/*/period-*/manifest.json   每个成品的元数据
-    image-gen/projects/bio-splice/subjects/*/rounds/rNN-review.md     每个镜头的 A–E 评分
-    image-gen/projects/*/                                  其它项目的封面与说明
-    video-gen/projects/*/                                 视频与封面
+    projects/bio-splice/SUMMARY.md             交付清单表（子主题/组/期/成品/对照/均分）
+    projects/bio-splice/subjects/*/period-*/manifest.json   每个成品的元数据
+    projects/bio-splice/subjects/*/rounds/rNN-review.md     每个镜头的 A–E 评分
+    projects/*/                                  项目封面与说明（扁平化后图片与视频项目同处一处）
 """
 
 import json
@@ -29,7 +28,7 @@ from collections import Counter
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT_DIR = os.path.join(ROOT, "site", "data")
 
-BIO = "image-gen/projects/bio-splice"
+BIO = "projects/bio-splice"
 
 # ── 双语标题（人工维护一次；其余文案从仓库里现成的中文文档取原文） ──────────────
 SUBJECT_TITLES = {
@@ -273,7 +272,7 @@ def build_other_projects():
     items = []
 
     # bone-china-doll：挑一张 final-* 当封面
-    bdir = "image-gen/projects/bone-china-doll"
+    bdir = "projects/bone-china-doll"
     cover = None
     if os.path.isdir(bdir):
         cands = [p for p in walk_files(bdir) if os.path.basename(p).startswith("final") and p.endswith(".png")]
@@ -291,7 +290,7 @@ def build_other_projects():
         })
 
     # character-lookbook：示例项目，暂无成品图
-    cdir = "image-gen/projects/character-lookbook"
+    cdir = "projects/character-lookbook"
     if os.path.isdir(cdir):
         zh, en = PROJECTS["character-lookbook"]
         items.append({
@@ -321,7 +320,9 @@ POSTER_PREF = [
 
 
 def build_videos():
-    vroot = "video-gen/projects"
+    # 扁平化后图片与视频项目同在 projects/；图片项目里没有 .mp4，
+    # 下面的 `if not clips: continue` 自然把它们排除，无需另列白名单。
+    vroot = "projects"
     projects = []
     total = 0
     if not os.path.isdir(vroot):
@@ -426,7 +427,7 @@ def main():
         "title": {"zh": vz, "en": ve},
         "desc": {"zh": DOCS["video-gen"][0], "en": DOCS["video-gen"][1]},
         "cover": videos["projects"][0]["poster"] if videos["projects"] else None,
-        "readme": maybe_path("video-gen/README.md"),
+        "readme": maybe_path("README.md"),
         "stats": {"projects": len(videos["projects"]), "clips": sum(p["count"] for p in videos["projects"])},
     }
 

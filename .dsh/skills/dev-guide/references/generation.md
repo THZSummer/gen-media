@@ -28,14 +28,14 @@
 ## 3. 像素判据
 
 - 判断"改动是否生效"看**解码后的像素**，不看文件哈希：ComfyUI 把执行图写进 PNG 的 `tEXt`，同像素也会哈希不同。
-- 工具：`image-gen/skills/image-tools/scripts/pngdiff.py`（附 PSNR / SSIM）。
+- 工具：`skills/image-tools/scripts/pngdiff.py`（附 PSNR / SSIM）。
 - **成品与对照必须 PNG**：JPEG 会引入约 1.21 的平均通道差，吃掉"无操作 < 1.5"的判据。
 - 合并图 / 审计图用 JPEG（控体积）；子主题缩略图 700 px box-downscale（约 60–90 KB）。
 
 ## 4. 一个标准轮次
 
 ```sh
-cd image-gen/projects/<项目>
+cd projects/<项目>
 python3 run_round.py <轮次> --dry     # 先看逐字 prompt，不出图
 python3 run_round.py <轮次>           # 出图（Z-Image-Turbo 约 25 秒/张）
 python3 score.py ...                  # 评分复核，判 ✅

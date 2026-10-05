@@ -19,7 +19,7 @@
 ```
 
 `gits` 里 `Book/image-gen`、`Book/video-gen` 的内容与历史**已移除**（因为 Gitee 单仓 1 GB 配额），本地工作副本也已删除。
-所以：**gen-media 是这些内容的唯一副本，别在 gits 里重建同名目录。**
+所以：**gen-media 是这些内容的唯一副本**——`gits` 只用上面那段 `gitlink` **存指针**（`git ls-tree` 里显示为一个 commit sha），**不存任何副本**；别在 gits 里重建同名普通目录。
 
 ## 2. submodule 指针纪律（最常忘的一条）
 

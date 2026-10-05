@@ -10,16 +10,16 @@
     "zh": "",
     "en": ""
    },
-   "readme": "video-gen/projects/giant-kingdom/README.md",
+   "readme": "projects/giant-kingdom/README.md",
    "clips": [
     {
      "file": "butterfly_girl_v3_full.mp4",
-     "path": "video-gen/projects/giant-kingdom/out/video/butterfly_girl_v3_full.mp4",
+     "path": "projects/giant-kingdom/out/video/butterfly_girl_v3_full.mp4",
      "size": 13154449,
-     "poster": "video-gen/projects/giant-kingdom/out/storyboard/shot1_final.jpg"
+     "poster": "projects/giant-kingdom/out/storyboard/shot1_final.jpg"
     }
    ],
-   "poster": "video-gen/projects/giant-kingdom/out/storyboard/shot1_final.jpg",
+   "poster": "projects/giant-kingdom/out/storyboard/shot1_final.jpg",
    "size": 13154449,
    "count": 1
   },
@@ -33,16 +33,16 @@
     "zh": "",
     "en": ""
    },
-   "readme": "video-gen/projects/step-scenery/README.md",
+   "readme": "projects/step-scenery/README.md",
    "clips": [
     {
      "file": "step_scenery_full.mp4",
-     "path": "video-gen/projects/step-scenery/out/video/v1-mini/step_scenery_full.mp4",
+     "path": "projects/step-scenery/out/video/v1-mini/step_scenery_full.mp4",
      "size": 13519504,
-     "poster": "video-gen/projects/step-scenery/out/storyboard/shot1.jpg"
+     "poster": "projects/step-scenery/out/storyboard/shot1.jpg"
     }
    ],
-   "poster": "video-gen/projects/step-scenery/out/storyboard/shot1.jpg",
+   "poster": "projects/step-scenery/out/storyboard/shot1.jpg",
    "size": 13519504,
    "count": 1
   },
@@ -56,22 +56,22 @@
     "zh": "",
     "en": ""
    },
-   "readme": "video-gen/projects/step-scenery-v2/README.md",
+   "readme": "projects/step-scenery-v2/README.md",
    "clips": [
     {
      "file": "step_scenery_15s.mp4",
-     "path": "video-gen/projects/step-scenery-v2/out/video/step_scenery_15s.mp4",
+     "path": "projects/step-scenery-v2/out/video/step_scenery_15s.mp4",
      "size": 5919737,
-     "poster": "video-gen/projects/step-scenery-v2/out/storyboard/shot1.jpg"
+     "poster": "projects/step-scenery-v2/out/storyboard/shot1.jpg"
     },
     {
      "file": "step_scenery_15s_v2.mp4",
-     "path": "video-gen/projects/step-scenery-v2/out/video/step_scenery_15s_v2.mp4",
+     "path": "projects/step-scenery-v2/out/video/step_scenery_15s_v2.mp4",
      "size": 5427764,
-     "poster": "video-gen/projects/step-scenery-v2/out/storyboard/shot1.jpg"
+     "poster": "projects/step-scenery-v2/out/storyboard/shot1.jpg"
     }
    ],
-   "poster": "video-gen/projects/step-scenery-v2/out/storyboard/shot1.jpg",
+   "poster": "projects/step-scenery-v2/out/storyboard/shot1.jpg",
    "size": 11347501,
    "count": 2
   },
@@ -85,22 +85,22 @@
     "zh": "",
     "en": ""
    },
-   "readme": "video-gen/projects/survival-island/README.md",
+   "readme": "projects/survival-island/README.md",
    "clips": [
     {
      "file": "survival_island_full.mp4",
-     "path": "video-gen/projects/survival-island/out/survival_island_full.mp4",
+     "path": "projects/survival-island/out/survival_island_full.mp4",
      "size": 10960323,
-     "poster": "video-gen/projects/survival-island/out/seam_after.jpg"
+     "poster": "projects/survival-island/out/seam_after.jpg"
     },
     {
      "file": "survival_island_narrated.mp4",
-     "path": "video-gen/projects/survival-island/out/survival_island_narrated.mp4",
+     "path": "projects/survival-island/out/survival_island_narrated.mp4",
      "size": 10939181,
-     "poster": "video-gen/projects/survival-island/out/seam_after.jpg"
+     "poster": "projects/survival-island/out/seam_after.jpg"
     }
    ],
-   "poster": "video-gen/projects/survival-island/out/seam_after.jpg",
+   "poster": "projects/survival-island/out/seam_after.jpg",
    "size": 21899504,
    "count": 2
   },
@@ -114,16 +114,16 @@
     "zh": "",
     "en": ""
    },
-   "readme": "video-gen/projects/tea-shake-dance/README.md",
+   "readme": "projects/tea-shake-dance/README.md",
    "clips": [
     {
      "file": "tea_shake_narrated.mp4",
-     "path": "video-gen/projects/tea-shake-dance/out/video/tea_shake_narrated.mp4",
+     "path": "projects/tea-shake-dance/out/video/tea_shake_narrated.mp4",
      "size": 12325377,
-     "poster": "video-gen/projects/tea-shake-dance/out/storyboard/shot1_final.jpg"
+     "poster": "projects/tea-shake-dance/out/storyboard/shot1_final.jpg"
     }
    ],
-   "poster": "video-gen/projects/tea-shake-dance/out/storyboard/shot1_final.jpg",
+   "poster": "projects/tea-shake-dance/out/storyboard/shot1_final.jpg",
    "size": 12325377,
    "count": 1
   }

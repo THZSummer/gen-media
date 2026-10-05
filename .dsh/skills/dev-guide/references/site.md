@@ -13,7 +13,7 @@
 
 ## 2. 路径可移植性（踩过的坑）
 
-- 生成的 JSON 里存**仓库相对路径**（`image-gen/...`），**不要**存站点绝对路径（`/image-gen/...`）：
+- 生成的 JSON 里存**仓库相对路径**（`projects/...`），**不要**存站点绝对路径（`/projects/...`）：
   线上站点在 `/gen-media/` 子路径下，绝对路径会 404。
 - 前端用 `const BASE = location.pathname.replace(/[^/]*$/, '')` 推导前缀，再拼资源 URL。
 

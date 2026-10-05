@@ -55,11 +55,11 @@ run_check() { # $1=描述 $2=解释器 $3=脚本路径 ...
   if [ ! -e "$2" ]; then printf '  ⏭  %s（%s 不存在，跳过）\n' "$desc" "$2"; return; fi
   if "$@" >/dev/null 2>&1; then ok "$desc"; else bad "$desc"; fi
 }
-run_check "image-tools 离线自检"          python3 image-gen/skills/image-tools/scripts/test_skill.py
-run_check "text-to-image-comfyui mock"    python3 image-gen/skills/text-to-image-comfyui/scripts/test_skill.py
-run_check "image-edit-comfyui mock"       python3 image-gen/skills/image-edit-comfyui/scripts/test_skill.py
-run_check "comfyui_gen --check（真机）"    python3 image-gen/skills/text-to-image-comfyui/scripts/comfyui_gen.py --check
-run_check "comfyui_edit --check（真机）"   python3 image-gen/skills/image-edit-comfyui/scripts/comfyui_edit.py --check
+run_check "image-tools 离线自检"          python3 skills/image-tools/scripts/test_skill.py
+run_check "text-to-image-comfyui mock"    python3 skills/text-to-image-comfyui/scripts/test_skill.py
+run_check "image-edit-comfyui mock"       python3 skills/image-edit-comfyui/scripts/test_skill.py
+run_check "comfyui_gen --check（真机）"    python3 skills/text-to-image-comfyui/scripts/comfyui_gen.py --check
+run_check "comfyui_edit --check（真机）"   python3 skills/image-edit-comfyui/scripts/comfyui_edit.py --check
 
 hdr "4/4 开发规范技能自身格式（DSH 项目技能）"
 SK="$SKILL_DIR/SKILL.md"

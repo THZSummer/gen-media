@@ -71,5 +71,5 @@ user-invocable: false                               # 可选：只允许模型�
 
 ## 5. 技能文档不翻译
 
-技能面向 Agent 执行，**只有中文版**；`tools/i18n.py` 已排除 `.dsh/skills/`、`image-gen/skills/`、`video-gen/skills/`。
+技能面向 Agent 执行，**只有中文版**；`tools/i18n.py` 已排除 `.dsh/skills/`、`skills/`、`skills/`。
 但技能里**指向的仓库文档**（项目 README、SUMMARY 等）必须双语。

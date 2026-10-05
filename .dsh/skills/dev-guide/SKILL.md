@@ -8,7 +8,7 @@ whenToUse: 在 gen-media（或它的 gits submodule 检出）里新增/修改任
 
 ## Summary
 
-gen-media 是"图片生成 + 视频生成"的作品集仓库：两个内容库（`image-gen/`、`video-gen/`）、一个双语画廊站点（`site/`）、一条工具链（`tools/`）。这个技能是**项目级规范总纲**，把所有"往仓库里加东西"时必须遵守的约定收在一处；具体怎么出图/出片仍看各库的技能。
+gen-media 是"图片生成 + 视频生成"的作品集仓库，**扁平化为三块**：`skills/`（技能库，图片与视频技能合一处）、`projects/`（项目库，一项目一目录）、`methods/`（视频方法手册）；外加一个双语画廊站点（`site/`）与一条工具链（`tools/`）。这个技能是**项目级规范总纲**，把所有"往仓库里加东西"时必须遵守的约定收在一处；具体怎么出图/出片仍看 `skills/` 里的技能。
 
 三条最容易踩的硬约束：**非技能 markdown 必须中英成对**、**站点与界面文案必须双语**、**大体积中间产物不入库**。
 
@@ -26,7 +26,7 @@ gen-media 是"图片生成 + 视频生成"的作品集仓库：两个内容库�
 |---|------|------|
 | 1 | **站点必须支持双语**：默认中文，界面可切 EN，选择存在浏览器 | 点两次切换按钮，界面文案与数据标题都跟着换 |
 | 2 | **非技能 markdown 必须双语**：中文 `X.md` 为默认，英文为同名 `X.en.md`，两侧顶部一行语言切换 | `python3 tools/i18n.py check` 三项必须全 0 |
-| 3 | **技能文档只写中文**：`.dsh/skills/`、`image-gen/skills/`、`video-gen/skills/` 下的技能不做英文版 | `i18n.py` 已排除这些前缀，`check` 不应把它们算作缺件 |
+| 3 | **技能文档只写中文**：`.dsh/skills/`、`skills/`、`skills/` 下的技能不做英文版 | `i18n.py` 已排除这些前缀，`check` 不应把它们算作缺件 |
 | 4 | **大体积中间产物不入库**：`work/`、`out/r*/`、逐镜头 mp4 等留本地 | `git status` 里看不到；文档指向它们的链接属"预期断链" |
 | 5 | **定稿必须经评分过关**才进期目录；**每轮必带同轮底座对照** | 期目录有 `manifest.json`（`role: final` / `control`）与 `controls/` |
 | 6 | **新增技能要能被 DSH 发现**：放在 `.dsh/skills/<kebab-name>/SKILL.md` | 目录名 = frontmatter `name`；见 [references/skills.md](references/skills.md) |
@@ -51,9 +51,9 @@ python3 tools/i18n.py check    # 缺件 / 疑似未翻译 / 断链 必须全 0
 
 ### 新增项目
 
-1. 复制模板：`cp -r image-gen/projects/_template image-gen/projects/<项目名>`（视频项目用 `video-gen/projects/_template`）。
+1. 复制模板：`cp -r projects/_template projects/<项目名>`（视频项目用 `projects/_template`）。
 2. 在项目 `README.md` 写清交付物、图片清单、所用技能、验收标准；**同时写 `README.en.md`**。
-3. 把项目登记进 `image-gen/projects/README.md`（及 `.en.md`）。
+3. 把项目登记进 `projects/README.md`（及 `.en.md`）。
 4. 出图/出片遵循 [references/generation.md](references/generation.md) 的纪律。
 
 ### 新增技能
@@ -117,3 +117,4 @@ cd ../.. && git submodule update --remote GitHub/gen-media && git add GitHub/gen
 | 日期 | 版本 | 变更 |
 |------|------|------|
 | 2026-10-05 | v1.0 | 建立：按 DSH 项目技能规范（`.dsh/skills/<name>/SKILL.md`）落位，收录双语、站点、技能、生成、资产、协作六类规范与交付前检查脚本 |
+| 2026-10-05 | v1.1 | **随扁平化重构同步**：结构描述从"两个内容库"改为三块（`skills/` / `projects/` / `methods/`）；技能路径 `image-gen/skills/**`、`video-gen/skills/**` → `skills/**`；`i18n` 排除前缀随之收敛为 `(.dsh/skills/, skills/)`；站点文档的示例路径改为 `projects/...`；协作文档订正 submodule 事实（`gits` 以指针引用本仓库） | 小七 |

@@ -2,8 +2,9 @@
 
 > 🌐 Language: **English** | [中文](README.md)
 
-> A knowledge base and portfolio for **image generation** (local ComfyUI: Z-Image-Turbo / Qwen-Image / Fun Union ControlNet) and **video generation** (local fastvideo3; cloud Seedance via `arkcli`).
-> This repository is the standalone archive of the `Book/image-gen` and `Book/video-gen` libraries from the `gits` workspace: the tracked files were exported with `git archive` and rebuilt as a **single initial commit**, so the original repository's commit history is not preserved.
+> A knowledge base and portfolio for **image generation** (local ComfyUI: Z-Image-Turbo / Qwen-Image / Fun Union ControlNet) and **video generation** (local FastVideo FastH3; cloud Seedance via `arkcli`).
+>
+> 🗂️ **Flattened structure (2026-10-05)**: `image-gen/` and `video-gen/` are gone; the repository is split by **content kind** into three parts — `skills/`, `projects/` and `methods/`. Image and video techniques now live in **one skill library**.
 
 ---
 
@@ -11,119 +12,141 @@
 
 ```
 gen-media/
-├── README.md          ← you are here (main entry)
-├── .dsh/skills/       DSH project skill: dev-guide (the development conventions; skills stay Chinese-only)
-├── image-gen/         image generation: skills + projects + final images   (824 files / ~435 MB)
-│   ├── README.md          image library home
-│   ├── skills/            3 executable skills (text-to-image / control-image edit / deterministic tools)
-│   └── projects/          bio-splice, bone-china-doll, character-lookbook, _template
-├── site/              gallery front end (bilingual): app.css / app.js / data/*.json
-├── tools/             toolchain: build_site.py, preview.sh, i18n.py
-└── video-gen/         video generation: methods + skills + projects + films (235 files / ~114 MB)
-    ├── README.md          video library home
-    ├── methods/           10 method notes (text-to-video / image-to-video / reference video / audio-driven / cinematography …)
-    ├── skills/            local ComfyUI executable skills (fastvideo3 t2va / fl2va)
-    └── projects/          giant-kingdom, step-scenery, step-scenery-v2, survival-island, tea-shake-dance
+├── README.md          <- you are here (main entry)
+├── .dsh/skills/       DSH project skill: dev-guide (the development spec; skill docs are Chinese-only)
+├── skills/            Skill library: 5 executable techniques, image and video together
+│   ├── README.md          skill index (capability map + routing table + prerequisites and self-checks)
+│   ├── text-to-image-comfyui/      text to image: Z-Image-Turbo (fast) + Qwen-Image (detailed)
+│   ├── image-edit-comfyui/         ControlNet image editing: Z-Image Fun Union ControlNet
+│   ├── image-tools/                deterministic image tooling (no AI): contact sheets / diffs / metadata strip / resize
+│   ├── text-to-video-fastvideo3/   text to video with synced audio (t2va)
+│   └── image-to-video-fastvideo3/  image to video with synced audio (fl2va, first/last frame)
+├── projects/          Project library: 9 projects, one directory each (image and video together)
+│   ├── README.md          project index + conventions
+│   ├── _template/         project template (copy and use; shared by image and video)
+│   ├── bio-splice/ bone-china-doll/ character-lookbook/ shanhai-jing/     (image)
+│   └── giant-kingdom/ step-scenery/ step-scenery-v2/ survival-island/ tea-shake-dance/  (video)
+├── methods/           video method notes: 10 of them (mostly cloud Ark Seedance)
+├── site/              bilingual gallery front end: app.css / app.js / data/*.json
+└── tools/             toolchain: build_site.py, preview.sh, i18n.py
 ```
 
-**1059 files / about 550 MB** in total.
+---
+
+## 2. Entries
+
+| I want to... | Go to |
+|--------------|-------|
+| **add something here / align with the spec before committing** | [`.dsh/skills/dev-guide/SKILL.md`](.dsh/skills/dev-guide/SKILL.md) (bilingual, site, skill, generation, asset and collaboration conventions + a check script) |
+| make an image from text | [skills/text-to-image-comfyui](skills/text-to-image-comfyui/SKILL.md) (Z-Image-Turbo fast / Qwen-Image detailed) |
+| edit an image from a control image / change background | [skills/image-edit-comfyui](skills/image-edit-comfyui/SKILL.md) (Fun Union ControlNet) |
+| contact sheet / diff two images / strip metadata / resize | [skills/image-tools](skills/image-tools/SKILL.md) (no AI, deterministic) |
+| make a video with audio from text alone | [skills/text-to-video-fastvideo3](skills/text-to-video-fastvideo3/SKILL.md) (local FastH3) |
+| make a video from a storyboard image | [skills/image-to-video-fastvideo3](skills/image-to-video-fastvideo3/SKILL.md) (local FastH3) |
+| look up video technique and cost (cloud) | [methods/](methods/README.en.md) |
+| see a complete project's plan and finals | [projects/](projects/README.en.md) |
+| pick a technique / confirm the environment is healthy | [skills/README.md](skills/README.md) (routing table + one self-check command per technique) |
 
 ---
 
-## 2. Entry points
+## 3. What the three parts do
 
-| I want to… | Go to |
-|------|------|
-| **Add something to this repository / align with the conventions before committing** | [`.dsh/skills/dev-guide/SKILL.md`](.dsh/skills/dev-guide/SKILL.md) (bilingual docs, site, skills, generation, assets, collaboration + a check script) |
-| Generate an image from text | [image-gen/skills/text-to-image-comfyui](image-gen/skills/text-to-image-comfyui/SKILL.md) (local ComfyUI: Z-Image-Turbo for speed / Qwen-Image for detail) |
-| Edit an image / change the background following a control image | [image-gen/skills/image-edit-comfyui](image-gen/skills/image-edit-comfyui/SKILL.md) (Fun Union ControlNet) |
-| Build a contact sheet / compare two images / strip metadata / resize | [image-gen/skills/image-tools](image-gen/skills/image-tools/SKILL.md) (no AI, fully deterministic) |
-| Study a complete image project's plan and output | [image-gen/projects/](image-gen/projects/README.en.md) |
-| Turn storyboard frames into video | [video-gen/skills/image-to-video-fastvideo3](video-gen/skills/image-to-video-fastvideo3/SKILL.md) |
-| Generate a video with audio from text alone | [video-gen/skills/text-to-video-fastvideo3](video-gen/skills/text-to-video-fastvideo3/SKILL.md) |
-| Look up video techniques and cost | [video-gen/methods/](video-gen/methods/README.en.md) |
+| Part | Answers | Organisation |
+|------|---------|--------------|
+| [skills/](skills/README.md) | **how to do it** (executable technique) | one directory per technique, with `SKILL.md` + scripts + a self-check; **only what runs on the real machine is admitted** |
+| [projects/](projects/README.en.md) | **what to make** (concrete work) | one directory per project, planned once, referencing skills / methods |
+| [methods/](methods/README.en.md) | **how to generate** (video method notes, mostly cloud) | one directory per method, reusable |
 
----
-
-## 3. How the two libraries divide the work
-
-| Library | Answers | Organised as |
-|----|------|----------|
-| [image-gen](image-gen/README.en.md) | **what to generate / how to generate images** | skills (technical paths) × projects (concrete work) |
-| [video-gen](video-gen/README.en.md) | **how to turn images into video / how to generate video directly** | method notes × executable skills × projects |
-
-Images are the upstream step of video: the storyboard frames and first frames produced by `image-gen` are consumed by the I2V skills in `video-gen`. Conversely, `video-gen`'s `methods/text-to-image/` overlaps historically with `image-gen` (the video library was split off from the image capabilities).
+A **project** picks the **techniques** or **methods** it needs: for example bio-splice = text to image (Z-Image-Turbo, round by round) + deterministic tooling (contact sheets / pixel diffs / scoring evidence).
+Image projects are often the upstream step of video projects: storyboard images and first frames are produced under `projects/<image project>/out/` and consumed by `image-to-video-fastvideo3`.
 
 ---
 
 ## 4. Flagship project: bio-splice
 
-A cross-species, cross-kingdom "part transplant" image experiment series, and by far the largest project here:
+A cross-species, cross-kingdom "part transplant" image series, the largest project here:
 
 - **12 sub-themes × 5 periods = 60 periods, 135 finals** (cat-eagle, dragon-nines, turtle-snake, fish-bird, deer-crane, lichen, cordyceps, flytrap-fang, flower-bird, tree-beast, wing-atlas, horn-atlas)
 - Engine **Z-Image-Turbo** (ComfyUI, 1024² / 1280², 12 steps, about 25 s per image)
-- Every round carries a same-round **base control**; only images passing the five-axis A–E review are curated; **110 mechanism findings** accumulated so far (topic selection / wording / layout / presentation / process)
-- Entry: [image-gen/projects/bio-splice/README.md](image-gen/projects/bio-splice/README.en.md) ｜ full summary and 12 sub-theme contact sheets: [SUMMARY.md](image-gen/projects/bio-splice/SUMMARY.en.md)
+- Every round carries a same-round **base control**; only images passing the five-dimension A–E scoring become finals; **110 mechanism conclusions** accumulated
+- Entry: [projects/bio-splice/README.en.md](projects/bio-splice/README.en.md) ｜ full summary and 12 sub-theme contact sheets: [SUMMARY.en.md](projects/bio-splice/SUMMARY.en.md)
+
+Another one worth reading is [projects/shanhai-jing](projects/shanhai-jing/README.en.md): a project that records all eight rounds — including three failed iterations and one overturned path — in full.
 
 ---
 
 ## 5. Prerequisites
 
 | Dependency | Purpose |
-|------|------|
-| ComfyUI HTTP API (`192.168.3.5:18000`, remote Windows + RTX 4060 Ti 8 GB) | image text-to-image / control-image edit, video (Z-Image-Turbo, Qwen-Image, Fun Union ControlNet, fastvideo3) |
-| `ffmpeg` | image encode/decode, contact sheets, compositing, metadata stripping, video concatenation |
+|------------|---------|
+| ComfyUI HTTP API (`192.168.3.5:18000`, remote Windows + RTX 4060 Ti 8 GB) | image text-to-image / image editing, video (Z-Image-Turbo, Qwen-Image, Fun Union ControlNet, FastH3) |
+| `ffmpeg` | image codecs, contact sheets, compositing, metadata stripping, video concatenation |
 | Python 3 + numpy | scoring, per-pixel diffs, sheet generation (`image-tools` does not need Pillow) |
-| `arkcli` (Volcengine Ark) | **video library only**: Seedance video, TTS/ASR (the cloud image doc-skills were removed on 2026-10-05) |
+| `arkcli` (Volcengine Ark) | **used by `methods/` only**: Seedance video, TTS/ASR |
 
-> 📌 **Path convention**: every path in these documents is relative to the repository root (e.g. `image-gen/skills/...`, `video-gen/projects/...`).
-> On 2026-10-05 the remaining old absolute paths (`/home/usb/wks/gits/Book/...`, a layout that no longer exists) were all rewritten to relative paths, so they can be copied and run as-is.
+> NOTE on paths: every path in these docs is relative to the repository root (`skills/...`, `projects/...`) and can be copied and run directly.
+> After changing the environment, run the self-check command listed for each technique in `skills/README.md` before generating anything.
 
 ---
 
 ## 6. Size and provenance
 
-- **Source**: `Book/image-gen` + `Book/video-gen` at commit `b1e14ad` of the `gits` repository (Gitee).
-- **Import method**: `git archive` exported the tracked files (automatically excluding ignored intermediates) → moved to the repository root → one initial commit.
-- **The original repository no longer contains this material**: both directories were removed from the `gits` index and history with `filter-branch` (1059 files / 168→69 commits), and the local working copies were deleted. **This repository is the only copy of this content.**
-- **Not included**: `work/` and similar intermediates and rejected rounds — they are **deterministic** and can be reproduced pixel-for-pixel from a fixed seed, so they are not committed. Those intermediates on the workstation were removed along with the directories: the image ones can be regenerated from their seeds; the old intermediate videos under `video-gen` are superseded versions (the finals are all in this repository) and were not kept.
-- **Size**: 1059 files / about 550 MB, largest single file about 13 MB (a final `.mp4`), **no Git LFS** (every file is far below GitHub's 100 MB per-file limit).
-- **Image convention**: finals and controls are PNG (lossless, metadata stripped); contact sheets and audit sheets are JPEG (to keep the size down).
+- **Source**: `Book/image-gen` + `Book/video-gen` in the `gits` repository (Gitee).
+- **Import**: tracked files exported with `git archive` (ignored intermediates excluded automatically) -> moved to the repository root -> a single initial commit.
+- **`gits` now references this repository as a submodule**: `GitHub/gen-media` in `.gitmodules` (branch `main`) — it stores a **pointer, not a copy**. The original directories were removed from `gits` history (1059 files / 168 -> 69 commits).
+- **Not included**: intermediates such as `work/` and half-finished rounds — they are **deterministic** and reproduce pixel-for-pixel from a fixed seed, so they are not committed.
+- **Size**: largest single file about 13 MB (video `.mp4`), **no Git LFS**.
+- **Image conventions**: finals and controls are PNG (lossless, metadata stripped); contact sheets and audit images are JPEG (to control size).
 
 ---
 
 ## 7. Maintenance and extension
 
-**This repository *is* the source of truth** — there is no upstream. To add a skill or project, create the directory under `image-gen/` or `video-gen/`, organise it according to that library's `README.md`, then `git commit` + `git push` as usual.
+**This repository is the source of truth**: add techniques / projects / methods by creating directories under `skills/`, `projects/` and `methods/`, following each area's `README.md`.
 
-| What to add | Where | Reference |
-|----------|------|----------|
-| A new image project | `image-gen/projects/<project>/` | copy `image-gen/projects/_template/`; index in `image-gen/projects/README.md` |
-| A new image skill | `image-gen/skills/<skill>/SKILL.md` | skill index in `image-gen/skills/README.md` |
-| A new video project / method / skill | `video-gen/{projects,methods,skills}/` | see `video-gen/README.md` |
+| What to add | Where | Convention |
+|-------------|-------|------------|
+| a new technique | `skills/<name>/SKILL.md` | [skills/README.md](skills/README.md); only with scripts, a self-check and a real-machine run |
+| a new project | `projects/<name>/` | copy `projects/_template/`; index in [projects/README.en.md](projects/README.en.md) |
+| a new video method | `methods/<name>/` | see [methods/README.en.md](methods/README.en.md) |
 
-> Large intermediates (`work/`, `out/r*/`, per-shot mp4s, …) stay **out of the repository** per each directory's `.gitignore`; only finals and documents are kept, and anything else can be regenerated from the fixed seeds when needed.
+### Committing and collaborating (including the submodule pointer)
+
+```bash
+# 1) this repository
+git add -A && git commit -m "<what changed + the evidence>" && git push
+
+# 2) advance the submodule pointer in the parent repository gits
+#    (otherwise gits still records the old revision)
+cd ../.. && git submodule update --remote GitHub/gen-media \
+  && git add GitHub/gen-media \
+  && git commit -m "chore(submodule): gen-media → <sha>" && git push
+```
+
+> WARNING — **Gitee quota**: the `gits` repository already exceeds Gitee's 819 MB threshold (usage > 80%),
+> so pushing more large files may be hard-blocked.
+> Large intermediates (`work/`, `out/r*/`, per-shot mp4) stay uncommitted per each directory's `.gitignore`.
 
 ---
 
 ## 8. Language versions (i18n)
 
-**The Chinese `X.md` is the default version; the English one is the same-named `X.en.md`.** Both files start with a language-switch line, so **always update the pair together**.
+**The Chinese `X.md` is the default; the English version is `X.en.md` with the same name.** Both files carry a language-switch line at the top; **edit them in pairs**.
 
 | Convention | Detail |
-|------|------|
-| Naming | `README.md` ↔ `README.en.md`; `period-01/README.md` ↔ `period-01/README.en.md` |
-| Excluded | `.dsh/skills/**`, `image-gen/skills/**` and `video-gen/skills/**` stay Chinese-only (skill docs are meant for execution, not translation) |
-| Links | relative links inside an English file point at `.en.md`; when the target has no English version they point at the Chinese file (no dead links) |
-| Code | **kept verbatim**: commands, paths, filenames, model IDs, parameter names, seeds, raw prompts, sample strings |
-| Comments inside code blocks | **translated**: directory-tree annotations (the Chinese in `├── skills/   ← …`), `#` comments in bash examples, labels in ASCII diagrams — those are explanation, not content |
-| Tooling | `python3 tools/i18n.py status / switch / links / check` — coverage report, switch lines, link rewriting, health check |
+|------------|--------|
+| Naming | `README.md` ↔ `README.en.md`; `projects/<project>/README.md` ↔ `README.en.md` |
+| Excluded | `skills/**` (including `skills/README.md`) and `.dsh/skills/**` stay Chinese-only (skill docs are written for execution, not translation) |
+| Links | relative links inside an English file point to `.en.md`; when no English version exists they point to the Chinese one (no dead links) |
+| Code | **kept verbatim**: commands, paths, filenames, model IDs, parameter names, seeds, verbatim prompts, sample strings |
+| Comments inside code blocks | **translated**: directory-tree annotations, `#` comments in bash examples, labels in ASCII diagrams |
+| Tooling | `python3 tools/i18n.py status / switch / links / check` — coverage report, switch lines, link fixing, health check |
 
 ```bash
-python3 tools/i18n.py status          # which .md files still lack an English version
-python3 tools/i18n.py check           # health check: missing pairs / untranslated files / broken links
-python3 tools/i18n.py switch          # create or update the language-switch lines on both sides
-python3 tools/i18n.py links           # point relative links in English files at .en.md
+python3 tools/i18n.py status          # which markdown files still lack an English version
+python3 tools/i18n.py check           # health check: missing / apparently untranslated / broken English links
+python3 tools/i18n.py switch          # write or refresh the language-switch line on both sides
+python3 tools/i18n.py links           # repoint English relative links at .en.md
 ```
 
 ---
@@ -131,8 +154,7 @@ python3 tools/i18n.py links           # point relative links in English files at
 ## Revision history
 
 | Date | Version | Change | Author |
-|------|------|----------|------|
+|------|---------|--------|--------|
 | 2026-10-05 | v1.0 | Split `Book/image-gen` and `Book/video-gen` out of `gits` into a standalone repository | 小七 |
-| 2026-10-05 | v1.1 | Added `tools/sync-from-gits.sh` and the "Maintenance" section | 小七 |
-| 2026-10-05 | v1.2 | The original `gits` working copy and history were cleaned up; this repository became the only copy; the obsolete sync script was removed and "Maintenance" became "Maintenance and extension" | 小七 |
-| 2026-10-05 | v1.3 | Added the bilingual convention (Chinese default + `X.en.md`) and `tools/i18n.py`; wording updated after the skill library was reduced to 3 executable skills | 小七 |
+| 2026-10-05 | v1.3 | Added the bilingual convention (Chinese default + `X.en.md`) and `tools/i18n.py` | 小七 |
+| 2026-10-05 | v2.0 | **Flattening refactor**: dropped the `image-gen/` + `video-gen/` split in favour of `skills/` (5 techniques together) + `projects/` (9 projects) + `methods/` (video methods); the two skill indexes merged, the two project indexes and templates merged; `tools/{i18n,build_site}.py` and dev-guide updated; **corrected the inaccurate claim that "this repository is the only copy and has no upstream"** — `gits` references it as a submodule | 小七 |
