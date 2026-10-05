@@ -28,10 +28,12 @@
 
 | # | 所用技能 | 链接 | 输入素材 |
 |---|----------|------|----------|
-| 1 | 文生图 | [text-to-image](../../skills/text-to-image/SKILL.md) | - |
-| 2 | 图像编辑 | [image-editing](../../skills/image-editing/SKILL.md) | base.jpg |
+| 1 | 文生图 | [text-to-image-comfyui](../../skills/text-to-image-comfyui/SKILL.md) | - |
+| 2 | 控制图生图 | [image-edit-comfyui](../../skills/image-edit-comfyui/SKILL.md) | base.jpg（控制图） |
+| 3 | 合图 / 比对 / 剥元数据 | [image-tools](../../skills/image-tools/SKILL.md) | 成品图 |
 
-> 按需组合 skills/ 下的技能。质量/成本权衡见 [quality-and-cost](../../skills/quality-and-cost/SKILL.md)，多视角一致性见 [multi-view-consistency](../../skills/multi-view-consistency/SKILL.md)，多图融合见 [multi-image-reference](../../skills/multi-image-reference/SKILL.md)。
+> 按需组合 [skills/](../../skills/README.md) 下的技能（当前共 3 个，全部带脚本与自检入口）。
+> 每个技能的第一件事都是**自检**：`--check` 或 `test_skill.py`，环境不健康就别提交任务。
 
 ---
 
@@ -73,14 +75,14 @@ arkcli +gen --model "$MODEL" --profile platform_cn-beijing_accountwide \
 
 ## 六、执行计划
 
-| 阶段 | 模型 | 尺寸 | 目的 |
+| 阶段 | 引擎 | 尺寸 | 目的 |
 |------|------|------|------|
-| 定向 | lite | 目标比例小图 | 验证主体/风格/构图 |
-| 定型 | lite | 目标尺寸 | 定 prompt 与 seed |
-| 定稿 | lite/pro | 目标尺寸 | 出成品 |
-| 衍生 | pro | 目标尺寸 | 编辑 / 多视角 / 多场景 |
+| 定向 | Z-Image-Turbo（12 步，~25s/张） | 目标比例小图 | 验证主体 / 风格 / 构图 |
+| 定型 | Z-Image-Turbo | 目标尺寸 | 定 prompt 与 seed |
+| 定稿 | Z-Image-Turbo；细节不足换 Qwen-Image（7–10 min/张） | 目标尺寸 | 出成品 |
+| 衍生 | `image-edit-comfyui`（以定稿为控制图） | 目标尺寸 | 换场景 / 换装扮 / 补角度 |
 
-详见 [quality-and-cost](../../skills/quality-and-cost/SKILL.md)。
+详见 [skills/README.md](../../skills/README.md) 的「运行前提与自检」。
 
 ---
 

@@ -24,7 +24,7 @@ whenToUse: 当需要用一张控制图（线稿/照片/Canny 边缘图）驱动�
 ## 前置检查
 
 ```bash
-cd /home/usb/wks/gits/Book/image-gen/skills/image-edit-comfyui
+cd image-gen/skills/image-edit-comfyui
 
 python3 scripts/comfyui_edit.py --check     # 四个模型文件是否在位
 python3 scripts/comfyui_edit.py --list      # 工作流可用参数 + profile 参数 + 默认值

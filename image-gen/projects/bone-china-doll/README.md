@@ -488,7 +488,7 @@ hems lifting`）− 繁密织金（`heavy gold embroidery` 入负向）。
 | 引擎 / seed / 尺寸 / steps | Z-Image-Turbo / 610 / 1024×1360 / 16 |
 | prompt | 见 [docs/r6.md §定稿选择](docs/r6.md) |
 
-> ⚠️ 待接入视频：本项目定稿比例 1024×1360（≈3:4），若后续进 video-gen 的 I2V，需按目标视频比例重出（见 [image-workflow](../../skills/image-workflow/SKILL.md)）。
+> ⚠️ 待接入视频：本项目定稿比例 1024×1360（≈3:4），若后续进 video-gen 的 I2V，需按目标视频比例重出（见 [image-to-video-fastvideo3](../../../video-gen/skills/image-to-video-fastvideo3/SKILL.md)）。
 
 ---
 

@@ -19,7 +19,7 @@ whenToUse: 当用户要用本机 ComfyUI 把一张静图变成带声音的短视
 ## 前置检查
 
 ```bash
-cd /home/usb/wks/gits/Book/video-gen/skills/image-to-video-fastvideo3
+cd video-gen/skills/image-to-video-fastvideo3
 
 python3 scripts/comfyui_i2v.py --check    # 4 个模型文件 + 11 个节点类是否在位
 python3 scripts/comfyui_i2v.py --list     # 工作流接口默认值 + profile 参数 + 默认值

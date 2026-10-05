@@ -12,7 +12,7 @@
 - **用途**：角色资产沉淀（不是一次性出图，而是**可派生**的锚点库）
 - **交付时间**：<日期>
 
-> ⚠️ **合规前置**：角色为原创虚构，不指涉任何真实人物或既有 IP；服装与姿态按正常表达设计。详见 [content-safety](../../skills/content-safety/SKILL.md)。
+> ⚠️ **合规前置**：角色为原创虚构，不指涉任何真实人物或既有 IP；服装与姿态按正常表达设计。生成时按需自查内容安全与平台审核规则。
 
 ---
 
@@ -32,11 +32,15 @@
 
 | 阶段 | 所用技能 | 链接 | 输入素材 |
 |------|----------|------|----------|
-| 初版正面 | 文生图 | [text-to-image](../../skills/text-to-image/SKILL.md) | - |
-| 补侧/背/半侧视角 | 多视角一致性 | [multi-view-consistency](../../skills/multi-view-consistency/SKILL.md) | 正面锚点图 |
-| 换场景 | 图像编辑 | [image-editing](../../skills/image-editing/SKILL.md) | 正面锚点图 |
-| 场景融合（可选） | 多图参考 | [multi-image-reference](../../skills/multi-image-reference/SKILL.md) | 角色图 + 场景图 |
-| 换装扮 | 图像编辑 | [image-editing](../../skills/image-editing/SKILL.md) | 正面锚点图 |
+| 初版正面 | 文生图 | [text-to-image-comfyui](../../skills/text-to-image-comfyui/SKILL.md) | - |
+| 补侧/背/半侧视角 | 控制图生图（以正视图为控制图，Canny 约束构图与姿态） | [image-edit-comfyui](../../skills/image-edit-comfyui/SKILL.md) | 正面锚点图 |
+| 换场景 | 控制图生图（人物轮廓为控制图，背景在 prompt 里改） | [image-edit-comfyui](../../skills/image-edit-comfyui/SKILL.md) | 正面锚点图 |
+| 换装扮 | 控制图生图 | [image-edit-comfyui](../../skills/image-edit-comfyui/SKILL.md) | 正面锚点图 |
+| 定稿整理 | 合图 / 比对 / 剥元数据 | [image-tools](../../skills/image-tools/SKILL.md) | 全部成品 |
+
+> ⚠️ 原先的「多视角一致性」「多图参考（场景融合）」「图像编辑」三个**云端文档技能**已于 2026-10-05 移除（无脚本、无法自检）。
+> 现在的做法是**用控制图生图（`image-edit-comfyui`）替代**：拿已定稿的正面图当控制图，约束住人物轮廓与姿态，只让 prompt 改场景/装扮。
+> 纯"多图融合"（角色图 × 场景图合成一张）目前**没有可用技能**，需要时再补一个带脚本的实现。
 
 ---
 
@@ -166,7 +170,7 @@ arkcli +gen --model "$MODEL" --profile platform_cn-beijing_accountwide \
 - [ ] 尺寸用 `--size`，比例与用途一致
 - [ ] 全部产物已落盘，不依赖 24h URL
 - [ ] 产出记录表已补齐 model + seed + 路径
-- [ ] 若进视频：比例与 video-gen I2V 目标一致，见 [image-workflow](../../skills/image-workflow/SKILL.md)
+- [ ] 若进视频：比例与 video-gen I2V 目标一致，见 [image-to-video-fastvideo3](../../../video-gen/skills/image-to-video-fastvideo3/SKILL.md)
 
 ---
 
@@ -176,3 +180,4 @@ arkcli +gen --model "$MODEL" --profile platform_cn-beijing_accountwide \
 |------|------|----------|------|
 | 2026-10-02 | v1.0 | 新建示例项目：原创角色多角度/多场景/多装扮设定图库规划 | 小七 |
 | 2026-10-02 | v1.1 | 随 `methods/`→`skills/` 改组：技能链接指向 SKILL.md，术语改为"技能" | 小七 |
+| 2026-10-05 | v1.2 | 技能收敛后重映射：三个云端文档技能（text-to-image / multi-view-consistency / image-editing / multi-image-reference）已移除，改为「文生图 + 控制图生图 + 确定性工具」三件本地技能的可行路线；多图融合暂缺 | 小七 |

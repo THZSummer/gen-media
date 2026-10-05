@@ -12,7 +12,7 @@ gen-media/
 ├── README.md          ← 你在这里（总入口）
 ├── image-gen/         图片生成：技能线 + 项目线 + 成品图      （824 文件 / 约 435 MB）
 │   ├── README.md          图片库总导航
-│   ├── skills/            12 个技能，每目录一个 SKILL.md
+│   ├── skills/            3 个可执行技能（文生图 / 控制图生图 / 确定性图像工具）
 │   └── projects/          bio-splice、bone-china-doll、character-lookbook、_template
 └── video-gen/         视频生成：方法 + 技能 + 项目 + 成品视频  （235 文件 / 约 114 MB）
     ├── README.md          视频库总导航
@@ -29,9 +29,9 @@ gen-media/
 
 | 我想… | 去哪 |
 |------|------|
-| 用文字出一张图 | [image-gen/skills/text-to-image-comfyui](image-gen/skills/text-to-image-comfyui/SKILL.md)（本机 ComfyUI）或 [text-to-image](image-gen/skills/text-to-image/SKILL.md)（方舟云端） |
-| 按控制图改图 / 换背景 | [image-gen/skills/image-edit-comfyui](image-gen/skills/image-edit-comfyui/SKILL.md)、[image-editing](image-gen/skills/image-editing/SKILL.md) |
-| 多图参考融合、多视角一致 | [multi-image-reference](image-gen/skills/multi-image-reference/SKILL.md)、[multi-view-consistency](image-gen/skills/multi-view-consistency/SKILL.md) |
+| 用文字出一张图 | [image-gen/skills/text-to-image-comfyui](image-gen/skills/text-to-image-comfyui/SKILL.md)（本机 ComfyUI：Z-Image-Turbo 快 / Qwen-Image 细） |
+| 按控制图改图 / 换背景 | [image-gen/skills/image-edit-comfyui](image-gen/skills/image-edit-comfyui/SKILL.md)（Fun Union ControlNet） |
+| 合图 / 比对两张图 / 去元数据 / 缩放裁切 | [image-gen/skills/image-tools](image-gen/skills/image-tools/SKILL.md)（不用 AI，确定性） |
 | 看一个完整图片项目的规划与成品 | [image-gen/projects/](image-gen/projects/README.md) |
 | 从分镜图生成视频 | [video-gen/skills/image-to-video-fastvideo3](video-gen/skills/image-to-video-fastvideo3/SKILL.md) |
 | 纯文字生成带音频的视频 | [video-gen/skills/text-to-video-fastvideo3](video-gen/skills/text-to-video-fastvideo3/SKILL.md) |
@@ -65,12 +65,13 @@ gen-media/
 
 | 依赖 | 用途 |
 |------|------|
-| ComfyUI HTTP API（`192.168.3.5:18000`，远程 Windows + RTX 4060 Ti 8 GB） | 本地文生图 / 图生图 / 视频（Z-Image-Turbo、fastvideo3） |
-| `arkcli`（火山方舟） | 云端 Seedream 图片、Seedance 视频、TTS/ASR |
-| `ffmpeg` | 图片编解码、接触印相、合图、视频拼接 |
-| Python 3 + Pillow / numpy | 评分、逐像素差分、图集生成 |
+| ComfyUI HTTP API（`192.168.3.5:18000`，远程 Windows + RTX 4060 Ti 8 GB） | 图片文生图 / 图生图、视频（Z-Image-Turbo、Qwen-Image、Fun Union ControlNet、fastvideo3） |
+| `ffmpeg` | 图片编解码、接触印相、合图、去元数据、视频拼接 |
+| Python 3 + numpy | 评分、逐像素差分、图集生成（`image-tools` 不需要 Pillow） |
+| `arkcli`（火山方舟） | **仅视频库在用**：Seedance 视频、TTS/ASR（图片侧的云端文档技能已于 2026-10-05 移除） |
 
-> ⚠️ **路径说明**：文档中出现的 `/home/usb/wks/gits/Book/image-gen/...` 之类的绝对路径，是拆分前作者工作机的目录布局；**该布局已不存在**（原目录已删除）。以 `image-gen/`、`video-gen/` 为根理解即可，各文档之间的相对链接在本仓库内均有效。
+> 📌 **路径约定**：所有文档里的路径都以仓库根为基准（如 `image-gen/skills/...`、`video-gen/projects/...`）。
+> 2026-10-05 已把残留的旧绝对路径（`/home/usb/wks/gits/Book/...`，该布局已废弃）全部改为相对路径，可直接复制执行。
 
 ---
 

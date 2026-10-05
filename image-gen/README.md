@@ -1,9 +1,15 @@
-# 图片生成（Image Generation）- 总导航
+# 图片生成（Image Generation）· 总导航
 
-> 基于**火山方舟 Ark** 图片生成能力（豆包 Seedream 系列）的图片生成知识库。
-> 💰 **Profile 路由**：`doubao-seedream-5-0-lite` 走 agent-plan（默认 profile，Medium 套餐含）；`doubao-seedream-5-0-pro-260628` 走 platform 按量（`--profile platform_cn-beijing_accountwide`）。两者不可混。
-> 工具入口：`arkcli +gen`（三步工作流：① `resources list` 查可用模型 -> ② `models get` 查 supported_params -> ③ `+gen` 生成）。
-> 📌 **图片是同步返回的**：提交即出图，没有 `task_id`、不需要 `gen get` 轮询（轮询是视频的异步语义）。
+> 基于**本机 ComfyUI**（远程 GPU 机 `http://192.168.3.5:18000`）的图片生成库：
+> 文生图（Z-Image-Turbo / Qwen-Image 两个引擎）、控制图生图（Z-Image Fun Union ControlNet），
+> 外加一组**不用 AI** 的确定性图像工具（ffmpeg + numpy：速览图 / 像素比对 / 去元数据 / 缩放裁切）。
+> 📌 图片是**同步**返回的：提交即出图，没有 `task_id`、不需要轮询（轮询是视频的异步语义）。
+
+> ⚠️ **2026-10-05 起，本目录只保留带脚本、可在真机跑通的技能。** 原先 9 个只描述方舟 Ark Seedream
+> 云端用法、没有脚本也没有自检入口的纯文档技能已移除：`text-to-image`、`image-editing`、
+> `multi-image-reference`、`multi-view-consistency`、`prompt-engineering`、`parameters-and-output`、
+> `quality-and-cost`、`content-safety`、`image-workflow`。
+> 需要时从 git 历史取回：`git log --diff-filter=D --oneline -- image-gen/skills/`。
 
 ---
 
@@ -15,22 +21,16 @@
 image-gen/
 ├── README.md          ← 你在这里（总导航）
 ├── skills/           技能库：每个技能一个目录，入口为 SKILL.md，讲"怎么生成"
-│   ├── README.md          技能索引（能力地图 + 选路表 + 三步法）
-│   ├── text-to-image-comfyui/  ComfyUI 文生图：远程 Z-Image-Turbo 工作流（HTTP API）
-│   ├── image-edit-comfyui/     ComfyUI 图生图：ControlNet 控制图驱动（Z-Image Fun Union）
-│   ├── text-to-image/     文生图：方舟 Seedream 云端 API（纯 prompt 出图）
-│   ├── image-editing/     图像编辑（单图改背景/换元素）
-│   ├── multi-image-reference/  多图参考（角色 × 场景融合）
-│   ├── multi-view-consistency/ 多视角一致性（正面图→背面/侧面）
-│   ├── prompt-engineering/     提示词工程（结构化 prompt 写法）
-│   ├── parameters-and-output/  参数与输出（--size / --n / --seed …）
-│   ├── quality-and-cost/       质量与成本（尺寸/张数/模型权衡）
-│   ├── content-safety/         内容安全（审核拦截与合规）
-│   └── image-workflow/         图片工作流（T2I → I2V 衔接、落盘、资产库）
+│   ├── README.md                 技能索引（能力地图 + 选路表 + 运行前提与自检）
+│   ├── text-to-image-comfyui/    ComfyUI 文生图：Z-Image-Turbo（快）+ Qwen-Image（细）两个引擎
+│   ├── image-edit-comfyui/       ComfyUI 图生图：Fun Union ControlNet 控制图驱动
+│   └── image-tools/              确定性图像工具（不用 AI）：速览图 / 像素比对 / 去元数据 / 缩放裁切
 └── projects/          具体项目：一项目一目录，讲"生成什么"
-    ├── README.md         项目索引 + 建项目规范
-    ├── _template/        项目模板（复制即用）
-    └── character-lookbook/  示例项目：角色多角度设定图库
+    ├── README.md              项目索引 + 建项目规范
+    ├── _template/             项目模板（复制即用）
+    ├── bio-splice/            生物拼接：12 子主题 × 5 期 / 135 件成品（主力项目）
+    ├── bone-china-doll/       骨瓷人偶系列
+    └── character-lookbook/    角色多角度设定图库（示例项目）
 ```
 
 ### 两条线的关系
@@ -40,19 +40,20 @@ image-gen/
 | **[skills/](skills/README.md)** | **怎么生成**（技术路径） | 按技术路径分目录，每目录一个 `SKILL.md`，可复用 |
 | **[projects/](projects/README.md)** | **生成什么**（具体业务） | 按项目分目录，引用 skills |
 
-一个**项目**按需挑选若干**技能**组合完成：例如"角色设定图库" = 文生图（初版）+ 多视角一致性（补角度）+ 图像编辑（换装）+ 多图参考（场景融合）。
+一个**项目**按需挑选若干**技能**组合完成：例如"生物拼接" = 文生图（Z-Image-Turbo 逐轮出图）+ 确定性工具（合图 / 逐像素比对 / 评分佐证）。
 
 ---
 
 ## 二、导航
 
-- 📚 **[skills/](skills/README.md)** — 技能库
-  - 出图（文生图）→ 改图（图像编辑）→ 融合（多图参考）→ 一致性（多视角）四条生成路径 + 提示词 / 参数 / 质量成本 / 安全 / 工作流五个横切技能
+- 📚 **[skills/](skills/README.md)** — 技能库（3 个，全部带脚本）
+  - 出图（文生图）→ 改图（控制图生图）两条生成路径 + 一个横切的确定性图像工具箱
   - 每个技能含 `SKILL.md`：frontmatter（触发描述）+ 何时用 + 前置检查 + 执行步骤 + 踩坑点 + 检查清单
+  - `skills/README.md` 里有**运行前提与自检命令**表：每个技能一条命令，随时可确认环境是否还健康
 - 🗂️ **[projects/](projects/README.md)** — 具体项目
   - 一项目一目录，每个项目 `README.md` 是该项目的图片生成规划
   - 新建项目：复制 [_template/](projects/_template/README.md) 改写
-- 🎬 **配套视频库**：[../video-gen/](../video-gen/README.md)（图片是视频的前置工序，分镜图/T2I 首帧在那边被消费）
+- 🎬 **配套视频库**：[../video-gen/](../video-gen/README.md)（图片是视频的前置工序，分镜图 / 首帧在那边被消费）
 
 ---
 
@@ -64,59 +65,55 @@ image-gen/
 
 | 你手里有 | 加载哪个技能 |
 |----------|-----------|
-| 只有文字描述（默认走本机 ComfyUI） | [text-to-image-comfyui](skills/text-to-image-comfyui/SKILL.md) |
-| 有一张控制图要按结构出图 | [image-edit-comfyui](skills/image-edit-comfyui/SKILL.md) |
-| 要用方舟 Seedream 云端文生图 | [text-to-image](skills/text-to-image/SKILL.md) |
-| 一张图，想改背景/换元素 | [image-editing](skills/image-editing/SKILL.md) |
-| 多张图（角色 + 场景），想融合 | [multi-image-reference](skills/multi-image-reference/SKILL.md) |
-| 一张图，想补其它视角 | [multi-view-consistency](skills/multi-view-consistency/SKILL.md) |
-| 已有图，想接入视频 | [image-workflow](skills/image-workflow/SKILL.md) → video-gen I2V |
+| 只有文字描述 | [text-to-image-comfyui](skills/text-to-image-comfyui/SKILL.md)（Z-Image-Turbo 快出 / Qwen-Image 高细节） |
+| 有一张控制图（线稿/照片/姿态图），要按结构出图 | [image-edit-comfyui](skills/image-edit-comfyui/SKILL.md) |
+| 要把多张图拼成速览图 / 比对两张图是否相同 / 去元数据 / 缩放裁切 | [image-tools](skills/image-tools/SKILL.md) |
 
 ### 建项目
 
 进 [projects/](projects/README.md)，复制 `_template/` 建项目目录，在项目 README 里规划交付物、图片清单、所用技能。
 
-### 通用三步法（所有技能通用）
+### 最常用的命令（都是真机验证过的）
 
 ```bash
-# Step 1：列当前 profile 可用的图片模型
-arkcli resources list --modality image
+# 文生图：Z-Image-Turbo（快，约 25 秒/张 @1024²）
+cd image-gen/skills/text-to-image-comfyui
+python3 scripts/comfyui_gen.py --check                       # 先确认服务器可达
+python3 scripts/comfyui_gen.py --prompt "..." --out-dir out/
 
-# Step 2：查选定模型 $MODEL 支持的参数（sp 空则用 modality 兜底默认）
-arkcli models get "$MODEL" --transform supported_params
+# 文生图：Qwen-Image（细节引擎，约 7–10 分钟/张，支持真负向）
+python3 scripts/comfyui_qwen.py --check                      # 三个模型文件是否在位
+python3 scripts/comfyui_qwen.py --prompt "..." --negative "blurry, plastic, cartoon" \
+  --width 1024 --height 1360 --steps 24 --cfg 3.0 --seed 7 --out-dir out/
 
-# Step 3：按可用参数生成（图片同步返回，无需轮询）
-arkcli +gen --model "$MODEL" --size "2560x1440" --output-format jpeg \
-  "<prompt>" --save-to out/
+# 控制图生图（输出尺寸默认 = 控制图尺寸）
+cd ../image-edit-comfyui
+python3 scripts/comfyui_edit.py --check                      # 四个模型文件是否在位
+python3 scripts/comfyui_edit.py --image ref.png --prompt "..." --out-dir out/
+
+# 确定性工具：整轮速览图 / 像素比对 / 剥元数据
+cd ../image-tools
+python3 scripts/contact_sheet.py --round out/r1/round.json -o out/r1/sheet.png --cols 3
+python3 scripts/pngdiff.py a.png b.png --json                # 0=同 1=异 2=出错
+python3 scripts/ffkit.py strip in.png -o out.png             # 剥 tEXt（像素不变）
 ```
 
-### 最常用的两条命令
-
-```bash
-# 文生图：lite（agent-plan 默认 profile）
-MODEL="doubao-seedream-5-0-lite"
-arkcli +gen --model "$MODEL" --size "2560x1440" --output-format jpeg \
-  "<prompt>" --save-to out/
-
-# 图像编辑：pro（platform 按量，完整版本 ID，无像素下限）
-MODEL="doubao-seedream-5-0-pro-260628"
-arkcli +gen --model "$MODEL" --profile platform_cn-beijing_accountwide \
-  --input @base.jpg --size "2560x1440" --output-format jpeg \
-  "把背景改成赛博都市夜景，霓虹灯箱与车流光轨，人物保持完全不变" --save-to out/
-```
-
-详见 [skills/README.md](skills/README.md)。术语速查亦见该篇。
+详见 [skills/README.md](skills/README.md)。
 
 ---
 
-## 四、当前模型速查（2026-08 实测，以 `resources list` 为准）
+## 四、运行前提
 
-| 模型 | 完整 ID | Profile | 核心能力 | 像素下限 |
-|------|---------|---------|----------|----------|
-| Seedream 5.0 Lite | `doubao-seedream-5-0-lite` | agent-plan（默认） | 文生图 | ⚠️ ≥3,686,400 |
-| Seedream 5.0 Pro | `doubao-seedream-5-0-pro-260628` | platform 按量 | 文生图 + **图像编辑/多图参考** | ✅ 无下限 |
+| 依赖 | 用途 | 当前状态（2026-10-05 实测） |
+|------|------|------------------------------|
+| ComfyUI `http://192.168.3.5:18000`（远程 Windows + RTX 4060 Ti 8GB） | 全部出图技能 | ✅ 可达（ComfyUI 0.38.0） |
+| 模型 `z_image_turbo_bf16` / `qwen_3_4b` / `ae` | Z-Image 文生图 | ✅ 三件在位 |
+| 模型 `qwen_image_2512_fp8_e4m3fn` / `qwen_2.5_vl_7b_fp8_scaled` / `qwen_image_vae` | Qwen-Image 文生图 | ✅ 三件在位 |
+| 模型 `Z-Image-Turbo-Fun-Controlnet-Union.safetensors` | 控制图生图 | ✅ 在位（经 `ModelPatchLoader` + `ZImageFunControlnet`） |
+| `ffmpeg` / `ffprobe` | 图像编解码、速览图、去元数据 | ✅ ffmpeg 8.0.1 |
+| Python 3 + numpy | 像素比对、评分佐证 | ✅ numpy 2.5.0（**不需要 Pillow**） |
 
-> ⚠️ 图片比例用 `--size`（像素）指定，**不是 `--ratio`**（`--ratio` 只对视频任务生效，图片任务传了会被忽略，落到默认 2048×2048 正方形）。
+每个技能都自带自检入口，改完环境先跑它（详见 [skills/README.md](skills/README.md) 的「运行前提与自检」表）。
 
 ---
 
@@ -127,4 +124,5 @@ arkcli +gen --model "$MODEL" --profile platform_cn-beijing_accountwide \
 | 2026-10-02 | v1.0 | 初始建立：从 video-gen 拆出图片生成独立成库，建立 9 个技能 + 项目制 + 模板 + 示例项目 | 小七 |
 | 2026-10-02 | v2.0 | `methods/` 改组为技能库 `skills/`：每个技能以 `SKILL.md`（YAML frontmatter + 指令体）呈现，导航/术语全面改为"技能" | 小七 |
 | 2026-10-02 | v2.1 | 新增 ComfyUI 文生图技能（远程 Z-Image-Turbo 工作流，192.168.3.5:18000）：工作流 JSON→/prompt API 转换 + 提交轮询下载脚本 | 小七 |
-| 2026-10-02 | v2.2 | 新增 ComfyUI 图生图技能 image-edit-comfyui（Fun Union ControlNet）：共享转换器支持 workflow profile / mute-bypass / 连线型子图接口 / SaveImage 过滤；24/24 真机参数验证通过 | 小七 |
+| 2026-10-02 | v2.2 | 新增 ComfyUI 图生图技能 image-edit-comfyui（Fun Union Controlnet）：共享转换器支持 workflow profile / mute-bypass / 连线型子图接口 / SaveImage 过滤；24/24 真机参数验证通过 | 小七 |
+| 2026-10-05 | **v3.0** | **收敛为"只留可执行技能"**：移除 9 个无脚本、无自检入口的纯文档技能（方舟 Seedream 云端用法），保留 3 个带脚本且真机验证通过的技能；总导航、选路表、模型与前提全部重写为 ComfyUI 本地路径；6 处 `cd /home/usb/wks/gits/Book/...` 旧绝对路径改为仓库相对路径 | 小七 |

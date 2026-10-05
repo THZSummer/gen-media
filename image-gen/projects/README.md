@@ -43,7 +43,7 @@
 ### 新建项目
 
 ```bash
-cd /home/usb/wks/gits/Book/image-gen/projects
+cd image-gen/projects
 cp -r _template <your-project>
 # 编辑 <your-project>/README.md
 ```

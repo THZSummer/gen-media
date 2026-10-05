@@ -138,7 +138,7 @@ arkcli +gen --model "$MODEL" --profile platform_cn-beijing_accountwide \
 <通用视觉锚点> + <该镜关键姿态描述，如：舞者双手捧盏低头凝神，茶烟升腾，淡雅茶室，青绿水墨色调，留白氛围>
 ```
 
-> 具体见 [projects/tea-shake-dance §4.3](../projects/tea-shake-dance/README.md)（分镜图生成与审核清单）。
+> 具体见 [projects/tea-shake-dance §4.3](../../projects/tea-shake-dance/README.md)（分镜图生成与审核清单）。
 
 ---
 

@@ -37,7 +37,7 @@ python3 scripts/comfyui_qwen.py --prompt "..." --negative "blurry, plastic, cart
 ## 前置检查（先做，别直接生成）
 
 ```bash
-cd /home/usb/wks/gits/Book/image-gen/skills/text-to-image-comfyui
+cd image-gen/skills/text-to-image-comfyui
 
 # 1. 服务器是否可达（不可达就别提交，直接报障）
 python3 scripts/comfyui_gen.py --server http://192.168.3.5:18000 --check
