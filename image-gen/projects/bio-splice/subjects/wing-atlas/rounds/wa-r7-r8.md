@@ -1,5 +1,7 @@
 # wa-R7 / wa-R8 · 期 04 / 05 定稿
 
+> 🌐 语言：**中文** ｜ [English](wa-r7-r8.en.md)
+
 > 返回[子主题首页](../README.md) ｜ 复核报告：[r7](wa-r7-review.md) · [r8](wa-r8-review.md)
 > 引擎：Z-Image-Turbo　steps 12　**seed 13101 / 13102**　产物：[`work/wing-atlas/r7..r8/`](../../../work/wing-atlas/)
 

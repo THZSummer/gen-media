@@ -1,5 +1,7 @@
 # tb-R1–R6 · 兽皮纹的占用/腾出对照 + 三个落点判读
 
+> 🌐 语言：**中文** ｜ [English](tb-r1-r6.en.md)
+
 > 返回[子主题首页](../README.md) ｜ 复核报告：[r1](tb-r1-review.md) · [r2](tb-r2-review.md) · [r3](tb-r3-review.md) · [r4](tb-r4-review.md) · [r5](tb-r5-review.md) · [r6](tb-r6-review.md)
 > 引擎：Z-Image-Turbo　steps 12　**seed 12101 / 12102**　产物：[`work/tree-beast/r1..r6/`](../../../work/tree-beast/)
 

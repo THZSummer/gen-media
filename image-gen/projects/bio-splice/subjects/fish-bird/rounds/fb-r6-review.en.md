@@ -10,12 +10,12 @@
 
 | Camera | A | B | C | D | E | Total | Verdict | Global difference vs base | Region difference |
 |------|---|---|---|---|---|------|------|--------------|--------|
-| `fish-wings` | 5 | 5 | 5 | 5 | 5 | **5.00** | ✅ final (preferred) | 49.72 | body 53.1 |
-| `fish-wings-spread` | 5 | 5 | 5 | 5 | 5 | **5.00** | ✅ final (preferred) | 72.26 | body 57.4 |
+| `fish-wings` | 5 | 5 | 5 | 5 | 5 | **5.00** | ✅ preferred final | 49.72 | body 53.1 |
+| `fish-wings-spread` | 5 | 5 | 5 | 5 | 5 | **5.00** | ✅ preferred final | 72.26 | body 57.4 |
 
 ## Item-by-item pros and cons
 
-### `fish-wings` — ✅ final (preferred) (total 5.00)
+### `fish-wings` — ✅ preferred final (total 5.00)
 - **A transplant in place**: 5/5
 - **B base intact**: 5/5
 - **C anatomical credibility**: 5/5
@@ -23,7 +23,7 @@
 - **E concept readability**: 5/5
 - 👍 A complete pair of bird wings grows from the fish's torso, the wing-feather structure joining the fish body naturally
 
-### `fish-wings-spread` — ✅ final (preferred) (total 5.00)
+### `fish-wings-spread` — ✅ preferred final (total 5.00)
 - **A transplant in place**: 5/5
 - **B base intact**: 5/5
 - **C anatomical credibility**: 5/5

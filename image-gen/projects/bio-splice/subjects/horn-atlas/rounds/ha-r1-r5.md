@@ -1,5 +1,7 @@
 # ha-R1–R5 · 五部分一次做完（六种角零失败）
 
+> 🌐 语言：**中文** ｜ [English](ha-r1-r5.en.md)
+
 > 返回[子主题首页](../README.md) ｜ 复核报告：[r1](ha-r1-review.md) · [r2](ha-r2-review.md) · [r3](ha-r3-review.md) · [r4](ha-r4-review.md) · [r5](ha-r5-review.md)
 > 引擎：Z-Image-Turbo　steps 12　**seed 14101 / 14102 / 14103**　产物：[`work/horn-atlas/r1..r5/`](../../../work/horn-atlas/)
 

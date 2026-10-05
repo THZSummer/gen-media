@@ -72,10 +72,10 @@ The lesson is already written into Rule 105: **when choosing a part, ask both "i
 | File | Content |
 |------|------|
 | [`parts.md`](parts.en.md) | **Tree-beast part table** (K1/K2/K4) + the negative conclusion on beast feet |
-| [`rounds/tb-r1-r6.md`](rounds/tb-r1-r6.md) | R1–R6: hide-pattern control + reading of the two landing sites |
-| [`rounds/tb-r7-r9.md`](rounds/tb-r7-r9.md) | R7–R9: finalizing the five periods and verifying the base change |
+| [`rounds/tb-r1-r6.md`](rounds/tb-r1-r6.en.md) | R1–R6: hide-pattern control + reading of the two landing sites |
+| [`rounds/tb-r7-r9.md`](rounds/tb-r7-r9.en.md) | R7–R9: finalizing the five periods and verifying the base change |
 | `rounds/tb-rN-review.md` | scoring review report for each round |
-| [`rounds/prompts-all.md`](rounds/prompts-all.md) | verbatim prompt archive for every round |
+| [`rounds/prompts-all.md`](rounds/prompts-all.en.md) | verbatim prompt archive for every round |
 
 ---
 

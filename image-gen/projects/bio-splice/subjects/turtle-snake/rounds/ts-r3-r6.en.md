@@ -2,7 +2,7 @@
 
 > 🌐 Language: **English** | [中文](ts-r3-r6.md)
 
-> Back to [sub-theme home](../README.en.md) ｜ review reports: [ts-r3](ts-r3-review.en.md) · [ts-r4](ts-r4-review.md) · [ts-r5](ts-r5-review.md) · [ts-r6](ts-r6-review.md)
+> Back to [sub-theme home](../README.en.md) ｜ review reports: [ts-r3](ts-r3-review.en.md) · [ts-r4](ts-r4-review.en.md) · [ts-r5](ts-r5-review.en.md) · [ts-r6](ts-r6-review.en.md)
 > Engine: Z-Image-Turbo　steps 12　**seed 5101 / 5102 / 5103**　outputs: [`work/turtle-snake/r3..r6/`](../../../work/turtle-snake/)
 > ℹ️ Every round carries a **same-round base control** (`base-turtle`, Rule 76: one base per round)
 

@@ -1,5 +1,7 @@
 # cd-R3–R7 · 五期定稿
 
+> 🌐 语言：**中文** ｜ [English](cd-r3-r7.en.md)
+
 > 返回[子主题首页](../README.md) ｜ 复核报告：[r3](cd-r3-review.md) · [r4](cd-r4-review.md) · [r5](cd-r5-review.md) · [r6](cd-r6-review.md) · [r7](cd-r7-review.md)
 > 引擎：Z-Image-Turbo　steps 12　**seed 9101 / 9102 / 9103**　产物：[`work/cordyceps/r3..r7/`](../../../work/cordyceps/)
 > ℹ️ 每轮都带**同轮底座对照**（`base-larva`，规律 76：一轮一个底座）

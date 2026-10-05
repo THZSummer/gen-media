@@ -1,5 +1,7 @@
 # ff-R3–R7 · 五期定稿（三件跨界件全部落地）
 
+> 🌐 语言：**中文** ｜ [English](ff-r3-r7.en.md)
+
 > 返回[子主题首页](../README.md) ｜ 复核报告：[r3](ff-r3-review.md) · [r4](ff-r4-review.md) · [r5](ff-r5-review.md) · [r6](ff-r6-review.md) · [r7](ff-r7-review.md)
 > 引擎：Z-Image-Turbo　steps 12　**seed 10101 / 10102 / 10103**　产物：[`work/flytrap-fang/r3..r7/`](../../../work/flytrap-fang/)
 > ℹ️ 每轮都带**同轮底座对照**（`base-flytrap`，规律 76：一轮一个底座）

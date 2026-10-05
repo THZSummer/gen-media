@@ -1,5 +1,7 @@
 # tb-R7–R9 · 五期定稿（含换底座验证）
 
+> 🌐 语言：**中文** ｜ [English](tb-r7-r9.en.md)
+
 > 返回[子主题首页](../README.md) ｜ 复核报告：[r7](tb-r7-review.md) · [r8](tb-r8-review.md) · [r9](tb-r9-review.md)
 > 引擎：Z-Image-Turbo　steps 12　**seed 12101 / 12102 / 12103**　产物：[`work/tree-beast/r7..r9/`](../../../work/tree-beast/)
 

@@ -10,16 +10,16 @@
 
 | Shot | A | B | C | D | E | Total | Verdict | Global diff vs base | Region diff |
 |------|---|---|---|---|---|------|------|--------------|--------|
-| `owl-seamless` | 5 | 5 | 5 | 5 | 5 | **5.00** | ✅ Final (preferred) | 18.26 | head 28.7 |
-| `owl-seam` | 5 | 5 | 4 | 5 | 5 | **4.80** | ✅ Final (preferred) | 21.25 | head 35.7 |
-| `owl-surreal` | 5 | 5 | 5 | 5 | 3 | **4.70** | ✅ Final (preferred) | 17.94 | head 29.1 |
+| `owl-seamless` | 5 | 5 | 5 | 5 | 5 | **5.00** | ✅ preferred final | 18.26 | head 28.7 |
+| `owl-seam` | 5 | 5 | 4 | 5 | 5 | **4.80** | ✅ preferred final | 21.25 | head 35.7 |
+| `owl-surreal` | 5 | 5 | 5 | 5 | 3 | **4.70** | ✅ preferred final | 17.94 | head 29.1 |
 | `eaglecat-seam` | 3 | 3 | 3 | 5 | 3 | **3.30** | ❌ Failed | 28.31 | head 37.2 |
 | `eaglecat-seamless` | 0 | 5 | 5 | 5 | 1 | **2.90** | ❌ Failed | 17.11 | head 17.5 |
 | `eaglecat-surreal` | 0 | 5 | 5 | 5 | 1 | **2.90** | ❌ Failed | 18.41 | head 22.3 |
 
 ## Per-shot pros and cons
 
-### `owl-seamless` — ✅ Final (preferred) (total 5.00)
+### `owl-seamless` — ✅ preferred final (total 5.00)
 - **A Transplant in place**: 5/5
 - **B Base intact**: 5/5
 - **C Anatomy credible**: 5/5
@@ -29,7 +29,7 @@
 - 👍 The same seed reused the eagle control's camera, so "the same eagle with a cat head" is readable at a glance
 - 👎 The transition between the neck fur and the feathers feels slightly composited
 
-### `owl-seam` — ✅ Final (preferred) (total 4.80)
+### `owl-seam` — ✅ preferred final (total 4.80)
 - **A Transplant in place**: 5/5
 - **B Base intact**: 5/5
 - **C Anatomy credible**: 4/5
@@ -39,7 +39,7 @@
 - 👎 The stitching runs only along the front of the neck and does not go all the way around, weaker than the prompt describes
 - 👎 The specimen feel lowers anatomical credibility
 
-### `owl-surreal` — ✅ Final (preferred) (total 4.70)
+### `owl-surreal` — ✅ preferred final (total 4.70)
 - **A Transplant in place**: 5/5
 - **B Base intact**: 5/5
 - **C Anatomy credible**: 5/5

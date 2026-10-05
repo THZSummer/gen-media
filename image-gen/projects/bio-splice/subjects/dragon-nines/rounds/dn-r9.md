@@ -1,5 +1,7 @@
 # R9 · 追问：**底座的物种名词本身就是一个占位**
 
+> 🌐 语言：**中文** ｜ [English](dn-r9.en.md)
+
 > 返回[子主题首页](../README.md) ｜ 复核报告：[dn-r9-review.md](dn-r9-review.md) ｜ 前一轮：[dn-r8](dn-r8.md)
 > 引擎：Z-Image-Turbo　1024²　steps 12　**全 5 张共用 seed 4201**
 > 产物：[`work/dragon-nines/r9/`](../../../work/dragon-nines/r9/)　`unapplied` 全空

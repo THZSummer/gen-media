@@ -2,7 +2,7 @@
 
 > 🌐 Language: **English** | [中文](README.md)
 
-> Back to [sub-theme](../README.en.md) ｜ [project home](../../../README.en.md) ｜ [part table](../parts.en.md) ｜ [review report](../rounds/wa-r1-review.md)
+> Back to [sub-theme](../README.en.md) ｜ [project home](../../../README.en.md) ｜ [part table](../parts.en.md) ｜ [review report](../rounds/wa-r1-review.en.md)
 > Engine: Z-Image-Turbo　**1024×1024**　steps 12　**seed 13101 / 13102 / 13103**
 > Overview sheet: [`sheet.jpg`](sheet.jpg)　Provenance: [`manifest.json`](manifest.json)
 
@@ -23,7 +23,7 @@ and the eye-level camera is the camera spec shared by the next four parts.
 the "second pair of wings" is the extra pair that appears on top of this bird, and without the baseline you cannot read "extra".
 
 So this part has **no control shot** (the baseline is itself the control),
-and the objective-metrics column is empty —— this is honestly noted in the [review report](../rounds/wa-r1-review.md).
+and the objective-metrics column is empty —— this is honestly noted in the [review report](../rounds/wa-r1-review.en.md).
 
 ## 3. Finals
 

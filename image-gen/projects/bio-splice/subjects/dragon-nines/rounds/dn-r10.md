@@ -1,5 +1,7 @@
 # R10 · 期 05 定稿【龙首特写】
 
+> 🌐 语言：**中文** ｜ [English](dn-r10.en.md)
+
 > 返回[子主题首页](../README.md) ｜ 复核报告：[dn-r10-review.md](dn-r10-review.md) ｜ 成品见 [period-05](../period-05/README.md)
 > 引擎：Z-Image-Turbo　1024²　steps 12　**全 3 张共用 seed 4201**
 > 产物：[`work/dragon-nines/r10/`](../../../work/dragon-nines/r10/)　`unapplied` 全空

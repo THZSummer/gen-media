@@ -71,10 +71,10 @@ and the only pitfall was **semantics** —— which is also the first time in th
 | File | Content |
 |------|------|
 | [`parts.md`](parts.en.md) | **Wing atlas part table** (five kinds of wings + two negative/uncertain) + Rules 107/108 |
-| [`rounds/wa-r1-r6.md`](rounds/wa-r1-r6.md) | R1–R6: baseline and four kinds of wings, semantic questioning |
-| [`rounds/wa-r7-r8.md`](rounds/wa-r7-r8.md) | R7–R8: finalizing periods 04/05 |
+| [`rounds/wa-r1-r6.md`](rounds/wa-r1-r6.en.md) | R1–R6: baseline and four kinds of wings, semantic questioning |
+| [`rounds/wa-r7-r8.md`](rounds/wa-r7-r8.en.md) | R7–R8: finalizing periods 04/05 |
 | `rounds/wa-rN-review.md` | scoring review report for each round |
-| [`rounds/prompts-all.md`](rounds/prompts-all.md) | verbatim prompt archive for every round |
+| [`rounds/prompts-all.md`](rounds/prompts-all.en.md) | verbatim prompt archive for every round |
 
 ---
 

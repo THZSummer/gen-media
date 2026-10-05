@@ -10,14 +10,14 @@
 
 | Camera | A | B | C | D | E | Total | Verdict | Global difference vs base | Region difference |
 |------|---|---|---|---|---|------|------|--------------|--------|
-| `fish-wings-tail` | 4 | 5 | 5 | 5 | 5 | **4.70** | ✅ final (preferred) | 42.17 | body 59.9 |
+| `fish-wings-tail` | 4 | 5 | 5 | 5 | 5 | **4.70** | ✅ preferred final | 42.17 | body 59.9 |
 | `fish-tail` | 1 | 5 | 5 | 5 | 2 | **3.35** | ❌ fail (transplant not in place) | 13.10 | body 21.2 |
 | `fish-tail-above` | 1 | 5 | 5 | 5 | 2 | **3.35** | ❌ fail (transplant not in place) | 24.42 | body 44.0 |
 | `fish-feathercoat` | 1 | 5 | 5 | 5 | 2 | **3.35** | ❌ fail (transplant not in place) | 11.58 | body 14.5 |
 
 ## Item-by-item pros and cons
 
-### `fish-wings-tail` — ✅ final (preferred) (total 4.70)
+### `fish-wings-tail` — ✅ preferred final (total 4.70)
 - **A transplant in place**: 4/5
 - **B base intact**: 5/5
 - **C anatomical credibility**: 5/5

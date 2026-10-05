@@ -1,5 +1,7 @@
 # cd-R1 / cd-R2 · 难点件与主力件分头探针（含占用 vs 腾出对照）
 
+> 🌐 语言：**中文** ｜ [English](cd-r1-r2.en.md)
+
 > 返回[子主题首页](../README.md) ｜ 复核报告：[r1](cd-r1-review.md) · [r2](cd-r2-review.md)
 > 引擎：Z-Image-Turbo　1024²　steps 12　**全部 seed 9101**　产物：[`work/cordyceps/r1..r2/`](../../../work/cordyceps/)
 

@@ -57,8 +57,8 @@ Fish fins were once treated as a "freeable placeholder" (the optimistic tier of 
 ```
 ✅ a pair of broad feathered bird wings spread wide from its back   ← 部位短语 + 空位
 ✅ a pair of broad feathered bird wings half-opened along its flanks ← 位置偏上（露在水面之上）
-❌ broad feathered bird wings in place of its pectoral fins          ← 关系从句（规律 81）
-❌ a bird's wings                                                    ← 整只（规律 57）
+❌ broad feathered bird wings in place of its pectoral fins          ← 关系从句（Rule 81）
+❌ a bird's wings                                                    ← 整只（Rule 57）
 ```
 
 And **the scene must be compatible first**: ask "does this part make sense in this habitat" before asking about wording and placeholders (Rule 85).

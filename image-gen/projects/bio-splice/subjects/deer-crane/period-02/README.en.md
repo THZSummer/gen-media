@@ -2,7 +2,7 @@
 
 > 🌐 Language: **English** | [中文](README.md)
 
-> Back to [sub-theme](../README.en.md) ｜ [project home](../../../README.en.md) ｜ [parts table](../parts.en.md) ｜ [review report](../rounds/dc-r2-review.md)
+> Back to [sub-theme](../README.en.md) ｜ [project home](../../../README.en.md) ｜ [parts table](../parts.en.md) ｜ [review report](../rounds/dc-r2-review.en.md)
 > Engine: Z-Image-Turbo　**1024×1024**　steps 12　**seed 7101 onward (multiple takes, see the provenance table)**
 > Overview sheet: [`sheet.jpg`](sheet.jpg)　Provenance: [`manifest.json`](manifest.json)
 
@@ -24,7 +24,7 @@ A wading bird's legs only read when it stands in shallow water: the water surfac
 |------|------|------|
 | Slender legs | G2 | ⚠️ **partially established**: the legs become thinner and longer and the joints lean toward a wading bird; **but they are still the deer's brown fur + hooves** |
 
-**A further version of the control was made outside this round** (R3): the base described `four long legs` as usual (no slot freed), and the result was **almost identical** to the vacated version — this control is written up in [dc-r1-r6.md](../rounds/dc-r1-r6.md).
+**A further version of the control was made outside this round** (R3): the base described `four long legs` as usual (no slot freed), and the result was **almost identical** to the vacated version — this control is written up in [dc-r1-r6.md](../rounds/dc-r1-r6.en.md).
 
 ## 3. Finals
 

@@ -10,12 +10,12 @@
 
 | Camera | A | B | C | D | E | Total | Verdict | Global difference vs base | Region difference |
 |------|---|---|---|---|---|------|------|--------------|--------|
-| `fish-wings-half` | 5 | 5 | 5 | 5 | 5 | **5.00** | ✅ final (preferred) | 51.13 | body 61.0 |
+| `fish-wings-half` | 5 | 5 | 5 | 5 | 5 | **5.00** | ✅ preferred final | 51.13 | body 61.0 |
 | `fish-wings` | 1 | 5 | 5 | 5 | 2 | **3.35** | ❌ fail (transplant not in place) | 31.63 | body 28.8 |
 
 ## Item-by-item pros and cons
 
-### `fish-wings-half` — ✅ final (preferred) (total 5.00)
+### `fish-wings-half` — ✅ preferred final (total 5.00)
 - **A transplant in place**: 5/5
 - **B base intact**: 5/5
 - **C anatomical credibility**: 5/5

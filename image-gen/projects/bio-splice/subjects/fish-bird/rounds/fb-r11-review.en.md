@@ -10,13 +10,13 @@
 
 | Camera | A | B | C | D | E | Total | Verdict | Global difference vs base | Region difference |
 |------|---|---|---|---|---|------|------|--------------|--------|
-| `fish-wings-half` | 5 | 5 | 5 | 5 | 5 | **5.00** | ✅ final (preferred) | 40.35 | body 51.6 |
-| `fish-wings-half-b` | 5 | 5 | 5 | 5 | 5 | **5.00** | ✅ final (preferred) | 49.83 | body 57.1 |
-| `fish-wings-half-c` | 5 | 5 | 5 | 5 | 5 | **5.00** | ✅ final (preferred) | 70.46 | body 67.2 |
+| `fish-wings-half` | 5 | 5 | 5 | 5 | 5 | **5.00** | ✅ preferred final | 40.35 | body 51.6 |
+| `fish-wings-half-b` | 5 | 5 | 5 | 5 | 5 | **5.00** | ✅ preferred final | 49.83 | body 57.1 |
+| `fish-wings-half-c` | 5 | 5 | 5 | 5 | 5 | **5.00** | ✅ preferred final | 70.46 | body 67.2 |
 
 ## Item-by-item pros and cons
 
-### `fish-wings-half` — ✅ final (preferred) (total 5.00)
+### `fish-wings-half` — ✅ preferred final (total 5.00)
 - **A transplant in place**: 5/5
 - **B base intact**: 5/5
 - **C anatomical credibility**: 5/5
@@ -24,7 +24,7 @@
 - **E concept readability**: 5/5
 - 👍 A complete pair of bird wings grows from the fish's torso, the wing-feather structure joining the fish body naturally
 
-### `fish-wings-half-b` — ✅ final (preferred) (total 5.00)
+### `fish-wings-half-b` — ✅ preferred final (total 5.00)
 - **A transplant in place**: 5/5
 - **B base intact**: 5/5
 - **C anatomical credibility**: 5/5
@@ -32,7 +32,7 @@
 - **E concept readability**: 5/5
 - 👍 A complete pair of bird wings grows from the fish's torso, the wing-feather structure joining the fish body naturally
 
-### `fish-wings-half-c` — ✅ final (preferred) (total 5.00)
+### `fish-wings-half-c` — ✅ preferred final (total 5.00)
 - **A transplant in place**: 5/5
 - **B base intact**: 5/5
 - **C anatomical credibility**: 5/5

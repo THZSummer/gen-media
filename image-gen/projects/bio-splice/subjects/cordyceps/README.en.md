@@ -80,10 +80,10 @@ and that was recovered by **freeing a body-surface attribute**.
 | File | Content |
 |------|------|
 | [`parts.md`](parts.en.md) | **Cordyceps part table** (MY1/ST1/SP1) + Rules 96/97 |
-| [`rounds/cd-r1-r2.md`](rounds/cd-r1-r2.md) | R1–R2: separate probes for the hard piece / easy piece + the occupied-vs-freed control |
-| [`rounds/cd-r3-r7.md`](rounds/cd-r3-r7.md) | R3–R7: finalizing the five periods (including the specimen-shot finale) |
+| [`rounds/cd-r1-r2.md`](rounds/cd-r1-r2.en.md) | R1–R2: separate probes for the hard piece / easy piece + the occupied-vs-freed control |
+| [`rounds/cd-r3-r7.md`](rounds/cd-r3-r7.en.md) | R3–R7: finalizing the five periods (including the specimen-shot finale) |
 | `rounds/cd-rN-review.md` | Review reports for each round's scoring |
-| [`rounds/prompts-all.md`](rounds/prompts-all.md) | Verbatim prompt archive for every round |
+| [`rounds/prompts-all.md`](rounds/prompts-all.en.md) | Verbatim prompt archive for every round |
 
 ---
 

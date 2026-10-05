@@ -69,9 +69,9 @@ it proves that the 100-plus mechanism findings before it **are not hindsight**: 
 | File | Content |
 |------|------|
 | [`parts.md`](parts.en.md) | **horn atlas part table** (all six kinds of horn hold) + the five-threshold comparison |
-| [`rounds/ha-r1-r5.md`](rounds/ha-r1-r5.md) | R1–R5: all five parts finished in one go |
+| [`rounds/ha-r1-r5.md`](rounds/ha-r1-r5.en.md) | R1–R5: all five parts finished in one go |
 | `rounds/ha-rN-review.md` | per-round score review reports |
-| [`rounds/prompts-all.md`](rounds/prompts-all.md) | verbatim prompt archive for all rounds |
+| [`rounds/prompts-all.md`](rounds/prompts-all.en.md) | verbatim prompt archive for all rounds |
 
 ---
 

@@ -1,5 +1,7 @@
 # wa-R1–R6 · 基准与四种翅（含两个否定/存疑结论）
 
+> 🌐 语言：**中文** ｜ [English](wa-r1-r6.en.md)
+
 > 返回[子主题首页](../README.md) ｜ 复核报告：[r1](wa-r1-review.md) · [r2](wa-r2-review.md) · [r3](wa-r3-review.md) · [r4](wa-r4-review.md) · [r5](wa-r5-review.md) · [r6](wa-r6-review.md)
 > 引擎：Z-Image-Turbo　1024²　steps 12　**seed 13101 / 13102 / 13103**　产物：[`work/wing-atlas/r1..r6/`](../../../work/wing-atlas/)
 

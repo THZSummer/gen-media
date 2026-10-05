@@ -10,13 +10,13 @@
 
 | Camera | A | B | C | D | E | Total | Verdict | Global difference vs base | Region difference |
 |------|---|---|---|---|---|------|------|--------------|--------|
-| `fish-wings-back` | 5 | 5 | 5 | 5 | 5 | **5.00** | ✅ final (preferred) | 37.10 | body 53.5 |
-| `fish-wings` | 5 | 5 | 5 | 5 | 5 | **5.00** | ✅ final (preferred) | 33.50 | body 49.6 |
+| `fish-wings-back` | 5 | 5 | 5 | 5 | 5 | **5.00** | ✅ preferred final | 37.10 | body 53.5 |
+| `fish-wings` | 5 | 5 | 5 | 5 | 5 | **5.00** | ✅ preferred final | 33.50 | body 49.6 |
 | `fish-feathercoat` | 1 | 5 | 5 | 5 | 2 | **3.35** | ❌ fail (transplant not in place) | 11.58 | body 14.5 |
 
 ## Item-by-item pros and cons
 
-### `fish-wings-back` — ✅ final (preferred) (total 5.00)
+### `fish-wings-back` — ✅ preferred final (total 5.00)
 - **A transplant in place**: 5/5
 - **B base intact**: 5/5
 - **C anatomical credibility**: 5/5
@@ -25,7 +25,7 @@
 - 👍 **Out of water the wings land immediately**: wings growing from the back hold up
 - 👍 Same sentence and same base as R3, the only difference is the scene — this is direct evidence of "scene semantic conflict"
 
-### `fish-wings` — ✅ final (preferred) (total 5.00)
+### `fish-wings` — ✅ preferred final (total 5.00)
 - **A transplant in place**: 5/5
 - **B base intact**: 5/5
 - **C anatomical credibility**: 5/5

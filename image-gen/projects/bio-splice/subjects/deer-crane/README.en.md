@@ -97,10 +97,10 @@ and only period 03's feather fan shows at a glance that it is a transplant. The 
 | File | Content |
 |------|------|
 | [`parts.md`](parts.en.md) | **Deer-crane part table** (G1/G2/G6) + hit rate and material conclusions |
-| [`rounds/dc-r1-r6.md`](rounds/dc-r1-r6.md) | R1–R6: the five periods and the occupied-version control (the source of "freeing placeholders does not work on canonical structures") |
-| [`rounds/dc-r7.md`](rounds/dc-r7.md) | R7: tail-feather pickup takes (the source of the 1/4 hit rate) |
+| [`rounds/dc-r1-r6.md`](rounds/dc-r1-r6.en.md) | R1–R6: the five periods and the occupied-version control (the source of "freeing placeholders does not work on canonical structures") |
+| [`rounds/dc-r7.md`](rounds/dc-r7.en.md) | R7: tail-feather pickup takes (the source of the 1/4 hit rate) |
 | `rounds/dc-rN-review.md` | Review reports for each round's scoring |
-| [`rounds/prompts-all.md`](rounds/prompts-all.md) | Verbatim prompt archive for every round |
+| [`rounds/prompts-all.md`](rounds/prompts-all.en.md) | Verbatim prompt archive for every round |
 
 ---
 

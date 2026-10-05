@@ -79,10 +79,10 @@ the lesson is: **do not judge by "how set the base is as a whole"; look at the "
 | File | Content |
 |------|------|
 | [`parts.md`](parts.en.md) | **Venus flytrap part table** (T1/T2/T4) + Rules 99/100 |
-| [`rounds/ff-r1-r2.md`](rounds/ff-r1-r2.md) | R1–R2: are the marginal teeth a structure or a property (same-seed control) |
-| [`rounds/ff-r3-r7.md`](rounds/ff-r3-r7.md) | R3–R7: finalizing the five periods |
+| [`rounds/ff-r1-r2.md`](rounds/ff-r1-r2.en.md) | R1–R2: are the marginal teeth a structure or a property (same-seed control) |
+| [`rounds/ff-r3-r7.md`](rounds/ff-r3-r7.en.md) | R3–R7: finalizing the five periods |
 | `rounds/ff-rN-review.md` | scoring review report for each round |
-| [`rounds/prompts-all.md`](rounds/prompts-all.md) | verbatim prompt archive for every round |
+| [`rounds/prompts-all.md`](rounds/prompts-all.en.md) | verbatim prompt archive for every round |
 
 ---
 

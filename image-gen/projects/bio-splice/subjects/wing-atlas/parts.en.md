@@ -50,8 +50,8 @@ it is both "the atlas's first page" and the **frame of reference** for the last 
 ```
 ✅ a pair of translucent insect membranous wings rising from its back   ← 位置短语 + 空面
 ✅ a pair of long white crane wings rising from its back
-❌ a pair of stiff fish pectoral fins rising from its back                ← 语义不匹配（规律 107）
-❌ 把鸟自己的翅换掉（原计划）                                              ← 同材质替换（规律 67）
+❌ a pair of stiff fish pectoral fins rising from its back                ← 语义不匹配（Rule 107）
+❌ 把鸟自己的翅换掉（原计划）                                              ← 同材质替换（Rule 67）
 ```
 
 ---

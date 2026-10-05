@@ -1,5 +1,7 @@
 # lc-R2–R5 · 叶状 / 枝状 / 藻层 / 共生体
 
+> 🌐 语言：**中文** ｜ [English](lc-r2-r5.en.md)
+
 > 返回[子主题首页](../README.md) ｜ 复核报告：[r2](lc-r2-review.md) · [r3](lc-r3-review.md) · [r4](lc-r4-review.md) · [r5](lc-r5-review.md)
 > 引擎：Z-Image-Turbo　steps 12　**seed 8101 / 8102 / 8103**　产物：[`work/lichen/r2..r5/`](../../../work/lichen/)
 > ℹ️ 每轮都带**同轮底座对照**（`base-mycelium`，规律 76：一轮一个底座）

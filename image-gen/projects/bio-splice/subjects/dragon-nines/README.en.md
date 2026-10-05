@@ -68,7 +68,7 @@ The series-constant layer keeps only two items (so that two sub-themes can still
 ## 5. Periods
 
 **Each period has its own identity**: the base and transplant part decide "what it is", while **habitat / light / camera / canvas** decide "what it looks like".
-The latter are chosen for the subject (period 02's camera aims at the claws, period 03's at the scales); details in [`rounds/dn-r5-r7.md`](rounds/dn-r5-r7.md).
+The latter are chosen for the subject (period 02's camera aims at the claws, period 03's at the scales); details in [`rounds/dn-r5-r7.md`](rounds/dn-r5-r7.en.md).
 
 | Period | Theme | Base + transplant part | **Habitat · light · camera · canvas** | Finals | Score |
 |----|------|-----------------|-------------------------------|------|------|
@@ -139,12 +139,12 @@ for parts like the head, whose prior is extremely strong, the freed slot is fill
 | [`rounds/dn-r2.md`](rounds/dn-r2.en.md) | R2: switching to a lizard base + eagle talons, verifying that changing the base works |
 | [`rounds/dn-r3.md`](rounds/dn-r3.en.md) | R3: fish scales, the technique of "freeing a placeholder" and the difficulty of reading a same-material replacement |
 | [`rounds/dn-r4.md`](rounds/dn-r4.en.md) | R4 [composite dragon]: a 4-piece stack, the region ceiling re-verified |
-| [`rounds/dn-r5-r7.md`](rounds/dn-r5-r7.md) | R5–R7 **finalization rounds**: giving the "periods" their own characteristics (period style table + constant within a period/different across periods) |
-| [`rounds/dn-r8.md`](rounds/dn-r8.md) | R8: camel head D2 / rabbit eyes D3—**freeing the placeholder is ineffective, both pieces rejected** |
-| [`rounds/dn-r9.md`](rounds/dn-r9.md) | R9: following up "the base's species noun = a placeholder"—delete it and the donor takes over the **whole animal** |
-| [`rounds/dn-r10.md`](rounds/dn-r10.md) | R10: finalizing period 05 [dragon-head close-up], adding only the same-round control |
+| [`rounds/dn-r5-r7.md`](rounds/dn-r5-r7.en.md) | R5–R7 **finalization rounds**: giving the "periods" their own characteristics (period style table + constant within a period/different across periods) |
+| [`rounds/dn-r8.md`](rounds/dn-r8.en.md) | R8: camel head D2 / rabbit eyes D3—**freeing the placeholder is ineffective, both pieces rejected** |
+| [`rounds/dn-r9.md`](rounds/dn-r9.en.md) | R9: following up "the base's species noun = a placeholder"—delete it and the donor takes over the **whole animal** |
+| [`rounds/dn-r10.md`](rounds/dn-r10.en.md) | R10: finalizing period 05 [dragon-head close-up], adding only the same-round control |
 | `rounds/dn-rN-review.md` | scoring review report of each round (including region audit sheets and point-by-point pros and cons) |
-| [`rounds/prompts-all.md`](rounds/prompts-all.md) | verbatim prompt archive of every round |
+| [`rounds/prompts-all.md`](rounds/prompts-all.en.md) | verbatim prompt archive of every round |
 
 ---
 

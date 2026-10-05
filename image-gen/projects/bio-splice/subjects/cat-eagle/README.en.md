@@ -39,7 +39,7 @@ All four routes were tried, and all failed:
 
 > **Later correction (R6/R7)**: what is dangerous is not "mentioning an eagle", but **naming the animal as a whole noun**.
 > `eagle wings` (a part modifier) is safe, `an eagle's body` (a whole noun) is dangerous ——
-> therefore **splitting into parts is the way around this blockage**. See [r03.md](rounds/r03.md) §3.
+> therefore **splitting into parts is the way around this blockage**. See [r03.md](rounds/r03.en.md) §3.
 
 **Mechanism** (pinpointed by four single-variable rounds + same-seed controls):
 
@@ -135,11 +135,11 @@ it is the most "expensive" volume in the whole project (17 rounds for 14 images)
 | [`parts.md`](parts.en.md) | **Part list** (cat C1–C6 / eagle E1–E6) and the mechanism predictions for the combinations |
 | [`rounds/r01.md`](rounds/r01.en.md) | R1: the four corners of the matrix + splicing semantics A/B/C with same-seed controls |
 | [`rounds/r02.md`](rounds/r02.en.md) | R2–R5: four single-variable diagnostic rounds on the eagle-headed-cat direction (including the magnified-crop audit method) |
-| [`rounds/r03.md`](rounds/r03.md) | R6–R7: combinations after splitting into parts, producing periods 02 / 03 |
-| [`rounds/r04.md`](rounds/r04.md) | R8–R9: the boundary of three stacked parts (conflict in the same region summons a second individual), producing periods 04 / 05 |
-| [`rounds/r05.md`](rounds/r05.md) | **R10–R17 presentation rounds**: giving periods 02–05 their own identities; three pitfalls (camera changes the result / pose pollutes the control / light decides life or death) |
+| [`rounds/r03.md`](rounds/r03.en.md) | R6–R7: combinations after splitting into parts, producing periods 02 / 03 |
+| [`rounds/r04.md`](rounds/r04.en.md) | R8–R9: the boundary of three stacked parts (conflict in the same region summons a second individual), producing periods 04 / 05 |
+| [`rounds/r05.md`](rounds/r05.en.md) | **R10–R17 presentation rounds**: giving periods 02–05 their own identities; three pitfalls (camera changes the result / pose pollutes the control / light decides life or death) |
 | [`rounds/r01-review.md`](rounds/r01-review.en.md) etc. | the **scoring review report** of each round (including region audit sheets) |
-| [`rounds/prompts-all.md`](rounds/prompts-all.md) | verbatim prompt archive of every round (sentence-split with line breaks, losslessly restorable) |
+| [`rounds/prompts-all.md`](rounds/prompts-all.en.md) | verbatim prompt archive of every round (sentence-split with line breaks, losslessly restorable) |
 
 ---
 

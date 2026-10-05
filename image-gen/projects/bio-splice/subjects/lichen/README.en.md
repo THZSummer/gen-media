@@ -73,10 +73,10 @@ and `tree-beast`'s base is a tree (medium morphological freedom).
 | File | Content |
 |------|------|
 | [`parts.md`](parts.en.md) | **Lichen part table** (CR1/FL1/FR1/AL1/AL2) + Rule 92 |
-| [`rounds/lc-r1.md`](rounds/lc-r1.md) | R1: single-part + combination probes (**the first 100% landing for cross-kingdom parts**) |
-| [`rounds/lc-r2-r5.md`](rounds/lc-r2-r5.md) | R2–R5: the four periods foliose / fruticose / algal layer / symbiosis |
+| [`rounds/lc-r1.md`](rounds/lc-r1.en.md) | R1: single-part + combination probes (**the first 100% landing for cross-kingdom parts**) |
+| [`rounds/lc-r2-r5.md`](rounds/lc-r2-r5.en.md) | R2–R5: the four periods foliose / fruticose / algal layer / symbiosis |
 | `rounds/lc-rN-review.md` | Review reports for each round's scoring |
-| [`rounds/prompts-all.md`](rounds/prompts-all.md) | Verbatim prompt archive for every round |
+| [`rounds/prompts-all.md`](rounds/prompts-all.en.md) | Verbatim prompt archive for every round |
 
 ---
 

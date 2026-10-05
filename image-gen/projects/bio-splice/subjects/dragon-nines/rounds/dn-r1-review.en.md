@@ -10,13 +10,13 @@
 
 | Shot | A | B | C | D | E | Total | Verdict | Global diff vs base | Region diff |
 |------|---|---|---|---|---|------|------|--------------|--------|
-| `snake-antler` | 5 | 5 | 5 | 5 | 5 | **5.00** | ✅ final (preferred) | 17.03 | head 36.4 body 18.6 |
-| `snake-antler-oxear` | 5 | 5 | 4 | 5 | 4 | **4.65** | ✅ final (preferred) | 16.97 | head 35.4 body 17.8 |
+| `snake-antler` | 5 | 5 | 5 | 5 | 5 | **5.00** | ✅ preferred final | 17.03 | head 36.4 body 18.6 |
+| `snake-antler-oxear` | 5 | 5 | 4 | 5 | 4 | **4.65** | ✅ preferred final | 16.97 | head 35.4 body 17.8 |
 | `snake-antler-claw` | 2 | 5 | 5 | 5 | 2 | **3.65** | ❌ not qualified (transplant did not land) | 16.89 | head 36.5 body 17.7 |
 
 ## Point-by-point pros and cons
 
-### `snake-antler` — ✅ final (preferred) (total 5.00)
+### `snake-antler` — ✅ preferred final (total 5.00)
 - **A transplant in place**: 5/5
 - **B base intact**: 5/5
 - **C anatomy credible**: 5/5
@@ -25,7 +25,7 @@
 - 👍 forked antlers grow naturally from the skull, and the join between antler base and scales is credible
 - 👍 snake and antlers coexist on the same individual, reading as a "dragon" at a glance rather than a collage
 
-### `snake-antler-oxear` — ✅ final (preferred) (total 4.65)
+### `snake-antler-oxear` — ✅ preferred final (total 4.65)
 - **A transplant in place**: 5/5
 - **B base intact**: 5/5
 - **C anatomy credible**: 4/5

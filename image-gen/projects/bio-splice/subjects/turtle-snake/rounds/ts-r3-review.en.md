@@ -10,13 +10,13 @@
 
 | Camera | A | B | C | D | E | Total | Verdict | Global difference vs base | Region difference |
 |------|---|---|---|---|---|------|------|--------------|--------|
-| `turtle-snakeneck` | 5 | 5 | 5 | 5 | 5 | **5.00** | ✅ final (preferred) | 19.92 | neck 27.3 |
-| `turtle-snakeneck-b` | 5 | 5 | 5 | 5 | 5 | **5.00** | ✅ final (preferred) | 43.39 | neck 45.1 |
-| `turtle-snakeneck-c` | 5 | 5 | 5 | 5 | 5 | **5.00** | ✅ final (preferred) | 42.90 | neck 39.3 |
+| `turtle-snakeneck` | 5 | 5 | 5 | 5 | 5 | **5.00** | ✅ preferred final | 19.92 | neck 27.3 |
+| `turtle-snakeneck-b` | 5 | 5 | 5 | 5 | 5 | **5.00** | ✅ preferred final | 43.39 | neck 45.1 |
+| `turtle-snakeneck-c` | 5 | 5 | 5 | 5 | 5 | **5.00** | ✅ preferred final | 42.90 | neck 39.3 |
 
 ## Item-by-item pros and cons
 
-### `turtle-snakeneck` — ✅ final (preferred) (total 5.00)
+### `turtle-snakeneck` — ✅ preferred final (total 5.00)
 - **A transplant in place**: 5/5
 - **B base intact**: 5/5
 - **C anatomical credibility**: 5/5
@@ -24,7 +24,7 @@
 - **E concept readability**: 5/5
 - 👍 Snake neck + turtle shell + turtle feet, reading as a real animal
 
-### `turtle-snakeneck-b` — ✅ final (preferred) (total 5.00)
+### `turtle-snakeneck-b` — ✅ preferred final (total 5.00)
 - **A transplant in place**: 5/5
 - **B base intact**: 5/5
 - **C anatomical credibility**: 5/5
@@ -32,7 +32,7 @@
 - **E concept readability**: 5/5
 - 👍 After changing the seed, the neck's curvature and scale detail hold up just as well
 
-### `turtle-snakeneck-c` — ✅ final (preferred) (total 5.00)
+### `turtle-snakeneck-c` — ✅ preferred final (total 5.00)
 - **A transplant in place**: 5/5
 - **B base intact**: 5/5
 - **C anatomical credibility**: 5/5

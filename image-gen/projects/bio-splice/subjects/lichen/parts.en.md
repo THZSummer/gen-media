@@ -43,7 +43,7 @@ This is the **most ontological example** of "bio-splice": nature has already don
 ✅ a hard crustose lichen crust with a cracked areolate surface   ← 形态件（高辨识度）
 ✅ clusters of bright green algal cells                          ← 藻件（跨域、颜色鲜明）
 ❌ the lichen's crust                                            ← 只写名字，模型没有形态可依
-❌ 把形态与藻写成一句从句                                          ← 规律 69/81：拆成并列的名词短语
+❌ 把形态与藻写成一句从句                                          ← Rule 69/81：拆成并列的名词短语
 ```
 
 **The scale layer must change too**: this is a creature a few centimetres across, so the framing sentence uses "macro close-up"

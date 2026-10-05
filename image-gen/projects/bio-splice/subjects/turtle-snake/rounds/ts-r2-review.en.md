@@ -10,13 +10,13 @@
 
 | Camera | A | B | C | D | E | Total | Verdict | Global difference vs base | Region difference |
 |------|---|---|---|---|---|------|------|--------------|--------|
-| `coil-ground` | 4 | 5 | 5 | 5 | 5 | **4.70** | ✅ final (preferred) | 44.41 | shell 24.1 |
-| `coil-min` | 4 | 5 | 5 | 5 | 5 | **4.70** | ✅ final (preferred) | 29.27 | shell 31.5 |
-| `coil-rim` | 4 | 5 | 5 | 5 | 4 | **4.55** | ✅ final (preferred) | 28.32 | shell 26.6 |
+| `coil-ground` | 4 | 5 | 5 | 5 | 5 | **4.70** | ✅ preferred final | 44.41 | shell 24.1 |
+| `coil-min` | 4 | 5 | 5 | 5 | 5 | **4.70** | ✅ preferred final | 29.27 | shell 31.5 |
+| `coil-rim` | 4 | 5 | 5 | 5 | 4 | **4.55** | ✅ preferred final | 28.32 | shell 26.6 |
 
 ## Item-by-item pros and cons
 
-### `coil-ground` — ✅ final (preferred) (total 4.70)
+### `coil-ground` — ✅ preferred final (total 4.70)
 - **A transplant in place**: 4/5
 - **B base intact**: 5/5
 - **C anatomical credibility**: 5/5
@@ -25,7 +25,7 @@
 - 👍 The snake body coils on the stone surface along the left side of the shell, head and tail both hidden — the classic Xuanwu composition
 - 👎 Few coils
 
-### `coil-min` — ✅ final (preferred) (total 4.70)
+### `coil-min` — ✅ preferred final (total 4.70)
 - **A transplant in place**: 4/5
 - **B base intact**: 5/5
 - **C anatomical credibility**: 5/5
@@ -34,7 +34,7 @@
 - 👍 The same coiling relationship, with the shortest and most stable phrasing
 - 👎 Few coils
 
-### `coil-rim` — ✅ final (preferred) (total 4.55)
+### `coil-rim` — ✅ preferred final (total 4.55)
 - **A transplant in place**: 4/5
 - **B base intact**: 5/5
 - **C anatomical credibility**: 5/5

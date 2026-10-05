@@ -49,7 +49,7 @@ Check this repository's five questions / two thresholds one by one:
 ✅ a pair of branching deer antlers rising from its forehead   ← 位置短语 + 空面
 ✅ a single heavy rhinoceros horn rising from its nose
 ❌ 底座里出现「角」相关的词                                      ← 那就不是空位了（马本来无角）
-❌ a horse with an elk's antlers（整只供体）                     ← 规律 57
+❌ a horse with an elk's antlers（整只供体）                     ← Rule 57
 ```
 
 ---

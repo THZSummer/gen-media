@@ -1,5 +1,7 @@
 # fb2-R5–R9 · 五期定稿（翎 / 绒 / 翎+绒 × 花种）
 
+> 🌐 语言：**中文** ｜ [English](fb2-r5-r9.en.md)
+
 > 返回[子主题首页](../README.md) ｜ 复核报告：[r5](fb2-r5-review.md) · [r6](fb2-r6-review.md) · [r7](fb2-r7-review.md) · [r8](fb2-r8-review.md) · [r9](fb2-r9-review.md)
 > 引擎：Z-Image-Turbo　steps 12　**seed 11101 / 11102 / 11103 / 11104**　产物：[`work/flower-bird/r5..r9/`](../../../work/flower-bird/)
 

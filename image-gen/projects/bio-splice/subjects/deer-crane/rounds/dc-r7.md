@@ -1,5 +1,7 @@
 # dc-R7 · 尾羽补 take —— 空位的命中率是 1/4
 
+> 🌐 语言：**中文** ｜ [English](dc-r7.en.md)
+
 > 返回[子主题首页](../README.md) ｜ 复核报告：[r7](dc-r7-review.md)
 > 引擎：Z-Image-Turbo　1024²　steps 12　**seed 7101 / 7103 / 7104**　产物：[`work/deer-crane/r7/`](../../../work/deer-crane/)
 

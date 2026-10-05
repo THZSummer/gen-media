@@ -1,5 +1,7 @@
 # dc-R1–R6 · 五期与两版对照（腾出占位对典范结构无效的出处）
 
+> 🌐 语言：**中文** ｜ [English](dc-r1-r6.en.md)
+
 > 返回[子主题首页](../README.md) ｜ 复核报告：[r1](dc-r1-review.md) · [r2](dc-r2-review.md) · [r3](dc-r3-review.md) · [r4](dc-r4-review.md) · [r5](dc-r5-review.md) · [r6](dc-r6-review.md)
 > 引擎：Z-Image-Turbo　steps 12　**seed 7101 / 7102**　产物：[`work/deer-crane/r1..r6/`](../../../work/deer-crane/)
 > ℹ️ 每轮都带**同轮底座对照**（`base-deer`，规律 76：一轮一个底座）

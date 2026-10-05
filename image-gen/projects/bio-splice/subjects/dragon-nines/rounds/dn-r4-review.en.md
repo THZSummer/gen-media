@@ -10,12 +10,12 @@
 
 | Shot | A | B | C | D | E | Total | Verdict | Global diff vs base | Region diff |
 |------|---|---|---|---|---|------|------|--------------|--------|
-| `dragon-4parts` | 4 | 5 | 5 | 5 | 5 | **4.70** | ✅ final (preferred) | 25.22 | head 36.7 feet 31.9 |
+| `dragon-4parts` | 4 | 5 | 5 | 5 | 5 | **4.70** | ✅ preferred final | 25.22 | head 36.7 feet 31.9 |
 | `dragon-3parts` | 3 | 5 | 5 | 5 | 5 | **4.40** | ✅ final | 25.00 | head 35.8 feet 35.1 |
 
 ## Point-by-point pros and cons
 
-### `dragon-4parts` — ✅ final (preferred) (total 4.70)
+### `dragon-4parts` — ✅ preferred final (total 4.70)
 - **A transplant in place**: 4/5
 - **B base intact**: 5/5
 - **C anatomy credible**: 5/5

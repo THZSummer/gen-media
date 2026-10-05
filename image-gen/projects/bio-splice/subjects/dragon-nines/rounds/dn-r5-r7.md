@@ -1,5 +1,7 @@
 # R5–R7 · 把「期」做出各自的特点（定稿轮）
 
+> 🌐 语言：**中文** ｜ [English](dn-r5-r7.en.md)
+
 > 返回[子主题首页](../README.md) ｜ 复核报告：[dn-r5](dn-r5-review.md) · [dn-r6](dn-r6-review.md) · [dn-r7](dn-r7-review.md)
 > 引擎：Z-Image-Turbo　steps 12　**全部 seed 4201**　产物：[`work/dragon-nines/r5..r7/`](../../../work/dragon-nines/)
 > ℹ️ `work/` 不进仓库（固定 seed 可逐像素复现）

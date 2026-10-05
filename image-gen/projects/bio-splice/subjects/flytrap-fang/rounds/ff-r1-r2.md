@@ -1,5 +1,7 @@
 # ff-R1 / ff-R2 · 边缘齿：结构还是属性？（同 seed 对照）
 
+> 🌐 语言：**中文** ｜ [English](ff-r1-r2.en.md)
+
 > 返回[子主题首页](../README.md) ｜ 复核报告：[r1](ff-r1-review.md) · [r2](ff-r2-review.md)
 > 引擎：Z-Image-Turbo　1024²　steps 12　**seed 10101**　产物：[`work/flytrap-fang/r1..r2/`](../../../work/flytrap-fang/)
 

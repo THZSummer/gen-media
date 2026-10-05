@@ -10,12 +10,12 @@
 
 | Shot | A | B | C | D | E | Total | Verdict | Global diff vs base | Region diff |
 |------|---|---|---|---|---|------|------|--------------|--------|
-| `snake-fishscale-antler` | 4 | 5 | 5 | 5 | 4 | **4.55** | ✅ final (preferred) | 18.60 | head 39.3 body 17.9 |
+| `snake-fishscale-antler` | 4 | 5 | 5 | 5 | 4 | **4.55** | ✅ preferred final | 18.60 | head 39.3 body 17.9 |
 | `snake-fishscale` | 3 | 5 | 5 | 5 | 3 | **4.10** | ✅ final | 11.99 | head 16.3 body 18.5 |
 
 ## Point-by-point pros and cons
 
-### `snake-fishscale-antler` — ✅ final (preferred) (total 4.55)
+### `snake-fishscale-antler` — ✅ preferred final (total 4.55)
 - **A transplant in place**: 4/5
 - **B base intact**: 5/5
 - **C anatomy credible**: 5/5

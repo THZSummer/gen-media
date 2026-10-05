@@ -1,5 +1,7 @@
 # lc-R1 · 单件 + 组合探针：**跨域件第一次 100% 落地**
 
+> 🌐 语言：**中文** ｜ [English](lc-r1.en.md)
+
 > 返回[子主题首页](../README.md) ｜ 复核报告：[lc-r1](lc-r1-review.md)
 > 引擎：Z-Image-Turbo　1024²　steps 12　**全部 seed 8101**　产物：[`work/lichen/r1/`](../../../work/lichen/r1/)
 > ℹ️ `work/` 不进仓库（固定 seed 可逐像素复现）

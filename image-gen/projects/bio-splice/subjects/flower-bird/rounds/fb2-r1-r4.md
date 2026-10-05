@@ -1,5 +1,7 @@
 # fb2-R1–R4 · 羽替花瓣全灭 → 换到空面落点
 
+> 🌐 语言：**中文** ｜ [English](fb2-r1-r4.en.md)
+
 > 返回[子主题首页](../README.md) ｜ 复核报告：[r1](fb2-r1-review.md) · [r2](fb2-r2-review.md) · [r3](fb2-r3-review.md) · [r4](fb2-r4-review.md)
 > 引擎：Z-Image-Turbo　1024²　steps 12　**seed 11101 / 11102**　产物：[`work/flower-bird/r1..r4/`](../../../work/flower-bird/)
 

@@ -79,10 +79,10 @@ after the landing site retreated from the "petal ring" to the "flower centre", t
 | File | Content |
 |------|------|
 | [`parts.md`](parts.en.md) | **Flower-and-bird part table** (by landing site) + Rule 102 |
-| [`rounds/fb2-r1-r4.md`](rounds/fb2-r1-r4.md) | R1–R4: feather-replacing-petals wiped out → moved to an empty-face landing site |
-| [`rounds/fb2-r5-r9.md`](rounds/fb2-r5-r9.md) | R5–R9: finalizing the five periods and extra takes |
+| [`rounds/fb2-r1-r4.md`](rounds/fb2-r1-r4.en.md) | R1–R4: feather-replacing-petals wiped out → moved to an empty-face landing site |
+| [`rounds/fb2-r5-r9.md`](rounds/fb2-r5-r9.en.md) | R5–R9: finalizing the five periods and extra takes |
 | `rounds/fb2-rN-review.md` | scoring review report for each round |
-| [`rounds/prompts-all.md`](rounds/prompts-all.md) | verbatim prompt archive for every round |
+| [`rounds/prompts-all.md`](rounds/prompts-all.en.md) | verbatim prompt archive for every round |
 
 ---
 

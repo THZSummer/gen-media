@@ -1,5 +1,7 @@
 # R8 · 九似小成（原计划：驼头 D2 + 兔眼 D3）——**两件皆否**
 
+> 🌐 语言：**中文** ｜ [English](dn-r8.en.md)
+
 > 返回[子主题首页](../README.md) ｜ 复核报告：[dn-r8-review.md](dn-r8-review.md) ｜ 定稿见 [dn-r10](dn-r10.md)
 > 引擎：Z-Image-Turbo　1024²　steps 12　**全 4 张共用 seed 4201**
 > 产物：[`work/dragon-nines/r8/`](../../../work/dragon-nines/r8/)　`unapplied` 全空
