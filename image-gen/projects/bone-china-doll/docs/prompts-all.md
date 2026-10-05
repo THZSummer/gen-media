@@ -1,5 +1,7 @@
 # 全部轮次原始 Prompt 存档
 
+> 🌐 语言：**中文** ｜ [English](prompts-all.en.md)
+
 > 本文件由 `python3 run_round.py --prompts` 自动生成，内容 = **实际提交给 ComfyUI 的字符串**。
 > 为便于查阅与逐轮对照，代码块内已按分句换行；**换行符不属于 prompt，仅排版**。
 > 还原规则：行尾是 ASCII 字符时，该换行等于一个空格；否则换行处原本没有字符。

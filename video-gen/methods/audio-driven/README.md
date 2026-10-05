@@ -1,5 +1,7 @@
 # 音频驱动视频（Audio-Driven）
 
+> 🌐 语言：**中文** ｜ [English](README.en.md)
+
 > 输入：参考音频 + prompt。输出：画面节奏跟随音频（节拍/节奏）的视频。
 > 返回[方法总览](../README.md) ｜ 适用模型：Seedance 系列（支持 ref_audio 的版本）
 

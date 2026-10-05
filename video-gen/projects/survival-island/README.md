@@ -1,5 +1,7 @@
 # 项目：荒岛求生（Survival Island）
 
+> 🌐 语言：**中文** ｜ [English](README.en.md)
+
 > 返回[项目索引](../README.md) ｜ 技术方法见 [../../methods/](../../methods/README.md)
 
 ---

@@ -1,5 +1,7 @@
 # 项目（Projects）
 
+> 🌐 语言：**中文** ｜ [English](README.en.md)
+
 > 返回[首页](../README.md) ｜ 技术方法见 [../methods/](../methods/README.md)
 
 ---

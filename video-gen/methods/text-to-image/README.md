@@ -1,5 +1,7 @@
 # 文生图（Text-to-Image, T2I / Seedream）
 
+> 🌐 语言：**中文** ｜ [English](README.en.md)
+
 > 输入：prompt。输出：静态图片。当前走 `doubao-seedream-5-0-lite`（Agent Plan Medium 含，agent-plan profile）。
 > 返回[方法总览](../README.md)
 

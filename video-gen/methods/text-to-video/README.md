@@ -1,5 +1,7 @@
 # 文生视频（Text-to-Video）
 
+> 🌐 语言：**中文** ｜ [English](README.en.md)
+
 > 输入：仅一段文字描述。输出：动态视频。
 > 返回[方法总览](../README.md) ｜ 适用模型：Seedance 系列（T2V 路径）
 > 📚 **官方教程（seedance-2.0 多模态/音效/编辑）**：<https://ark.volcengine.com/region:cn-beijing/docs/82379/2298881?lang=zh>（含 @视频/@图像/@音频 参考输入、音效描述、视频延长编辑等官方示例）

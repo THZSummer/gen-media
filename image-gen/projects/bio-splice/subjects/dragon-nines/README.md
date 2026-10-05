@@ -1,5 +1,7 @@
 # 子主题：龙 · 九似
 
+> 🌐 语言：**中文** ｜ [English](README.en.md)
+
 > 返回[项目首页](../../README.md) ｜ 部位表见 [`parts.md`](parts.md) ｜ 开发记录见 [`rounds/`](rounds/)
 
 > **全子主题总览图**：[`sheet.jpg`](sheet.jpg) —— 每期一行，把该期成品拼在一起（`bash make_sheet.sh subject dragon-nines` 可复现）

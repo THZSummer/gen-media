@@ -1,5 +1,7 @@
 # 第三期 · 枝状地衣
 
+> 🌐 语言：**中文** ｜ [English](README.en.md)
+
 > 返回[子主题](../README.md) ｜ [项目首页](../../../README.md) ｜ [部位表](../parts.md) ｜ [复核报告](../rounds/lc-r3-review.md)
 > 引擎：Z-Image-Turbo　**1024×1280**　steps 12　**seed 8101 / 8103**
 > 速览图：[`sheet.jpg`](sheet.jpg)　出处：[`manifest.json`](manifest.json)

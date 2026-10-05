@@ -1,5 +1,7 @@
 # 生成方法总览（Methods）
 
+> 🌐 语言：**中文** ｜ [English](README.en.md)
+
 > 返回[首页](../README.md) ｜ 项目实践见 [../projects/](../projects/README.md)
 
 > 本篇是**技术方法手册**：按生成技术路径组织（**图片 / 视频 / 语音** + 横切控制），讲"**怎么生成**"。

@@ -1,5 +1,7 @@
 # 语音合成（Text-to-Speech, TTS / 后期配音）
 
+> 🌐 语言：**中文** ｜ [English](README.en.md)
+
 > 输入：文本。输出：语音音频（mp3）。当前走 `seed-tts-2.0`（Agent Plan Medium 含，agent-plan profile）。
 > 返回[方法总览](../README.md)
 

@@ -111,7 +111,8 @@ gen-media/
 | 命名 | `README.md` ↔ `README.en.md`；`period-01/README.md` ↔ `period-01/README.en.md` |
 | 排除 | `image-gen/skills/**` 与 `video-gen/skills/**` 只保留中文（技能文档面向执行，不翻译） |
 | 链接 | 英文版内部的相对链接指向 `.en.md`；目标没有英文版时指向中文版（不造死链） |
-| 代码 | 代码块、命令、路径、文件名、prompt 原文一律**不翻译**；只翻散文、标题、表头 |
+| 代码 | **逐字保留**：命令、路径、文件名、模型 ID、参数名、seed、prompt 原文、样例字符串 |
+| 代码块内的注释 | **要翻译**：目录树的说明文字（`├── skills/   ← 技能库` 里的中文）、bash 示例里的 `#` 注释、ASCII 示意图的标签 —— 它们是说明而不是内容 |
 | 工具 | `python3 tools/i18n.py status / switch / links / check` —— 覆盖报告、写切换行、改链接、体检 |
 
 ```bash

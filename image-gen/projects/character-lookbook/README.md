@@ -1,5 +1,7 @@
 # 角色设定图库（Character Lookbook）
 
+> 🌐 语言：**中文** ｜ [English](README.en.md)
+
 > 返回[项目索引](../README.md) ｜ 技术技能见 [../../skills/](../../skills/README.md)
 > 示例项目：演示如何用「文生图 + 多视角一致性 + 多图参考 + 图像编辑」搭出一个可复用的角色资产库。
 

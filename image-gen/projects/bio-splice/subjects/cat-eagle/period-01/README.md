@@ -1,5 +1,7 @@
 # 第一期 · 猫头鹰（猫的头 + 鹰的身体）
 
+> 🌐 语言：**中文** ｜ [English](README.en.md)
+
 > 返回[子主题](../README.md) ｜ [项目首页](../../../README.md) ｜ [项目索引](../../../../README.md)
 > 引擎：Z-Image-Turbo　尺寸：1024×1024　steps：12　**全 5 张共用 seed 4201**
 > 速览图：[`sheet.jpg`](sheet.jpg)　出处：[`manifest.json`](manifest.json)

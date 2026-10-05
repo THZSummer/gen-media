@@ -1,5 +1,7 @@
 # 项目模板（_template）
 
+> 🌐 语言：**中文** ｜ [English](README.en.md)
+
 > 返回[项目索引](../README.md) ｜ 技术技能见 [../../skills/](../../skills/README.md)
 
 > 本目录是**模板**，复制后改写。不要在 _template 里直接做项目。

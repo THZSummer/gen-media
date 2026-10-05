@@ -1,5 +1,7 @@
 # 生物拼接（Bio Splice）· 全项目规划
 
+> 🌐 语言：**中文** ｜ [English](PLAN.en.md)
+
 > 返回[项目首页](README.md) ｜ [项目索引](../README.md)
 
 **12 个子主题 × 5 期 = 60 期**；**已全部交付**（135 件成品）。全项目总结见 [`SUMMARY.md`](SUMMARY.md)。

@@ -1,5 +1,7 @@
 # 生物拼接（Bio Splice）
 
+> 🌐 语言：**中文** ｜ [English](README.en.md)
+
 > 返回[项目索引](../README.md) ｜ 技术技能见 [../../skills/](../../skills/README.md)
 
 > 🏁 **本项目已全部交付（12 个子主题 / 60 期 / 135 成品）**，全线总结见 [`SUMMARY.md`](SUMMARY.md)。

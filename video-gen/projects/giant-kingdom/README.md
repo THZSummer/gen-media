@@ -1,5 +1,7 @@
 # 蝴蝶女大冒险（butterfly-girl）
 
+> 🌐 语言：**中文** ｜ [English](README.en.md)
+
 > 返回[项目索引](../README.md) ｜ 技术方法见 [../../methods/](../../methods/README.md)
 
 蝴蝶女大冒险 · 蝴蝶精灵微观冒险（v4 定版：参考图独立并行）

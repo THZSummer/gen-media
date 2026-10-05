@@ -1,5 +1,7 @@
 # 视频生成（Video Generation）- 总导航
 
+> 🌐 语言：**中文** ｜ [English](README.en.md)
+
 > 基于**火山方舟 Ark** 视频生成能力（豆包 Seedance 系列）的视频生成知识库。
 > 💰 **Profile 路由**：Seedance 2.0 系列（含 mini）走 platform 按量（`--profile platform_cn-beijing_accountwide`）；其余模型（seedream 图片 / seedance-1.5-pro / TTS / ASR）走 agent-plan。Medium 套餐不含 2.0 系列，1.5-pro 即将下线。
 > 工具入口：`arkcli +gen`（三步工作流：① `resources list` 查可用模型 -> ② `models get` 查 supported_params -> ③ `+gen` 生成）。

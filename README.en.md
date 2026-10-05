@@ -34,10 +34,10 @@ gen-media/
 | Generate an image from text | [image-gen/skills/text-to-image-comfyui](image-gen/skills/text-to-image-comfyui/SKILL.md) (local ComfyUI: Z-Image-Turbo for speed / Qwen-Image for detail) |
 | Edit an image / change the background following a control image | [image-gen/skills/image-edit-comfyui](image-gen/skills/image-edit-comfyui/SKILL.md) (Fun Union ControlNet) |
 | Build a contact sheet / compare two images / strip metadata / resize | [image-gen/skills/image-tools](image-gen/skills/image-tools/SKILL.md) (no AI, fully deterministic) |
-| Study a complete image project's plan and output | [image-gen/projects/](image-gen/projects/README.md) |
+| Study a complete image project's plan and output | [image-gen/projects/](image-gen/projects/README.en.md) |
 | Turn storyboard frames into video | [video-gen/skills/image-to-video-fastvideo3](video-gen/skills/image-to-video-fastvideo3/SKILL.md) |
 | Generate a video with audio from text alone | [video-gen/skills/text-to-video-fastvideo3](video-gen/skills/text-to-video-fastvideo3/SKILL.md) |
-| Look up video techniques and cost | [video-gen/methods/](video-gen/methods/README.md) |
+| Look up video techniques and cost | [video-gen/methods/](video-gen/methods/README.en.md) |
 
 ---
 
@@ -45,8 +45,8 @@ gen-media/
 
 | Library | Answers | Organised as |
 |----|------|----------|
-| [image-gen](image-gen/README.md) | **what to generate / how to generate images** | skills (technical paths) × projects (concrete work) |
-| [video-gen](video-gen/README.md) | **how to turn images into video / how to generate video directly** | method notes × executable skills × projects |
+| [image-gen](image-gen/README.en.md) | **what to generate / how to generate images** | skills (technical paths) × projects (concrete work) |
+| [video-gen](video-gen/README.en.md) | **how to turn images into video / how to generate video directly** | method notes × executable skills × projects |
 
 Images are the upstream step of video: the storyboard frames and first frames produced by `image-gen` are consumed by the I2V skills in `video-gen`. Conversely, `video-gen`'s `methods/text-to-image/` overlaps historically with `image-gen` (the video library was split off from the image capabilities).
 
@@ -59,7 +59,7 @@ A cross-species, cross-kingdom "part transplant" image experiment series, and by
 - **12 sub-themes × 5 periods = 60 periods, 135 finals** (cat-eagle, dragon-nines, turtle-snake, fish-bird, deer-crane, lichen, cordyceps, flytrap-fang, flower-bird, tree-beast, wing-atlas, horn-atlas)
 - Engine **Z-Image-Turbo** (ComfyUI, 1024² / 1280², 12 steps, about 25 s per image)
 - Every round carries a same-round **base control**; only images passing the five-axis A–E review are curated; **110 mechanism findings** accumulated so far (topic selection / wording / layout / presentation / process)
-- Entry: [image-gen/projects/bio-splice/README.md](image-gen/projects/bio-splice/README.md) ｜ full summary and 12 sub-theme contact sheets: [SUMMARY.md](image-gen/projects/bio-splice/SUMMARY.md)
+- Entry: [image-gen/projects/bio-splice/README.md](image-gen/projects/bio-splice/README.en.md) ｜ full summary and 12 sub-theme contact sheets: [SUMMARY.md](image-gen/projects/bio-splice/SUMMARY.en.md)
 
 ---
 
@@ -111,7 +111,8 @@ A cross-species, cross-kingdom "part transplant" image experiment series, and by
 | Naming | `README.md` ↔ `README.en.md`; `period-01/README.md` ↔ `period-01/README.en.md` |
 | Excluded | `image-gen/skills/**` and `video-gen/skills/**` stay Chinese-only (skill docs are meant for execution, not translation) |
 | Links | relative links inside an English file point at `.en.md`; when the target has no English version they point at the Chinese file (no dead links) |
-| Code | code blocks, commands, paths, filenames and raw prompts are **never translated**; only prose, headings and table headers are |
+| Code | **kept verbatim**: commands, paths, filenames, model IDs, parameter names, seeds, raw prompts, sample strings |
+| Comments inside code blocks | **translated**: directory-tree annotations (the Chinese in `├── skills/   ← …`), `#` comments in bash examples, labels in ASCII diagrams — those are explanation, not content |
 | Tooling | `python3 tools/i18n.py status / switch / links / check` — coverage report, switch lines, link rewriting, health check |
 
 ```bash

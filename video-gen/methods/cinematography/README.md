@@ -1,5 +1,7 @@
 # 镜头运镜与分镜（Cinematography）
 
+> 🌐 语言：**中文** ｜ [English](README.en.md)
+
 > 控制镜头运动、构图、分镜设计的横切主题，适用于所有输入路径（T2V/I2V/R2V/音频驱动）。
 > 返回[方法总览](../README.md)
 

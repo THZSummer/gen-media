@@ -1,5 +1,7 @@
 # 图生视频（Image-to-Video）
 
+> 🌐 语言：**中文** ｜ [English](README.en.md)
+
 > 输入：首帧/尾帧图片 + prompt。输出：图片"动起来"的视频。
 > 返回[方法总览](../README.md) ｜ 适用模型：Seedance 系列（I2V 路径）
 

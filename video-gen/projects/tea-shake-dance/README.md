@@ -1,5 +1,7 @@
 # 来杯好茶摇一摇（tea-shake-dance）
 
+> 🌐 语言：**中文** ｜ [English](README.en.md)
+
 > 返回[项目索引](../README.md) ｜ 技术方法见 [../../methods/](../../methods/README.md)
 
 艺术舞蹈短片：以「摇一摇」为动作母题，把茶文化（茶汤、茶香、冲泡姿态）跳成一支现代舞。

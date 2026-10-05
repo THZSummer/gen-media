@@ -1,5 +1,7 @@
 # 长视频续接（Long-Video Chain）
 
+> 🌐 语言：**中文** ｜ [English](README.en.md)
+
 > 把多条短视频首尾相接，串成连贯长片的主题。
 > 返回[方法总览](../README.md) ｜ 核心机制：`--return-last-frame` 链式续接
 

@@ -1,5 +1,7 @@
 # 图片生成（Image Generation）· 总导航
 
+> 🌐 语言：**中文** ｜ [English](README.en.md)
+
 > 基于**本机 ComfyUI**（远程 GPU 机 `http://192.168.3.5:18000`）的图片生成库：
 > 文生图（Z-Image-Turbo / Qwen-Image 两个引擎）、控制图生图（Z-Image Fun Union ControlNet），
 > 外加一组**不用 AI** 的确定性图像工具（ffmpeg + numpy：速览图 / 像素比对 / 去元数据 / 缩放裁切）。

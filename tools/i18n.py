@@ -39,6 +39,13 @@ SWITCH_RE = re.compile(r"^>\s*🌐")
 H1_RE = re.compile(r"^#\s+\S")
 FRONTMATTER_RE = re.compile(r"^---\s*$")
 
+# 「本地保留、不入库」的中间产物：文档里指向它们是预期行为，不算断链
+LOCAL_ARTIFACT_RE = re.compile(r"(^|/)(work|out/r\d+)(/|$)")
+
+
+def is_local_artifact(path: str) -> bool:
+    return bool(LOCAL_ARTIFACT_RE.search(path.replace("\\", "/")))
+
 
 def in_scope(rel: str) -> bool:
     if not rel.endswith(".md"):
@@ -84,6 +91,23 @@ def write(rel: str, text: str) -> None:
 
 def cjk_count(text: str) -> int:
     return len(CJK_RE.findall(text))
+
+
+def cjk_outside_fence(text: str) -> int:
+    """只数围栏代码块之外的汉字。
+
+    判「是否真的翻译了」必须用这个口径：prompt 存档之类的文件，正文大段中文位于代码块内
+    （prompt 原文 = 内容，按规范逐字保留），用全文口径会把它们误判成「未翻译」。
+    """
+    total = 0
+    in_fence = False
+    for line in text.split("\n"):
+        if line.lstrip().startswith("```"):
+            in_fence = not in_fence
+            continue
+        if not in_fence:
+            total += len(CJK_RE.findall(line))
+    return total
 
 
 # ── switch：语言切换行 ──────────────────────────────────────────────────────
@@ -147,6 +171,9 @@ def remap_links(rel: str) -> int:
         candidate = os.path.normpath(os.path.join(base_dir, path))
         if not candidate.endswith(".md"):
             return m.group(0)
+        # 语言切换行指向本文件的中文对应版，不能重定向（否则会指向自己）
+        if candidate == os.path.normpath(zh_of(rel)):
+            return m.group(0)
         if os.path.isfile(os.path.join(ROOT, en_of(candidate))):
             changed += 1
             new = en_of(path)
@@ -209,14 +236,14 @@ def cmd_check(args) -> int:
     for r in missing:
         problems.append(("缺英文版", r, ""))
 
-    # 未翻译检测（相对指标）：英文版的 CJK 字符数 / 中文版
+    # 未翻译检测（相对指标，只数围栏块外的汉字）：英文版的正文汉字数 / 中文版正文汉字数
     untranslated = []
     for rel in zh:
         en = en_of(rel)
         if not os.path.isfile(os.path.join(ROOT, en)):
             continue
-        z = cjk_count(read(rel))
-        e = cjk_count(read(en))
+        z = cjk_outside_fence(read(rel))
+        e = cjk_outside_fence(read(en))
         if z >= 40 and e / max(z, 1) > args.ratio:
             untranslated.append((rel, z, e, e / max(z, 1)))
     for rel, z, e, ratio in sorted(untranslated, key=lambda x: -x[3]):
@@ -224,6 +251,7 @@ def cmd_check(args) -> int:
 
     # 英文版里的相对链接是否都指得到
     broken = []
+    local_only = 0
     for rel in zh:
         en = en_of(rel)
         if not os.path.isfile(os.path.join(ROOT, en)):
@@ -236,13 +264,18 @@ def cmd_check(args) -> int:
             p = t.split("#")[0]
             if not p:
                 continue
+            if is_local_artifact(p):
+                # 指向 work/ 或 out/r*/ 这类「本地保留、不入库」的中间产物，属预期
+                local_only += 1
+                continue
             # 指向被排除目录（skills）的中文文件是允许的
             if not os.path.exists(os.path.join(ROOT, os.path.normpath(os.path.join(base_dir, p)))):
                 broken.append((en, t))
     for rel, t in broken[:20]:
         problems.append(("英文版断链", rel, t))
 
-    print(f"范围内中文文档 {len(zh)}；缺英文版 {len(missing)}；疑似未翻译 {len(untranslated)}；英文版断链 {len(broken)}")
+    print(f"范围内中文文档 {len(zh)}；缺英文版 {len(missing)}；疑似未翻译 {len(untranslated)}；"
+          f"英文版断链 {len(broken)}（另有 {local_only} 条指向本地中间产物，符合预期）")
     for kind, rel, extra in problems[:40]:
         print(f"  [{kind}] {rel} {extra}")
     if len(problems) > 40:

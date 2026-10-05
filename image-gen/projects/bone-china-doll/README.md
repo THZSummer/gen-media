@@ -1,5 +1,7 @@
 # 骨瓷国公主（Bone China Princess）
 
+> 🌐 语言：**中文** ｜ [English](README.en.md)
+
 > 返回[项目索引](../README.md) ｜ 技能见 [../../skills/text-to-image-comfyui/SKILL.md](../../skills/text-to-image-comfyui/SKILL.md)
 > **六阶段迭代**（目录名沿用 `bone-china-doll`，主题已变更）：
 > - **第一阶段 R1–R6**：每轮 5 张，Z-Image-Turbo，解决构图/比例/材质词汇

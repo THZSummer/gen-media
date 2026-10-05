@@ -1,5 +1,7 @@
 # 参考视频生成（Reference-to-Video, R2V）
 
+> 🌐 语言：**中文** ｜ [English](README.en.md)
+
 > 输入：一段参考视频 + prompt。输出：保持参考视频运动轨迹、按 prompt 替换内容的新视频。
 > 返回[方法总览](../README.md) ｜ 适用模型：`doubao-seedance-2-0-r2v`（R2V 专用）
 

@@ -1,5 +1,7 @@
 # 第二期 · 蛇尾的龟
 
+> 🌐 语言：**中文** ｜ [English](README.en.md)
+
 > 返回[子主题](../README.md) ｜ [项目首页](../../../README.md) ｜ [部位表](../parts.md) ｜ [复核报告](../rounds/ts-r4-review.md)
 > 引擎：Z-Image-Turbo　**1024×1024**　steps 12　**全 4 张共用 seed 5101（另加 5102/5103 的 take）**
 > 速览图：[`sheet.jpg`](sheet.jpg)　出处：[`manifest.json`](manifest.json)

@@ -1,5 +1,7 @@
 # 移步换景 v2（step-scenery-v2）
 
+> 🌐 语言：**中文** ｜ [English](README.en.md)
+
 > 返回[项目索引](../README.md) ｜ 技术方法见 [../../methods/](../../methods/README.md)
 
 少女穿越时空 · 一步一世界（v2：seedance-2.0 一次性 15s 生成 + 原生音频）
