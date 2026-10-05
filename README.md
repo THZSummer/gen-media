@@ -70,32 +70,32 @@ gen-media/
 | `ffmpeg` | 图片编解码、接触印相、合图、视频拼接 |
 | Python 3 + Pillow / numpy | 评分、逐像素差分、图集生成 |
 
-> ⚠️ **路径说明**：文档中出现的 `/home/usb/wks/gits/Book/image-gen/...` 之类的绝对路径，是作者工作机的目录布局；在本仓库中对应 `image-gen/...`、`video-gen/...`。各文档之间的相对链接在本仓库内均有效。
+> ⚠️ **路径说明**：文档中出现的 `/home/usb/wks/gits/Book/image-gen/...` 之类的绝对路径，是拆分前作者工作机的目录布局；**该布局已不存在**（原目录已删除）。以 `image-gen/`、`video-gen/` 为根理解即可，各文档之间的相对链接在本仓库内均有效。
 
 ---
 
 ## 六、体积与来源
 
 - **来源**：`gits` 仓库（Gitee）提交 `b1e14ad` 的 `Book/image-gen` + `Book/video-gen`。
-- **导入方式**：`git archive` 导出已跟踪文件（自动排除被忽略的中间产物）→ 提到仓库根 → 单次初始提交。原仓库仍保留同样的内容。
-- **不含**：`work/` 等中间产物与半成品轮次 —— 它们是**确定性的**，用固定 seed 可逐像素复现，因此不入库。
+- **导入方式**：`git archive` 导出已跟踪文件（自动排除被忽略的中间产物）→ 提到仓库根 → 单次初始提交。
+- **原仓库已不再包含这部分内容**：`gits` 的索引与历史已用 `filter-branch` 重写摘除这两个目录（1059 个文件 / 168→69 提交），本地工作副本也已删除。**本仓库是这些内容的唯一副本。**
+- **不含**：`work/` 等中间产物与半成品轮次 —— 它们是**确定性的**，用固定 seed 可逐像素复现，因此不入库。工作机上的这些中间产物已随目录一并清理：图类可用固定 seed 复现；`video-gen` 的旧版中间视频属已废弃版本（定稿均在本仓库），未另存。
 - **体积**：1059 文件 / 约 550 MB，单文件最大约 13 MB（视频成品 `.mp4`），**未使用 Git LFS**（所有文件都远低于 GitHub 的 100 MB 单文件上限）。
 - **图片规范**：定稿与对照图用 PNG（无损、去元数据），合并图 / 审计图用 JPEG（控制体积）。
 
 ---
 
-## 七、维护：从 gits 同步
+## 七、维护与扩展
 
-内容源头是作者工作机上的 `gits` 工作区（`Book/image-gen`、`Book/video-gen`）——那两个目录已从 Gitee 仓库的索引与历史中移除（本地磁盘保留），本仓库是它们的发布镜像。
+**本仓库就是内容源头**，不再有上游：新增技能 / 项目直接在 `image-gen/`、`video-gen/` 下建目录，按各自 `README.md` 的规范组织，然后正常 `git commit` + `git push` 即可。
 
-```bash
-tools/sync-from-gits.sh -n    # 预览：从 gits 重新导出并与本仓库比对
-tools/sync-from-gits.sh       # 同步 + 提交 + 推送
-```
+| 想加什么 | 放哪 | 参考规范 |
+|----------|------|----------|
+| 新图片项目 | `image-gen/projects/<项目名>/` | 复制 `image-gen/projects/_template/`；索引见 `image-gen/projects/README.md` |
+| 新图片技能 | `image-gen/skills/<技能名>/SKILL.md` | 技能索引见 `image-gen/skills/README.md` |
+| 新视频项目 / 方法 / 技能 | `video-gen/{projects,methods,skills}/` | 见 `video-gen/README.md` |
 
-同步只覆盖 `image-gen/` 与 `video-gen/` 两个子目录（严格对齐，源头没有的文件会被删除）；本仓库根的 `README.md`、`.gitignore`、`tools/` 属于本仓库自有内容，不参与同步。
-
-> ⚠️ 该脚本依赖工作机的目录布局，可用 `GITS=<路径>` 覆盖；换机器使用需要先有对应的 gits 检出。
+> 大体积中间产物（`work/`、`out/r*/`、逐镜头 mp4 等）仍按各目录的 `.gitignore` 约定**不入库**；定稿只保留成品与文档，必要时用固定 seed 复现。
 
 ---
 
@@ -105,3 +105,4 @@ tools/sync-from-gits.sh       # 同步 + 提交 + 推送
 |------|------|----------|------|
 | 2026-10-05 | v1.0 | 从 `gits` 拆出 `Book/image-gen` 与 `Book/video-gen`，独立成库 | 小七 |
 | 2026-10-05 | v1.1 | 新增 `tools/sync-from-gits.sh` 与「维护」章节 | 小七 |
+| 2026-10-05 | v1.2 | 原 `gits` 工作副本与历史均已清理，本仓库成为唯一副本；删除已失效的同步脚本，「维护」章节改写为「维护与扩展」 | 小七 |
