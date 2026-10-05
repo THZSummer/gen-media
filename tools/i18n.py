@@ -7,7 +7,7 @@
   * 中文版是 `X.md`（默认），英文版是同名 `X.en.md`
   * 两份文件顶部各有一行语言切换：中文版 `> 🌐 语言：**中文** ｜ [English](X.en.md)`
   * 英文版内部的相对链接指向 `.en.md`；目标没有英文版时仍指向中文版
-  * 排除 `.agents/skills/**` 与 `.dsh/skills/**`（技能文档只留中文）
+  * 排除 `.agents/skills/**` 与 `.agents/skills/**`（技能文档只留中文）
 
 用法：
     python3 tools/i18n.py status            # 覆盖率报告（哪些缺英文版）
@@ -31,8 +31,8 @@ from collections import Counter
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 EN_SUFFIX = ".en.md"
-# 技能文档只写中文：.dsh/skills 是 DSH 项目技能根，.agents/skills/ 是仓库技能库（扁平化后合一）
-SKIP_PREFIXES = (".dsh/skills/", ".agents/skills/")
+# 技能文档只写中文：.agents/skills 是仓库技能根（含 dev-guide 与 5 个执行技能）
+SKIP_PREFIXES = (".agents/skills/",)
 
 CJK_RE = re.compile(r"[\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff\u3000-\u303f\uff01-\uff60]")
 LINK_RE = re.compile(r"\]\(([^)\s]+)\)")

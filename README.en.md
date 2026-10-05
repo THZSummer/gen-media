@@ -13,14 +13,14 @@
 ```
 gen-media/
 ├── README.md          <- you are here (main entry)
-├── .dsh/skills/       DSH project skill: dev-guide (the development spec; skill docs are Chinese-only)
-├── .agents/skills/            Skill library: 5 executable techniques, image and video together
+├── .agents/skills/    Skill library: dev-guide (the development spec) + 5 executable techniques, image and video together
 │   ├── README.md          skill index (capability map + routing table + prerequisites and self-checks)
-│   ├── text-to-image-comfyui/      text to image: Z-Image-Turbo (fast) + Qwen-Image (detailed)
-│   ├── image-edit-comfyui/         ControlNet image editing: Z-Image Fun Union ControlNet
-│   ├── image-tools/                deterministic image tooling (no AI): contact sheets / diffs / metadata strip / resize
-│   ├── text-to-video-fastvideo3/   text to video with synced audio (t2va)
-│   └── image-to-video-fastvideo3/  image to video with synced audio (fl2va, first/last frame)
+│   ├── dev-guide/                 the repository development spec: load before adding or changing anything
+│   ├── text-to-image-comfyui/     text to image: Z-Image-Turbo (fast) + Qwen-Image (detailed)
+│   ├── image-edit-comfyui/        ControlNet image editing: Z-Image Fun Union ControlNet
+│   ├── image-tools/               deterministic image tooling (no AI): contact sheets / diffs / metadata strip / resize
+│   ├── text-to-video-fastvideo3/  text to video with synced audio (t2va)
+│   └── image-to-video-fastvideo3/ image to video with synced audio (fl2va, first/last frame)
 ├── projects/          Project library: 9 projects, one directory each (image and video together)
 │   ├── README.md          project index + conventions
 │   ├── _template/         project template (copy and use; shared by image and video)
@@ -37,7 +37,7 @@ gen-media/
 
 | I want to... | Go to |
 |--------------|-------|
-| **add something here / align with the spec before committing** | [`.dsh/skills/dev-guide/SKILL.md`](.dsh/skills/dev-guide/SKILL.md) (bilingual, site, skill, generation, asset and collaboration conventions + a check script) |
+| **add something here / align with the spec before committing** | [`.agents/skills/dev-guide/SKILL.md`](.agents/skills/dev-guide/SKILL.md) (bilingual, site, skill, generation, asset and collaboration conventions + a check script) |
 | make an image from text | [.agents/skills/text-to-image-comfyui](.agents/skills/text-to-image-comfyui/SKILL.md) (Z-Image-Turbo fast / Qwen-Image detailed) |
 | edit an image from a control image / change background | [.agents/skills/image-edit-comfyui](.agents/skills/image-edit-comfyui/SKILL.md) (Fun Union ControlNet) |
 | contact sheet / diff two images / strip metadata / resize | [.agents/skills/image-tools](.agents/skills/image-tools/SKILL.md) (no AI, deterministic) |
@@ -136,7 +136,7 @@ cd ../.. && git submodule update --remote GitHub/gen-media \
 | Convention | Detail |
 |------------|--------|
 | Naming | `README.md` ↔ `README.en.md`; `projects/<project>/README.md` ↔ `README.en.md` |
-| Excluded | `.agents/skills/**` (including `.agents/skills/README.md`) and `.dsh/skills/**` stay Chinese-only (skill docs are written for execution, not translation) |
+| Excluded | `.agents/skills/**` (including `.agents/skills/README.md`) and `.agents/skills/**` stay Chinese-only (skill docs are written for execution, not translation) |
 | Links | relative links inside an English file point to `.en.md`; when no English version exists they point to the Chinese one (no dead links) |
 | Code | **kept verbatim**: commands, paths, filenames, model IDs, parameter names, seeds, verbatim prompts, sample strings |
 | Comments inside code blocks | **translated**: directory-tree annotations, `#` comments in bash examples, labels in ASCII diagrams |

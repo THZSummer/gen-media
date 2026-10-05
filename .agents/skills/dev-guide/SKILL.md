@@ -26,10 +26,10 @@ gen-media 是"图片生成 + 视频生成"的作品集仓库，**扁平化为三
 |---|------|------|
 | 1 | **站点必须支持双语**：默认中文，界面可切 EN，选择存在浏览器 | 点两次切换按钮，界面文案与数据标题都跟着换 |
 | 2 | **非技能 markdown 必须双语**：中文 `X.md` 为默认，英文为同名 `X.en.md`，两侧顶部一行语言切换 | `python3 tools/i18n.py check` 三项必须全 0 |
-| 3 | **技能文档只写中文**：`.dsh/skills/`、`.agents/skills/`、`.agents/skills/` 下的技能不做英文版 | `i18n.py` 已排除这些前缀，`check` 不应把它们算作缺件 |
+| 3 | **技能文档只写中文**：`.agents/skills/` 下的技能不做英文版 | `i18n.py` 已排除该前缀，`check` 不应把它们算作缺件 |
 | 4 | **大体积中间产物不入库**：`work/`、`out/r*/`、逐镜头 mp4 等留本地 | `git status` 里看不到；文档指向它们的链接属"预期断链" |
 | 5 | **定稿必须经评分过关**才进期目录；**每轮必带同轮底座对照** | 期目录有 `manifest.json`（`role: final` / `control`）与 `controls/` |
-| 6 | **新增技能要能被 DSH 发现**：放在 `.dsh/skills/<kebab-name>/SKILL.md` | 目录名 = frontmatter `name`；见 [references/skills.md](references/skills.md) |
+| 6 | **新增技能要能被 DSH 发现**：放在 `.agents/skills/<kebab-name>/SKILL.md` | 目录名 = frontmatter `name`；见 [references/skills.md](references/skills.md) |
 | 7 | **图片不成对改**：成品与对照用 PNG，合图/审计图用 JPEG | 见 [references/assets.md](references/assets.md) |
 
 ## 工作流
@@ -61,8 +61,8 @@ python3 tools/i18n.py check    # 缺件 / 疑似未翻译 / 断链 必须全 0
 按 DSH 项目技能规范落位：
 
 ```sh
-mkdir -p .dsh/skills/<kebab-name>/references
-$EDITOR .dsh/skills/<kebab-name>/SKILL.md
+mkdir -p .agents/skills/<kebab-name>/references
+$EDITOR .agents/skills/<kebab-name>/SKILL.md
 ```
 
 - `name` 必须 kebab-case 且与目录名一致；`description` 要写"做什么 + 何时用"（路由描述，DSH 目录默认截断到 500 字符）。
@@ -90,7 +90,7 @@ cd ../.. && git submodule update --remote GitHub/gen-media && git add GitHub/gen
 ## 交付前校验
 
 ```sh
-.dsh/skills/dev-guide/scripts/check.sh          # 一键跑完全部机械检查
+.agents/skills/dev-guide/scripts/check.sh          # 一键跑完全部机械检查
 ```
 
 脚本依次执行：双语三项体检 → 站点数据幂等性 → 三个技能自检 → 文档链接扫描。通过后再人工确认：新文档有没有英文版？新界面文案有没有中英两份？新图有没有进 `manifest.json`？中间产物有没有被误加进 git？
@@ -116,5 +116,6 @@ cd ../.. && git submodule update --remote GitHub/gen-media && git add GitHub/gen
 
 | 日期 | 版本 | 变更 |
 |------|------|------|
-| 2026-10-05 | v1.0 | 建立：按 DSH 项目技能规范（`.dsh/skills/<name>/SKILL.md`）落位，收录双语、站点、技能、生成、资产、协作六类规范与交付前检查脚本 |
-| 2026-10-05 | v1.1 | **随扁平化重构同步**：结构描述从"两个内容库"改为三块（`.agents/skills/` / `projects/` / `methods/`）；技能路径 `image-gen/.agents/skills/**`、`video-gen/.agents/skills/**` → `.agents/skills/**`；`i18n` 排除前缀随之收敛为 `(.dsh/skills/, .agents/skills/)`；站点文档的示例路径改为 `projects/...`；协作文档订正 submodule 事实（`gits` 以指针引用本仓库） | 小七 |
+| 2026-10-05 | v1.0 | 建立：按 DSH 项目技能规范（`.agents/skills/<name>/SKILL.md`）落位，收录双语、站点、技能、生成、资产、协作六类规范与交付前检查脚本 |
+| 2026-10-05 | v1.1 | **随扁平化重构同步**：结构描述从"两个内容库"改为三块（`.agents/skills/` / `projects/` / `methods/`）；技能路径 `image-gen/skills/**`、`video-gen/skills/**` → `.agents/skills/**`；`i18n` 排除前缀随之收敛；站点文档的示例路径改为 `projects/...`；协作文档订正 submodule 事实（`gits` 以指针引用本仓库） | 小七 |
+| 2026-10-05 | v1.2 | **dev-guide 自身迁入 `.agents/skills/`**：与 5 个执行技能并列（技能根 rank 从 `project-dsh` 换到 `project-agents`），`.dsh/` 目录随之移除；`i18n` 排除前缀收敛为 `(".agents/skills/",)`；`check.sh` 的 `ROOT` 推导注释同步（深度未变，`../../..` 仍指向仓库根）；清理此前替换遗留的重复枚举 | 小七 |

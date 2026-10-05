@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # gen-media 交付前自检（dev-guide 技能自带）
 #
-# 用法：.dsh/skills/dev-guide/scripts/check.sh
+# 用法：.agents/skills/dev-guide/scripts/check.sh
 # 退出码：0 = 全部通过；非 0 = 有检查未通过（逐项打印）。
 #
 # 只做机械检查；人工项（新文档是否配了英文版、新界面文案是否中英两份、
@@ -10,7 +10,7 @@
 set -uo pipefail
 
 SKILL_DIR=$(cd "$(dirname "$0")/.." && pwd)
-ROOT=$(cd "$SKILL_DIR/../../.." && pwd)   # dev-guide → skills → .dsh → 仓库根
+ROOT=$(cd "$SKILL_DIR/../../.." && pwd)   # dev-guide → skills → .agents → 仓库根
 cd "$ROOT"
 
 pass=0

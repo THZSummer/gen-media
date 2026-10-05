@@ -13,14 +13,14 @@
 ```
 gen-media/
 ├── README.md          ← 你在这里（总入口）
-├── .dsh/skills/       DSH 项目技能：dev-guide（开发规范总纲；技能文档只写中文）
-├── .agents/skills/            技能库：5 个可执行技能，图片与视频不分家
+├── .agents/skills/    技能库：dev-guide（开发规范总纲）+ 5 个可执行技能，图片与视频不分家
 │   ├── README.md          技能索引（能力地图 + 选路表 + 运行前提与自检）
-│   ├── text-to-image-comfyui/      文生图：Z-Image-Turbo（快）+ Qwen-Image（细）
-│   ├── image-edit-comfyui/         控制图生图：Z-Image Fun Union ControlNet
-│   ├── image-tools/                确定性图像工具（不用 AI）：速览图/比对/剥元数据/缩放
-│   ├── text-to-video-fastvideo3/   文生视频 + 同步音频（t2va）
-│   └── image-to-video-fastvideo3/  图生视频 + 同步音频（fl2va，首帧/尾帧）
+│   ├── dev-guide/                仓库开发规范总纲：新增/修改任何内容前先加载
+│   ├── text-to-image-comfyui/    文生图：Z-Image-Turbo（快）+ Qwen-Image（细）
+│   ├── image-edit-comfyui/       控制图生图：Z-Image Fun Union ControlNet
+│   ├── image-tools/              确定性图像工具（不用 AI）：速览图/比对/剥元数据/缩放
+│   ├── text-to-video-fastvideo3/ 文生视频 + 同步音频（t2va）
+│   └── image-to-video-fastvideo3/ 图生视频 + 同步音频（fl2va，首帧/尾帧）
 ├── projects/          项目库：9 个项目，一项目一目录（图片与视频同处一处）
 │   ├── README.md          项目索引 + 建项目规范
 │   ├── _template/         项目模板（复制即用，图片/视频共用）
@@ -37,7 +37,7 @@ gen-media/
 
 | 我想… | 去哪 |
 |------|------|
-| **给这个仓库加东西 / 提交前对齐规范** | [`.dsh/skills/dev-guide/SKILL.md`](.dsh/skills/dev-guide/SKILL.md)（双语、站点、技能、生成、资产、协作六类规范 + 检查脚本） |
+| **给这个仓库加东西 / 提交前对齐规范** | [`.agents/skills/dev-guide/SKILL.md`](.agents/skills/dev-guide/SKILL.md)（双语、站点、技能、生成、资产、协作六类规范 + 检查脚本） |
 | 用文字出一张图 | [.agents/skills/text-to-image-comfyui](.agents/skills/text-to-image-comfyui/SKILL.md)（Z-Image-Turbo 快 / Qwen-Image 细） |
 | 按控制图改图 / 换背景 | [.agents/skills/image-edit-comfyui](.agents/skills/image-edit-comfyui/SKILL.md)（Fun Union ControlNet） |
 | 合图 / 比对两张图 / 去元数据 / 缩放裁切 | [.agents/skills/image-tools](.agents/skills/image-tools/SKILL.md)（不用 AI，确定性） |
@@ -134,7 +134,7 @@ cd ../.. && git submodule update --remote GitHub/gen-media \
 | 约定 | 说明 |
 |------|------|
 | 命名 | `README.md` ↔ `README.en.md`；`projects/<项目>/README.md` ↔ `README.en.md` |
-| 排除 | `.agents/skills/**`（含 `.agents/skills/README.md`）与 `.dsh/skills/**` 只保留中文（技能文档面向执行，不翻译） |
+| 排除 | `.agents/skills/**`（含 `.agents/skills/README.md`）与 `.agents/skills/**` 只保留中文（技能文档面向执行，不翻译） |
 | 链接 | 英文版内部的相对链接指向 `.en.md`；目标没有英文版时指向中文版（不造死链） |
 | 代码 | **逐字保留**：命令、路径、文件名、模型 ID、参数名、seed、prompt 原文、样例字符串 |
 | 代码块内的注释 | **要翻译**：目录树的说明文字、bash 示例里的 `#` 注释、ASCII 示意图的标签 |

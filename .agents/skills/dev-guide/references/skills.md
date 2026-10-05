@@ -8,13 +8,16 @@ DSH 按 rank 扫描本地技能根（见 `docs/subsystems/skills` 规范），**
 
 | Rank | Source | Root |
 |------|--------|------|
-| 100 | `project-dsh` | `<projectRoot>/.dsh/skills` ← 本项目用这个 |
-| 200 | `project-agents` | `<projectRoot>/.agents/skills`（Agent Skills 通用位置） |
+| 100 | `project-dsh` | `<projectRoot>/.dsh/skills` |
+| 200 | `project-agents` | `<projectRoot>/.agents/skills` ← **本项目用这个**（Agent Skills 通用位置） |
+
+> 2026-10-05 起本项目的技能全部放在 `.agents/skills/`（rank 200）：原先 dev-guide 独自放在
+> `.dsh/skills/`（rank 100），已迁入 `.agents/skills/` 与其它 5 个技能并列，`.dsh/` 目录随之移除。
 
 `projectRoot` = 最近的含 `.git` 的祖先目录。**本项目根 = gen-media 根**，所以技能放：
 
 ```text
-gen-media/.dsh/skills/dev-guide/
+gen-media/.agents/skills/dev-guide/
 ├── SKILL.md           必需；目录名必须等于 frontmatter 的 name
 ├── references/        可选；详细参考资料（按需加载）
 ├── scripts/           可选；可执行脚本
@@ -71,5 +74,5 @@ user-invocable: false                               # 可选：只允许模型�
 
 ## 5. 技能文档不翻译
 
-技能面向 Agent 执行，**只有中文版**；`tools/i18n.py` 已排除 `.dsh/skills/`、`.agents/skills/`、`.agents/skills/`。
+技能面向 Agent 执行，**只有中文版**；`tools/i18n.py` 已排除 `.agents/skills/`、`.agents/skills/`、`.agents/skills/`。
 但技能里**指向的仓库文档**（项目 README、SUMMARY 等）必须双语。
