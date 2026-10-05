@@ -1,0 +1,87 @@
+{
+ "period": "period-01",
+ "note": "定调期首件：九尾狐（南山經 · 青丘之山）。骨法为赭石设色工笔；出图为纯文生图 + **点名神话生物的 prompt 写法**（8/8 出九尾），已撤销程序化控制图装置（见 rounds/r05-review.md）。已制版产出图赞主图与原文卡；印章层因篆体字库未解决而暂缺。",
+ "from": "work/shanhai-jing/jiu-wei-hu/r02/",
+ "text_ref": {
+  "volume": "山海經 · 南山經",
+  "volume_en": "Shan Hai Jing · Nan Shan Jing",
+  "passage": "又東三百里，曰青丘之山。其陽多玉，其陰多青䨼。有獸焉，其狀如狐而九尾，其音如嬰兒，能食人。食者不蠱。",
+  "commentary": null,
+  "commentary_note": "郭璞注文尚未逐条录入，录入前成品不得出现注文",
+  "place": "青丘之山"
+ },
+ "entries": [
+  {
+   "final": "01-jiu-wei-hu.png",
+   "role": "final",
+   "source_round": 7,
+   "source_engine": "z-image-turbo",
+   "source_shot": "m202",
+   "source_file": "work/shanhai-jing/jiu-wei-hu/r07/shj-jwh-r7-m202_00001_.png",
+   "seed": 202,
+   "steps": 20,
+   "control_strength": 0.75,
+   "prompt_id": "12b96264-86a5-4d0f-ad08-f2671f7d9348",
+   "prompt": "The nine-tailed fox of Chinese mythology, standing on a rocky outcrop and looking back over its shoulder. Its nine long tails spread out behind it, thick and full of fur. Painted in the manner of a traditional Chinese album leaf, fine ink brushwork, delicate fur strokes, ink and pale colour on aged paper.",
+   "countable_check": {
+    "trait": "九尾",
+    "expected": 9,
+    "method": "裁尾区放大目视点数（**目视点数，非机械确证**）：读作九尾、尾羽彼此有缝",
+    "multi_tail_rate": "点名式 prompt 8/8；描述式 prompt 1/6（R6 对照）",
+    "zoom_file": "work/shanhai-jing/jiu-wei-hu/r07/m202-tails.png"
+   },
+   "kind": "plate",
+   "note": "白描画心（供制版使用）",
+   "control_image": null
+  },
+  {
+   "final": "02-jiu-wei-hu-zan.png",
+   "role": "final",
+   "kind": "card",
+   "note": "图赞主图：卷次 + 榜题 + 画心 + 点睛句 + 出處",
+   "source": "scripts/typeset_zanzhi.py",
+   "size": "1080x1440"
+  },
+  {
+   "final": "03-jiu-wei-hu-wen.png",
+   "role": "final",
+   "kind": "card",
+   "note": "原文卡：竖排榜题 + 卷次 + 竖排原文（右起，50 字）",
+   "source": "scripts/typeset_zanzhi.py",
+   "size": "1080x1440"
+  },
+  {
+   "final": "controls/nine-tails-control.png",
+   "role": "retired-control",
+   "source": "scripts/control_image.py",
+   "self_check": {
+    "tail_count": 9,
+    "min_gap_px": 31.52,
+    "border_ink_px": 0
+   },
+   "note": "已废弃的控制图（保留为教训记录，见 rounds/r05-review.md）；本项目现用纯文生图"
+  },
+  {
+   "final": "controls/nine-tails-control-plume.png",
+   "role": "retired-control",
+   "note": "已废弃的控制图（保留为教训记录，见 rounds/r05-review.md）；本项目现用纯文生图",
+   "source": "scripts/control_image.py",
+   "self_check": {
+    "tail_count": 9,
+    "min_gap_px": 15.83,
+    "border_ink_px": 0
+   }
+  }
+ ],
+ "cartouche": "九尾狐",
+ "cover_line": "其狀如狐而九尾",
+ "cartouche_font": "Noto Serif CJK（42277 码位级覆盖，含生僻字 䨼）",
+ "seal_status": "缺：篆体字库未解决（LXGWSeal 覆盖不足，替代字库下载受阻），印章层暂缺",
+ "rounds": [
+  "r01: 证伪 prompt 控计数",
+  "r02–r04: 控制图路线（已废弃，保留为教训）",
+  "r05–r08: 撤销控制装置，改用点名式 prompt —— 8/8 出九尾"
+ ],
+ "bone": "赭石设色（工笔淡彩）—— R7 定案，非白描墨线",
+ "process": "纯文生图（点名式 prompt），无控制图 / 无 ControlNet"
+}
