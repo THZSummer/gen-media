@@ -12,10 +12,13 @@
 ```
 gen-media/
 ├── README.md          ← you are here (main entry)
+├── .dsh/skills/       DSH project skill: dev-guide (the development conventions; skills stay Chinese-only)
 ├── image-gen/         image generation: skills + projects + final images   (824 files / ~435 MB)
 │   ├── README.md          image library home
 │   ├── skills/            3 executable skills (text-to-image / control-image edit / deterministic tools)
 │   └── projects/          bio-splice, bone-china-doll, character-lookbook, _template
+├── site/              gallery front end (bilingual): app.css / app.js / data/*.json
+├── tools/             toolchain: build_site.py, preview.sh, i18n.py
 └── video-gen/         video generation: methods + skills + projects + films (235 files / ~114 MB)
     ├── README.md          video library home
     ├── methods/           10 method notes (text-to-video / image-to-video / reference video / audio-driven / cinematography …)
@@ -31,6 +34,7 @@ gen-media/
 
 | I want to… | Go to |
 |------|------|
+| **Add something to this repository / align with the conventions before committing** | [`.dsh/skills/dev-guide/SKILL.md`](.dsh/skills/dev-guide/SKILL.md) (bilingual docs, site, skills, generation, assets, collaboration + a check script) |
 | Generate an image from text | [image-gen/skills/text-to-image-comfyui](image-gen/skills/text-to-image-comfyui/SKILL.md) (local ComfyUI: Z-Image-Turbo for speed / Qwen-Image for detail) |
 | Edit an image / change the background following a control image | [image-gen/skills/image-edit-comfyui](image-gen/skills/image-edit-comfyui/SKILL.md) (Fun Union ControlNet) |
 | Build a contact sheet / compare two images / strip metadata / resize | [image-gen/skills/image-tools](image-gen/skills/image-tools/SKILL.md) (no AI, fully deterministic) |
@@ -109,7 +113,7 @@ A cross-species, cross-kingdom "part transplant" image experiment series, and by
 | Convention | Detail |
 |------|------|
 | Naming | `README.md` ↔ `README.en.md`; `period-01/README.md` ↔ `period-01/README.en.md` |
-| Excluded | `image-gen/skills/**` and `video-gen/skills/**` stay Chinese-only (skill docs are meant for execution, not translation) |
+| Excluded | `.dsh/skills/**`, `image-gen/skills/**` and `video-gen/skills/**` stay Chinese-only (skill docs are meant for execution, not translation) |
 | Links | relative links inside an English file point at `.en.md`; when the target has no English version they point at the Chinese file (no dead links) |
 | Code | **kept verbatim**: commands, paths, filenames, model IDs, parameter names, seeds, raw prompts, sample strings |
 | Comments inside code blocks | **translated**: directory-tree annotations (the Chinese in `├── skills/   ← …`), `#` comments in bash examples, labels in ASCII diagrams — those are explanation, not content |

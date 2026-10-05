@@ -12,10 +12,13 @@
 ```
 gen-media/
 ├── README.md          ← 你在这里（总入口）
+├── .dsh/skills/       DSH 项目技能：dev-guide（开发规范总纲；技能文档只写中文）
 ├── image-gen/         图片生成：技能线 + 项目线 + 成品图      （824 文件 / 约 435 MB）
 │   ├── README.md          图片库总导航
 │   ├── skills/            3 个可执行技能（文生图 / 控制图生图 / 确定性图像工具）
 │   └── projects/          bio-splice、bone-china-doll、character-lookbook、_template
+├── site/              画廊前端（双语）：app.css / app.js / data/*.json
+├── tools/             工具链：build_site.py、preview.sh、i18n.py
 └── video-gen/         视频生成：方法 + 技能 + 项目 + 成品视频  （235 文件 / 约 114 MB）
     ├── README.md          视频库总导航
     ├── methods/           10 篇方法手册（文生视频 / 图生视频 / 参考视频 / 音频驱动 / 运镜 …）
@@ -31,6 +34,7 @@ gen-media/
 
 | 我想… | 去哪 |
 |------|------|
+| **给这个仓库加东西 / 提交前对齐规范** | [`.dsh/skills/dev-guide/SKILL.md`](.dsh/skills/dev-guide/SKILL.md)（双语、站点、技能、生成、资产、协作六类规范 + 检查脚本） |
 | 用文字出一张图 | [image-gen/skills/text-to-image-comfyui](image-gen/skills/text-to-image-comfyui/SKILL.md)（本机 ComfyUI：Z-Image-Turbo 快 / Qwen-Image 细） |
 | 按控制图改图 / 换背景 | [image-gen/skills/image-edit-comfyui](image-gen/skills/image-edit-comfyui/SKILL.md)（Fun Union ControlNet） |
 | 合图 / 比对两张图 / 去元数据 / 缩放裁切 | [image-gen/skills/image-tools](image-gen/skills/image-tools/SKILL.md)（不用 AI，确定性） |
@@ -109,7 +113,7 @@ gen-media/
 | 约定 | 说明 |
 |------|------|
 | 命名 | `README.md` ↔ `README.en.md`；`period-01/README.md` ↔ `period-01/README.en.md` |
-| 排除 | `image-gen/skills/**` 与 `video-gen/skills/**` 只保留中文（技能文档面向执行，不翻译） |
+| 排除 | `.dsh/skills/**`、`image-gen/skills/**` 与 `video-gen/skills/**` 只保留中文（技能文档面向执行，不翻译） |
 | 链接 | 英文版内部的相对链接指向 `.en.md`；目标没有英文版时指向中文版（不造死链） |
 | 代码 | **逐字保留**：命令、路径、文件名、模型 ID、参数名、seed、prompt 原文、样例字符串 |
 | 代码块内的注释 | **要翻译**：目录树的说明文字（`├── skills/   ← 技能库` 里的中文）、bash 示例里的 `#` 注释、ASCII 示意图的标签 —— 它们是说明而不是内容 |

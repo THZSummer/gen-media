@@ -31,7 +31,8 @@ from collections import Counter
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 EN_SUFFIX = ".en.md"
-SKIP_PREFIXES = ("image-gen/skills/", "video-gen/skills/")
+# 技能文档只写中文：.dsh/skills 是 DSH 项目技能根，两个库下面是各自的技能
+SKIP_PREFIXES = (".dsh/skills/", "image-gen/skills/", "video-gen/skills/")
 
 CJK_RE = re.compile(r"[\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff\u3000-\u303f\uff01-\uff60]")
 LINK_RE = re.compile(r"\]\(([^)\s]+)\)")
