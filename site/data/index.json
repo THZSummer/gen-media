@@ -1,0 +1,87 @@
+{
+ "counts": {
+  "subjects": 12,
+  "periods": 60,
+  "finals": 135,
+  "controls": 59,
+  "scored": 135,
+  "videos": 7,
+  "video_bytes": 72246335
+ },
+ "projects": [
+  {
+   "id": "bio-splice",
+   "kind": "periods",
+   "title": {
+    "zh": "生物拼接",
+    "en": "Bio Splice"
+   },
+   "desc": {
+    "zh": "跨物种、跨界的“部位移植”图像实验：12 个子主题 × 5 期，135 件成品，每轮带同轮底座对照，成品全部经五维评分过关。",
+    "en": "Cross-species / cross-kingdom part-transplant studies: 12 sub-themes × 5 periods, 135 curated finals, each round paired with a same-round base control."
+   },
+   "cover": "image-gen/projects/bio-splice/subjects/horn-atlas/sheet-thumb.jpg",
+   "readme": "image-gen/projects/bio-splice/README.md",
+   "summary": "image-gen/projects/bio-splice/SUMMARY.md",
+   "stats": {
+    "subjects": 12,
+    "periods": 60,
+    "finals": 135,
+    "controls": 59
+   },
+   "groups": [
+    "甲",
+    "乙",
+    "丙"
+   ]
+  },
+  {
+   "id": "video-gen",
+   "kind": "videos",
+   "title": {
+    "zh": "视频生成",
+    "en": "Video Generation"
+   },
+   "desc": {
+    "zh": "图生视频 / 文生视频的成片与方法手册，图片库的产物在这里被消费。",
+    "en": "Image-to-video / text-to-video films and method notes; the image library feeds in here."
+   },
+   "cover": "video-gen/projects/giant-kingdom/out/storyboard/shot1_final.jpg",
+   "readme": "video-gen/README.md",
+   "stats": {
+    "projects": 5,
+    "clips": 7
+   }
+  },
+  {
+   "id": "bone-china-doll",
+   "kind": "project",
+   "title": {
+    "zh": "骨瓷人偶",
+    "en": "Bone-China Doll"
+   },
+   "desc": {
+    "zh": "以「骨瓷」质感为统一材质约束的人偶形象系列，逐轮做 A/B 消融对照。",
+    "en": "A doll series under one material constraint (bone china), developed with round-by-round A/B ablations."
+   },
+   "cover": "image-gen/projects/bone-china-doll/out/final-bone-china-princess-east.png",
+   "readme": "image-gen/projects/bone-china-doll/README.md",
+   "stats": {}
+  },
+  {
+   "id": "character-lookbook",
+   "kind": "project",
+   "title": {
+    "zh": "角色设定图库",
+    "en": "Character Lookbook"
+   },
+   "desc": {
+    "zh": "角色多角度设定图库（示例项目）：正面锚点 → 补视角 → 换场景 → 换装。",
+    "en": "Multi-angle character lookbook (example project): front anchor → more views → scenes → outfits."
+   },
+   "cover": null,
+   "readme": "image-gen/projects/character-lookbook/README.md",
+   "stats": {}
+  }
+ ]
+}

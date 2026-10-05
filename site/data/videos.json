@@ -1,0 +1,132 @@
+{
+ "projects": [
+  {
+   "id": "giant-kingdom",
+   "title": {
+    "zh": "蝴蝶女大冒险（butterfly-girl）",
+    "en": "giant-kingdom"
+   },
+   "desc": {
+    "zh": "",
+    "en": ""
+   },
+   "readme": "video-gen/projects/giant-kingdom/README.md",
+   "clips": [
+    {
+     "file": "butterfly_girl_v3_full.mp4",
+     "path": "video-gen/projects/giant-kingdom/out/video/butterfly_girl_v3_full.mp4",
+     "size": 13154449,
+     "poster": "video-gen/projects/giant-kingdom/out/storyboard/shot1_final.jpg"
+    }
+   ],
+   "poster": "video-gen/projects/giant-kingdom/out/storyboard/shot1_final.jpg",
+   "size": 13154449,
+   "count": 1
+  },
+  {
+   "id": "step-scenery",
+   "title": {
+    "zh": "移步换景（step-scenery）",
+    "en": "step-scenery"
+   },
+   "desc": {
+    "zh": "",
+    "en": ""
+   },
+   "readme": "video-gen/projects/step-scenery/README.md",
+   "clips": [
+    {
+     "file": "step_scenery_full.mp4",
+     "path": "video-gen/projects/step-scenery/out/video/v1-mini/step_scenery_full.mp4",
+     "size": 13519504,
+     "poster": "video-gen/projects/step-scenery/out/storyboard/shot1.jpg"
+    }
+   ],
+   "poster": "video-gen/projects/step-scenery/out/storyboard/shot1.jpg",
+   "size": 13519504,
+   "count": 1
+  },
+  {
+   "id": "step-scenery-v2",
+   "title": {
+    "zh": "移步换景 v2（step-scenery-v2）",
+    "en": "step-scenery-v2"
+   },
+   "desc": {
+    "zh": "",
+    "en": ""
+   },
+   "readme": "video-gen/projects/step-scenery-v2/README.md",
+   "clips": [
+    {
+     "file": "step_scenery_15s.mp4",
+     "path": "video-gen/projects/step-scenery-v2/out/video/step_scenery_15s.mp4",
+     "size": 5919737,
+     "poster": "video-gen/projects/step-scenery-v2/out/storyboard/shot1.jpg"
+    },
+    {
+     "file": "step_scenery_15s_v2.mp4",
+     "path": "video-gen/projects/step-scenery-v2/out/video/step_scenery_15s_v2.mp4",
+     "size": 5427764,
+     "poster": "video-gen/projects/step-scenery-v2/out/storyboard/shot1.jpg"
+    }
+   ],
+   "poster": "video-gen/projects/step-scenery-v2/out/storyboard/shot1.jpg",
+   "size": 11347501,
+   "count": 2
+  },
+  {
+   "id": "survival-island",
+   "title": {
+    "zh": "项目：荒岛求生（Survival Island）",
+    "en": "survival-island"
+   },
+   "desc": {
+    "zh": "",
+    "en": ""
+   },
+   "readme": "video-gen/projects/survival-island/README.md",
+   "clips": [
+    {
+     "file": "survival_island_full.mp4",
+     "path": "video-gen/projects/survival-island/out/survival_island_full.mp4",
+     "size": 10960323,
+     "poster": "video-gen/projects/survival-island/out/seam_after.jpg"
+    },
+    {
+     "file": "survival_island_narrated.mp4",
+     "path": "video-gen/projects/survival-island/out/survival_island_narrated.mp4",
+     "size": 10939181,
+     "poster": "video-gen/projects/survival-island/out/seam_after.jpg"
+    }
+   ],
+   "poster": "video-gen/projects/survival-island/out/seam_after.jpg",
+   "size": 21899504,
+   "count": 2
+  },
+  {
+   "id": "tea-shake-dance",
+   "title": {
+    "zh": "来杯好茶摇一摇（tea-shake-dance）",
+    "en": "tea-shake-dance"
+   },
+   "desc": {
+    "zh": "",
+    "en": ""
+   },
+   "readme": "video-gen/projects/tea-shake-dance/README.md",
+   "clips": [
+    {
+     "file": "tea_shake_narrated.mp4",
+     "path": "video-gen/projects/tea-shake-dance/out/video/tea_shake_narrated.mp4",
+     "size": 12325377,
+     "poster": "video-gen/projects/tea-shake-dance/out/storyboard/shot1_final.jpg"
+    }
+   ],
+   "poster": "video-gen/projects/tea-shake-dance/out/storyboard/shot1_final.jpg",
+   "size": 12325377,
+   "count": 1
+  }
+ ],
+ "clips": 72246335
+}
