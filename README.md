@@ -1,6 +1,8 @@
 # gen-media · 生成式媒体
 
-> **图片生成**（ComfyUI 本地 + 火山方舟 Seedream 云端）与**视频生成**（Seedance / 本地 fastvideo3）的知识库与作品集。
+> 🌐 语言：**中文** ｜ [English](README.en.md)
+
+> **图片生成**（本机 ComfyUI：Z-Image-Turbo / Qwen-Image / Fun Union ControlNet）与**视频生成**（本地 fastvideo3；云端 Seedance 走 `arkcli`）的知识库与作品集。
 > 本仓库是工作区 `gits` 中 `Book/image-gen` 与 `Book/video-gen` 两个库的独立归档：以 `git archive` 导出已跟踪文件后重建为**单次初始提交**，因此不保留原仓库的提交历史。
 
 ---
@@ -100,6 +102,27 @@ gen-media/
 
 ---
 
+## 八、语言版本（i18n）
+
+**中文 `X.md` 是默认版本，英文版是同名 `X.en.md`。** 两份文件顶部各有一行语言切换链接，改文档时请**成对修改**。
+
+| 约定 | 说明 |
+|------|------|
+| 命名 | `README.md` ↔ `README.en.md`；`period-01/README.md` ↔ `period-01/README.en.md` |
+| 排除 | `image-gen/skills/**` 与 `video-gen/skills/**` 只保留中文（技能文档面向执行，不翻译） |
+| 链接 | 英文版内部的相对链接指向 `.en.md`；目标没有英文版时指向中文版（不造死链） |
+| 代码 | 代码块、命令、路径、文件名、prompt 原文一律**不翻译**；只翻散文、标题、表头 |
+| 工具 | `python3 tools/i18n.py status / switch / links / check` —— 覆盖报告、写切换行、改链接、体检 |
+
+```bash
+python3 tools/i18n.py status          # 还有哪些 md 缺英文版
+python3 tools/i18n.py check           # 体检：缺件 / 疑似未翻译 / 英文版断链
+python3 tools/i18n.py switch          # 补齐或更新两侧的语言切换行
+python3 tools/i18n.py links           # 把英文版的相对链接改指 .en.md
+```
+
+---
+
 ## 文档修订记录
 
 | 日期 | 版本 | 变更内容 | 作者 |
@@ -107,3 +130,4 @@ gen-media/
 | 2026-10-05 | v1.0 | 从 `gits` 拆出 `Book/image-gen` 与 `Book/video-gen`，独立成库 | 小七 |
 | 2026-10-05 | v1.1 | 新增 `tools/sync-from-gits.sh` 与「维护」章节 | 小七 |
 | 2026-10-05 | v1.2 | 原 `gits` 工作副本与历史均已清理，本仓库成为唯一副本；删除已失效的同步脚本，「维护」章节改写为「维护与扩展」 | 小七 |
+| 2026-10-05 | v1.3 | 新增双语规范（中文默认 + `X.en.md`）与 `tools/i18n.py`；技能库收敛为 3 个可执行技能后的表述同步 | 小七 |
