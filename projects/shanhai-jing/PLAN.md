@@ -2,7 +2,7 @@
 
 > 🌐 语言：**中文** ｜ [English](PLAN.en.md)
 
-> 返回[项目入口](README.md) ｜ 技术技能见 [../../skills/](../../skills/README.md)
+> 返回[项目入口](README.md) ｜ 技术技能见 [../../.agents/skills/](../../.agents/skills/README.md)
 
 ---
 

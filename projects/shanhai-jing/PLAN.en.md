@@ -2,7 +2,7 @@
 
 > 🌐 Language: **English** | [中文](PLAN.md)
 
-> Back to [project entry](README.en.md) ｜ Techniques in [../../skills/README.md](../../skills/README.md)
+> Back to [project entry](README.en.md) ｜ Techniques in [../../.agents/skills/README.md](../../.agents/skills/README.md)
 
 ---
 

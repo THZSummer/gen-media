@@ -2,7 +2,7 @@
 
 > 🌐 Language: **English** | [中文](README.md)
 
-> Back to the [project index](../README.en.md) ｜ Technical skills in [../../skills/](../../skills/README.md)
+> Back to the [project index](../README.en.md) ｜ Technical skills in [../../.agents/skills/](../../.agents/skills/README.md)
 
 > 🏁 **This project is fully delivered (12 sub-themes / 60 periods / 135 finals)**; for the project-wide summary see [`SUMMARY.md`](SUMMARY.en.md).
 
@@ -101,7 +101,7 @@ python3 curate.py --period subjects/cat-eagle/period-01 \
 |------|------|------|
 | Targeting | Z-Image-Turbo (~10 s/image, **no negative prompt**) | try sentence patterns, fix composition, control cost |
 | Final | Qwen-Image 2512 (6–13 min/image, **real negatives**) | material and anatomical detail, suppress what must not appear |
-| Structure lock | [image-edit-comfyui](../../skills/image-edit-comfyui/SKILL.md) (ControlNet) | when the prompt cannot hold it down, lock the body structure with a control image |
+| Structure lock | [image-edit-comfyui](../../.agents/skills/image-edit-comfyui/SKILL.md) (ControlNet) | when the prompt cannot hold it down, lock the body structure with a control image |
 
 > ⚠️ **On an engine without negative prompts there is no solution for "what to remove"** (both the positive `no X` and
 > `exactly one X` were measured ineffective). Such needs must switch to Qwen, or use a ControlNet structure lock. See
@@ -202,7 +202,7 @@ Gitee's repository quota is **1024MB**; when it is exceeded, `git push` is **rej
 **Why not save size by "converting the finals to JPEG"**: measured JPEG q2 introduces into the same image an
 **average channel difference ≈ 1.21**, and this repo's threshold "a region difference < 1.5 means the transplant sentence was a no-op" sits right beside it—
 the noise floor would eat the criterion outright. So **contact sheets / audit sheets use JPEG, while finals and controls must be PNG**
-(see [image-tools/SKILL.md](../../skills/image-tools/SKILL.md)).
+(see [image-tools/SKILL.md](../../.agents/skills/image-tools/SKILL.md)).
 
 ## Document Revision History
 

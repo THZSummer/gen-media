@@ -2,7 +2,7 @@
 
 > 🌐 Language: **English** | [中文](README.md)
 
-> Back to [project index](../README.en.md) ｜ Skills in [../../skills/text-to-image-comfyui/SKILL.md](../../skills/text-to-image-comfyui/SKILL.md)
+> Back to [project index](../README.en.md) ｜ Skills in [../../.agents/skills/text-to-image-comfyui/SKILL.md](../../.agents/skills/text-to-image-comfyui/SKILL.md)
 > **Six-stage iteration** (the directory name remains `bone-china-doll`; the theme has changed):
 > - **Stage 1 R1–R6**: 5 images per round, Z-Image-Turbo, working out composition/ratio/material vocabulary
 > - **Stage 2 R7–R16**: 3 images per round, switched to Qwen-Image 2512, focused on detail richness and realism
@@ -64,7 +64,7 @@
 
 | Step | Skill/tool used | Notes |
 |------|--------------|------|
-| Image generation (R1–R6) | [text-to-image-comfyui](../../skills/text-to-image-comfyui/SKILL.md) → `scripts/comfyui_gen.py` | Z-Image-Turbo; ⚠️ the negative is `ConditioningZeroOut`, **no negative prompt** |
+| Image generation (R1–R6) | [text-to-image-comfyui](../../.agents/skills/text-to-image-comfyui/SKILL.md) → `scripts/comfyui_gen.py` | Z-Image-Turbo; ⚠️ the negative is `ConditioningZeroOut`, **no negative prompt** |
 | Image generation (R7–R21) | Same as above → `scripts/comfyui_qwen.py` | **Qwen-Image 2512**; ✅ supports real negative prompts; noticeably stronger on detail/realism, but about 13 min/image (about 50 min at 3.43MP) |
 | Round driver | [`run_round.py`](run_round.py) | Dual engine, switched via the `engine` field; **all prompts are versioned inside the script**; supports per-image overrides of `size/steps/cfg/timeout` |
 | **True macro (stage 2)** | [`make_macro.sh`](make_macro.sh) | **Cropping method** (not generation): crop the tiara/wrist joint from the R14 3.43MP final |
@@ -490,7 +490,7 @@ See [docs/r29.md](docs/r29.en.md) for details.
 | Engine / seed / size / steps | Z-Image-Turbo / 610 / 1024×1360 / 16 |
 | prompt | See [docs/r6.md §Final selection](docs/r6.en.md) |
 
-> ⚠️ Video integration pending: this project's final has a ratio of 1024×1360 (≈3:4); if it later goes into video-gen's I2V, it must be regenerated at the target video ratio (see [image-to-video-fastvideo3](../../skills/image-to-video-fastvideo3/SKILL.md)).
+> ⚠️ Video integration pending: this project's final has a ratio of 1024×1360 (≈3:4); if it later goes into video-gen's I2V, it must be regenerated at the target video ratio (see [image-to-video-fastvideo3](../../.agents/skills/image-to-video-fastvideo3/SKILL.md)).
 
 ---
 

@@ -2,7 +2,7 @@
 
 > 🌐 语言：**中文** ｜ [English](README.en.md)
 
-> 返回[首页](../README.md) ｜ 技能见 [../skills/](../skills/README.md) ｜ 视频方法手册见 [../methods/](../methods/README.md)
+> 返回[首页](../README.md) ｜ 技能见 [../.agents/skills/](../.agents/skills/README.md) ｜ 视频方法手册见 [../methods/](../methods/README.md)
 
 > 本目录由 `image-gen/projects/` 与 `video-gen/projects/` 合并而来（2026-10-05 扁平化）：
 > **不再按图像/视频分库，一律按项目组织**。
@@ -13,7 +13,7 @@
 
 按**具体项目**组织：**一项目一目录**，每个项目目录下一个 `README.md` 作为该项目的生成规划。
 
-| | [skills/](../skills/README.md) | [methods/](../methods/README.md) | projects/（本目录） |
+| | [.agents/skills/](../.agents/skills/README.md) | [methods/](../methods/README.md) | projects/（本目录） |
 |---|---|---|---|
 | 回答 | **怎么做**（可执行技术） | **怎么生成**（方法手册） | **做什么**（具体业务） |
 | 组织 | 一技能一目录，带脚本与自检 | 一方法一目录，可复用 | 一项目一目录，一次性规划 |
@@ -36,7 +36,7 @@
 |------|------|
 | 项目背景 | 为什么要做、给谁看、用在哪 / 发布在哪 |
 | 交付物清单 | 每件成品的用途、尺寸或时长、比例 |
-| 技能 / 方法选型 | 每件成品用哪个技能或方法（链接到 skills/ 或 methods/） |
+| 技能 / 方法选型 | 每件成品用哪个技能或方法（链接到 .agents/skills/ 或 methods/） |
 | 图片清单 / 分镜表 | 图号或镜号 / 主体 / 场景 / 视角 / 风格（图片）；镜号 / 景别 / 运镜 / 内容（视频） |
 | Prompt & 参数 | 每件成品的 prompt、模型、关键参数、seed |
 | 执行计划 | 定向 / 定型 / 定稿阶段安排 |

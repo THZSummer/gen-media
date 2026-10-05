@@ -68,7 +68,7 @@ bash make_sheet.sh period subjects/cat-eagle/period-01
 
 > The reproduction criterion is the **decoded pixels**, not the file sha (ComfyUI writes the execution graph into the PNG's `tEXt`,
 > so changing `filename_prefix` changes the sha while the picture stays the same). Use
-> `python3 ../../../../skills/image-tools/scripts/pngdiff.py a.png b.png`.
+> `python3 ../../../../.agents/skills/image-tools/scripts/pngdiff.py a.png b.png`.
 
 ---
 

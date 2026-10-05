@@ -2,7 +2,7 @@
 
 > 🌐 Language: **English** | [中文](README.md)
 
-> Back to [project index](../README.en.md) ｜ Techniques in [../../skills/](../../skills/README.md) ｜ Video methods in [../../methods/](../../methods/README.en.md)
+> Back to [project index](../README.en.md) ｜ Techniques in [../../.agents/skills/](../../.agents/skills/README.md) ｜ Video methods in [../../methods/](../../methods/README.en.md)
 
 > This directory is a **template**; copy it and adapt. Do not work on a project directly inside _template.
 > Image and video projects share this one template: keep the "image list" or the "shot list" section as needed.
@@ -32,12 +32,12 @@
 
 | # | Technique or method | Link | Input |
 |---|---------------------|------|-------|
-| 1 | Text to image | [text-to-image-comfyui](../../skills/text-to-image-comfyui/SKILL.md) | - |
-| 2 | ControlNet image editing | [image-edit-comfyui](../../skills/image-edit-comfyui/SKILL.md) | base.png (control image) |
-| 3 | Image to video | [image-to-video-fastvideo3](../../skills/image-to-video-fastvideo3/SKILL.md) | first.jpg |
-| 4 | Contact sheet / diff / metadata strip | [image-tools](../../skills/image-tools/SKILL.md) | finals |
+| 1 | Text to image | [text-to-image-comfyui](../../.agents/skills/text-to-image-comfyui/SKILL.md) | - |
+| 2 | ControlNet image editing | [image-edit-comfyui](../../.agents/skills/image-edit-comfyui/SKILL.md) | base.png (control image) |
+| 3 | Image to video | [image-to-video-fastvideo3](../../.agents/skills/image-to-video-fastvideo3/SKILL.md) | first.jpg |
+| 4 | Contact sheet / diff / metadata strip | [image-tools](../../.agents/skills/image-tools/SKILL.md) | finals |
 
-> All techniques live in [skills/](../../skills/README.md) (5 of them, each with scripts and a self-check).
+> All techniques live in [.agents/skills/](../../.agents/skills/README.md) (5 of them, each with scripts and a self-check).
 > Cloud video methods (Seedance) live in [methods/](../../methods/README.en.md).
 > Every technique starts with a **self-check**: `--check` or `test_skill.py`; do not submit work on an unhealthy environment.
 
@@ -64,7 +64,7 @@ For video projects (image projects may delete it):
 ### Image / shot 1 (local ComfyUI text to image)
 
 ```bash
-cd skills/text-to-image-comfyui
+cd .agents/skills/text-to-image-comfyui
 python3 scripts/comfyui_gen.py --check          # self-check first
 python3 scripts/comfyui_gen.py \
   --prompt "<prompt: subject + scene + style + composition>" \
@@ -78,7 +78,7 @@ python3 scripts/comfyui_gen.py \
 ### Shot 2 (local ComfyUI image to video)
 
 ```bash
-cd skills/image-to-video-fastvideo3
+cd .agents/skills/image-to-video-fastvideo3
 python3 scripts/comfyui_i2v.py --check
 python3 scripts/comfyui_i2v.py --first first.jpg --prompt "<prompt>" --out-dir out/
 ```

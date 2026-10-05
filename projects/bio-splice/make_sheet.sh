@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# 速览图（**不用 AI**：ffmpeg + numpy，见 skills/image-tools）
+# 速览图（**不用 AI**：ffmpeg + numpy，见 .agents/skills/image-tools）
 #
 #   bash make_sheet.sh round cat-eagle r1              # 开发速览 → work/cat-eagle/r1/sheet.jpg
 #   bash make_sheet.sh period subjects/cat-eagle/period-01   # 成品速览 → 期目录/sheet.jpg
@@ -10,7 +10,7 @@
 set -euo pipefail
 
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-TOOLS="$HERE/../../skills/image-tools/scripts"
+TOOLS="$HERE/../../.agents/skills/image-tools/scripts"
 MODE="${1:-}"; ARG="${2:-}"
 
 case "$MODE" in

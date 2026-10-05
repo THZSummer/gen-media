@@ -2,7 +2,7 @@
 
 > 🌐 语言：**中文** ｜ [English](README.en.md)
 
-> 返回[项目索引](../README.md) ｜ 全项目规划见 [PLAN.md](PLAN.md) ｜ 技术技能见 [../../skills/](../../skills/README.md)
+> 返回[项目索引](../README.md) ｜ 全项目规划见 [PLAN.md](PLAN.md) ｜ 技术技能见 [../../.agents/skills/](../../.agents/skills/README.md)
 
 > 以《山海经》**原文为纲**的白描图赞连载：每期一件异兽，兽用白描墨线，赞录原文、卷次与郭璞注。
 > 面向**小红书竖版图文**（3:4），严格考据、可逐字复核。
@@ -38,9 +38,9 @@
 
 | # | 所用技能 | 链接 | 用途 |
 |---|----------|------|------|
-| 1 | 文生图（Z-Image-Turbo） | [text-to-image-comfyui](../../skills/text-to-image-comfyui/SKILL.md) | 结构扫描、候选出图 |
-| 2 | 控制图生图（Fun Union ControlNet） | [image-edit-comfyui](../../skills/image-edit-comfyui/SKILL.md) | **锁死可数特征**、统一风格 |
-| 3 | 确定性图像工具 | [image-tools](../../skills/image-tools/SKILL.md) | 叠榜题/原文/印章、合图、像素比对、剥元数据 |
+| 1 | 文生图（Z-Image-Turbo） | [text-to-image-comfyui](../../.agents/skills/text-to-image-comfyui/SKILL.md) | 结构扫描、候选出图 |
+| 2 | 控制图生图（Fun Union ControlNet） | [image-edit-comfyui](../../.agents/skills/image-edit-comfyui/SKILL.md) | **锁死可数特征**、统一风格 |
+| 3 | 确定性图像工具 | [image-tools](../../.agents/skills/image-tools/SKILL.md) | 叠榜题/原文/印章、合图、像素比对、剥元数据 |
 
 > 每个技能的第一件事都是**自检**：`--check` 或 `test_skill.py`，环境不健康就别提交任务。
 

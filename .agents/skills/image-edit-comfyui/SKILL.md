@@ -13,7 +13,7 @@ whenToUse: 当需要用一张控制图（线稿/照片/Canny 边缘图）驱动�
 - 参数表：`assets/z-image-turbo-fun-union-controlnet.profile.json`（每个参数映射到接口/节点字段）
 - 引擎：`scripts/comfyui_edit.py`
 
-> 📦 **依赖**：本技能复用 `../text-to-image-comfyui/scripts/` 的转换器与 HTTP 客户端（`comfyui_convert.py` / `comfyui_gen.py`）。两个技能必须同处一个 `skills/` 目录，否则 `scripts/_shared.py` 会明确报错。
+> 📦 **依赖**：本技能复用 `../text-to-image-comfyui/scripts/` 的转换器与 HTTP 客户端（`comfyui_convert.py` / `comfyui_gen.py`）。两个技能必须同处一个 `.agents/skills/` 目录，否则 `scripts/_shared.py` 会明确报错。
 
 ## 何时用
 
@@ -24,7 +24,7 @@ whenToUse: 当需要用一张控制图（线稿/照片/Canny 边缘图）驱动�
 ## 前置检查
 
 ```bash
-cd skills/image-edit-comfyui
+cd .agents/skills/image-edit-comfyui
 
 python3 scripts/comfyui_edit.py --check     # 四个模型文件是否在位
 python3 scripts/comfyui_edit.py --list      # 工作流可用参数 + profile 参数 + 默认值

@@ -2,7 +2,7 @@
 
 > 🌐 语言：**中文** ｜ [English](README.en.md)
 
-> 返回[项目索引](../README.md) ｜ 技术技能见 [../../skills/](../../skills/README.md)
+> 返回[项目索引](../README.md) ｜ 技术技能见 [../../.agents/skills/](../../.agents/skills/README.md)
 
 > 🏁 **本项目已全部交付（12 个子主题 / 60 期 / 135 成品）**，全线总结见 [`SUMMARY.md`](SUMMARY.md)。
 
@@ -102,7 +102,7 @@ python3 curate.py --period subjects/cat-eagle/period-01 \
 |------|------|------|
 | 定向 | Z-Image-Turbo（~10 s/张，**无负向提示词**） | 试句式、定构图、控成本 |
 | 定稿 | Qwen-Image 2512（6–13 min/张，**有真负向**） | 材质与解剖细节，压掉不许出现的东西 |
-| 结构锁 | [image-edit-comfyui](../../skills/image-edit-comfyui/SKILL.md)（ControlNet） | 提示词压不住时，用控制图锁住身体结构 |
+| 结构锁 | [image-edit-comfyui](../../.agents/skills/image-edit-comfyui/SKILL.md)（ControlNet） | 提示词压不住时，用控制图锁住身体结构 |
 
 > ⚠️ **没有负向提示词的引擎上，"要减掉什么"的需求无解**（正向 `no X` 与 `exactly one X`
 > 都实测无效）。这类需求必须换 Qwen，或改用 ControlNet 结构锁。详见
@@ -203,7 +203,7 @@ Gitee 的仓库配额是 **1024MB**，超限时 `git push` 会被 **pre-receive 
 **为什么不用"把成品改 JPEG"来省体积**：实测 JPEG q2 会给同一张图引入
 **平均通道差 ≈ 1.21**，而本仓「区域差 < 1.5 判定为移植句空操作」的阈值就在旁边——
 噪声底会直接吃掉判据。所以**合并图/审计图用 JPEG，成品与对照必须 PNG**
-（详见 [image-tools/SKILL.md](../../skills/image-tools/SKILL.md)）。
+（详见 [image-tools/SKILL.md](../../.agents/skills/image-tools/SKILL.md)）。
 
 ## 文档修订记录
 

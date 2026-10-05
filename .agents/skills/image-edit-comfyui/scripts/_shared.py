@@ -5,7 +5,7 @@
 download / prompt recording) and the UI->API workflow converter from
 ``text-to-image-comfyui``; only the workflow and its parameter profile differ.
 
-Both skills must sit in the same ``skills/`` directory. Import order:
+Both skills must sit in the same ``.agents/skills/`` directory. Import order:
 
     import _shared
     _shared.ensure()
@@ -27,7 +27,7 @@ def ensure() -> str:
     """Put the sibling skill's (and image-tools') scripts on sys.path.
 
     Raises a clear error when a dependency is absent, so a half-installed
-    skills/ tree fails loudly instead of failing on a confusing ImportError.
+    .agents/skills/ tree fails loudly instead of failing on a confusing ImportError.
     """
     if not os.path.isdir(SIBLING):
         raise RuntimeError(

@@ -2,7 +2,7 @@
 
 > 🌐 Language: **English** | [中文](README.md)
 
-> Back to [project index](../README.en.md) ｜ Technical skills in [../../skills/](../../skills/README.md)
+> Back to [project index](../README.en.md) ｜ Technical skills in [../../.agents/skills/](../../.agents/skills/README.md)
 > Example project: demonstrates how to build a reusable character asset library with "text-to-image + multi-view consistency + multi-image reference + image editing".
 
 ---
@@ -34,11 +34,11 @@
 
 | Stage | Skill used | Link | Input material |
 |------|----------|------|----------|
-| Initial front view | Text-to-image | [text-to-image-comfyui](../../skills/text-to-image-comfyui/SKILL.md) | - |
-| Add side/back/half-side views | Control-image edit (using the front view as control image, Canny constrains composition and pose) | [image-edit-comfyui](../../skills/image-edit-comfyui/SKILL.md) | Front anchor image |
-| Change scene | Control-image edit (character outline as control image, background changed in the prompt) | [image-edit-comfyui](../../skills/image-edit-comfyui/SKILL.md) | Front anchor image |
-| Change outfit | Control-image edit | [image-edit-comfyui](../../skills/image-edit-comfyui/SKILL.md) | Front anchor image |
-| Final assembly | Contact sheet / compare / metadata strip | [image-tools](../../skills/image-tools/SKILL.md) | All finals |
+| Initial front view | Text-to-image | [text-to-image-comfyui](../../.agents/skills/text-to-image-comfyui/SKILL.md) | - |
+| Add side/back/half-side views | Control-image edit (using the front view as control image, Canny constrains composition and pose) | [image-edit-comfyui](../../.agents/skills/image-edit-comfyui/SKILL.md) | Front anchor image |
+| Change scene | Control-image edit (character outline as control image, background changed in the prompt) | [image-edit-comfyui](../../.agents/skills/image-edit-comfyui/SKILL.md) | Front anchor image |
+| Change outfit | Control-image edit | [image-edit-comfyui](../../.agents/skills/image-edit-comfyui/SKILL.md) | Front anchor image |
+| Final assembly | Contact sheet / compare / metadata strip | [image-tools](../../.agents/skills/image-tools/SKILL.md) | All finals |
 
 > ⚠️ The former three **cloud documentation skills** — "multi-view consistency", "multi-image reference (scene fusion)" and "image editing" — were removed on 2026-10-05 (no scripts, no self-check).
 > The current approach is to **replace them with control-image edit (`image-edit-comfyui`)**: take the already-finalized front image as the control image, constrain the character outline and pose, and let only the prompt change the scene/outfit.
@@ -172,7 +172,7 @@ Use the visual anchor + "half-body close-up, 1:1 square image, plain background"
 - [ ] Size uses `--size`, and the ratio matches the purpose
 - [ ] All artifacts are written to disk; not dependent on 24h URLs
 - [ ] The output record table has been completed with model + seed + path
-- [ ] If going into video: the ratio matches the video-gen I2V target, see [image-to-video-fastvideo3](../../skills/image-to-video-fastvideo3/SKILL.md)
+- [ ] If going into video: the ratio matches the video-gen I2V target, see [image-to-video-fastvideo3](../../.agents/skills/image-to-video-fastvideo3/SKILL.md)
 
 ---
 
@@ -181,5 +181,5 @@ Use the visual anchor + "half-body close-up, 1:1 square image, plain background"
 | Date | Version | Change | Author |
 |------|---------|--------|------|
 | 2026-10-02 | v1.0 | Created the example project: planning a multi-angle/multi-scene/multi-outfit design library for an original character | 小七 |
-| 2026-10-02 | v1.1 | Following the `methods/`→`skills/` reorganization: skill links point to SKILL.md, terminology changed to "skill" | 小七 |
+| 2026-10-02 | v1.1 | Following the `methods/`→`.agents/skills/` reorganization: skill links point to SKILL.md, terminology changed to "skill" | 小七 |
 | 2026-10-05 | v1.2 | Remapped after the skill convergence: the three cloud documentation skills (text-to-image / multi-view-consistency / image-editing / multi-image-reference) were removed and replaced by a feasible route with three local skills "text-to-image + control-image edit + deterministic tools"; multi-image fusion is still missing | 小七 |

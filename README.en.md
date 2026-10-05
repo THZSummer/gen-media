@@ -4,7 +4,7 @@
 
 > A knowledge base and portfolio for **image generation** (local ComfyUI: Z-Image-Turbo / Qwen-Image / Fun Union ControlNet) and **video generation** (local FastVideo FastH3; cloud Seedance via `arkcli`).
 >
-> 🗂️ **Flattened structure (2026-10-05)**: `image-gen/` and `video-gen/` are gone; the repository is split by **content kind** into three parts — `skills/`, `projects/` and `methods/`. Image and video techniques now live in **one skill library**.
+> 🗂️ **Flattened structure (2026-10-05)**: `image-gen/` and `video-gen/` are gone; the repository is split by **content kind** into three parts — `.agents/skills/`, `projects/` and `methods/`. Image and video techniques now live in **one skill library**.
 
 ---
 
@@ -14,7 +14,7 @@
 gen-media/
 ├── README.md          <- you are here (main entry)
 ├── .dsh/skills/       DSH project skill: dev-guide (the development spec; skill docs are Chinese-only)
-├── skills/            Skill library: 5 executable techniques, image and video together
+├── .agents/skills/            Skill library: 5 executable techniques, image and video together
 │   ├── README.md          skill index (capability map + routing table + prerequisites and self-checks)
 │   ├── text-to-image-comfyui/      text to image: Z-Image-Turbo (fast) + Qwen-Image (detailed)
 │   ├── image-edit-comfyui/         ControlNet image editing: Z-Image Fun Union ControlNet
@@ -38,14 +38,14 @@ gen-media/
 | I want to... | Go to |
 |--------------|-------|
 | **add something here / align with the spec before committing** | [`.dsh/skills/dev-guide/SKILL.md`](.dsh/skills/dev-guide/SKILL.md) (bilingual, site, skill, generation, asset and collaboration conventions + a check script) |
-| make an image from text | [skills/text-to-image-comfyui](skills/text-to-image-comfyui/SKILL.md) (Z-Image-Turbo fast / Qwen-Image detailed) |
-| edit an image from a control image / change background | [skills/image-edit-comfyui](skills/image-edit-comfyui/SKILL.md) (Fun Union ControlNet) |
-| contact sheet / diff two images / strip metadata / resize | [skills/image-tools](skills/image-tools/SKILL.md) (no AI, deterministic) |
-| make a video with audio from text alone | [skills/text-to-video-fastvideo3](skills/text-to-video-fastvideo3/SKILL.md) (local FastH3) |
-| make a video from a storyboard image | [skills/image-to-video-fastvideo3](skills/image-to-video-fastvideo3/SKILL.md) (local FastH3) |
+| make an image from text | [.agents/skills/text-to-image-comfyui](.agents/skills/text-to-image-comfyui/SKILL.md) (Z-Image-Turbo fast / Qwen-Image detailed) |
+| edit an image from a control image / change background | [.agents/skills/image-edit-comfyui](.agents/skills/image-edit-comfyui/SKILL.md) (Fun Union ControlNet) |
+| contact sheet / diff two images / strip metadata / resize | [.agents/skills/image-tools](.agents/skills/image-tools/SKILL.md) (no AI, deterministic) |
+| make a video with audio from text alone | [.agents/skills/text-to-video-fastvideo3](.agents/skills/text-to-video-fastvideo3/SKILL.md) (local FastH3) |
+| make a video from a storyboard image | [.agents/skills/image-to-video-fastvideo3](.agents/skills/image-to-video-fastvideo3/SKILL.md) (local FastH3) |
 | look up video technique and cost (cloud) | [methods/](methods/README.en.md) |
 | see a complete project's plan and finals | [projects/](projects/README.en.md) |
-| pick a technique / confirm the environment is healthy | [skills/README.md](skills/README.md) (routing table + one self-check command per technique) |
+| pick a technique / confirm the environment is healthy | [.agents/skills/README.md](.agents/skills/README.md) (routing table + one self-check command per technique) |
 
 ---
 
@@ -53,7 +53,7 @@ gen-media/
 
 | Part | Answers | Organisation |
 |------|---------|--------------|
-| [skills/](skills/README.md) | **how to do it** (executable technique) | one directory per technique, with `SKILL.md` + scripts + a self-check; **only what runs on the real machine is admitted** |
+| [.agents/skills/](.agents/skills/README.md) | **how to do it** (executable technique) | one directory per technique, with `SKILL.md` + scripts + a self-check; **only what runs on the real machine is admitted** |
 | [projects/](projects/README.en.md) | **what to make** (concrete work) | one directory per project, planned once, referencing skills / methods |
 | [methods/](methods/README.en.md) | **how to generate** (video method notes, mostly cloud) | one directory per method, reusable |
 
@@ -84,8 +84,8 @@ Another one worth reading is [projects/shanhai-jing](projects/shanhai-jing/READM
 | Python 3 + numpy | scoring, per-pixel diffs, sheet generation (`image-tools` does not need Pillow) |
 | `arkcli` (Volcengine Ark) | **used by `methods/` only**: Seedance video, TTS/ASR |
 
-> NOTE on paths: every path in these docs is relative to the repository root (`skills/...`, `projects/...`) and can be copied and run directly.
-> After changing the environment, run the self-check command listed for each technique in `skills/README.md` before generating anything.
+> NOTE on paths: every path in these docs is relative to the repository root (`.agents/skills/...`, `projects/...`) and can be copied and run directly.
+> After changing the environment, run the self-check command listed for each technique in `.agents/skills/README.md` before generating anything.
 
 ---
 
@@ -102,11 +102,11 @@ Another one worth reading is [projects/shanhai-jing](projects/shanhai-jing/READM
 
 ## 7. Maintenance and extension
 
-**This repository is the source of truth**: add techniques / projects / methods by creating directories under `skills/`, `projects/` and `methods/`, following each area's `README.md`.
+**This repository is the source of truth**: add techniques / projects / methods by creating directories under `.agents/skills/`, `projects/` and `methods/`, following each area's `README.md`.
 
 | What to add | Where | Convention |
 |-------------|-------|------------|
-| a new technique | `skills/<name>/SKILL.md` | [skills/README.md](skills/README.md); only with scripts, a self-check and a real-machine run |
+| a new technique | `.agents/skills/<name>/SKILL.md` | [.agents/skills/README.md](.agents/skills/README.md); only with scripts, a self-check and a real-machine run |
 | a new project | `projects/<name>/` | copy `projects/_template/`; index in [projects/README.en.md](projects/README.en.md) |
 | a new video method | `methods/<name>/` | see [methods/README.en.md](methods/README.en.md) |
 
@@ -136,7 +136,7 @@ cd ../.. && git submodule update --remote GitHub/gen-media \
 | Convention | Detail |
 |------------|--------|
 | Naming | `README.md` ↔ `README.en.md`; `projects/<project>/README.md` ↔ `README.en.md` |
-| Excluded | `skills/**` (including `skills/README.md`) and `.dsh/skills/**` stay Chinese-only (skill docs are written for execution, not translation) |
+| Excluded | `.agents/skills/**` (including `.agents/skills/README.md`) and `.dsh/skills/**` stay Chinese-only (skill docs are written for execution, not translation) |
 | Links | relative links inside an English file point to `.en.md`; when no English version exists they point to the Chinese one (no dead links) |
 | Code | **kept verbatim**: commands, paths, filenames, model IDs, parameter names, seeds, verbatim prompts, sample strings |
 | Comments inside code blocks | **translated**: directory-tree annotations, `#` comments in bash examples, labels in ASCII diagrams |
@@ -157,4 +157,4 @@ python3 tools/i18n.py links           # repoint English relative links at .en.md
 |------|---------|--------|--------|
 | 2026-10-05 | v1.0 | Split `Book/image-gen` and `Book/video-gen` out of `gits` into a standalone repository | 小七 |
 | 2026-10-05 | v1.3 | Added the bilingual convention (Chinese default + `X.en.md`) and `tools/i18n.py` | 小七 |
-| 2026-10-05 | v2.0 | **Flattening refactor**: dropped the `image-gen/` + `video-gen/` split in favour of `skills/` (5 techniques together) + `projects/` (9 projects) + `methods/` (video methods); the two skill indexes merged, the two project indexes and templates merged; `tools/{i18n,build_site}.py` and dev-guide updated; **corrected the inaccurate claim that "this repository is the only copy and has no upstream"** — `gits` references it as a submodule | 小七 |
+| 2026-10-05 | v2.0 | **Flattening refactor**: dropped the `image-gen/` + `video-gen/` split in favour of `.agents/skills/` (5 techniques together) + `projects/` (9 projects) + `methods/` (video methods); the two skill indexes merged, the two project indexes and templates merged; `tools/{i18n,build_site}.py` and dev-guide updated; **corrected the inaccurate claim that "this repository is the only copy and has no upstream"** — `gits` references it as a submodule | 小七 |

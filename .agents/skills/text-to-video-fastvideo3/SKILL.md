@@ -16,7 +16,7 @@ whenToUse: 当用户要用本机 ComfyUI 跑 MiniMax-H3 / FastVideo FastH3 文�
 ## 前置检查
 
 ```bash
-cd skills/text-to-video-fastvideo3
+cd .agents/skills/text-to-video-fastvideo3
 
 python3 scripts/comfyui_video.py --check    # 4 个模型文件 + 9 个节点类是否在位
 python3 scripts/comfyui_video.py --list     # 工作流接口默认值 + profile 参数 + 默认值

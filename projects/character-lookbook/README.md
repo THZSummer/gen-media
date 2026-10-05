@@ -2,7 +2,7 @@
 
 > 🌐 语言：**中文** ｜ [English](README.en.md)
 
-> 返回[项目索引](../README.md) ｜ 技术技能见 [../../skills/](../../skills/README.md)
+> 返回[项目索引](../README.md) ｜ 技术技能见 [../../.agents/skills/](../../.agents/skills/README.md)
 > 示例项目：演示如何用「文生图 + 多视角一致性 + 多图参考 + 图像编辑」搭出一个可复用的角色资产库。
 
 ---
@@ -34,11 +34,11 @@
 
 | 阶段 | 所用技能 | 链接 | 输入素材 |
 |------|----------|------|----------|
-| 初版正面 | 文生图 | [text-to-image-comfyui](../../skills/text-to-image-comfyui/SKILL.md) | - |
-| 补侧/背/半侧视角 | 控制图生图（以正视图为控制图，Canny 约束构图与姿态） | [image-edit-comfyui](../../skills/image-edit-comfyui/SKILL.md) | 正面锚点图 |
-| 换场景 | 控制图生图（人物轮廓为控制图，背景在 prompt 里改） | [image-edit-comfyui](../../skills/image-edit-comfyui/SKILL.md) | 正面锚点图 |
-| 换装扮 | 控制图生图 | [image-edit-comfyui](../../skills/image-edit-comfyui/SKILL.md) | 正面锚点图 |
-| 定稿整理 | 合图 / 比对 / 剥元数据 | [image-tools](../../skills/image-tools/SKILL.md) | 全部成品 |
+| 初版正面 | 文生图 | [text-to-image-comfyui](../../.agents/skills/text-to-image-comfyui/SKILL.md) | - |
+| 补侧/背/半侧视角 | 控制图生图（以正视图为控制图，Canny 约束构图与姿态） | [image-edit-comfyui](../../.agents/skills/image-edit-comfyui/SKILL.md) | 正面锚点图 |
+| 换场景 | 控制图生图（人物轮廓为控制图，背景在 prompt 里改） | [image-edit-comfyui](../../.agents/skills/image-edit-comfyui/SKILL.md) | 正面锚点图 |
+| 换装扮 | 控制图生图 | [image-edit-comfyui](../../.agents/skills/image-edit-comfyui/SKILL.md) | 正面锚点图 |
+| 定稿整理 | 合图 / 比对 / 剥元数据 | [image-tools](../../.agents/skills/image-tools/SKILL.md) | 全部成品 |
 
 > ⚠️ 原先的「多视角一致性」「多图参考（场景融合）」「图像编辑」三个**云端文档技能**已于 2026-10-05 移除（无脚本、无法自检）。
 > 现在的做法是**用控制图生图（`image-edit-comfyui`）替代**：拿已定稿的正面图当控制图，约束住人物轮廓与姿态，只让 prompt 改场景/装扮。
@@ -172,7 +172,7 @@ arkcli +gen --model "$MODEL" --profile platform_cn-beijing_accountwide \
 - [ ] 尺寸用 `--size`，比例与用途一致
 - [ ] 全部产物已落盘，不依赖 24h URL
 - [ ] 产出记录表已补齐 model + seed + 路径
-- [ ] 若进视频：比例与 video-gen I2V 目标一致，见 [image-to-video-fastvideo3](../../skills/image-to-video-fastvideo3/SKILL.md)
+- [ ] 若进视频：比例与 video-gen I2V 目标一致，见 [image-to-video-fastvideo3](../../.agents/skills/image-to-video-fastvideo3/SKILL.md)
 
 ---
 
@@ -181,5 +181,5 @@ arkcli +gen --model "$MODEL" --profile platform_cn-beijing_accountwide \
 | 日期 | 版本 | 变更内容 | 作者 |
 |------|------|----------|------|
 | 2026-10-02 | v1.0 | 新建示例项目：原创角色多角度/多场景/多装扮设定图库规划 | 小七 |
-| 2026-10-02 | v1.1 | 随 `methods/`→`skills/` 改组：技能链接指向 SKILL.md，术语改为"技能" | 小七 |
+| 2026-10-02 | v1.1 | 随 `methods/`→`.agents/skills/` 改组：技能链接指向 SKILL.md，术语改为"技能" | 小七 |
 | 2026-10-05 | v1.2 | 技能收敛后重映射：三个云端文档技能（text-to-image / multi-view-consistency / image-editing / multi-image-reference）已移除，改为「文生图 + 控制图生图 + 确定性工具」三件本地技能的可行路线；多图融合暂缺 | 小七 |

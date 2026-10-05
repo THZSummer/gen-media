@@ -2,7 +2,7 @@
 
 > 🌐 语言：**中文** ｜ [English](README.en.md)
 
-> 返回[项目索引](../README.md) ｜ 技能见 [../../skills/](../../skills/README.md) ｜ 视频方法见 [../../methods/](../../methods/README.md)
+> 返回[项目索引](../README.md) ｜ 技能见 [../../.agents/skills/](../../.agents/skills/README.md) ｜ 视频方法见 [../../methods/](../../methods/README.md)
 
 > 本目录是**模板**，复制后改写。不要在 _template 里直接做项目。
 > 图片与视频项目共用这一个模板：按需保留「图片清单」或「分镜表」章节即可。
@@ -32,12 +32,12 @@
 
 | # | 所用技能或方法 | 链接 | 输入素材 |
 |---|----------------|------|----------|
-| 1 | 文生图 | [text-to-image-comfyui](../../skills/text-to-image-comfyui/SKILL.md) | - |
-| 2 | 控制图生图 | [image-edit-comfyui](../../skills/image-edit-comfyui/SKILL.md) | base.png（控制图） |
-| 3 | 图生视频 | [image-to-video-fastvideo3](../../skills/image-to-video-fastvideo3/SKILL.md) | first.jpg |
-| 4 | 合图 / 比对 / 剥元数据 | [image-tools](../../skills/image-tools/SKILL.md) | 成品图 |
+| 1 | 文生图 | [text-to-image-comfyui](../../.agents/skills/text-to-image-comfyui/SKILL.md) | - |
+| 2 | 控制图生图 | [image-edit-comfyui](../../.agents/skills/image-edit-comfyui/SKILL.md) | base.png（控制图） |
+| 3 | 图生视频 | [image-to-video-fastvideo3](../../.agents/skills/image-to-video-fastvideo3/SKILL.md) | first.jpg |
+| 4 | 合图 / 比对 / 剥元数据 | [image-tools](../../.agents/skills/image-tools/SKILL.md) | 成品图 |
 
-> 全部技能见 [skills/](../../skills/README.md)（5 个，都带脚本与自检入口）。
+> 全部技能见 [.agents/skills/](../../.agents/skills/README.md)（5 个，都带脚本与自检入口）。
 > 云端视频方法（Seedance）见 [methods/](../../methods/README.md)。
 > 每个技能的第一件事都是**自检**：`--check` 或 `test_skill.py`，环境不健康就别提交任务。
 
@@ -64,7 +64,7 @@
 ### 图 / 镜 1（本地 ComfyUI 文生图）
 
 ```bash
-cd skills/text-to-image-comfyui
+cd .agents/skills/text-to-image-comfyui
 python3 scripts/comfyui_gen.py --check          # 先自检
 python3 scripts/comfyui_gen.py \
   --prompt "<prompt：主体 + 场景 + 风格 + 构图>" \
@@ -78,7 +78,7 @@ python3 scripts/comfyui_gen.py \
 ### 镜 2（本地 ComfyUI 图生视频）
 
 ```bash
-cd skills/image-to-video-fastvideo3
+cd .agents/skills/image-to-video-fastvideo3
 python3 scripts/comfyui_i2v.py --check
 python3 scripts/comfyui_i2v.py --first first.jpg --prompt "<prompt>" --out-dir out/
 ```

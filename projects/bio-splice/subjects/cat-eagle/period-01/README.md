@@ -68,7 +68,7 @@ bash make_sheet.sh period subjects/cat-eagle/period-01
 
 > 复现判据是**解码像素**，不是文件 sha（ComfyUI 把执行图写进 PNG 的 `tEXt`，
 > 换 `filename_prefix` 就会变 sha 而画面不变）。用
-> `python3 ../../../../skills/image-tools/scripts/pngdiff.py a.png b.png`。
+> `python3 ../../../../.agents/skills/image-tools/scripts/pngdiff.py a.png b.png`。
 
 ---
 

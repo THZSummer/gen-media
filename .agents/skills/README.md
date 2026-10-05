@@ -6,10 +6,10 @@ whenToUse: 当不确定该用哪个技能、需要总览能力地图、或要确
 
 # gen-media 技能库总览（Skills Index）
 
-> 返回[首页](../README.md) ｜ 项目实践见 [../projects/](../projects/README.md) ｜ 视频方法手册见 [../methods/](../methods/README.md)
+> 返回[首页](../../README.md) ｜ 项目实践见 [../projects/](../../projects/README.md) ｜ 视频方法手册见 [../methods/](../../methods/README.md)
 
 > 本目录是**技能库**：每个子目录一个技能，入口为 `SKILL.md`（YAML frontmatter 含 `name` / `description` / `whenToUse`）。
-> 技能讲「**怎么做**」，具体项目（「**做什么**」）见 [projects/](../projects/README.md)。
+> 技能讲「**怎么做**」，具体项目（「**做什么**」）见 [projects/](../../projects/README.md)。
 >
 > 📌 **准入标准：只收录带脚本、有自检入口、能在真机跑通的技能。** 纯文档（教你怎么用外部 CLI、但仓库里没有可执行代码）不进这个库。
 > 2026-10-05 按此标准移除了 9 个无脚本的方舟 Seedream 云端文档技能。
@@ -29,11 +29,11 @@ whenToUse: 当不确定该用哪个技能、需要总览能力地图、或要确
 | 要合并多张图 / 比对两张图 / 去元数据 / 缩放裁切 | [image-tools](image-tools/SKILL.md) —— **不用 AI**，确定性、可复现 |
 | 只有文字，要**带同步音频**的短视频 | [text-to-video-fastvideo3](text-to-video-fastvideo3/SKILL.md) —— FastH3 t2va（本地 ComfyUI） |
 | 有一张静图，要它动起来（首帧/可选尾帧） | [image-to-video-fastvideo3](image-to-video-fastvideo3/SKILL.md) —— FastH3 fl2va（本地 ComfyUI） |
-| 要云端托管、1080p / 长时长 / 多种输入 | [../methods/](../methods/README.md)（方舟 Seedance，**不作为技能收录**，只有方法手册） |
+| 要云端托管、1080p / 长时长 / 多种输入 | [../methods/](../../methods/README.md)（方舟 Seedance，**不作为技能收录**，只有方法手册） |
 
 **本地 ComfyUI 与云端 Ark 的取舍**：
 
-| 维度 | 本地 ComfyUI（本技能库） | 云端 Ark Seedance（[methods/](../methods/README.md)） |
+| 维度 | 本地 ComfyUI（本技能库） | 云端 Ark Seedance（[methods/](../../methods/README.md)） |
 |------|--------------------------|------------------------------------------------------|
 | 成本 | 自有显卡电费，可无限重跑 | 按量计费 |
 | 速度 | 视频实测约 3 分钟一条（576×736 / 56 帧） | 快 |
@@ -45,7 +45,7 @@ whenToUse: 当不确定该用哪个技能、需要总览能力地图、或要确
 ## 二、技能地图
 
 ```
-skills/
+.agents/skills/
 ├── README.md                            ← 你在这里（技能索引）
 │
 ├── 🖼️ 出图
@@ -124,7 +124,7 @@ http://192.168.3.5:18000            # ComfyUI 0.38.0，RTX 4060 Ti 8GB
 
 | 日期 | 版本 | 变更内容 | 作者 |
 |------|------|----------|------|
-| 2026-10-02 | v1.0 | image-gen 侧：`methods/` 改组为技能库 skills/，索引改技能地图与选路表 | 小七 |
+| 2026-10-02 | v1.0 | image-gen 侧：`methods/` 改组为技能库 .agents/skills/，索引改技能地图与选路表 | 小七 |
 | 2026-10-04 | v1.4 | image-gen 侧：参数静默失效治理 + 复现判据统一；新增 image-tools | 小七 |
 | 2026-10-05 | v1.5 | image-gen 侧：收敛为只留可执行技能（移除 9 个纯文档技能） | 小七 |
-| **2026-10-05** | **v2.0** | **扁平化合并**：`image-gen/skills/README.md` 与 `video-gen/skills/README.md` 合并为本文件；目录从 `image-gen/skills`、`video-gen/skills` 迁至仓库根 `skills/`；技能地图与选路表改为图像/视频统一索引（5 个技能） | 小七 |
+| **2026-10-05** | **v2.0** | **扁平化合并**：`image-gen/.agents/skills/README.md` 与 `video-gen/.agents/skills/README.md` 合并为本文件；目录从 `image-gen/skills`、`video-gen/skills` 迁至仓库根 `.agents/skills/`；技能地图与选路表改为图像/视频统一索引（5 个技能） | 小七 |

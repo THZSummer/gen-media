@@ -2,7 +2,7 @@
 
 > 🌐 Language: **English** | [中文](README.md)
 
-> Back to [project index](../README.en.md) ｜ Full plan in [PLAN.en.md](PLAN.en.md) ｜ Techniques in [../../skills/README.md](../../skills/README.md)
+> Back to [project index](../README.en.md) ｜ Full plan in [PLAN.en.md](PLAN.en.md) ｜ Techniques in [../../.agents/skills/README.md](../../.agents/skills/README.md)
 
 > A baimiao illustrated-verse series driven by the **verbatim text** of the *Shan Hai Jing*:
 > one creature per period, drawn in white-contour ink line, paired with the original passage, its
@@ -47,9 +47,9 @@
 
 | # | Technique | Link | Purpose |
 |---|-----------|------|---------|
-| 1 | Text to image (Z-Image-Turbo) | [text-to-image-comfyui](../../skills/text-to-image-comfyui/SKILL.md) | structure sweeps, candidate generation |
-| 2 | ControlNet image editing (Fun Union) | [image-edit-comfyui](../../skills/image-edit-comfyui/SKILL.md) | **lock countable traits**, unify style |
-| 3 | Deterministic image tools | [image-tools](../../skills/image-tools/SKILL.md) | typeset cartouche/source/seal, contact sheets, pixel diffs, metadata stripping |
+| 1 | Text to image (Z-Image-Turbo) | [text-to-image-comfyui](../../.agents/skills/text-to-image-comfyui/SKILL.md) | structure sweeps, candidate generation |
+| 2 | ControlNet image editing (Fun Union) | [image-edit-comfyui](../../.agents/skills/image-edit-comfyui/SKILL.md) | **lock countable traits**, unify style |
+| 3 | Deterministic image tools | [image-tools](../../.agents/skills/image-tools/SKILL.md) | typeset cartouche/source/seal, contact sheets, pixel diffs, metadata stripping |
 
 > Every technique starts with a **self-check**: `--check` or `test_skill.py`; do not submit work on an
 > unhealthy environment.

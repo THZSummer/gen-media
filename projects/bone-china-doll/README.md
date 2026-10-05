@@ -2,7 +2,7 @@
 
 > 🌐 语言：**中文** ｜ [English](README.en.md)
 
-> 返回[项目索引](../README.md) ｜ 技能见 [../../skills/text-to-image-comfyui/SKILL.md](../../skills/text-to-image-comfyui/SKILL.md)
+> 返回[项目索引](../README.md) ｜ 技能见 [../../.agents/skills/text-to-image-comfyui/SKILL.md](../../.agents/skills/text-to-image-comfyui/SKILL.md)
 > **六阶段迭代**（目录名沿用 `bone-china-doll`，主题已变更）：
 > - **第一阶段 R1–R6**：每轮 5 张，Z-Image-Turbo，解决构图/比例/材质词汇
 > - **第二阶段 R7–R16**：每轮 3 张，切换 Qwen-Image 2512，主攻细节丰富度与真实感
@@ -64,7 +64,7 @@
 
 | 环节 | 所用技能/工具 | 说明 |
 |------|--------------|------|
-| 出图（R1–R6） | [text-to-image-comfyui](../../skills/text-to-image-comfyui/SKILL.md) → `scripts/comfyui_gen.py` | Z-Image-Turbo；⚠️ 负向为 `ConditioningZeroOut`，**无 negative prompt** |
+| 出图（R1–R6） | [text-to-image-comfyui](../../.agents/skills/text-to-image-comfyui/SKILL.md) → `scripts/comfyui_gen.py` | Z-Image-Turbo；⚠️ 负向为 `ConditioningZeroOut`，**无 negative prompt** |
 | 出图（R7–R21） | 同上 → `scripts/comfyui_qwen.py` | **Qwen-Image 2512**；✅ 支持真负向提示词；细节/写实显著更强，但约 13 分钟/张（3.43MP 约 50 分钟） |
 | 轮次驱动 | [`run_round.py`](run_round.py) | 双引擎，`engine` 字段切换；**prompt 全部版本化在脚本内**；支持逐张覆盖 `size/steps/cfg/timeout` |
 | **真微距（二阶段）** | [`make_macro.sh`](make_macro.sh) | **裁切法**（非出图）：从 R14 3.43MP 成品裁冠冕/腕关节 |
@@ -490,7 +490,7 @@ hems lifting`）− 繁密织金（`heavy gold embroidery` 入负向）。
 | 引擎 / seed / 尺寸 / steps | Z-Image-Turbo / 610 / 1024×1360 / 16 |
 | prompt | 见 [docs/r6.md §定稿选择](docs/r6.md) |
 
-> ⚠️ 待接入视频：本项目定稿比例 1024×1360（≈3:4），若后续进 video-gen 的 I2V，需按目标视频比例重出（见 [image-to-video-fastvideo3](../../skills/image-to-video-fastvideo3/SKILL.md)）。
+> ⚠️ 待接入视频：本项目定稿比例 1024×1360（≈3:4），若后续进 video-gen 的 I2V，需按目标视频比例重出（见 [image-to-video-fastvideo3](../../.agents/skills/image-to-video-fastvideo3/SKILL.md)）。
 
 ---
 

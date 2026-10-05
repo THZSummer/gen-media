@@ -37,7 +37,7 @@ python3 scripts/comfyui_qwen.py --prompt "..." --negative "blurry, plastic, cart
 ## 前置检查（先做，别直接生成）
 
 ```bash
-cd skills/text-to-image-comfyui
+cd .agents/skills/text-to-image-comfyui
 
 # 1. 服务器是否可达（不可达就别提交，直接报障）
 python3 scripts/comfyui_gen.py --server http://192.168.3.5:18000 --check
@@ -109,7 +109,7 @@ python3 scripts/comfyui_gen.py --prompt "..." --no-record --out-dir /tmp/scratch
 
 ```bash
 # 拿 video 工作流（没有 EmptySD3LatentImage）当反例：--width 落不下去
-python3 scripts/comfyui_convert.py ../../../skills/text-to-video-fastvideo3/assets/video_fastvideo_fasth3_t2v.json \
+python3 scripts/comfyui_convert.py ../../../.agents/skills/text-to-video-fastvideo3/assets/video_fastvideo_fasth3_t2v.json \
     --prompt "a cat" --width 512 -o /tmp/x.json
 # error: 1 requested parameter(s) never reached the graph: width=512 ... [exit 2]
 

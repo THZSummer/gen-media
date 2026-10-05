@@ -4,7 +4,7 @@
 
 > **图片生成**（本机 ComfyUI：Z-Image-Turbo / Qwen-Image / Fun Union ControlNet）与**视频生成**（本地 FastVideo FastH3；云端 Seedance 走 `arkcli`）的知识库与作品集。
 >
-> 🗂️ **扁平化结构（2026-10-05）**：不再分 `image-gen/` 与 `video-gen/` 两个库，改为按**内容类型**分三块——`skills/`（技能）、`projects/`（项目）、`methods/`（视频方法手册）。图片与视频技能现在**同处一个技能库**。
+> 🗂️ **扁平化结构（2026-10-05）**：不再分 `image-gen/` 与 `video-gen/` 两个库，改为按**内容类型**分三块——`.agents/skills/`（技能）、`projects/`（项目）、`methods/`（视频方法手册）。图片与视频技能现在**同处一个技能库**。
 
 ---
 
@@ -14,7 +14,7 @@
 gen-media/
 ├── README.md          ← 你在这里（总入口）
 ├── .dsh/skills/       DSH 项目技能：dev-guide（开发规范总纲；技能文档只写中文）
-├── skills/            技能库：5 个可执行技能，图片与视频不分家
+├── .agents/skills/            技能库：5 个可执行技能，图片与视频不分家
 │   ├── README.md          技能索引（能力地图 + 选路表 + 运行前提与自检）
 │   ├── text-to-image-comfyui/      文生图：Z-Image-Turbo（快）+ Qwen-Image（细）
 │   ├── image-edit-comfyui/         控制图生图：Z-Image Fun Union ControlNet
@@ -38,14 +38,14 @@ gen-media/
 | 我想… | 去哪 |
 |------|------|
 | **给这个仓库加东西 / 提交前对齐规范** | [`.dsh/skills/dev-guide/SKILL.md`](.dsh/skills/dev-guide/SKILL.md)（双语、站点、技能、生成、资产、协作六类规范 + 检查脚本） |
-| 用文字出一张图 | [skills/text-to-image-comfyui](skills/text-to-image-comfyui/SKILL.md)（Z-Image-Turbo 快 / Qwen-Image 细） |
-| 按控制图改图 / 换背景 | [skills/image-edit-comfyui](skills/image-edit-comfyui/SKILL.md)（Fun Union ControlNet） |
-| 合图 / 比对两张图 / 去元数据 / 缩放裁切 | [skills/image-tools](skills/image-tools/SKILL.md)（不用 AI，确定性） |
-| 纯文字生成带音频的视频 | [skills/text-to-video-fastvideo3](skills/text-to-video-fastvideo3/SKILL.md)（本地 FastH3） |
-| 从分镜图生成视频 | [skills/image-to-video-fastvideo3](skills/image-to-video-fastvideo3/SKILL.md)（本地 FastH3） |
+| 用文字出一张图 | [.agents/skills/text-to-image-comfyui](.agents/skills/text-to-image-comfyui/SKILL.md)（Z-Image-Turbo 快 / Qwen-Image 细） |
+| 按控制图改图 / 换背景 | [.agents/skills/image-edit-comfyui](.agents/skills/image-edit-comfyui/SKILL.md)（Fun Union ControlNet） |
+| 合图 / 比对两张图 / 去元数据 / 缩放裁切 | [.agents/skills/image-tools](.agents/skills/image-tools/SKILL.md)（不用 AI，确定性） |
+| 纯文字生成带音频的视频 | [.agents/skills/text-to-video-fastvideo3](.agents/skills/text-to-video-fastvideo3/SKILL.md)（本地 FastH3） |
+| 从分镜图生成视频 | [.agents/skills/image-to-video-fastvideo3](.agents/skills/image-to-video-fastvideo3/SKILL.md)（本地 FastH3） |
 | 查视频技术方法与成本（云端） | [methods/](methods/README.md) |
 | 看一个完整项目的规划与成品 | [projects/](projects/README.md) |
-| 挑技能 / 确认环境健康 | [skills/README.md](skills/README.md)（选路表 + 每个技能一条自检命令） |
+| 挑技能 / 确认环境健康 | [.agents/skills/README.md](.agents/skills/README.md)（选路表 + 每个技能一条自检命令） |
 
 ---
 
@@ -53,7 +53,7 @@ gen-media/
 
 | 块 | 回答 | 组织方式 |
 |----|------|----------|
-| [skills/](skills/README.md) | **怎么做**（可执行技术） | 一技能一目录，带 `SKILL.md` + 脚本 + 自检入口；**只收能在真机跑通的** |
+| [.agents/skills/](.agents/skills/README.md) | **怎么做**（可执行技术） | 一技能一目录，带 `SKILL.md` + 脚本 + 自检入口；**只收能在真机跑通的** |
 | [projects/](projects/README.md) | **做什么**（具体业务） | 一项目一目录，一次性规划，引用 skills / methods |
 | [methods/](methods/README.md) | **怎么生成**（视频技术手册，云端为主） | 一方法一目录，可复用 |
 
@@ -84,8 +84,8 @@ gen-media/
 | Python 3 + numpy | 评分、逐像素差分、图集生成（`image-tools` 不需要 Pillow） |
 | `arkcli`（火山方舟） | **仅 `methods/` 在用**：Seedance 视频、TTS/ASR |
 
-> 📌 **路径约定**：所有文档里的路径都以仓库根为基准（如 `skills/...`、`projects/...`），可直接复制执行。
-> 改完环境先跑 `skills/README.md` 里每个技能的自检命令，再谈出图出片。
+> 📌 **路径约定**：所有文档里的路径都以仓库根为基准（如 `.agents/skills/...`、`projects/...`），可直接复制执行。
+> 改完环境先跑 `.agents/skills/README.md` 里每个技能的自检命令，再谈出图出片。
 
 ---
 
@@ -102,11 +102,11 @@ gen-media/
 
 ## 七、维护与扩展
 
-**本仓库就是内容源头**：新增技能 / 项目 / 方法直接在 `skills/`、`projects/`、`methods/` 下建目录，按各自 `README.md` 的规范组织。
+**本仓库就是内容源头**：新增技能 / 项目 / 方法直接在 `.agents/skills/`、`projects/`、`methods/` 下建目录，按各自 `README.md` 的规范组织。
 
 | 想加什么 | 放哪 | 参考规范 |
 |----------|------|----------|
-| 新技能 | `skills/<技能名>/SKILL.md` | [skills/README.md](skills/README.md)；只收带脚本、有自检入口、真机跑通的 |
+| 新技能 | `.agents/skills/<技能名>/SKILL.md` | [.agents/skills/README.md](.agents/skills/README.md)；只收带脚本、有自检入口、真机跑通的 |
 | 新项目 | `projects/<项目名>/` | 复制 `projects/_template/`；索引见 [projects/README.md](projects/README.md) |
 | 新视频方法 | `methods/<方法名>/` | 见 [methods/README.md](methods/README.md) |
 
@@ -134,7 +134,7 @@ cd ../.. && git submodule update --remote GitHub/gen-media \
 | 约定 | 说明 |
 |------|------|
 | 命名 | `README.md` ↔ `README.en.md`；`projects/<项目>/README.md` ↔ `README.en.md` |
-| 排除 | `skills/**`（含 `skills/README.md`）与 `.dsh/skills/**` 只保留中文（技能文档面向执行，不翻译） |
+| 排除 | `.agents/skills/**`（含 `.agents/skills/README.md`）与 `.dsh/skills/**` 只保留中文（技能文档面向执行，不翻译） |
 | 链接 | 英文版内部的相对链接指向 `.en.md`；目标没有英文版时指向中文版（不造死链） |
 | 代码 | **逐字保留**：命令、路径、文件名、模型 ID、参数名、seed、prompt 原文、样例字符串 |
 | 代码块内的注释 | **要翻译**：目录树的说明文字、bash 示例里的 `#` 注释、ASCII 示意图的标签 |
@@ -155,4 +155,4 @@ python3 tools/i18n.py links           # 把英文版的相对链接改指 .en.md
 |------|------|----------|------|
 | 2026-10-05 | v1.0 | 从 `gits` 拆出 `Book/image-gen` 与 `Book/video-gen`，独立成库 | 小七 |
 | 2026-10-05 | v1.3 | 新增双语规范（中文默认 + `X.en.md`）与 `tools/i18n.py` | 小七 |
-| 2026-10-05 | v2.0 | **扁平化重构**：取消 `image-gen/` 与 `video-gen/` 两库划分，改为 `skills/`（5 个技能合一处）+ `projects/`（9 个项目）+ `methods/`（视频方法）；两个技能索引合并、两个项目索引与模板合并；`tools/{i18n,build_site}.py` 与 dev-guide 同步；**订正"本仓库是唯一副本、不再有上游"的失实表述**——`gits` 以 submodule 引用本仓库 | 小七 |
+| 2026-10-05 | v2.0 | **扁平化重构**：取消 `image-gen/` 与 `video-gen/` 两库划分，改为 `.agents/skills/`（5 个技能合一处）+ `projects/`（9 个项目）+ `methods/`（视频方法）；两个技能索引合并、两个项目索引与模板合并；`tools/{i18n,build_site}.py` 与 dev-guide 同步；**订正"本仓库是唯一副本、不再有上游"的失实表述**——`gits` 以 submodule 引用本仓库 | 小七 |

@@ -2,7 +2,7 @@
 
 > 🌐 Language: **English** | [中文](README.md)
 
-> Back to [home](../README.en.md) ｜ Techniques in [../skills/](../skills/README.md) ｜ Video method notes in [../methods/](../methods/README.en.md)
+> Back to [home](../README.en.md) ｜ Techniques in [../.agents/skills/](../.agents/skills/README.md) ｜ Video method notes in [../methods/](../methods/README.en.md)
 
 > This directory merges `image-gen/projects/` and `video-gen/projects/` (flattened on 2026-10-05):
 > **image and video are no longer separate libraries; everything is organised by project.**
@@ -13,7 +13,7 @@
 
 Organised by **concrete project**: **one directory per project**, with a `README.md` inside as that project's generation plan.
 
-| | [skills/](../skills/README.md) | [methods/](../methods/README.en.md) | projects/ (here) |
+| | [.agents/skills/](../.agents/skills/README.md) | [methods/](../methods/README.en.md) | projects/ (here) |
 |---|---|---|---|
 | Answers | **how to do it** (executable technique) | **how to generate** (method notes) | **what to make** (concrete work) |
 | Organised | one directory per skill, with scripts and self-checks | one directory per method, reusable | one directory per project, planned once |
@@ -36,7 +36,7 @@ A project picks the **skills** (images/video) or **methods** (cloud video) it ne
 |---------|---------|
 | Background | why it exists, who it is for, where it is used / published |
 | Deliverables | purpose, size or duration and ratio of each final |
-| Technique / method selection | which skill or method each final uses (link into skills/ or methods/) |
+| Technique / method selection | which skill or method each final uses (link into .agents/skills/ or methods/) |
 | Image list / shot list | image or shot number / subject / scene / angle / style (images); shot number / framing / camera move / content (video) |
 | Prompt & parameters | prompt, model, key parameters, seed for each final |
 | Execution plan | direction / shaping / final stages |
