@@ -20,6 +20,9 @@
 One line: **the subject is a gold mine; the format has to be rebuilt.**
 Our real moat (verifiable sourcing, correct counts, seal handling) is not the selling point on Douyin — it is the **hook inside a video script**, and that determines how we rewrite.
 
+> **Phasing decision (settled 2026-10-07)**: **short term publishes image posts with in-app music only; video moves to the long term.**
+> The three traffic tiers below and the route analysis in §5 are unchanged; only the **execution order** changes. Image posts first, to learn which creature names carry traffic and which cover earns clicks; the video phase then starts from that data. The image-post phase therefore chases data, not reach.
+
 ---
 
 ## 1. Three Hard Things to Do First
@@ -173,14 +176,24 @@ Moving the Xiaohongshu package (illustrated plate + long sourcing copy) over unc
 - Payoff: image and long-form content weight **saves** heavily, and Douyin is giving long essays **dedicated traffic support** (launched 2025-12, see §2).
 - Expectation: individual pieces will not go viral, but the **long tail and follower quality** are the best of the three, and it is the only low-cost channel that monetises our most expensive capability (sourcing).
 
-### 30-Day Cadence
+### Phased Cadence (short-term image posts / long-term video)
+
+**Short term (weeks 1–4: image posts with in-app music only)**
 
 | Week | Action | Purpose |
 |------|--------|---------|
-| Week 1 | Real-name verification → run the full S.O.P. once (including the AI declaration) → publish 3 Route A posts | Set the tag, validate the publishing chain, confirm the label shows |
-| Weeks 2–3 | 6 Route B videos (2 per creature: one on counts, one on seals/process) | Find the hook model; produce the first 100K+ post |
-| Week 4 | 1 Route C long essay + data review (record which hook types worked) | Consolidate method; write it back into `subjects/<slug>/` |
-| Throughout | Follow and enter official AI programmes (AI Creation Wave Plan / AI Creation Contest; the first edition in 2026-06 offered 4M CNY cash + 20M Jimeng credits + traffic support + IP development) | Platform programmes are the cheapest traffic entry |
+| Week 1 | Real-name verification → run the full §2.3 flow once (including the AI declaration) → publish 2–3 posts: nine-tailed fox / lu-shu / bo-yi | Set the tag, validate the publishing chain, confirm the label shows |
+| Weeks 2–3 | 3 posts a week, with **cover A/B tests** (full plate versus cartouche plate; hooked title versus plain) | Learn which cover earns clicks |
+| Week 4 | 1 long essay per creature (Route C) + review: save rate, comment quality, differences between creature names | Distil which creature names carry traffic; write it back into `subjects/<slug>/publish.json` |
+| Throughout | Tick the AI declaration on every post; follow official AI programmes (AI Creation Wave Plan / the first AI Creation Contest: 4M CNY cash + 20M Jimeng credits + traffic support + IP development) | Compliance plus the cheapest traffic entry |
+
+**Long term (from week 5: video)** — start condition: at least 12 image posts published, with two datasets in hand (best cover scheme, creature-name traffic).
+
+| Order | Action | Note |
+|-------|--------|------|
+| (1) | **Deterministic edited video** (main line): `01-<slug>.png` plate + subtitles + slow push-in (ffmpeg `zoompan`) + in-app BGM | Controllable and reproducible, zero local cost; needs a `short_video.py` with self-checks |
+| (2) | **Generative video** (accent): 3–5 s opening or atmosphere shots via `image-to-video-fastvideo3` | It breaks countable traits (lost tails, blurred ears), so it requires same-round controls, scoring, and a separate video rubric |
+| (3) | Bring the video skills into the gate: add both skills' offline self-checks and real-machine `--check` to `check.sh` step 3 (both free) | Turns "we can do video" into a pipeline fact |
 
 ---
 
@@ -250,5 +263,6 @@ Source: [Julian Xingtu "New Creator Onboarding Handbook"](https://www.xingtu.cn/
 
 | Date | Version | Change | Author |
 |------|---------|--------|--------|
+| 2026-10-07 | v0.3 | **Phasing decision frozen (user's call): short term publishes image posts with in-app music only; video moves to the long term.** §0 gained a phasing note (the image-post phase chases data, not reach); §5's "30-day cadence" became a "phased cadence" — weeks 1–4 image posts (cover A/B tests, one long essay per creature, a `publish.json` ledger), from week 5 video (deterministic editing as the main line, generative video only as an accent, video skills brought into the gate), with an explicit start condition (≥12 image posts plus two datasets) | Xiaoqi |
 | 2026-10-07 | v0.2 | **Added "How to choose among the four publishing entries" (§2.1)**: publish video = main line (including the concrete 1080x1920 canvas recipe for 3:4 plates), publish image post = floor and probe, publish article (long essay) = secondary priority, publish panoramic video = skip (it requires 360° equirectangular material); the old spec table becomes §2.2 and the S.O.P. becomes §2.3 | Xiaoqi |
 | 2026-10-07 | v0.1 | Created: Douyin compliance checklist (mandatory AI-labelling path, S.O.P.), nine-dimension theme fit score, three traffic tiers, three routes plus a 30-day cadence, Xingtu monetisation thresholds, risk countermeasures; 6 unverified items flagged | Xiaoqi |
