@@ -1,0 +1,193 @@
+{
+  "date": "2026-10-07",
+  "skill": "comfyui-music-minimax3",
+  "purpose": "技能建立时的真机端到端验证（同时作为九尾狐图文的 BGM 候选）",
+  "server": "http://192.168.3.5:18000",
+  "engine": "minimax-music3-t2m",
+  "workflow_sha256_prefix": "841b9320ec6e",
+  "params": {
+    "caption_preset": "模板 A · 古琴独奏",
+    "instrumental": true,
+    "duration_s": 20,
+    "seed": 6611,
+    "steps": 30,
+    "cfg_scale": 1.7,
+    "tiled_decode": true,
+    "filename_prefix": "audio/jwh-bgm-r1"
+  },
+  "result": {
+    "status": "success",
+    "elapsed_s": 315.2,
+    "eta_s": 334.0,
+    "audio_file": "jwh-bgm-r1_00001.mp3",
+    "audio_sha256": "029120167340841d4b772bc24b853a690e64ad9835731f8605fa6c908b7e5d7e",
+    "bytes": 607746,
+    "codec": "mp3",
+    "sample_rate": 44100,
+    "channels": 2,
+    "duration_s": 19.992381,
+    "bit_rate": 243191,
+    "measured_wall_per_audio_s": 15.77,
+    "unapplied_overrides": {},
+    "output_node": "35"
+  },
+  "notes": [
+    "ETA 模型取 16.7 s/音频秒（由 60 s 实测外推）；20 s 这档实测 15.76，故 ETA 偏保守约 6%。",
+    "人声是否存在需人耳验收——脚本只验证产物与时长。",
+    "音频本体留在本地 work/music-out/（gitignored），此处只留可复核的元数据与 API 图。"
+  ],
+  "api_graph_nodes": 12,
+  "api_graph": {
+    "35": {
+      "class_type": "SaveAudioAdvanced",
+      "inputs": {
+        "filename_prefix": "audio/jwh-bgm-r1",
+        "audio": [
+          "43",
+          0
+        ],
+        "format": "mp3",
+        "format.quality": "V0"
+      }
+    },
+    "6": {
+      "class_type": "UNETLoader",
+      "inputs": {
+        "unet_name": "minimax_music3_dit_fp16.safetensors",
+        "weight_dtype": "default"
+      }
+    },
+    "13": {
+      "class_type": "MiniMaxMusic3TextEncode",
+      "inputs": {
+        "caption": "Global Metadata: Chinese guqin instrumental, 66 BPM, D pentatonic, solemn and vast, ancient ritual atmosphere, slow and unhurried throughout, no vocals at all.\nVocal Details: fully instrumental, no voice, no humming, no choir, no lyrics.\nArrangement: solo guqin with sparse plucked notes and long silences, a distant low bamboo flute (xiao) answering occasionally, faint stone chime accents, deep hall reverb like a mountain temple, subtle tape hiss, no drums, no percussion, no bass.",
+        "lyrics": "[intro]\n[instrumental]\n[outro]",
+        "max_duration": 20.0,
+        "clip": [
+          "3",
+          0
+        ],
+        "seed": [
+          "38",
+          0
+        ],
+        "control_after_generate": "fixed",
+        "cfg_scale": 1.7,
+        "top_k": 50
+      }
+    },
+    "3": {
+      "class_type": "CLIPLoader",
+      "inputs": {
+        "clip_name": "minimax_music3_text_encoder_pruned_int8_convrot.safetensors",
+        "type": "minimax",
+        "device": "default"
+      }
+    },
+    "7": {
+      "class_type": "VAELoader",
+      "inputs": {
+        "vae_name": "minimax_music3_dav.safetensors"
+      }
+    },
+    "10": {
+      "class_type": "ConditioningZeroOut",
+      "inputs": {
+        "conditioning": [
+          "13",
+          0
+        ]
+      }
+    },
+    "15": {
+      "class_type": "EmptyMiniMaxMusic3LatentAudio",
+      "inputs": {
+        "seconds": [
+          "13",
+          1
+        ],
+        "batch_size": 1
+      }
+    },
+    "9": {
+      "class_type": "KSampler",
+      "inputs": {
+        "model": [
+          "6",
+          0
+        ],
+        "positive": [
+          "13",
+          0
+        ],
+        "negative": [
+          "10",
+          0
+        ],
+        "latent_image": [
+          "15",
+          0
+        ],
+        "seed": [
+          "38",
+          0
+        ],
+        "control_after_generate": "fixed",
+        "steps": 30,
+        "cfg": 1.7,
+        "sampler_name": "euler",
+        "scheduler": "simple",
+        "denoise": 1
+      }
+    },
+    "12": {
+      "class_type": "VAEDecodeAudio",
+      "inputs": {
+        "samples": [
+          "9",
+          0
+        ],
+        "vae": [
+          "7",
+          0
+        ]
+      }
+    },
+    "38": {
+      "class_type": "SeedNode",
+      "inputs": {
+        "seed": 6611,
+        "fixed": "randomize"
+      }
+    },
+    "42": {
+      "class_type": "VAEDecodeAudioTiled",
+      "inputs": {
+        "samples": [
+          "9",
+          0
+        ],
+        "vae": [
+          "7",
+          0
+        ],
+        "tile_size": 1536,
+        "overlap": 64
+      }
+    },
+    "43": {
+      "class_type": "ComfySwitchNode",
+      "inputs": {
+        "switch": true,
+        "on_false": [
+          "12",
+          0
+        ],
+        "on_true": [
+          "42",
+          0
+        ]
+      }
+    }
+  }
+}

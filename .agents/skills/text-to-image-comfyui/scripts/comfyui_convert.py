@@ -90,8 +90,10 @@ NON_EXECUTABLE_TYPES = {"MarkdownNote", "Note", "Reroute", "PrimitiveNode", "Boo
 
 # Classes that terminate a graph and own the produced media.  The first match in
 # this priority order is reported as the graph's output node, so a video
-# workflow (SaveVideo) works exactly like an image one (SaveImage).
-OUTPUT_NODE_CLASSES: tuple[str, ...] = ("SaveImage", "SaveVideo", "SaveWEBM", "SaveAudio")
+# workflow (SaveVideo) works exactly like an image one (SaveImage), and an audio
+# one (SaveAudioAdvanced, the MiniMax-Music3 template's saver) like SaveAudio.
+OUTPUT_NODE_CLASSES: tuple[str, ...] = (
+    "SaveImage", "SaveVideo", "SaveWEBM", "SaveAudio", "SaveAudioAdvanced")
 
 
 class UnappliedOverrideError(ValueError):

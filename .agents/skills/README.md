@@ -30,6 +30,7 @@
 | 要合并多张图 / 比对两张图 / 去元数据 / 缩放裁切 | [image-tools](image-tools/SKILL.md) —— **不用 AI**，确定性、可复现 |
 | 只有文字，要**带同步音频**的短视频 | [text-to-video-fastvideo3](text-to-video-fastvideo3/SKILL.md) —— FastH3 t2va（本地 ComfyUI） |
 | 有一张静图，要它动起来（首帧/可选尾帧） | [image-to-video-fastvideo3](image-to-video-fastvideo3/SKILL.md) —— FastH3 fl2va（本地 ComfyUI） |
+| 要一段**音乐 / BGM**（纯音乐、可脚本化、无 API 计费） | [comfyui-music-minimax3](comfyui-music-minimax3/SKILL.md) —— MiniMax Music 3（开放权重），caption + lyrics → mp3；**很慢：≈16.7 s 墙钟 / 1 s 音频** |
 | 要云端托管、1080p / 长时长 / 多种输入 | [../methods/](../../methods/README.md)（方舟 Seedance，**不作为技能收录**，只有方法手册） |
 
 **本地 ComfyUI 与云端 Ark 的取舍**：
@@ -65,6 +66,9 @@
 │   ├── text-to-video-fastvideo3/        文生视频 + 同步音频（t2va）
 │   └── image-to-video-fastvideo3/       图生视频 + 同步音频（fl2va，首帧/可选尾帧）
 │
+├── 🎵 出音频（本地 ComfyUI · 与上面两套不共用权重）
+│   └── comfyui-music-minimax3/        文生音乐：MiniMax Music 3（caption + lyrics → mp3；≈16.7 s 墙钟/音频秒）
+│
 └── 🧰 确定性工具（不调模型）
     └── image-tools/                     ffmpeg + numpy：拼版速览图、像素比对 + PSNR/SSIM、剥元数据、缩放裁切
 ```
@@ -79,6 +83,7 @@
 | [image-edit-comfyui](image-edit-comfyui/SKILL.md) | 远程 ComfyUI 跑 Fun Union ControlNet 控制图生图 | 控制图 + prompt → 图片文件 | `comfyui_edit.py --check` |
 | [text-to-video-fastvideo3](text-to-video-fastvideo3/SKILL.md) | 远程 ComfyUI 跑 FastH3 文生视频 | 结构化 prompt → mp4（带音频轨） | `comfyui_video.py --check` |
 | [image-to-video-fastvideo3](image-to-video-fastvideo3/SKILL.md) | 远程 ComfyUI 跑 FastH3 图生视频（首帧/可选尾帧） | 1–2 张图 + prompt → mp4（带音频轨） | `comfyui_i2v.py --check` |
+| [comfyui-music-minimax3](comfyui-music-minimax3/SKILL.md) | 远程 ComfyUI 跑 **MiniMax Music 3** 文生音乐 | caption（+ lyrics）→ mp3（纯音乐/BGM 或整首歌） | `test_skill.py`（离线 43 项）/ `comfyui_music.py --check` |
 | [image-tools](image-tools/SKILL.md) | **不用 AI** 的确定性图片处理 | 多张图 → 速览图 / 比对报告 / 处理后的图 | `scripts/test_skill.py`（离线） |
 
 > ⚠️ 两个视频技能**共用同一套 35 GB 权重，不能同时跑**；权重压 8 GB 显存会流式换页，慢是必然的。
@@ -90,6 +95,7 @@
 - **改已有的图**：`seedream-image-edit`（底图 + 指令；要局部就在标注层上画一笔，Painter 会按 alpha 合成进去）→ 交付前用 `image-tools` 比对改动是否真的落在目标区域
 - **按结构控制构图**：控制图 → `image-edit-comfyui`（调 `--control-strength` / `--canny-low,high`）→ `image-tools` 比对改动是否真的落到区域上
 - **图 → 视频**：`text-to-image-comfyui` 出首帧 → `image-to-video-fastvideo3` 让它动起来
+- **给图文/短视频配乐**：`comfyui-music-minimax3` 出纯音乐（先 `--plan` 免费验证参数，再按"最短够用"要时长）→ 用 `image-tools` 的 `ffprobe` 核对时长与码率 → 剪辑时 loop 到片长
 - **交付前规范化**：`image-tools` 的 `ffkit strip`（剥 tEXt 元数据，像素不变）+ `contact_sheet`（合图）+ `resize`（出缩略图）
 
 ---
@@ -110,6 +116,7 @@ http://192.168.3.5:18000            # ComfyUI 0.38.0，RTX 4060 Ti 8GB
 | image-edit-comfyui | 上面 Z-Image 三件 + `Z-Image-Turbo-Fun-Controlnet-Union.safetensors` | `python3 scripts/comfyui_edit.py --check` | ✅ `missing: []`，真机参数矩阵 **28/28** 通过 |
 | text-to-video-fastvideo3 | 4 个模型文件 + **9 个节点类** | `python3 scripts/comfyui_video.py --check` | ✅ |
 | image-to-video-fastvideo3 | 同上（共用权重） | `python3 scripts/comfyui_i2v.py --check` | ✅ |
+| comfyui-music-minimax3 | `minimax_music3_dit_fp16` / `minimax_music3_text_encoder_pruned_int8_convrot` / `minimax_music3_dav` + **7 个节点类** | `python3 scripts/test_skill.py`（离线）+ `python3 scripts/comfyui_music.py --check` | ✅ 离线 **43/43**；`--check` `ok: true` |
 | image-tools | `ffmpeg` / `ffprobe`、Python 3 + numpy（**不需要 Pillow**） | `python3 scripts/test_skill.py` | ✅ `RESULT: PASS` |
 
 > 改完环境（换机器 / 换模型 / 升级 ComfyUI）先跑上面这一列，再谈出图出片。
@@ -134,6 +141,10 @@ http://192.168.3.5:18000            # ComfyUI 0.38.0，RTX 4060 Ti 8GB
 | 前端专有节点 | 只存在于界面画布、服务器上没有实现的类（`MarkdownNote` 等）；原样提交会被判 `missing_node_type`，转换后要剔掉 |
 | ComfyUI 账号 API Key | platform.comfy.org 发的凭据；无头调用付费节点必须放进 `extra_data.api_key_comfy_org`，否则报 `Unauthorized` |
 | T2V / I2V | Text-to-Video / Image-to-Video |
+| T2M | Text-to-Music，文生音乐（`comfyui-music-minimax3`） |
+| caption / lyrics | MiniMax Music 3 的两个输入：**caption** 是结构化音乐描述（Global Metadata → Vocal Details → Arrangement）；**lyrics** 里只有 `[intro]`/`[verse]`/`[chorus]` 等**段落标签是可执行指令**，歌词文本只传递情绪 |
+| tiled decode | 音频 VAE 分块解码：大幅降显存、略慢、接缝有极小风险；本模板默认开着（`ComfyUI` 里那个 `tiled_decode` 开关） |
+| ETA（本技能） | 提交前打印的墙钟估算＝`音频秒数 × 16.7`；**这个倍率是真机实测值**，换机器/换精度会变 |
 | t2va / fl2va | FastH3 的两个工作流：文生视频+音频 / 首尾帧+音频 |
 | `--seed` | 固定随机种子，用于复现（同 seed 同参数 → 像素一致） |
 | 接触印相 / 速览图 | contact sheet，把一轮多张拼成一张带标签的大图 |

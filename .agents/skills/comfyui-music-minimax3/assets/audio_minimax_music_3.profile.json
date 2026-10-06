@@ -1,0 +1,80 @@
+{
+  "name": "minimax-music3-t2m",
+  "workflow": "audio_minimax_music_3.json",
+  "description": "MiniMax Music 3（开放权重）：caption（结构化音乐描述）+ lyrics（带 [verse]/[chorus] 等段落标签）→ 整首音频，最长约 300 s。ComfyUI 官方模板 'Text to Music (MiniMax Music 3)' 的子图。时长由 MiniMaxMusic3TextEncode.max_duration 决定，并经 FLOAT 链路同步给 EmptyMiniMaxMusic3LatentAudio.seconds。",
+  "parameters": {
+    "caption": {
+      "interface": "caption",
+      "aliases": ["prompt", "text"]
+    },
+    "lyrics": {
+      "interface": "lyrics"
+    },
+    "duration": {
+      "interface": "max_duration",
+      "aliases": ["seconds", "max_duration"]
+    },
+    "seed": {
+      "interface": "seed",
+      "aliases": ["noise_seed"]
+    },
+    "unet_name": {
+      "interface": "unet_name",
+      "aliases": ["model", "diffusion_model"]
+    },
+    "clip_name": {
+      "interface": "clip_name",
+      "aliases": ["text_encoder"]
+    },
+    "vae_name": {
+      "interface": "vae_name",
+      "aliases": ["audio_vae"]
+    },
+    "tiled_decode": {
+      "interface": "switch",
+      "aliases": ["tiled", "switch"]
+    },
+    "steps": {
+      "node": "KSampler",
+      "field": "steps"
+    },
+    "cfg_scale": {
+      "node": "MiniMaxMusic3TextEncode",
+      "field": "cfg_scale"
+    },
+    "top_k": {
+      "node": "MiniMaxMusic3TextEncode",
+      "field": "top_k"
+    },
+    "sampler_cfg": {
+      "node": "KSampler",
+      "field": "cfg",
+      "aliases": ["ks_cfg"]
+    },
+    "sampler": {
+      "node": "KSampler",
+      "field": "sampler_name"
+    },
+    "scheduler": {
+      "node": "KSampler",
+      "field": "scheduler"
+    },
+    "denoise": {
+      "node": "KSampler",
+      "field": "denoise"
+    },
+    "tile_size": {
+      "node": "VAEDecodeAudioTiled",
+      "field": "tile_size"
+    },
+    "overlap": {
+      "node": "VAEDecodeAudioTiled",
+      "field": "overlap"
+    },
+    "filename_prefix": {
+      "node": "SaveAudioAdvanced",
+      "field": "filename_prefix"
+    }
+  },
+  "expected_unconnected": []
+}

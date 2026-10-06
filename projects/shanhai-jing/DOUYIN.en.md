@@ -294,6 +294,10 @@ On Douyin, what gets "promoted" is not a single work but **the series**. None of
 
 **Premise**: the Douyin library **does** include guofeng / classical / instrumental categories (search "guofeng", "guqin", "xiao", "xun", "shakuhachi", "zheng" on the publishing screen, or browse a guofeng playlist), and both image posts and videos can carry music. But the library varies by account, region and time, so **rules beat a track list**.
 
+> 🔧 **We can now produce our own BGM** (since 2026-10-07): the [comfyui-music-minimax3](../../.agents/skills/comfyui-music-minimax3/SKILL.md) skill runs MiniMax Music 3 (open weights) on the remote ComfyUI; `--instrumental` plus a caption yields an mp3, reproducible with a fixed seed. Four ready caption templates (guqin / xiao-and-xun / bronze bells / guzheng — all instrumental, 60–84 BPM) live in that skill's `references/caption-templates.md`.
+> **Cost**: measured ≈ **16.7 s of wall time per audio second** (20 s ≈ 5.5 minutes, 60 s ≈ 17 minutes) — ask for the shortest usable length, then loop it to the edit length.
+> ⚠️ **Rule 6 is not voided by this**: the "library licence" question simply becomes a **model licence** question (open weights under the MiniMax-Music3 COMMUNITY LICENSE — read it before commercial use). Until verified, self-generated audio counts as unverified.
+
 | # | Rule | Reason |
 |---|------|--------|
 | 1 | **Instrumental first** (guqin, xiao, xun, shakuhachi, zheng) | The frame contains vertical source text and a cartouche to read; vocals fight for attention |
@@ -341,6 +345,7 @@ On Douyin, what gets "promoted" is not a single work but **the series**. None of
 
 | Date | Version | Change | Author |
 |------|---------|--------|--------|
+| 2026-10-07 | v0.5 | **We can produce our own BGM**: §9 gained the new `comfyui-music-minimax3` skill (MiniMax Music 3 on the remote ComfyUI, open weights, `--instrumental` plus a caption yielding an mp3, reproducible with a fixed seed) and four caption templates; the cost is stated (≈16.7 s wall time per audio second) along with an explicit note that **rule 6 is not voided** — the question moves from "library licence" to "model licence" | Xiaoqi |
 | 2026-10-07 | v0.4 | **Positioning settled plus music rules**: added §8 "Positioning: why watch ours instead of the original" (**Shan Hai Jing Verification Desk**; substitute-flaw table / four hook types / the "contrast → source → verification → conclusion" formula with a nine-tailed fox worked example / five account-identity tasks) and §9 "Music selection rules" (six rules plus the in-app commercial boundary); §0 gained the positioning line; the old §8/§9 became §10/§11, and source 12 was added | Xiaoqi |
 | 2026-10-07 | v0.3 | **Phasing decision frozen (user's call): short term publishes image posts with in-app music only; video moves to the long term.** §0 gained a phasing note (the image-post phase chases data, not reach); §5's "30-day cadence" became a "phased cadence" — weeks 1–4 image posts (cover A/B tests, one long essay per creature, a `publish.json` ledger), from week 5 video (deterministic editing as the main line, generative video only as an accent, video skills brought into the gate), with an explicit start condition (≥12 image posts plus two datasets) | Xiaoqi |
 | 2026-10-07 | v0.2 | **Added "How to choose among the four publishing entries" (§2.1)**: publish video = main line (including the concrete 1080x1920 canvas recipe for 3:4 plates), publish image post = floor and probe, publish article (long essay) = secondary priority, publish panoramic video = skip (it requires 360° equirectangular material); the old spec table becomes §2.2 and the S.O.P. becomes §2.3 | Xiaoqi |

@@ -60,8 +60,11 @@ run_check "text-to-image-comfyui mock"    python3 .agents/skills/text-to-image-c
 run_check "seedream-text-to-image mock"   python3 .agents/skills/seedream-text-to-image/scripts/test_skill.py
 run_check "seedream-image-edit mock"      python3 .agents/skills/seedream-image-edit/scripts/test_skill.py
 run_check "image-edit-comfyui mock"       python3 .agents/skills/image-edit-comfyui/scripts/test_skill.py
+# 音频技能：离线自检（43 项，含 mock ComfyUI 全往返）+ 真机依赖（3 个权重 + 7 个节点，不占 GPU）
+run_check "comfyui-music-minimax3 mock"   python3 .agents/skills/comfyui-music-minimax3/scripts/test_skill.py
 run_check "comfyui_gen --check（真机）"    python3 .agents/skills/text-to-image-comfyui/scripts/comfyui_gen.py --check
 run_check "comfyui_edit --check（真机）"   python3 .agents/skills/image-edit-comfyui/scripts/comfyui_edit.py --check
+run_check "comfyui_music --check（真机）"  python3 .agents/skills/comfyui-music-minimax3/scripts/comfyui_music.py --check
 # seedream 的 --check 只看"节点在位 + schema 对账 + 有没有凭据"，不花钱；
 # 付费矩阵 verify_params.py / verify_edits.py 故意不放进这里（每步一张图，要人工决定）
 run_check "seedream_gen --check（真机）"   python3 .agents/skills/seedream-text-to-image/scripts/seedream_gen.py --check
