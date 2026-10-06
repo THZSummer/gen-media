@@ -19,6 +19,8 @@
     它是采集式可选输入。纯文生图不给；图生图才用（本技能不做，见 SKILL.md）。
   * 每个模型支持的参数不同：pro 有 `prompt_optimization`，flash 连 `thinking` 都没有，
     lite/4.5/4.0 有 `max_images` + `fail_on_partial` 而 pro/flash 没有。
+  * 导出的 UI 图里可能有**前端专有节点**（`MarkdownNote` 等）：服务器上不存在，
+    提交前必须 `prune_ui_only()`，否则 /prompt 直接 400 `missing_node_type`。
 
 Importable:
   from seedream_api import load_workflow, build_api_graph, apply_params, validate_graph
@@ -44,6 +46,11 @@ AUTOGROW = "COMFY_AUTOGROW_V3"
 
 # 前端伪 widget：只控制界面上"生成后如何变化"，不是节点输入。
 PSEUDO_WIDGETS = ("control_after_generate",)
+
+# 前端专有节点：只存在于界面画布上，服务器上没有实现，原样提交会被 /prompt 判
+# `missing_node_type`（真机实测：带 MarkdownNote 的导出图 400，见
+# seedream-image-edit/references/api-node.md §2）。
+UI_ONLY_CLASSES = ("MarkdownNote", "Note", "PrimitiveNode", "Reroute", "GroupNode")
 
 # 友好参数名 -> (节点类, API 输入名)。size 另走 parse_size。
 PARAM_TARGETS: dict[str, tuple[str, str]] = {
@@ -221,6 +228,37 @@ def find_node(api: dict, cls: str) -> str | None:
         if node.get("class_type") == cls:
             return nid
     return None
+
+
+def prune_ui_only(
+    api: dict,
+    known_classes: set[str] | None = None,
+    drop: tuple[str, ...] = UI_ONLY_CLASSES,
+) -> tuple[dict, list[dict]]:
+    """删掉服务器上没有的节点，并清掉指向它们的连线。
+
+    `known_classes` 给了就按"真机 /object_info 里没有的都删"（最稳），没给就按
+    `UI_ONLY_CLASSES` 这份已知的前端专有节点名单删。返回 (新图, 删掉的节点列表)，
+    删掉的节点里带 `_dropped_class` 便于回报。
+
+    注意是**原地改**再返回同一个 dict（调用方通常紧接着就要用）。
+    """
+    dropped: list[dict] = []
+    for nid in list(api):
+        cls = api[nid].get("class_type")
+        hit = (cls not in known_classes) if known_classes is not None else (cls in drop)
+        if hit:
+            node = api.pop(nid)
+            node["_dropped_class"] = cls
+            node["_dropped_id"] = nid
+            dropped.append(node)
+    if dropped:
+        gone = {n["_dropped_id"] for n in dropped}
+        for node in api.values():
+            for name, value in list(node["inputs"].items()):
+                if isinstance(value, list) and value and str(value[0]) in gone:
+                    node["inputs"].pop(name)
+    return api, dropped
 
 
 # --------------------------------------------------------------------------

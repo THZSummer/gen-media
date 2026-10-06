@@ -93,6 +93,20 @@ Commands, parameter surface and pitfalls: the
 [seedream-text-to-image](../../.agents/skills/seedream-text-to-image/SKILL.md) skill
 (`scripts/seedream_gen.py --check` / `--dry-run` / `--api-key-file`).
 
+#### Doing **image editing** on this ComfyUI route
+
+The same node also accepts reference images: `model.images.image_1` / `image_2` … (an autogrow input
+whose API name is dotted), so "base image + edit instruction" does not have to go back to the ARK side.
+The [seedream-image-edit](../../.agents/skills/seedream-image-edit/SKILL.md) skill scripts it:
+`--image` supplies the base (repeatable), `--annotate` supplies an RGBA overlay that the server-side
+`Painter` node **alpha-composites** onto the base before editing, and `--size auto` picks a preset
+matching the base image's aspect ratio.
+
+> Measured (2026-10-06, 4 images): a single-reference "make the background pure white" really landed in
+> the pixels (edge whiteness fraction 0.000 → 0.722); two reference images put both animals side by side
+> in one picture; but **region instructions are unreliable** — asked to fill a red box with black, the
+> model erased the marker and moved the change onto the subject. **The annotation is a hint, not a mask.**
+
 ---
 
 ## 3. Command Templates
@@ -200,3 +214,4 @@ Take the shot's **most representative static instant** and do not describe motio
 | 2026-08-01 | v1.2 | Added seedream-5.0-pro: platform pay-as-you-go routing, full version ID, no pixel lower bound (1920×1080 works), core selling point "precise image editing" (change background / swap scene while keeping the person; bamboo forest → cyber measured successfully); model comparison table + command templates + pitfalls updated | 小七 |
 | 2026-08-02 | v1.3 | Newly measured pro image-to-image extensions: multi-image reference (@图像N reference fusion) + generating a new viewpoint from a reference image (front → back while keeping the appearance); multi-angle galleries can be generated recursively | 小七 |
 | 2026-10-06 | v1.4 | Added the second entrance: ComfyUI's paid partner node `ByteDanceSeedreamNodeV3` (model in the cloud, orchestration local, zero local weights, billed per image) — the two model naming schemes, and the measured conclusion that headless calls must carry a ComfyUI account API key; points to the [seedream-text-to-image](../../.agents/skills/seedream-text-to-image/SKILL.md) skill | 小七 |
+| 2026-10-06 | v1.5 | Added "Doing **image editing** on this ComfyUI route" at the end of §2: the same node accepts reference images (`model.images.image_N`), pointing to the new [seedream-image-edit](../../.agents/skills/seedream-image-edit/SKILL.md) skill; records the 4-image measurement (background → pure white landed in the pixels, two references compose side by side, **region instructions are unreliable: the annotation is a hint, not a mask**) | 小七 |

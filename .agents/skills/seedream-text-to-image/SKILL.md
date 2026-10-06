@@ -1,7 +1,7 @@
 ---
 name: seedream-text-to-image
 description: 通过本机 ComfyUI（默认 http://192.168.3.5:18000）的 ByteDance Seedream 付费 partner 节点出图：**模型跑在云端**（seedream 5.0 pro / flash / lite、4.5、4.0），本机不需要任何权重；脚本把 UI 工作流转成 /prompt API 图、按节点 schema 校验参数、带上 ComfyUI 账号凭据提交、轮询 /history、下载成品并留档。支持 prompt / 模型 / 尺寸预设与 Custom / seed / thinking / watermark / prompt_optimization / max_images / 保存格式。触发词：Seedream、seedream 5.0、即梦、ByteDance 生图、ComfyUI 云端模型、partner 节点、付费出图、seedream text to image。
-whenToUse: 当用户要用 ComfyUI 的 ByteDance Seedream（远端付费模型）出图，或要把桌面端点 Run 跑通的那套 Seedream 工作流脚本化时使用。要跑**本机权重**的文生图改用 comfyui-text-to-image；要直连火山方舟 ARK 按量出 Seedream 图（不经过 ComfyUI）见 methods/text-to-image。
+whenToUse: 当用户要用 ComfyUI 的 ByteDance Seedream（远端付费模型）**从文字**出图，或要把桌面端点 Run 跑通的那套 Seedream 工作流脚本化时使用。要**基于已有图片**改图（参考图 / 标注 / 多图合成）用 seedream-image-edit；要跑**本机权重**的文生图改用 comfyui-text-to-image；要直连火山方舟 ARK 按量出 Seedream 图（不经过 ComfyUI）见 methods/text-to-image。
 ---
 
 # Seedream 文生图（ComfyUI partner 节点 · 远端付费模型）
@@ -46,7 +46,8 @@ ComfyUI 服务端认两个 `extra_data` 键（源码 `comfy_api_nodes/util/_help
 
 | | 技能 |
 |---|---|
-| 要 Seedream（云端、按张计费、本机零权重） | **本技能** |
+| 要 Seedream 从**文字**出图（云端、按张计费、本机零权重） | **本技能** |
+| 要 Seedream 基于**已有图片**改图（参考图 / 局部标注 / 多图合成） | [seedream-image-edit](../seedream-image-edit/SKILL.md)（同一个节点、同一套凭据，多接参考图） |
 | 要本机权重文生图（Z-Image-Turbo 快 / Qwen-Image 细） | [comfyui-text-to-image](../text-to-image-comfyui/SKILL.md) |
 | 有控制图、要 ControlNet 结构约束 | [comfyui-image-edit](../image-edit-comfyui/SKILL.md) |
 | 直连火山方舟 ARK 出 Seedream（另一套账，不经过 ComfyUI） | [methods/text-to-image](../../../methods/text-to-image/README.md) |
@@ -140,7 +141,11 @@ python3 scripts/seedream_gen.py --prompt "..." --api-key-file ../../../work/comf
 - **`size_preset` 与 `width/height` 的关系**：宽高只在预设为 `Custom` 时生效；
   工作流里写着 2048×2048 但预设是 1K，出图就是 1024×1024。
 - **`model.images` 不是必填**：schema 把它列在 `required` 下，但纯文生图不给也能过校验（实测 200）。
-  本技能只做文生图，不接参考图；要多图参考请用 pro 的编辑能力（见 methods 文档）或另建技能。
+  本技能只做文生图，不接参考图；要基于已有图片改图请用
+  [seedream-image-edit](../seedream-image-edit/SKILL.md)（同一个节点，参考图接
+  `model.images.image_N`）。
+- **前端专有节点要剔掉**：桌面导出的图里可能有 `MarkdownNote`，服务器上没有这个类，
+  原样提交会被判 `missing_node_type`。转换后过一遍 `seedream_api.prune_ui_only()`。
 - **别拿 `show_signin_button` 判断登录**：那是 Desktop 注入的启动 feature flag，与登录态无关。
 - **付费即计费**：每次重试都是真花钱；先 `--dry-run`，再固定 `--seed` 复跑。
 - **`--timeout` 默认 900s 是留余量的**：实测 pro 1K + thinking 端到端约 **63 秒**

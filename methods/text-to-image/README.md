@@ -98,6 +98,18 @@ ComfyUI 的付费 **partner（API）节点** `ByteDanceSeedreamNodeV3` —— �
 [seedream-text-to-image](../../.agents/skills/seedream-text-to-image/SKILL.md)
 （`scripts/seedream_gen.py --check` / `--dry-run` / `--api-key-file`）。
 
+#### 在 ComfyUI 这条路上做**图片编辑**
+
+同一个节点也吃参考图：`model.images.image_1` / `image_2` …（采集式输入，API 名带点），
+所以"底图 + 编辑指令"不必回到方舟侧。技能
+[seedream-image-edit](../../.agents/skills/seedream-image-edit/SKILL.md)
+把它脚本化：`--image` 给底图（可多张）、`--annotate` 给一层 RGBA 标注（服务器端 `Painter`
+**按 alpha 合成**到底图上再送去编辑）、`--size auto` 按底图比例挑预设。
+
+> 实测（2026-10-06，4 张图）：单参考"背景改纯白"确实落到像素上（边缘白占比 0.000 → 0.722）；
+> 两张参考图能把两只动物并排画进一张画；但"把红框区域改成纯黑"这类**区域指令不可靠** ——
+> 模型会擦掉标记、把改动画到主体上。**标注是提示，不是遮罩。**
+
 ---
 
 ## 三、命令模板
@@ -205,3 +217,4 @@ arkcli +gen --model "$MODEL" --profile platform_cn-beijing_accountwide \
 | 2026-08-01 | v1.2 | 新增 seedream-5.0-pro：platform 按量路由、完整版本 ID、无像素下限（1920×1080 可用）、核心卖点"精准图像编辑"（改背景/换场景保人物，实测竹林→赛博成功）；模型对比表 + 命令模板 + 踩坑点更新 | 小七 |
 | 2026-08-02 | v1.3 | 实测新增 pro 图生图扩展：多图参考（@图像N 引用融合）+ 参考图生成新视角（正面→背面保形象），多角度图库可递归生成 | 小七 |
 | 2026-10-06 | v1.4 | 新增第二条入口：ComfyUI 付费 partner 节点 `ByteDanceSeedreamNodeV3`（模型在云端、编排在本机、本机零权重、按张计费）——两套模型名的差异、无头必带 ComfyUI 账号 API Key 的实测结论，指向技能 [seedream-text-to-image](../../.agents/skills/seedream-text-to-image/SKILL.md) | 小七 |
+| 2026-10-06 | v1.5 | §二末补"在 ComfyUI 这条路上做**图片编辑**"：同一个节点吃参考图（`model.images.image_N`），指向新技能 [seedream-image-edit](../../.agents/skills/seedream-image-edit/SKILL.md)；记录 4 张图的实测（背景改纯白落到像素、双参考可并排合成、**区域指令不可靠：标注是提示不是遮罩**） | 小七 |

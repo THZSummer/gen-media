@@ -118,7 +118,15 @@ HTTP 400 {"error": {"type": "prompt_outputs_failed_validation", ...},
 
 * `control_after_generate`、`control_after_generate#1` 是前端伪 widget，进 API 图会被当成未知输入；
 * `model.images`（`COMFY_AUTOGROW_V3`）在 schema 里挂在 `required` 下，但**不给也能过校验**
-  （上述 200 那张图就没有它）。它是采集式可选输入，纯文生图不需要。
+  （上述 200 那张图就没有它）。它是采集式可选输入，纯文生图不需要；
+  要**给**参考图（编辑）时按序号带点接 `model.images.image_1` / `image_2` …
+  —— 那是 [seedream-image-edit](../../seedream-image-edit/SKILL.md) 的技能，本页不展开。
+
+**前端专有节点要剔掉**：桌面导出的图里可能带 `MarkdownNote` 之类的界面节点，服务器上没有对应的类，
+原样提交会被判 `missing_node_type`（HTTP 400）。转换后统一过一遍
+`seedream_api.prune_ui_only(api[, known_classes])`：默认按静态名单剔，给了真机 `/object_info`
+的类名集合就按"服务器上没有的一律剔"，并清掉指向被删节点的输入。实测见
+[seedream-image-edit/references/api-node.md §2](../../seedream-image-edit/references/api-node.md)。
 
 ---
 

@@ -58,12 +58,14 @@ run_check() { # $1=描述 $2=解释器 $3=脚本路径 ...
 run_check "image-tools 离线自检"          python3 .agents/skills/image-tools/scripts/test_skill.py
 run_check "text-to-image-comfyui mock"    python3 .agents/skills/text-to-image-comfyui/scripts/test_skill.py
 run_check "seedream-text-to-image mock"   python3 .agents/skills/seedream-text-to-image/scripts/test_skill.py
+run_check "seedream-image-edit mock"      python3 .agents/skills/seedream-image-edit/scripts/test_skill.py
 run_check "image-edit-comfyui mock"       python3 .agents/skills/image-edit-comfyui/scripts/test_skill.py
 run_check "comfyui_gen --check（真机）"    python3 .agents/skills/text-to-image-comfyui/scripts/comfyui_gen.py --check
 run_check "comfyui_edit --check（真机）"   python3 .agents/skills/image-edit-comfyui/scripts/comfyui_edit.py --check
 # seedream 的 --check 只看"节点在位 + schema 对账 + 有没有凭据"，不花钱；
-# 付费矩阵 verify_params.py 故意不放进这里（每步一张图，要人工决定）
+# 付费矩阵 verify_params.py / verify_edits.py 故意不放进这里（每步一张图，要人工决定）
 run_check "seedream_gen --check（真机）"   python3 .agents/skills/seedream-text-to-image/scripts/seedream_gen.py --check
+run_check "seedream_edit --check（真机）"  python3 .agents/skills/seedream-image-edit/scripts/seedream_edit.py --check
 
 hdr "4/5 站点界面文案双语（T.zh / T.en）"
 if [ -f tools/i18n.py ]; then

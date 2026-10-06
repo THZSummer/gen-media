@@ -1,0 +1,112 @@
+{
+  "_what": "seedream-image-edit 的离线自检基准：这份 /prompt API 图被真机**收下过**（HTTP 200），只在执行阶段因凭据无效而止步。",
+  "_how": "python3 scripts/record_fixture.py --ref <底图> [--annotate <标注层>]",
+  "_probe": {
+    "time": "2026-10-06T20:06:05",
+    "server": "http://192.168.3.5:18000",
+    "comfyui_version": "0.38.0",
+    "http_status": 200,
+    "status_str": "error",
+    "error_node": "ByteDanceSeedreamNodeV3",
+    "execution_error": "Unauthorized: Please login first to use this node.\n",
+    "credential": "deliberately-invalid-key-shape-probe（故意无效；鉴权失败 = 云端模型一次都没被调用）",
+    "workflow_sha256": "1134788ff26f6ad31f9befaeed827857ed29b150ab5f5591aa7b2041381d40b2",
+    "ref_size": [
+      1024,
+      1360
+    ],
+    "size_auto": "(1K) 864x1152 (3:4)",
+    "prompt": "把红框标出的区域改成纯黑",
+    "prefix": "seedream-edit",
+    "annotate": true,
+    "uploaded": {
+      "ref": "ref-base.png",
+      "annotate": "ref-annotate.png"
+    },
+    "dropped": [
+      {
+        "id": "6",
+        "class": "MarkdownNote",
+        "why": "前端专有节点（服务器上没有）"
+      },
+      {
+        "id": "9",
+        "class": "MarkdownNote",
+        "why": "前端专有节点（服务器上没有）"
+      },
+      {
+        "id": "5",
+        "class": "PreviewImage",
+        "why": "无头不需要的预览节点"
+      }
+    ],
+    "ref_keys": [
+      "model.images.image_1"
+    ]
+  },
+  "graph": {
+    "2": {
+      "class_type": "SaveImageAdvanced",
+      "inputs": {
+        "images": [
+          "8",
+          0
+        ],
+        "filename_prefix": "seedream-edit",
+        "format": "png",
+        "format.bit_depth": "8-bit",
+        "format.input_color_space": "sRGB"
+      },
+      "_meta": {
+        "title": "SaveImageAdvanced"
+      }
+    },
+    "3": {
+      "class_type": "LoadImage",
+      "inputs": {
+        "image": "ref-base.png",
+        "upload": "image"
+      },
+      "_meta": {
+        "title": "LoadImage"
+      }
+    },
+    "7": {
+      "class_type": "Painter",
+      "inputs": {
+        "image": [
+          "3",
+          0
+        ],
+        "mask": "ref-annotate.png",
+        "width": 1024,
+        "height": 1360,
+        "bg_color": "#000000"
+      },
+      "_meta": {
+        "title": "Painter"
+      }
+    },
+    "8": {
+      "class_type": "ByteDanceSeedreamNodeV3",
+      "inputs": {
+        "model.images.image_1": [
+          "7",
+          0
+        ],
+        "prompt": "把红框标出的区域改成纯黑",
+        "model": "seedream 5.0 pro",
+        "model.size_preset": "(1K) 864x1152 (3:4)",
+        "model.width": 2048,
+        "model.height": 2048,
+        "model.prompt_optimization": "standard",
+        "model.seed": 519315814,
+        "model.watermark": false,
+        "model.thinking": true
+      },
+      "_meta": {
+        "title": "ByteDanceSeedreamNodeV3"
+      }
+    }
+  }
+}
