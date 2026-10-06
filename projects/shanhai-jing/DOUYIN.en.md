@@ -56,13 +56,32 @@ Our real moat (verifiable sourcing, correct counts, seal handling) is not the se
 
 ## 2. Publishing Formats and Asset Specs
 
+### 2.1 How to Choose Among the Four Publishing Entries (the list the publishing screen offers)
+
+| Publishing entry | Format the platform gives | How we use it | Frequency | Expectation |
+|------------------|---------------------------|---------------|-----------|-------------|
+| **Publish video** | Short video (BGM / subtitles / cover) | ✅ **Main line**: 15–45 s process video | 1–2 per week | Highest ceiling (the only entry that can plausibly pass 100K) |
+| **Publish image post** | Multi-image swipe + BGM (≥2 images, 4–6 recommended; upper limit per the publishing screen) | ✅ **Floor + probe**: reuse existing plates directly | 2–3 per week | Baseline reach; sets the tag and tests which creature name carries traffic |
+| **Publish article** | Long illustrated essay: ≤8000 characters / ≤30 images / title + summary + cover, surfacing in the feed as an auto-scrolling, music-backed video-like card | ✅ **Secondary priority**: rewrite review records into general-audience sourcing essays | 1 per creature | Long tail + saves; the platform offers dedicated support and 1-to-1 guidance |
+| **Publish panoramic video** | 360° panorama (equirectangular projection, the viewer rocks the phone to change angle) | ⛔ **Skip it** | — | Our assets are flat plates; they cannot produce valid panoramic material |
+
+**Why this ordering**
+
+- **Video is the main battlefield**: Douyin's recommendation scores completion, dwell time and interaction, all of which static images are weak at; the cases also show that this subject only breaks out on video (the [3.7M-like AI short film](https://vv.lmtw.com/mzw/content/detail/id/256150)).
+- **How to fit our 3:4 plates into video**: do not drop 1080x1440 straight into the video entry (ugly letterboxing). Build a **1080x1920 canvas** — plate centred at 100% or 90% width, top and bottom filled with a **blurred enlargement of the same plate**, cartouche/subtitles over the empty bands, first frame as the cover. This preserves the plate's composition while filling the screen.
+- **Image posts are not filler**: they are the best container for multi-image comparison — magnified count crops, seal before/after, same-round controls — which is exactly the material only we have; but **do not post the `controls/` set raw**; pair each with one line saying what it proves.
+- **Articles (long essays) are our cheap exclusive**: `rounds/*.md` already holds plenty of "why this creature is hard to draw / how we verified it", and 1500–3000 characters is a good essay — there is no need to fill 8000; the platform is giving long essays **dedicated traffic support** ([Science and Technology Daily](https://www.stdaily.com/web/gdxw/2025-12/26/content_453850.html), [PChome](https://article.pchome.net/news/8873.html)). Note: currently **PC Creator Centre only** (mobile rolling out), and whether an account already has access depends on the screen (medium confidence).
+- **Why not panoramic video**: it needs 360° material (equirectangular projection), while our output is flat. Forcing it would neither meet the material requirement nor look good. If we later build a genuine "orbiting beast" 3D/video piece (we already have image-to-video techniques), that goes through **Publish video**, not the panoramic entry.
+
+### 2.2 Specs and Rework per Entry
+
 | Format | Douyin spec | What we already have | Rework |
 |--------|-------------|----------------------|--------|
-| **Image post** | Multi-image swipe + BGM; 3–9 images recommended (confirm against the live publishing screen; medium confidence) | 3 finished plates per creature (1080x1440, 3:4), usable as-is | **None** (montage + copy) |
+| **Image post** | Multi-image swipe + BGM; 4–6 images recommended (upper limit per the live publishing screen) | 3 finished plates per creature (1080x1440, 3:4), usable as-is | **None** (montage + copy) |
 | **Short video** | 1080x1920 (full screen) or 1080x1440; 15–45 s; cover + BGM + subtitles | `period-01/` finals + `controls/` comparison images + `rounds/rNN-review.md` process notes | **Medium** (editing needed; material is ready) |
 | **Long illustrated essay** | Launched 2025-12: up to **8000 characters** + up to 30 images + BGM; entry is **Creator Centre on PC → HD Publish → Publish Article** (mobile rolling out); appears in the feed in a video-like form, and **quality articles get dedicated traffic support** ([Science and Technology Daily](https://www.stdaily.com/web/gdxw/2025-12/26/content_453850.html)) | `rounds/*.md` sourcing and review records | **Large** (must be rewritten for a general audience) |
 
-**Publishing S.O.P. (tick as you go)**
+### 2.3 Publishing S.O.P. (tick as you go)
 
 1. Assets: decide the first image/cover first (it drives ~80% of click-through) → 3–9 images or the finished cut → consistent aspect ratio, already stripped via `ffkit strip`.
 2. BGM: pick from the in-app library; keep it around -18 dB so it never buries the voice.
@@ -231,4 +250,5 @@ Source: [Julian Xingtu "New Creator Onboarding Handbook"](https://www.xingtu.cn/
 
 | Date | Version | Change | Author |
 |------|---------|--------|--------|
+| 2026-10-07 | v0.2 | **Added "How to choose among the four publishing entries" (§2.1)**: publish video = main line (including the concrete 1080x1920 canvas recipe for 3:4 plates), publish image post = floor and probe, publish article (long essay) = secondary priority, publish panoramic video = skip (it requires 360° equirectangular material); the old spec table becomes §2.2 and the S.O.P. becomes §2.3 | Xiaoqi |
 | 2026-10-07 | v0.1 | Created: Douyin compliance checklist (mandatory AI-labelling path, S.O.P.), nine-dimension theme fit score, three traffic tiers, three routes plus a 30-day cadence, Xingtu monetisation thresholds, risk countermeasures; 6 unverified items flagged | Xiaoqi |
