@@ -229,6 +229,16 @@ def check_fonts(texts):
     return problems
 
 
+def subject_slug(period_dir: str) -> str:
+    """`.../subjects/<slug>/period-NN` → `<slug>`；推不出来就直接报错，不猜。"""
+    parts = os.path.normpath(os.path.abspath(period_dir)).split(os.sep)
+    if "period" in os.path.basename(period_dir):
+        for i in range(len(parts) - 1, -1, -1):
+            if parts[i] == "subjects" and i + 1 < len(parts) - 1:
+                return parts[i + 1]
+    raise SystemExit("无法从 --period-dir 推出子主题 slug；请在 manifest.json 里写 slug 字段")
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description="图赞制版：画心 → 完整竖版图文")
     ap.add_argument("--period-dir",
@@ -268,8 +278,11 @@ def main(argv=None) -> int:
     paper = sample_paper(ffmpeg, art, aw, ah)
     bbox = detect_content_bbox(ffmpeg, art, (aw, ah))
 
-    plate_out = os.path.join(args.period_dir, "02-jiu-wei-hu-zan.png")
-    text_out = os.path.join(args.period_dir, "03-jiu-wei-hu-wen.png")
+    # 输出名跟着子主题走：`subjects/<slug>/period-NN` → `02-<slug>-zan.png`
+    # （初版硬编码 jiu-wei-hu，换一件就会把别人的成品覆盖掉）
+    slug = man.get("slug") or subject_slug(args.period_dir)
+    plate_out = os.path.join(args.period_dir, f"02-{slug}-zan.png")
+    text_out = os.path.join(args.period_dir, f"03-{slug}-wen.png")
 
     build_plate(ffmpeg, paper, art, title, volume, cover_line, origin, plate_out, bbox)
     tb = build_text_card(ffmpeg, paper, title, volume, passage, text_out)

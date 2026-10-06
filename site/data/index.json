@@ -403,62 +403,38 @@
    "plan": "projects/shanhai-jing/PLAN.md",
    "data": "shanhai-jing.json",
    "stats": {
-    "reels": 1,
-    "periods": 1,
-    "finals": 3,
-    "controls": 2
+    "reels": 2,
+    "periods": 2,
+    "finals": 6,
+    "controls": 5
    },
-   "reel_count": 1,
+   "reel_count": 2,
    "strip": [
     {
      "title": {
-      "zh": "白描画心",
-      "en": "Ink plate"
+      "zh": "九尾狐",
+      "en": "Nine-Tailed Fox"
      },
      "poster": "site/thumbs/projects/shanhai-jing/subjects/jiu-wei-hu/period-01/01-jiu-wei-hu.jpg",
-     "route": "w/shanhai-jing/r/jiu-wei-hu/1",
-     "count": null,
-     "unit": null
+     "route": "w/shanhai-jing/r/jiu-wei-hu",
+     "count": 3,
+     "unit": {
+      "zh": "件成品",
+      "en": "finals"
+     }
     },
     {
      "title": {
-      "zh": "图赞主图",
-      "en": "Illustrated verse"
+      "zh": "鹿蜀",
+      "en": "Lu-Shu"
      },
-     "poster": "site/thumbs/projects/shanhai-jing/subjects/jiu-wei-hu/period-01/02-jiu-wei-hu-zan.jpg",
-     "route": "w/shanhai-jing/r/jiu-wei-hu/2",
-     "count": null,
-     "unit": null
-    },
-    {
-     "title": {
-      "zh": "原文卡",
-      "en": "Source-text card"
-     },
-     "poster": "site/thumbs/projects/shanhai-jing/subjects/jiu-wei-hu/period-01/03-jiu-wei-hu-wen.jpg",
-     "route": "w/shanhai-jing/r/jiu-wei-hu/3",
-     "count": null,
-     "unit": null
-    },
-    {
-     "title": {
-      "zh": "九尾狐",
-      "en": "Nine-Tailed Fox"
-     },
-     "poster": "site/thumbs/projects/shanhai-jing/subjects/jiu-wei-hu/period-01/controls/nine-tails-control.jpg",
-     "route": "w/shanhai-jing/r/jiu-wei-hu/4",
-     "count": null,
-     "unit": null
-    },
-    {
-     "title": {
-      "zh": "九尾狐",
-      "en": "Nine-Tailed Fox"
-     },
-     "poster": "site/thumbs/projects/shanhai-jing/subjects/jiu-wei-hu/period-01/controls/nine-tails-control-plume.jpg",
-     "route": "w/shanhai-jing/r/jiu-wei-hu/5",
-     "count": null,
-     "unit": null
+     "poster": "site/thumbs/projects/shanhai-jing/subjects/lu-shu/period-01/01-lu-shu.jpg",
+     "route": "w/shanhai-jing/r/lu-shu",
+     "count": 3,
+     "unit": {
+      "zh": "件成品",
+      "en": "finals"
+     }
     }
    ]
   }

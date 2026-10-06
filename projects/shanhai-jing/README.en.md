@@ -64,9 +64,12 @@ shanhai-jing/
 ├── PLAN.md                full plan: positioning / source edition / plate craft / creature list / acceptance
 ├── scripts/               project scripts (typesetting the illustrated verse, etc.)
 └── subjects/              sub-themes: one creature per directory
-    └── jiu-wei-hu/        nine-tailed fox (Nan Shan Jing · Qingqiu Mountain)
-        ├── period-01/     period 1: finals + controls/ + manifest.json
-        └── rounds/        per-round notes + scoring review (rNN-review.md)
+    ├── jiu-wei-hu/        nine-tailed fox (Nan Shan Jing · Qingqiu Mountain)
+    │   ├── period-01/     period 1: finals + controls/ + manifest.json
+    │   └── rounds/        per-round notes + scoring review (rNN-review.md)
+    └── lu-shu/            lu-shu (Nan Shan Jing · Niuyang Mountain)
+        ├── period-01/     first period: 3 finals + controls/ (same-round and cross-engine) + manifest.json
+        └── rounds/        r01-review.md (R1-R3 wording + seals), r04-review.md (cross-engine comparison)
 ```
 
 > The directory convention matches [bio-splice](../bio-splice/README.en.md): `subjects/<sub-theme>/period-NN/`,
@@ -101,7 +104,7 @@ was also validated in R8 (4/4 nine-tailed) but has weaker visual pull, so colour
 | Sub-theme | Creature | Volume | Countable traits (hard acceptance) | Status |
 |-----------|----------|--------|-------------------------------------|--------|
 | [jiu-wei-hu](subjects/jiu-wei-hu/) | Nine-tailed fox | Nan Shan Jing · Qingqiu Mountain | **nine tails** | ✅ **tuning period complete** (3 finals, R1-R3) |
-| — | Lu Shu | Nan Shan Jing · Niuyang Mountain | horse body, white head, tiger markings, red tail | queued |
+| [lu-shu](subjects/lu-shu/) | Lu Shu | Nan Shan Jing · Niuyang Mountain | horse body, white head, tiger markings, red tail | ✅ **first period complete** (3 finals, R1-R4; wording and seal findings in [r01-review](subjects/lu-shu/rounds/r01-review.en.md), cross-engine comparison in [r04-review](subjects/lu-shu/rounds/r04-review.en.md)) |
 | — | Di Jiang | Xi Shan Jing · Tianshan | six legs, four wings, no face | queued |
 | — | Bi Fang | Xi Shan Jing · Zhang'e Mountain | one leg | queued |
 | — | Lu Wu | Xi Shan Jing · Kunlun | tiger body, nine tails, human face, tiger claws | queued |
@@ -119,6 +122,9 @@ was also validated in R8 (4/4 nine-tailed) but has weaker visual pull, so colour
 - [ ] `manifest.json` records seed + prompt_id + verbatim prompt
 - [ ] finals are stripped (`ffkit strip`)
 - [ ] layout self-checks pass (cartouche / key line / passage regions really have ink)
+- [ ] **all four corners inspected at 4× and free of garbled seals / pseudo-characters** (`seal_check.py` crops the candidates → a human confirms)
+- [ ] the wording follows the measured conclusion: **English naming + itemised traits** (a Chinese direct description loses the tiger markings and skews the colour, 6/6 failures)
+- [ ] if a cross-engine comparison was run, it is recorded in `rounds/rNN-review.md` (this period: Seedream has the strongest traits but adds an inscription and seals in 6/6, so no engine switch)
 
 ---
 
@@ -129,4 +135,5 @@ was also validated in R8 (4/4 nine-tailed) but has weaker visual pull, so colour
 | 2026-10-05 | v0.1 | Project created: the three decisions (baimiao as the bone / strict sourcing / Xiaohongshu 3:4) settled; nine-tailed fox chosen for the tuning period; probe findings recorded (Z-Image-Turbo renders woodcut texture convincingly but cannot control countable traits, draws garbled seals, and adds colour unbidden) | 小七 |
 | 2026-10-05 | v0.2 | **Tuning-period loop closed**: R1 disproved prompt-controlled counting (6/6) -> a programmatic control image plus ControlNet locked the nine tails (R2, certified by counting: 9) -> typesetting produced the illustrated main plate and the source card (R3, 5 layout self-checks passed). Added `scripts/{control_image,font_coverage,typeset_zanzhi}.py`; the seal is postponed because the seal-script typeface is unresolved | 小七 |
 | 2026-10-05 | v0.3 | **R4 rework round: overturns R2/R3's final selection.** The user called the delivered plate "the simplest, the ugliest"; on review that holds. Root cause: **the acceptance table had no "vitality" dimension** — the old A-E were all correctness/consistency, which pushed the selection toward "counts right but looks worst". Fixes: (1) added **F vitality of brushwork .25** with `F<3 -> fail`; (2) de-mechanised the control image (deterministic jitter + a rocky base) and **thickened the tails into plumes** (thin ribbon -> hollow outline; thick plume -> furry tail); (3) lowered control strength to 0.45-0.75. New plate P075 (4.50 on the new rubric; the old delivery re-scores only 4.00 and fails on F<3). Methodological gain: **concentrating fur at the tail root and leaving the blades clean makes countability and beauty compatible** | 小七 |
+| 2026-10-06 | v0.5 | **First period: lu-shu (Nan Shan Jing · Niuyang Mountain) closed the loop.** R1 wording sweep (English naming / English traits-first / Chinese direct) → the Chinese route disproved twice, tiger markings obtainable only in English; R2 converged on the best sentence (traits first + red confined to the tail); R3 disproved "prompt suppresses seals" (all nine images failed) → added a **four-corner visual admission gate + `patch_region.py` tool erasure** (with self-checks); R4 compared engines against Seedream 5.0 Pro (six paid images): stronger traits but **6/6 carry an inscription and seals**, so no engine switch. Added `scripts/{run_round,seal_check,patch_region}.py` and `subjects/lu-shu/rounds/{r01,r04}-review.md`; the first-choice final 01-lu-shu.png was verified seal-free at 4× | 小七 |
 | 2026-10-05 | v0.4 | **R5-R8: the control-image path is retired; the bone becomes russet colour.** The user said the tails "look fake" and that "you shouldn't add any deliberate constraints; it's such a simple scene, how could the model fail?" — both confirmed by measurement. R5 revised the control image three times (pointed blades -> petals -> still fake), then stopped to question the path; R6 removed all control and used plain text-to-image with a descriptive prompt -> multi-tail rate only **1/6**; R7/R8 **changed only the prompt phrasing to name the being** ("The nine-tailed fox of Chinese mythology") -> multi-tail rate **8/8 and 4/4**. **The prompt phrasing decides success; the apparatus was machinery for a problem that did not exist.** One criterion error was also fixed: making "mechanically certifiable nine tails" a hard gate is exactly what forced mechanical images -> replaced by two tiers (hard gate = reads as nine; archived = magnified visual count). The bone was settled as **russet colour** after comparison (R8's ink line also holds at 4/4); new plate R7/m202, and the main-plate panel became portrait to match the plate | 小七 |

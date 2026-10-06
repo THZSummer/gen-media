@@ -61,8 +61,18 @@
 1) Generation  Z-Image-Turbo text-to-image — the "name the mythological being" phrasing, no control image   ✅ 4/4 and 8/8
 2) Typesetting typeset_zanzhi.py: cartouche + source + volume + frame   ✅ implemented (5 layout self-checks; seal pending the typeface)
 3) Count check visual counting with archived crops — "reads as nine" is enough, no mechanical certification
-4) Scoring     six dimensions A-F (F vitality .25); `fatal` reserved for hard defects
+4) Seal screen  all four corners magnified 4x and inspected (seal_check.py shortlists) -> if sealed, erase with patch_region.py and archive   ✅ established in the lu-shu period
+5) Scoring     six dimensions A-F (F vitality .25); `fatal` reserved for hard defects
 ```
+
+### Wording rules (measured on lu-shu R1-R4; write every later period this way)
+
+| Rule | Evidence |
+|------|----------|
+| English naming + **itemised traits** | the lu-shu v5 wording (`pure white head` / `bold black tiger stripes` / `only its long tail is cinnabar red`) landed all four traits |
+| **Do not use a Chinese direct description** | the Chinese group failed 6/6 across two rounds: tiger markings collapse into spots, the coat drifts brown, the ochre oversaturates |
+| **"Do not draw X" does not work** | R3's three no-seal wordings were ignored by all nine images; suppressing seals needs a reworded style or tool erasure |
+| Confine the red explicitly | only `only its long tail is …` removed the mane the model otherwise invents |
 
 > WARNING: **this process differs substantially from the first version.** The first version treated "lock the
 > countable trait" as step one and invested in a whole apparatus of programmatic control images + Canny +
@@ -156,9 +166,22 @@ Serialise by **volume**, one volume per period or a few periods, so the citation
 | D | Dong Shan Jing / Zhong Shan Jing | to verify |
 | E | Haiwai / Hainei / Dahuang volumes | to verify (mostly deities, more abstract shapes, harder) |
 
-### Tuning period
+### Tuning period (done)
 
 **`jiu-wei-hu`, the nine-tailed fox (Nan Shan Jing · Qingqiu Mountain)** — chosen as a stress test because **nine tails is the hardest countable trait in the book**; lock nine tails and you can lock three heads and six eyes, or six legs and four wings.
+
+### First period (done)
+
+**`lu-shu` (Nan Shan Jing · Niuyang Mountain)** — chosen as the first regular entry: its three verifiable traits
+(white head / tiger markings / red tail) **involve no counting**, so it tests whether the tuning-period conclusions
+transfer to a second creature. Findings:
+
+* the wording settled down (English naming + itemised traits + red confined to one part); the Chinese direct
+  description was disproved a second time;
+* **the seal problem surfaced**: under this brushwork 19 of 20 spot-checked Z-Image images stamp their own garbled
+  seals → two new process steps, a four-corner visual gate and tool erasure;
+* **cross-engine comparison** (Seedream 5.0 Pro, six paid images): stronger traits, but 6/6 carry an inscription
+  and seals → **no engine switch** (see `subjects/lu-shu/rounds/r04-review.en.md`).
 
 ---
 
@@ -186,6 +209,7 @@ Serialise by **volume**, one volume per period or a few periods, so the citation
 ### Thresholds (hard)
 
 - **non-empty `fatal` -> fail.** `fatal` covers: an **obvious counting error** (only one tail, clearly not nine), a wrong character in the passage, a wrong volume, a garbled seal, model-generated Chinese characters
+  - the **executable criterion** for "a garbled seal / model-generated characters" (established in the lu-shu period): magnify the four corners of every candidate 4x and look; `seal_check.py` only shortlists candidates mechanically (four automatic criteria were tried and all failed — see `subjects/lu-shu/rounds/r01-review.en.md` §4); if such an image must be kept, erase the region with `patch_region.py` and record `seal_erasure` in `manifest.json` (self-checked: residue <=5%, seam <=30)
 - `A < 3`, **`F < 3`** or `C < 3` -> fail (an ugly image is equally undeliverable)
 - total >= 4.0 with `A >= 4` and `F >= 4` -> preferred final; >= 3.5 -> final; otherwise alternate (**not shipped**)
 
@@ -222,3 +246,4 @@ Every round carries a **same-round base control** (`period-NN/controls/`), follo
 | Date | Version | Change |
 |------|---------|--------|
 | 2026-10-05 | v0.1 | Plan created: positioning / source edition (Nan Shan Jing verified) / plate craft (four probe findings) / creature grouping / A-E acceptance; the structural-control path is marked open |
+| 2026-10-06 | v0.2 | **The first period (lu-shu) closed the loop and the craft gained two steps**: (1) the process table gained a "seal screen" (four corners at 4x -> `seal_check.py` shortlists -> `patch_region.py` erases and archives); (2) four "wording rules" were added (English naming + itemised traits / no Chinese direct description / negative clauses are useless / confine the red to one part), each backed by measurement; (3) the `fatal` threshold's "garbled seal / model-generated characters" gained an executable criterion; (4) the creature schedule records the completed first period and the cross-engine conclusion (Seedream has stronger traits but adds an inscription in 6/6, so no engine switch) |

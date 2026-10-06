@@ -197,6 +197,7 @@ SUBJECT_TITLES = {
     "horn-atlas":    ("角 · 图鉴", "Horn Atlas"),
     # 山海经（没有 SUMMARY.md，标题靠这张表；缺失时退回目录名）
     "jiu-wei-hu":    ("九尾狐", "Nine-Tailed Fox"),
+    "lu-shu":        ("鹿蜀", "Lu-Shu"),
 }
 
 GROUPS = {
@@ -541,6 +542,10 @@ FRAME_KIND_LABELS = {
 # 前端会退回 role 的名字（定稿 / 对照 / 合图）——**不硬翻、不留空**。
 LABEL_EN = {
     "白描画心": "Ink plate",
+    "设色画心": "Coloured plate",
+    "跨引擎对照": "Cross-engine",
+    "同轮底座对照（写法维度）": "Same-round control (wording)",
+    "形态最强但有印（已退役）": "Strongest, but sealed (retired)",
     "图赞主图": "Illustrated verse",
     "原文卡": "Source-text card",
     "第 1 轮审计": "Round 1 audit",

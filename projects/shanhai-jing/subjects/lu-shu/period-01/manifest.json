@@ -1,0 +1,118 @@
+{
+ "period": "period-01",
+ "slug": "lu-shu",
+ "note": "鹿蜀首期（南山經 · 杻陽之山）。骨法沿用九尾狐 R7 定案的赭石设色工笔，骨法句逐字相同；出图为纯文生图（英文点名式 + 特征逐项），无控制图。R1–R3 定型写法并证伪「prompt 抑制印章」；R4 用同一 prompt 做了 Seedream 5.0 Pro 跨引擎对照（付费 6 张）——特征更强但 6/6 题款盖章，故不换代。首选成品 01-lu-shu.png 的四角经 4× 放大逐角确认无乱码印（本骨法下 20 张抽查有 19 张命中）。",
+ "from": "work/shanhai-jing/lu-shu/r01/",
+ "text_ref": {
+  "volume": "山海經 · 南山經",
+  "volume_en": "Shan Hai Jing · Nan Shan Jing",
+  "passage": "又東三百七十里曰杻陽之山。其陽多赤金，其陰多白金。有獸焉，其狀如馬而白首，其文如虎而赤尾，其音如謡，其名曰鹿蜀，佩之宜子孫。",
+  "commentary": null,
+  "commentary_note": "郭璞注文尚未逐条录入，录入前成品不得出现注文",
+  "place": "杻陽之山",
+  "source": "郭璞注本《山海經》卷一 · 南山經（識典古籍 SK2098），2026-10-06 逐字核对；与 PLAN.md §二「已核实原文」表一致",
+  "excerpt_note": "底本此段之后紧接「怪水出焉……其名曰旋龜……」写的是同山另一物 → 原文区到鹿蜀句为止，不跳字、不加省略号"
+ },
+ "cartouche": "鹿蜀",
+ "cover_line": "佩之宜子孫",
+ "cartouche_font": "Noto Serif CJK（与九尾狐同期同字库）",
+ "seal_status": "两层：① 真印（篆体）层仍缺 —— 篆体字库未解决（见 PLAN.md §三）；② 模型自画的乱码印按硬伤剔除 —— 本骨法下命中率极高，首选成品是抽查中唯一四角干净的",
+ "rounds": [
+  "r01: 写法扫描（英文点名 / 英文特征前置 / 中文直述）—— 虎纹只有英文写得出来",
+  "r02: 收敛（v5「只有尾巴是赤红」有效；中文直述二次证伪）",
+  "r03: 印面抑制（no seal / no stamp / no writing 三写法，9 张全无效）",
+  "r04: 跨引擎对照（Seedream 5.0 Pro，付费 6 张：特征最强但 6/6 题款盖章）"
+ ],
+ "bone": "赭石设色（工笔淡彩）—— 与九尾狐 R7 同骨法句",
+ "process": "纯文生图（英文点名式 + 特征逐项），无控制图 / 无 ControlNet；1024x1360 / 20 步 / Z-Image-Turbo",
+ "entries": [
+  {
+   "final": "01-lu-shu.png",
+   "role": "final",
+   "kind": "plate",
+   "source_round": 1,
+   "source_engine": "z-image-turbo",
+   "source_shot": "v1-101",
+   "source_file": "work/shanhai-jing/lu-shu/r01/shj-lu-shu-r1-v1-101_00001_.png",
+   "seed": 101,
+   "steps": 20,
+   "prompt_id": "13eb838b-a73a-4151-983d-b0905f550bd5",
+   "prompt": "The lu-shu of Chinese mythology, a white-headed horse with tiger stripes on its body and a red tail, standing in profile on a rocky ledge. Painted in the manner of a traditional Chinese album leaf, fine ink brushwork, delicate fur strokes, ink and pale colour on aged paper.",
+   "size": "1024x1360",
+   "feature_check": {
+    "trait": [
+     "馬身",
+     "白首",
+     "虎紋",
+     "赤尾"
+    ],
+    "method": "逐项目视可指出（**目视判读，非机械确证**）；四角另做 4× 放大检查",
+    "result": "四项全中：白首（头面纯白、鬃深灰）、虎纹（颈肩背黑色条纹，较 v5 柔）、赤尾（尾为赤红丝状）",
+    "evidence": "work/shanhai-jing/lu-shu/r01/corner-inspect/sheet-v1-101-4corners.jpg"
+   },
+   "seal_check": {
+    "tool": "scripts/seal_check.py（机械筛，仅给候选）",
+    "visual": "四角 4× 放大目视：无红印、无伪字（本轮 20 张抽查里唯一一张）",
+    "crops": "work/shanhai-jing/lu-shu/r01/corner-inspect/v1-101-*.png"
+   },
+   "strip": "已剥 tEXt 元数据（pngdiff 实测像素 SAME）",
+   "note": "设色画心：供制版使用（R1 v1-101；未做任何像素级修补）"
+  },
+  {
+   "final": "02-lu-shu-zan.png",
+   "role": "final",
+   "kind": "card",
+   "note": "图赞主图：卷次 + 榜题 + 画心 + 点睛句 + 出處",
+   "source": "scripts/typeset_zanzhi.py",
+   "size": "1080x1440"
+  },
+  {
+   "final": "03-lu-shu-wen.png",
+   "role": "final",
+   "kind": "card",
+   "note": "原文卡：竖排榜题 + 卷次 + 竖排原文（右起）",
+   "source": "scripts/typeset_zanzhi.py",
+   "size": "1080x1440"
+  },
+  {
+   "final": "controls/lu-shu-zh-description-r2v6-404.png",
+   "role": "control",
+   "kind": "plate",
+   "source_round": 2,
+   "source_engine": "z-image-turbo",
+   "source_shot": "v6-404",
+   "seed": 404,
+   "steps": 20,
+   "prompt_id": "8b3594be-8b30-48d6-aaea-f74fd7d9d050",
+   "prompt": "《山海經》異獸鹿蜀：馬的身子、白色的頭，身上有清晰的黑色虎紋，只有尾巴是赤紅色；側身立於山石之上。中國傳統冊頁淡彩：工筆、赭石與墨、陳年紙本、大量留白。",
+   "note": "同轮底座对照（写法维度）：中文直述 → 虎纹丢成斑点、毛色偏褐、赭石过饱和；两轮 6/6 失败"
+  },
+  {
+   "final": "controls/lu-shu-bold-tiger-r2v5-404-seal-tainted.png",
+   "role": "retired-control",
+   "kind": "plate",
+   "source_round": 2,
+   "source_engine": "z-image-turbo",
+   "source_shot": "v5-404",
+   "seed": 404,
+   "steps": 20,
+   "prompt_id": "0b32e930-03b5-4794-888c-d0cb89d732f0",
+   "prompt": "A horse of Chinese mythology with a pure white head, a body covered in bold black tiger stripes; only its long tail is cinnabar red, its mane and legs stay white. It is called the lu-shu and stands in profile on a rocky ledge. Painted in the manner of a traditional Chinese album leaf, fine ink brushwork, delicate fur strokes, ink and pale colour on aged paper.",
+   "note": "形态最强但有印（已退役）：虎纹最漂亮、赤色只在尾部、白鬃白腿，但四角有模型乱码印 → 按硬门槛 fatal，不纳入成品。留档说明「首选不是最好看的那张」这个取舍"
+  },
+  {
+   "final": "controls/lu-shu-seedream-x2-101.png",
+   "role": "control",
+   "kind": "plate",
+   "source_round": 4,
+   "source_engine": "seedream-5.0-pro",
+   "source_shot": "x2-101",
+   "seed": 101,
+   "steps": null,
+   "prompt_id": "0c1b828d-39e9-488b-a778-ff11bbea8d02",
+   "prompt": "A horse of Chinese mythology with a pure white head, a body covered in bold black tiger stripes; only its long tail is cinnabar red, its mane and legs stay white. It is called the lu-shu and stands in profile on a rocky ledge. Painted in the manner of a traditional Chinese album leaf, fine ink brushwork, delicate fur strokes, ink and pale colour on aged paper.",
+   "size": "1024x1360",
+   "note": "跨引擎对照：Seedream 5.0 Pro 的特征最强（虎纹浓、赤尾清楚），但 6/6 都题款盖印、写出可辨认汉字 → 模型写汉字属硬伤，故本系列不换代；只作「浓虎纹长什么样」的参考"
+  }
+ ]
+}
