@@ -67,15 +67,19 @@ shanhai-jing/
     ├── jiu-wei-hu/        nine-tailed fox (Nan Shan Jing · Qingqiu Mountain)
     │   ├── period-01/     period 1: finals + controls/ + manifest.json
     │   └── rounds/        per-round notes + scoring review (rNN-review.md)
-    └── lu-shu/            lu-shu (Nan Shan Jing · Niuyang Mountain)
-        ├── period-01/     first period: 3 finals + controls/ (same-round and cross-engine) + manifest.json
-        └── rounds/        r01-review.md (R1-R3 wording + seals), r04-review.md (cross-engine comparison),
-                           r05-review.md (R5 seal-suppression wording experiment)
+    ├── lu-shu/            lu-shu (Nan Shan Jing · Niuyang Mountain)
+    │   ├── period-01/     first period: 3 finals + controls/ (same-round and cross-engine) + manifest.json
+    │   └── rounds/        r01-review.md (R1-R3 wording + seals), r04-review.md (cross-engine comparison),
+    │                      r05-review.md (R5 seal-suppression wording experiment)
+    └── bo-yi/             bo-yi (Nan Shan Jing · Ji Mountain)
+        ├── period-01/     first period: 3 finals + controls/ (old engine / Chinese direct / cost of colour)
+        └── rounds/        r01-review.md (R1-R4 countable-trait stress test + engine switch)
 ```
 
 > Project scripts: `typeset_zanzhi.py` (typesetting), `seal_check.py` (mechanical seal screening),
-> `corner_sheet.py` (magnified corner/band contact sheets: fixed layout, self-checks, `--enhance levels|redness`),
-> `patch_region.py` (erasure with self-checks), `run_round.py` (round driver)
+> `corner_sheet.py` (magnified corner/band/region contact sheets: fixed layout, self-checks,
+> `--enhance levels|redness`, `--box x,y,w,h` for trait inspection),
+> `patch_region.py` (erasure with self-checks), `run_round.py` (round driver, `--engine z-image-turbo|qwen-image|seedream`)
 ```
 
 > The directory convention matches [bio-splice](../bio-splice/README.en.md): `subjects/<sub-theme>/period-NN/`,
@@ -102,6 +106,20 @@ shanhai-jing/
 
 **Bone**: **russet colour (gongbi light colour)** as settled in R7. The originally planned baimiao ink-line path
 was also validated in R8 (4/4 nine-tailed) but has weaker visual pull, so colour was chosen.
+Lu-shu reuses the same bone sentence verbatim, which is what keeps the series consistent.
+
+**Engines**: two are installed on the same machine; pick by "how far the trait is from the model's concept":
+
+| Engine | Character | When to use it |
+|--------|-----------|----------------|
+| **Z-Image-Turbo** (default) | fast (~60 s/image), 12-20 steps; **its negative path is empty** (`ConditioningZeroOut`, cfg=1); under this bone method it **almost always stamps a garbled seal** | ordinary entries (both lu-shu and the fox came from it) |
+| **Qwen-Image** | slow (~2.5 min/image), denser detail; **has a real negative**; **does not carry the "must stamp" prior** | when a trait conflicts with the concept (bo-yi's nine-tailed sheep: Z-Image 0 of 21, Qwen-Image worked first try) |
+
+> WARNING: the bone sentence does **not** transfer between the two engines. On Qwen-Image the STYLE sentence
+> alone yields baimiao ink line, so it must be **kept verbatim with one explicit colour clause appended**
+> (`The ink lines are washed with soft ochre and warm brown.`); and colour words pull the species toward
+> "brown canid" (4 of 6 bo-yi R4 images became wolves) — adding colour means generating several and checking
+> the shape of each.
 
 ### WARNING: the model stamps its own garbled seals, and wording cannot stop it (lu-shu R1-R3 + R5, fox R9)
 
@@ -143,6 +161,7 @@ prior rather than noise. Only two routes are left: **generate several and pick a
 |-----------|----------|--------|-------------------------------------|--------|
 | [jiu-wei-hu](subjects/jiu-wei-hu/) | Nine-tailed fox | Nan Shan Jing · Qingqiu Mountain | **nine tails** | ✅ **tuning period complete** (3 finals; the R7 final had its 2 faint seals erased, R9 wording experiment in [r09-review](subjects/jiu-wei-hu/rounds/r09-review.en.md)) |
 | [lu-shu](subjects/lu-shu/) | Lu Shu | Nan Shan Jing · Niuyang Mountain | horse body, white head, tiger markings, red tail | ✅ **first period complete** (3 finals, R1-R5; wording and seals in [r01-review](subjects/lu-shu/rounds/r01-review.en.md), cross-engine comparison in [r04-review](subjects/lu-shu/rounds/r04-review.en.md), suppression experiment in [r05-review](subjects/lu-shu/rounds/r05-review.en.md)) |
+| [bo-yi](subjects/bo-yi/) | Bo-Yi | Nan Shan Jing · Ji Mountain | sheep body, **nine tails, four ears**, eyes on the back | ✅ **first period complete** (3 finals, R1-R4; wording and engine findings in [r01-review](subjects/bo-yi/rounds/r01-review.en.md)) |
 | — | Di Jiang | Xi Shan Jing · Tianshan | six legs, four wings, no face | queued |
 | — | Bi Fang | Xi Shan Jing · Zhang'e Mountain | one leg | queued |
 | — | Lu Wu | Xi Shan Jing · Kunlun | tiger body, nine tails, human face, tiger claws | queued |
@@ -162,7 +181,9 @@ prior rather than noise. Only two routes are left: **generate several and pick a
 - [ ] layout self-checks pass (cartouche / key line / passage regions really have ink)
 - [ ] **all four corners inspected at 12% / 6x and free of garbled seals / pseudo-characters** (`corner_sheet.py` renders the sheet; `seal_check.py` only raises suspicion — **never clear an image because the screen says CLEAN**)
 - [ ] if erasure was used: `patch_region.py` self-checks pass **and** a pixel-by-pixel comparison against the un-erased version shows every difference inside the patch boxes; the manifest records `seal_erasure`
-- [ ] the wording follows the measured conclusion: **English naming + itemised traits** (a Chinese direct description loses the tiger markings and skews the colour, 6/6 failures)
+- [ ] the wording follows the measured conclusion: **English naming + itemised traits** (a Chinese direct description has failed 15/15 across three subjects)
+- [ ] if a trait conflicts with the concept the model knows (a nine-tailed sheep, eyes on the back): try the **compound-adjective** form first, and if it does not land, **switch engines** (Z-Image -> Qwen-Image)
+- [ ] on Qwen-Image: keep STYLE verbatim and append one explicit colour clause; **check the shape of every image after adding colour** (colour words pull the species away)
 - [ ] if a cross-engine comparison was run, it is recorded in `rounds/rNN-review.md` (Seedream has the strongest traits but adds an inscription and seals in 6/6, so no engine switch)
 - [ ] the suppression round is recorded in `rounds/rNN-review.md` (R5/R9: **neither negation nor rewriting the prior can suppress the seal**)
 - [ ] if "stronger" is wanted (bold tiger stripes / heavier tails): the bone sentence is adjusted for both subjects and both are re-run in the same round, otherwise E (series consistency) will drop
@@ -176,6 +197,7 @@ prior rather than noise. Only two routes are left: **generate several and pick a
 | 2026-10-05 | v0.1 | Project created: the three decisions (baimiao as the bone / strict sourcing / Xiaohongshu 3:4) settled; nine-tailed fox chosen for the tuning period; probe findings recorded (Z-Image-Turbo renders woodcut texture convincingly but cannot control countable traits, draws garbled seals, and adds colour unbidden) | 小七 |
 | 2026-10-05 | v0.2 | **Tuning-period loop closed**: R1 disproved prompt-controlled counting (6/6) -> a programmatic control image plus ControlNet locked the nine tails (R2, certified by counting: 9) -> typesetting produced the illustrated main plate and the source card (R3, 5 layout self-checks passed). Added `scripts/{control_image,font_coverage,typeset_zanzhi}.py`; the seal is postponed because the seal-script typeface is unresolved | 小七 |
 | 2026-10-05 | v0.3 | **R4 rework round: overturns R2/R3's final selection.** The user called the delivered plate "the simplest, the ugliest"; on review that holds. Root cause: **the acceptance table had no "vitality" dimension** — the old A-E were all correctness/consistency, which pushed the selection toward "counts right but looks worst". Fixes: (1) added **F vitality of brushwork .25** with `F<3 -> fail`; (2) de-mechanised the control image (deterministic jitter + a rocky base) and **thickened the tails into plumes** (thin ribbon -> hollow outline; thick plume -> furry tail); (3) lowered control strength to 0.45-0.75. New plate P075 (4.50 on the new rubric; the old delivery re-scores only 4.00 and fails on F<3). Methodological gain: **concentrating fur at the tail root and leaving the blades clean makes countability and beauty compatible** | 小七 |
+| 2026-10-06 | v0.7 | **Third entry of the first period: bo-yi (Nan Shan Jing · Ji Mountain).** Three countable / counter-intuitive traits (nine tails, four ears, eyes on the back) plus a creature name the model does not know - R1's wording sweep and R2's counting wordings scored **0/21** on Z-Image; R3 switched to **Qwen-Image** (a real negative) and it worked immediately, and R4 added colour for the final c2-909 (4.43). **Seals: zero for the first time** (Qwen-Image lacks Z-Image's stamping prior, so no erasure was needed). Added the engine comparison table in §5 plus three checklist items, `subjects/bo-yi/` (rounds.py + period-01 + bilingual r01-review), a third row in the creature list, a `--box` region mode for `corner_sheet.py`, and `--engine qwen-image` support in `run_round.py` | 小七 |
 | 2026-10-06 | v0.6 | **Seal-defect repair + suppression wording experiment (R5/R9)**: 12 images per subject (4 bone sentences x 3 seeds, free and local) → **24/24 still sealed, so both rewriting the prior and negation are falsified**; found that **the mechanical screen's `CLEAN` is untrustworthy** (5 images called clean all carry seals to the eye). Following the existing rule, the fox final's two faint seals (BL/BR) were erased (7024 differing pixels, all inside the patch boxes; the original kept as a control); the lu-shu final was re-checked at 12%/6x and was already clean, so it is unchanged. Added `scripts/corner_sheet.py` (magnified corner sheets with `--enhance`) and `subjects/jiu-wei-hu/rounds.py` (closing the missing R6-R8 round archive); two bilingual rounds of review (r05/r09) | 小七 |
 | 2026-10-06 | v0.5 | **First period: lu-shu (Nan Shan Jing · Niuyang Mountain) closed the loop.** R1 wording sweep (English naming / English traits-first / Chinese direct) → the Chinese route disproved twice, tiger markings obtainable only in English; R2 converged on the best sentence (traits first + red confined to the tail); R3 disproved "prompt suppresses seals" (all nine images failed) → added a **four-corner visual admission gate + `patch_region.py` tool erasure** (with self-checks); R4 compared engines against Seedream 5.0 Pro (six paid images): stronger traits but **6/6 carry an inscription and seals**, so no engine switch. Added `scripts/{run_round,seal_check,patch_region}.py` and `subjects/lu-shu/rounds/{r01,r04}-review.md`; the first-choice final 01-lu-shu.png was verified seal-free at 4× | 小七 |
 | 2026-10-05 | v0.4 | **R5-R8: the control-image path is retired; the bone becomes russet colour.** The user said the tails "look fake" and that "you shouldn't add any deliberate constraints; it's such a simple scene, how could the model fail?" — both confirmed by measurement. R5 revised the control image three times (pointed blades -> petals -> still fake), then stopped to question the path; R6 removed all control and used plain text-to-image with a descriptive prompt -> multi-tail rate only **1/6**; R7/R8 **changed only the prompt phrasing to name the being** ("The nine-tailed fox of Chinese mythology") -> multi-tail rate **8/8 and 4/4**. **The prompt phrasing decides success; the apparatus was machinery for a problem that did not exist.** One criterion error was also fixed: making "mechanically certifiable nine tails" a hard gate is exactly what forced mechanical images -> replaced by two tiers (hard gate = reads as nine; archived = magnified visual count). The bone was settled as **russet colour** after comparison (R8's ink line also holds at 4/4); new plate R7/m202, and the main-plate panel became portrait to match the plate | 小七 |

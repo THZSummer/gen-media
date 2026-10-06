@@ -17,7 +17,12 @@
 
 出图引擎是仓库里的技能脚本，本驱动不重复实现 HTTP：
   * `z-image-turbo` → ../../.agents/skills/text-to-image-comfyui/scripts/comfyui_gen.py
+  * `qwen-image`    → ../../.agents/skills/text-to-image-comfyui/scripts/comfyui_qwen.py
+                      （同机另一条引擎：细节更强、**支持真负向**——Z-Image 的负向通道是
+                      ConditioningZeroOut，传了也没用）
   * `seedream`      → ../../.agents/skills/seedream-text-to-image/scripts/seedream_gen.py（付费，需凭据）
+
+shot 里可以带 `negative`（只有 qwen-image 用得上）；`--engine qwen-image --sheet` 同样出速览图。
 """
 
 import argparse
@@ -33,6 +38,7 @@ REPO = os.path.dirname(os.path.dirname(PROJ))
 WORK = os.path.join(REPO, "work", "shanhai-jing")
 
 T2I = os.path.join(REPO, ".agents", "skills", "text-to-image-comfyui", "scripts", "comfyui_gen.py")
+QWEN = os.path.join(REPO, ".agents", "skills", "text-to-image-comfyui", "scripts", "comfyui_qwen.py")
 SEEDREAM = os.path.join(REPO, ".agents", "skills", "seedream-text-to-image", "scripts", "seedream_gen.py")
 CONTACT = os.path.join(REPO, ".agents", "skills", "image-tools", "scripts", "contact_sheet.py")
 
@@ -71,6 +77,13 @@ def run_shot(mod, round_no: int, shot: dict, out_dir: str, engine: str,
                "--width", str(shot["width"]), "--height", str(shot["height"]),
                "--steps", str(shot["steps"]), "--filename-prefix", prefix,
                "--out-dir", out_dir]
+    elif engine == "qwen-image":
+        cmd = [sys.executable, QWEN, "--prompt", shot["prompt"],
+               "--width", str(shot["width"]), "--height", str(shot["height"]),
+               "--steps", str(shot["steps"]), "--seed", str(shot["seed"]),
+               "--filename-prefix", prefix, "--out-dir", out_dir]
+        if shot.get("negative"):
+            cmd += ["--negative", shot["negative"]]
     elif engine == "seedream":
         cmd = [sys.executable, SEEDREAM, "--prompt", shot["prompt"], "--seed", str(shot["seed"]),
                "--size", f"{shot['width']}x{shot['height']}", "--filename-prefix", prefix,
@@ -111,7 +124,7 @@ def main(argv=None) -> int:
     ap.add_argument("round", type=int, help="轮次号")
     ap.add_argument("--subject", default="jiu-wei-hu")
     ap.add_argument("--engine", default="z-image-turbo",
-                    choices=["z-image-turbo", "seedream"])
+                    choices=["z-image-turbo", "qwen-image", "seedream"])
     ap.add_argument("--dry", action="store_true", help="只打印逐字 prompt，不出图")
     ap.add_argument("--sheet", action="store_true", help="跑完拼速览图")
     ap.add_argument("--only", help="只跑指定 shot id（逗号分隔）")

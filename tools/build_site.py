@@ -198,6 +198,7 @@ SUBJECT_TITLES = {
     # 山海经（没有 SUMMARY.md，标题靠这张表；缺失时退回目录名）
     "jiu-wei-hu":    ("九尾狐", "Nine-Tailed Fox"),
     "lu-shu":        ("鹿蜀", "Lu-Shu"),
+    "bo-yi":         ("猼訑", "Bo-Yi"),
 }
 
 GROUPS = {
@@ -554,6 +555,9 @@ LABEL_EN = {
     "擦除前原样": "Before erasure",
     "更浓的虎纹（有印）": "Bolder stripes (sealed)",
     "更浓的尾巴（有印）": "Stronger tails (sealed)",
+    "旧引擎对照": "Old engine",
+    "中文直述对照": "Chinese direct",
+    "设色代价": "Cost of colour",
 }
 
 

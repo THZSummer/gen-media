@@ -44,7 +44,7 @@
 | Xing Xing | Nan Shan Jing · Zhaoyao Mountain | 有獸焉，其狀如禺而白耳，伏行人走，其名曰狌狌，食之善走。 |
 | Lu (fish) | Nan Shan Jing · Di Mountain | 有魚焉，其狀如牛，陵居，蛇尾有翼，其羽在魼下……冬死而夏生 |
 | Lei | Nan Shan Jing · Danyuan Mountain | 有獸焉，其狀如貍而有髦，其名曰類，自爲牝牡 |
-| Bo Shi | Nan Shan Jing · Ji Mountain | 有獸焉，其狀如羊，九尾四耳，其目在背，其名曰猼訑 |
+| Bo-Yi | Nan Shan Jing · Ji Mountain | 有獸焉，其狀如羊，九尾四耳，其目在背，其名曰猼訑，佩之不畏。 |
 | Chang You | Nan Shan Jing · Changyou Mountain | 有獸焉，其狀如禺而四耳，其名長右，其音如吟 |
 | Gu Diao | Nan Ci Er Jing · Luwu Mountain | 其狀如雕而有角，其音如嬰兒之音，是食人 |
 | Qu Ru | Nan Ci San Jing · Daoguo Mountain | 有鳥焉，其狀如鵁而白首三足，人面，其名曰瞿如 |
@@ -55,13 +55,18 @@
 
 ## 3. Plate craft
 
-### Settled process (after the R6-R8 correction)
+### Settled process (after the R6-R8 correction and the bo-yi engine step)
 
 ```
-1) Generation  Z-Image-Turbo text-to-image — the "name the mythological being" phrasing, no control image   ✅ 4/4 and 8/8
+1) Generation  Z-Image-Turbo by default (fast, but its negative path is empty and it almost always stamps
+              a seal); switch to Qwen-Image when a trait conflicts with the concept the model knows
+              (slow, has a real negative, no stamping prior)                     ✅ established in the bo-yi period
 2) Typesetting typeset_zanzhi.py: cartouche + source + volume + frame   ✅ implemented (5 layout self-checks; seal pending the typeface)
-3) Count check visual counting with archived crops — "reads as nine" is enough, no mechanical certification
-4) Seal screen  all four corners magnified 4x and inspected (seal_check.py shortlists) -> if sealed, erase with patch_region.py and archive   ✅ established in the lu-shu period
+3) Count check visual counting with archived crops (corner_sheet.py --box renders trait crops) — "reads as
+              nine" is enough, no mechanical certification
+4) Seal screen  all four corners magnified to 12% of the short side at 6x (seal_check.py raises suspicion,
+              **never clearance**) -> if sealed, erase with patch_region.py (self-checks + a pixel-by-pixel
+              comparison against the un-erased version) and archive                 ✅ established in the lu-shu period
 5) Scoring     six dimensions A-F (F vitality .25); `fatal` reserved for hard defects
 ```
 
@@ -75,6 +80,10 @@
 | **Rewriting the prior does not suppress seals either** | R5/R9: four bone sentences (new medium noun / fill the sheet / plain white paper / control) x 3 seeds x 2 subjects = **all 24 images sealed** -> only "generate several and pick a clean one" (about 1/20) and "erase with a tool" are left |
 | **"Stronger" carries a series-consistency bill** | `bold` tiger stripes and heavier tails are reachable (A full marks), but ink and contrast rise with them: the stripe candidate weighted 4.38 against a 4.60 final, the fox candidate 4.63 against 4.80. Wanting stronger means darkening the whole bone sentence and re-running both subjects in the same round |
 | Confine the red explicitly | only `only its long tail is …` removed the mane the model otherwise invents |
+| **Naming is not a master key** | bo-yi (an unknown creature name plus a nine-tailed sheep): R1 + R2 on Z-Image = **0 of 21**; the fox landed 8/8 and lu-shu all four. The difference is whether the trait is compatible with the concept the model already knows (established in the bo-yi period) |
+| **A count in the noun phrase beats a preposition** | `nine-tailed, four-eared bo-yi` moved the tail from 1 to 2-3 plumes (the only variant that reacted on Z-Image); `a sheep with nine tails` stayed at one tail |
+| **If it does not land, switch engines** | the same prompt: 0/21 on Z-Image -> worked first try on Qwen-Image. The engines differ in more than style (real negative / stamping prior), see step 1 above |
+| **Colour costs shape** | adding `soft ochre / warm brown` turned 4 of 6 images into **wolves** -> generate several and check each shape; on Qwen-Image keep STYLE verbatim and append one explicit colour clause |
 
 > WARNING: **this process differs substantially from the first version.** The first version treated "lock the
 > countable trait" as step one and invested in a whole apparatus of programmatic control images + Canny +
@@ -172,7 +181,7 @@ Serialise by **volume**, one volume per period or a few periods, so the citation
 
 **`jiu-wei-hu`, the nine-tailed fox (Nan Shan Jing · Qingqiu Mountain)** — chosen as a stress test because **nine tails is the hardest countable trait in the book**; lock nine tails and you can lock three heads and six eyes, or six legs and four wings.
 
-### First period (done)
+### First period (done · 3 entries)
 
 **`lu-shu` (Nan Shan Jing · Niuyang Mountain)** — chosen as the first regular entry: its three verifiable traits
 (white head / tiger markings / red tail) **involve no counting**, so it tests whether the tuning-period conclusions
@@ -184,6 +193,16 @@ transfer to a second creature. Findings:
   seals → two new process steps, a four-corner visual gate and tool erasure;
 * **cross-engine comparison** (Seedream 5.0 Pro, six paid images): stronger traits, but 6/6 carry an inscription
   and seals → **no engine switch** (see `subjects/lu-shu/rounds/r04-review.en.md`).
+
+**`bo-yi` (Nan Shan Jing · Ji Mountain)** — the third entry, and the **stress test for countable traits**: nine
+tails + four ears + eyes on the back, with a creature name the model does not know. Findings:
+
+* **naming failed completely for the first time**: R1 (wording sweep) + R2 (counting wordings) on Z-Image, 21
+  images, **0 of 21** on all three traits;
+* **the engine switch worked**: Qwen-Image (a real negative) landed the sheep body + many tails + four ears +
+  the eye on the back in one go, but **adding colour pulls the species away** (4 of 6 R4 images became wolves)
+  → the final is c2-909 (4.43; `subjects/bo-yi/rounds/r01-review.en.md`);
+* **seals: zero for the first time**: Qwen-Image lacks Z-Image's stamping prior, so this period needed no erasure.
 
 ---
 
@@ -250,5 +269,6 @@ Every round carries a **same-round base control** (`period-NN/controls/`), follo
 | Date | Version | Change |
 |------|---------|--------|
 | 2026-10-05 | v0.1 | Plan created: positioning / source edition (Nan Shan Jing verified) / plate craft (four probe findings) / creature grouping / A-E acceptance; the structural-control path is marked open |
+| 2026-10-06 | v0.4 | **Bo-yi period: the process gains an "engine" step and the wording rules gain four rows.** R1/R2 scored 0 of 21 on Z-Image (a nine-tailed sheep conflicts with the concept "sheep"); R3 switched to Qwen-Image (a real negative) and worked first try; R4 added colour for the final (4.43). The switch also revealed that Qwen-Image **does not carry the stamping prior** (seals: zero, the first period needing no erasure). §3 step 1 became "Z-Image by default, switch to Qwen when a trait conflicts", step 3 gained `corner_sheet.py --box`, step 4 gained "the screen never gives clearance / pixel-by-pixel comparison", and the wording table gained four rows (naming is not a master key / noun phrase over preposition / switch engines / colour costs shape); §4 records the third entry | 小七 |
 | 2026-10-06 | v0.3 | **Seals: "suppress it with wording" is now fully falsified, and two criteria were corrected.** Lu-shu R5 / fox R9, 12 images each (4 bone sentences x 3 seeds, free and local) — **24/24 still sealed**, which together with R3's nine negated images means neither of the two prompt-based suppression routes works; also found that **the mechanical screen's `CLEAN` cannot be trusted** (5 images called clean all carry seals to the eye). §5 thresholds gained "never invert the screen" and "pixel-by-pixel comparison after erasure"; the B criterion is corrected to "this subject's bone (currently ochre colour)"; §3 wording rules gained the suppression and "stronger costs series consistency" rows. The fox final's two faint seals were erased under the existing rule (7024 differing pixels, all inside the patch boxes) | 小七 |
 | 2026-10-06 | v0.2 | **The first period (lu-shu) closed the loop and the craft gained two steps**: (1) the process table gained a "seal screen" (four corners at 4x -> `seal_check.py` shortlists -> `patch_region.py` erases and archives); (2) four "wording rules" were added (English naming + itemised traits / no Chinese direct description / negative clauses are useless / confine the red to one part), each backed by measurement; (3) the `fatal` threshold's "garbled seal / model-generated characters" gained an executable criterion; (4) the creature schedule records the completed first period and the cross-engine conclusion (Seedream has stronger traits but adds an inscription in 6/6, so no engine switch) |

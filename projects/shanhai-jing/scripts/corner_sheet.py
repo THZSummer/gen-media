@@ -9,6 +9,8 @@
   这里把版面固定下来并打印图例：
 
      行 = 输入图（按文件名排序，一行一张）    列 = 左上 / 右上 / 左下 / 右下
+     （给了 `--box x,y,w,h` 就按给定区域排：一图一行、一框一列——用来放大看**特征**
+       比如耳朵、背上的眼睛、尾巴，与判印是同一套"放大目视 + 留档"的判据）
      单元格 = 角部 crop 比例的方形区域，按 zoom 倍最近邻放大（最近邻不插值，
               5px 的小红点放大后仍是硬边，不会被糊掉）
 
@@ -81,6 +83,21 @@ def corners_of(arr: np.ndarray, crop: float) -> list:
     ]
 
 
+def boxes_of(arr: np.ndarray, boxes: list) -> list:
+    """按 `x,y,w,h` 列表取区域；越界就裁到图内（并在调用方由自检报出纯色/越界）。"""
+    out = []
+    height, width = arr.shape[:2]
+    for spec in boxes:
+        try:
+            x, y, w, h = (int(v) for v in str(spec).split(","))
+        except ValueError as exc:
+            raise SystemExit(f"--box 解析失败：{spec!r}（写法 x,y,w,h）") from exc
+        x2, y2 = min(width, max(0, x + w)), min(height, max(0, y + h))
+        x1, y1 = min(width, max(0, x)), min(height, max(0, y))
+        out.append(arr[y1:y2, x1:x2])
+    return out
+
+
 def enhance_paper(arr: np.ndarray, black: float = 1.0, white: float = 90.0) -> np.ndarray:
     """亮度分级（levels）：把纸面那一段拉开，让**淡淡的红印**显形。
 
@@ -123,6 +140,8 @@ def main(argv=None) -> int:
     ap.add_argument("images", nargs="+")
     ap.add_argument("--out", required=True)
     ap.add_argument("--crop", type=float, default=0.15, help="角部裁剪边长占比（默认 0.15）")
+    ap.add_argument("--box", action="append", metavar="x,y,w,h",
+                    help="改成看指定区域（可重复；给了就不再取四角）——用于特征目视")
     ap.add_argument("--zoom", type=int, default=5, help="最近邻放大倍数（默认 5）")
     ap.add_argument("--enhance", choices=("none", "levels", "redness"), default="none",
                     help="增强：levels=亮度分级拉开纸面；redness=朱砂图（找淡红印）。"
@@ -142,7 +161,7 @@ def main(argv=None) -> int:
     cell = None
     for path in images:
         arr = decode_rgb(path)
-        crops = corners_of(arr, args.crop)
+        crops = boxes_of(arr, args.box) if args.box else corners_of(arr, args.crop)
         if args.enhance == "levels":
             crops = [enhance_paper(c) for c in crops]
         elif args.enhance == "redness":
@@ -150,8 +169,11 @@ def main(argv=None) -> int:
         tiles = [zoom_nn(t, args.zoom) for t in crops]
         if cell is None:
             cell = tiles[0].shape[:2]
+        if len({t.shape[:2] for t in tiles}) > 1:
+            print(f"⚠️  {os.path.basename(path)} 的框尺寸不一致 → 单元格按第一格对齐，"
+                  "超出部分会被裁掉（要完整就别混尺寸）", file=sys.stderr)
         tiles = [t[:cell[0], :cell[1]] for t in tiles]
-        if args.grid == "2x2":
+        if args.grid == "2x2" and not args.box:
             rows.append(np.concatenate(tiles[:2], axis=1))
             rows.append(np.concatenate(tiles[2:], axis=1))
         else:
@@ -166,7 +188,8 @@ def main(argv=None) -> int:
     # ---- 自检 ----
     problems = []
     width, height = probe_size(args.out)
-    columns = 2 if args.grid == "2x2" else len(CORNERS)
+    per_row = len(args.box) if args.box else len(CORNERS)
+    columns = 2 if (args.grid == "2x2" and not args.box) else per_row
     want = (cell[1] * columns, cell[0] * len(rows))
     if (width, height) != want:
         problems.append(f"输出尺寸 {width}x{height} != 推算 {want[0]}x{want[1]}")
@@ -180,7 +203,10 @@ def main(argv=None) -> int:
     if len(rows) != len(legend) * per_image:
         problems.append(f"实际行数 {len(rows)} != 图例 {len(legend)} × 每图 {per_image} 行")
 
-    order = "左上 右上 / 左下 右下" if args.grid == "2x2" else " / ".join(CORNERS)
+    if args.box:
+        order = " / ".join(f"框{b}" for b in args.box)
+    else:
+        order = "左上 右上 / 左下 右下" if args.grid == "2x2" else " / ".join(CORNERS)
     print(f"图例（版面 {args.grid}：{order}；角部边长 {args.crop:.0%}，{args.zoom}× 最近邻）")
     for i, item in enumerate(legend, 1):
         print(f"  {i:2d}. {item['file']}  [{item['size'][0]}x{item['size'][1]}]")
@@ -189,7 +215,7 @@ def main(argv=None) -> int:
         with open(args.json, "w", encoding="utf-8") as fh:
             json.dump({"title": args.title, "out": args.out, "crop": args.crop,
                        "zoom": args.zoom, "cell": [cell[1], cell[0]],
-                       "columns": list(CORNERS), "rows": legend,
+                       "columns": (list(args.box) if args.box else list(CORNERS)), "rows": legend,
                        "self_check": {"ok": not problems, "problems": problems}},
                       fh, ensure_ascii=False, indent=1)
     for p in problems:

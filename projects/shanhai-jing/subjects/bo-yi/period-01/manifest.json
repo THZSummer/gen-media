@@ -1,0 +1,119 @@
+{
+ "period": "period-01",
+ "slug": "bo-yi",
+ "note": "猼訑首期（南山經 · 基山）。四条可验特征里有**三条是计数/反常识部位**（九尾、四耳、目在背），本件因此成了本项目最难的写法压测：Z-Image 上 R1（写法扫描）与 R2（计数写法）共 21 张，**三条特征 0/21**（全是普通盘羊：一条短尾、两只耳、背上无眼）；R3 换同机另一条引擎 **Qwen-Image**（支持真负向）后**成立**，R4 再补系列的赭石设色 → 定稿 c2-909。**印面首次为 0**：Qwen-Image 不带 Z-Image 那套『必盖印』先验，英文候选四角 12%/6× 目视干净，无需擦除。",
+ "from": "work/shanhai-jing/bo-yi/r04/",
+ "text_ref": {
+  "volume": "山海經 · 南山經",
+  "volume_en": "Shan Hai Jing · Nan Shan Jing",
+  "passage": "又東三百里，曰基山。其陽多玉，其陰多怪木。有獸焉，其狀如羊，九尾四耳，其目在背，其名曰猼訑，佩之不畏。",
+  "commentary": null,
+  "commentary_note": "郭璞注文尚未逐条录入，录入前成品不得出现注文",
+  "place": "基山",
+  "source": "郭璞注本《山海經》卷一 · 南山經（識典古籍 SK2098，四庫全書本），2026-10-06 逐字核对；另以四部叢刊本（SBCK099，郭璞注、黃丕烈校勘）复核，两本此段一致（仅标点小异）",
+  "excerpt_note": "底本此段之后紧接「有鳥焉，其狀如雞，而三首六目、六足三翼，其名曰𪁺𩿧，食之無臥」——写的是**基山上的鸟**，属另一物 → 原文区到猼訑句为止，不跳字、不加省略号",
+  "collation": [
+   "字形：識典古籍 SK2098 的简体排印把「訑」作「𫍙」（U+2B359，非 BMP／扩展 C），四部叢刊本同；本件从**通行繁体字形「訑」**（U+8A11）——教育部《重編國語辭典》与《太平御覽》引文均作訑，且 𫍙 非 BMP，Noto Serif CJK 无字形、制版渲染不出（font_coverage.py 会拒）",
+   "异文：《太平御覽》卷九一三引作「九尾四目」（四**目**），各本《山海經》作「四耳」→ 从底本作四耳",
+   "读音：郭璞注「博施二音。施一作陁」→ 旧读 bó shī；今通行 bó yí（教育部辭典 ㄅㄛˊ ㄧˊ），slug 取 bo-yi",
+   "旁证：《山海經圖贊》「猼訑似羊，眼乃在背。視之則奇，推之無怪。若欲不恐，厥皮可佩。」"
+  ]
+ },
+ "cartouche": "猼訑",
+ "cover_line": "佩之不畏",
+ "cartouche_font": "Noto Serif CJK（与九尾狐 / 鹿蜀同期同字库；猼 U+733C / 訑 U+8A11 均已覆盖）",
+ "seal_status": "两层：① 真印（篆体）层仍缺 —— 篆体字库未解决（见 PLAN.md §三）；② 模型自画的乱码印：**本期首次为 0** —— Qwen-Image 引擎不带 Z-Image 那套先验，R3 四张英文候选机械筛 0 候选且四角 12%/6× 目视干净；R4 设色轮因暖橙尾毛触发机械误报，逐张目视同样干净 → 本期**未做任何擦除**",
+ "bone": "赭石设色（工笔淡彩）—— STYLE 与九尾狐 / 鹿蜀逐字相同；**Qwen-Image 上需追加显式设色句**（c2 写法：STYLE + 'The ink lines are washed with soft ochre and warm brown.'），否则出的是白描墨线（见 rounds/r01-review.md §五）",
+ "process": "纯文生图（英文点名式 + 复合形容词计数 + 特征逐项 + 真负向），无控制图 / 无 ControlNet；**引擎 Qwen-Image**（同机第二条引擎，1024x1360 / 20 步，单张约 2.5 分钟）；印面：四角 12% / 6× 目视（scripts/corner_sheet.py 出图留档）",
+ "rounds": [
+  "r01: 写法扫描（Z-Image：英文点名 / 特征逐项 / 中文直述）—— 三条特征 0/9，全是普通盘羊",
+  "r02: 计数写法轮（Z-Image：复合形容词 / 明确对比 / 阿拉伯数字 / 中文对照）—— 仍 0/12 达标，只有复合形容词那式多画了 2–3 条尾部羽影",
+  "r03: 换引擎（Qwen-Image + 真负向）—— **成立**：羊身 + 多尾 + 四耳 + 背上眼；中文那式画成狐狸",
+  "r04: 补设色（Qwen-Image）—— c1/c2 两式各 3 seed：设色词会把 6 张里的 4 张拉成狼，seed 909 的两张守住羊形 → 定稿 c2-909"
+ ],
+ "entries": [
+  {
+   "final": "01-bo-yi.png",
+   "role": "final",
+   "kind": "plate",
+   "source_round": 4,
+   "source_engine": "qwen-image",
+   "source_shot": "c2-909",
+   "seed": 909,
+   "steps": 20,
+   "size": "1024x1360",
+   "source_file": "work/shanhai-jing/bo-yi/r04/shj-bo-yi-r4-c2-909_00001_.png",
+   "prompt_id": "0ac87c38-d978-42ea-90af-7370c979ae82",
+   "prompt": "The nine-tailed, four-eared bo-yi of Chinese mythology, a woolly sheep-like beast with a pair of eyes set in its back, standing in profile on a rocky ledge. Painted in the manner of a traditional Chinese album leaf, fine ink brushwork, delicate fur strokes, ink and pale colour on aged paper. The ink lines are washed with soft ochre and warm brown.",
+   "feature_check": {
+    "trait": [
+     "羊身",
+     "九尾",
+     "四耳",
+     "目在背"
+    ],
+    "method": "逐项放大目视（**目视判读，非机械确证**）：头耳区 3×、尾扇 2×、背眼区 3×，由 scripts/corner_sheet.py 出图留档",
+    "result": "四项全中：羊身（绒毛细密、偶蹄、羊脸）、四耳（头两侧各两只，共四只，清楚可数）、目在背（背脊上一只清楚的眼睛）、九尾（尾扇 8–9 条，交叠处不能逐一确证 → 读作九尾）",
+    "countable_note": "尾数按 R5 教训记为『目视点数，非机械确证』；四耳 / 背眼是清楚可指认的",
+    "evidence": "work/shanhai-jing/corner-inspect/bo-yi-r4-c2-909-traits.jpg、work/shanhai-jing/bo-yi/r04/c2-909-tails.png"
+   },
+   "seal_check": {
+    "tool": "scripts/seal_check.py（机械筛，仅给候选）",
+    "machine": "R4 设色轮 9 枚候选 —— 全部是暖橙尾毛触发的误报（x≈820–880 即尾扇）",
+    "visual": "四角 12% / 6× 目视：无红印、无伪字（R3 四张英文候选机械筛 0 候选且目视亦干净）",
+    "crops": "work/shanhai-jing/corner-inspect/bo-yi-r4-909-corners.jpg、work/shanhai-jing/bo-yi/r04/c2-909-corners.jpg",
+    "erasure": null
+   },
+   "note": "设色画心：供制版使用（未做像素级修补；本期印面为 0，无需擦除）"
+  },
+  {
+   "final": "02-bo-yi-zan.png",
+   "role": "final",
+   "kind": "card",
+   "note": "图赞主图：卷次 + 榜题 + 画心 + 点睛句 + 出處",
+   "source": "scripts/typeset_zanzhi.py",
+   "size": "1080x1440"
+  },
+  {
+   "final": "03-bo-yi-wen.png",
+   "role": "final",
+   "kind": "card",
+   "note": "原文卡：竖排榜题 + 卷次 + 竖排原文（右起）",
+   "source": "scripts/typeset_zanzhi.py",
+   "size": "1080x1440"
+  },
+  {
+   "final": "controls/bo-yi-zimage-v1-101-single-tail.png",
+   "role": "control",
+   "kind": "plate",
+   "source_round": 1,
+   "source_engine": "z-image-turbo",
+   "source_shot": "v1-101",
+   "seed": 101,
+   "source_file": "work/shanhai-jing/bo-yi/r01/shj-bo-yi-r1-v1-101_00001_.png",
+   "note": "旧引擎对照：**同一条英文点名式**（The bo-yi …, nine tails, four ears, eyes on its back）在 Z-Image 上出的是单尾普通盘羊 —— 21 张 Z-Image 全部如此，说明『点名就能拿到计数特征』只对模型已知的概念（nine-tailed fox）成立。见 rounds/r01-review.md"
+  },
+  {
+   "final": "controls/bo-yi-zh-description-q3-707-fox.png",
+   "role": "control",
+   "kind": "plate",
+   "source_round": 3,
+   "source_engine": "qwen-image",
+   "source_shot": "q3-707",
+   "seed": 707,
+   "source_file": "work/shanhai-jing/bo-yi/r03/shj-bo-yi-r3-q3-707_00001_.png",
+   "note": "中文直述对照：同轮的中文写法画成了**狐狸**（橙红毛、尖吻）—— 模型把「異獸 + 九尾」联想成了它熟悉的九尾狐。中文直述第三次证伪（前两件 6/6 失败）"
+  },
+  {
+   "final": "controls/bo-yi-r4-c1-1010-wolf-drift.png",
+   "role": "control",
+   "kind": "plate",
+   "source_round": 4,
+   "source_engine": "qwen-image",
+   "source_shot": "c1-1010",
+   "seed": 1010,
+   "source_file": "work/shanhai-jing/bo-yi/r04/shj-bo-yi-r4-c1-1010_00001_.png",
+   "note": "设色代价：R4 加了设色句后，6 张里 4 张跑成**狼**（这张最典型：尖吻、无角、无羊相）—— 『暖褐/赭石』这类色词会把物种拉走，只有 seed 909 的两张守住羊形"
+  }
+ ]
+}

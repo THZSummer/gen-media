@@ -403,13 +403,26 @@
    "plan": "projects/shanhai-jing/PLAN.md",
    "data": "shanhai-jing.json",
    "stats": {
-    "reels": 2,
-    "periods": 2,
-    "finals": 6,
-    "controls": 8
+    "reels": 3,
+    "periods": 3,
+    "finals": 9,
+    "controls": 11
    },
-   "reel_count": 2,
+   "reel_count": 3,
    "strip": [
+    {
+     "title": {
+      "zh": "猼訑",
+      "en": "Bo-Yi"
+     },
+     "poster": "site/thumbs/projects/shanhai-jing/subjects/bo-yi/period-01/01-bo-yi.jpg",
+     "route": "w/shanhai-jing/r/bo-yi",
+     "count": 3,
+     "unit": {
+      "zh": "件成品",
+      "en": "finals"
+     }
+    },
     {
      "title": {
       "zh": "九尾狐",
