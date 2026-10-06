@@ -19,7 +19,7 @@
   } catch (e) { /* 隐私模式下 localStorage 可能抛错：忽略，走默认深色 */ }
 })();
 </script>
-<link rel="stylesheet" href="site/app.css">
+<link rel="stylesheet" href="site/app.css?v=1ee531c2">
 </head>
 <body>
 
@@ -30,7 +30,19 @@
     <button data-lang="zh" type="button">中文</button>
     <button data-lang="en" type="button">EN</button>
   </div>
-  <button class="theme" id="theme" type="button" aria-pressed="false"><i aria-hidden="true"></i></button>
+  <button class="theme" id="theme" type="button" aria-pressed="false">
+    <!-- 图标用内联 SVG：不依赖任何符号字体（VS Code 内置浏览器缺 ☀/☾ 字形时文字图标会变成方块） -->
+    <svg class="ic ic-sun" width="15" height="15" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <circle cx="12" cy="12" r="4.4" fill="currentColor"/>
+      <g stroke="currentColor" stroke-width="1.9" stroke-linecap="round">
+        <path d="M12 2.4v2.6M12 19v2.6M2.4 12h2.6M19 12h2.6M5.2 5.2l1.9 1.9M16.9 16.9l1.9 1.9M18.8 5.2l-1.9 1.9M7.1 16.9l-1.9 1.9"/>
+      </g>
+    </svg>
+    <svg class="ic ic-moon" width="15" height="15" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path fill="currentColor" d="M20.6 15.3A8.9 8.9 0 0 1 8.7 3.4 8.9 8.9 0 1 0 20.6 15.3Z"/>
+    </svg>
+    <span class="theme-t" id="theme-label">浅色</span>
+  </button>
 </header>
 
 <main id="app" class="wrap"><p class="loading muted">载入中… / Loading…</p></main>
@@ -40,6 +52,6 @@
 <!-- 详情页：全屏 feed（一屏一帧，上下滑动换图） -->
 <div class="feed-root" id="feed" hidden></div>
 
-<script src="site/app.js"></script>
+<script src="site/app.js?v=1ee531c2"></script>
 </body>
 </html>

@@ -65,6 +65,7 @@
       footRepo: '源码仓库',
       notFound: '找不到这一项', loadFail: '数据载入失败',
       themeToLight: '切换到浅色', themeToDark: '切换到深色',
+      themeLight: '浅色', themeDark: '深色',
       periodPfx: '第 ', periodSfx: ' 期',
       bootHint: '先在仓库根目录运行 <code>python3 tools/build_site.py</code>，并通过 HTTP 打开'
         + '（<code>python3 -m http.server</code>），不要直接双击 index.html。'
@@ -95,6 +96,7 @@
       footRepo: 'Repository',
       notFound: 'Not found', loadFail: 'Failed to load site data',
       themeToLight: 'Switch to light', themeToDark: 'Switch to dark',
+      themeLight: 'Light', themeDark: 'Dark',
       periodPfx: 'Period ', periodSfx: '',
       bootHint: 'Run <code>python3 tools/build_site.py</code> at the repository root first, and open '
         + 'the page over HTTP (<code>python3 -m http.server</code>) — do not double-click index.html.'
@@ -194,6 +196,10 @@
     var b = $('#theme');
     if (!b) return;
     var label = t(THEME === 'light' ? 'themeToDark' : 'themeToLight');
+    // 按钮上还有**可见文字**（浅色/深色 · Light/Dark）：万一图标在某个环境里没渲染出来，
+    // 按钮也不是一个空框；文字跟语言走，图标那侧由 CSS 按主题切换。
+    var txt = b.querySelector('.theme-t');
+    if (txt) txt.textContent = t(THEME === 'light' ? 'themeDark' : 'themeLight');
     b.setAttribute('aria-pressed', THEME === 'light' ? 'true' : 'false');
     b.setAttribute('aria-label', label);
     b.setAttribute('title', label);
@@ -829,9 +835,10 @@
     $('#lang').addEventListener('click', function (e) {
       if (e.target.dataset && e.target.dataset.lang) setLang(e.target.dataset.lang);
     });
-    $('#theme').addEventListener('click', function () {
-      setTheme(THEME === 'light' ? 'dark' : 'light');
-    });
+    var tbtn = $('#theme');
+    if (tbtn) {   // 老 HTML（没有这个按钮）配新 JS 时也不要抛错，整页照常跑
+      tbtn.addEventListener('click', function () { setTheme(THEME === 'light' ? 'dark' : 'light'); });
+    }
     app.addEventListener('click', onClick);
     feedRoot.addEventListener('click', onFeedClick);
     document.addEventListener('keydown', onKey);

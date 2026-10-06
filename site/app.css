@@ -64,11 +64,14 @@ nav a.on{background:var(--fg);color:var(--bg)}
   padding:4px 11px;font-size:12px;cursor:pointer;white-space:nowrap;
 }
 .theme:hover{background:var(--chip);color:var(--fg)}
-.theme i{font-style:normal;font-size:14px;line-height:1}
-/* 图标表示"点下去会变成什么"：深色下给太阳，浅色下给月亮。
-   用 CSS 而不是 JS 上图标 —— 首屏就正确，不会先空着再补。 */
-.theme i::before{content:'☀'}
-:root[data-theme="light"] .theme i::before{content:'☾'}
+/* 图标是内联 SVG（不是文字字形）：☀/☾ 属于符号字体，IDE 内置浏览器缺字形时会渲染成方块。
+   两个图标都在 DOM 里，用 CSS 按主题切换显示 —— 首屏就正确，不靠 JS 补。 */
+.theme .ic{display:block;flex:none}
+.theme .ic-moon{display:none}
+:root[data-theme="light"] .theme .ic-sun{display:none}
+:root[data-theme="light"] .theme .ic-moon{display:block}
+.theme .theme-t{line-height:1}
+@media (max-width:720px){.theme .theme-t{display:none}}   /* 窄屏只留图标 */
 
 /* ── 巨幅 billboard（流媒体首页头图）────────────────────────────── */
 /* 多张 slide 叠在一起做交叉淡入：只有 .on 那张是 position:relative，撑起容器高度 */

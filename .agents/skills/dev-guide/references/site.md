@@ -127,12 +127,20 @@ site/data/<pid>.json      {id, kind, title, desc, readme, summary, plan, rubric,
 
 - 纯 vanilla：**无框架、无 CDN、无构建**；只加 `site/index.html`、`site/app.{css,js}` 与 `site/data/*.json`。
 - 图片 `loading="lazy" decoding="async"`；视频 `preload="none"` + 分镜图 `poster`（不滑到不下载）。
+- **前端资源必须带内容哈希**：`index.html` 里写 `site/app.css?v=<hash>` / `site/app.js?v=<hash>`，
+  由 `python3 tools/stamp_frontend.py` 写入（改了 `app.{css,js}` 就重跑一次；`--check` 已进 `check.sh`）。
+  为什么必须：无构建步骤 + 裸 URL 时，浏览器会**按文件各缓存**，出现过「新的 `index.html` + 旧的 `app.css` +
+  旧的 `app.js`」这种**混合缓存**——表现是主题按钮变成一个**空框**、点了没反应（VS Code 内置浏览器实测；
+  用户禁掉缓存后立刻正常）。带哈希后前端一改 URL 就变，不可能新旧混搭。
 - **导航从 `index.json` 派生**（有内容的 kind 自动进导航），不要把某个项目写死成顶级项。
 - **主题：默认深色，且不跟随系统**（`prefers-color-scheme` 有意不参与——2026-10-06 用户明确要求「默认深色」）。
   浅色只能由用户显式切换：`<html data-theme="light">`；状态存 `localStorage['gm-theme']`。
   - 引导脚本放在 **`index.html` 的 `<link rel=stylesheet>` 之前**（读 `?theme=dark|light` → `localStorage`），
     首屏前打好标记，不闪白；深色是 `:root` 的默认值，切回深色用**移除属性**，样式表里不必把深色写两遍。
-  - 开关放在顶栏语言开关右侧：**只有图标**（深色下 `☀`、浅色下 `☾`，由 CSS `::before` 给，首屏就正确），
+  - 开关放在顶栏语言开关右侧：**内联 SVG 图标 + 可见文字**（深色下 `太阳 · 浅色`、浅色下 `月亮 · 深色`）。
+    ⛔ **图标不能用文字字形**（`content:'☀'` 这类）：`☀`/`☾` 属于符号字体，IDE 内置浏览器缺字形时
+    会渲染成**方块**——2026-10-06 实测踩过。两个 SVG 都在 DOM 里，用 CSS 按主题切 `display`（首屏即正确），
+    并且给 SVG 写死 `width/height` 属性；**可见文字**是第二重保险（万一图标没渲染，按钮也不是一个空框）。
     无障碍名走 `T.zh`/`T.en`（`themeToLight` / `themeToDark`）并随语言更新；`aria-pressed` 表示当前是否浅色。
   - `<meta name="theme-color">` 跟着主题走（深 `#0b0b0d` / 浅 `#f7f6f3`）。
   - 改了主题按 §9 验三件：默认深色（**系统偏好为浅色时仍须是深色**）、`?theme=light`、点击切换后刷新保持。

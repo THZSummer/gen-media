@@ -67,7 +67,11 @@ run_check "comfyui_edit --check（真机）"   python3 .agents/skills/image-edit
 run_check "seedream_gen --check（真机）"   python3 .agents/skills/seedream-text-to-image/scripts/seedream_gen.py --check
 run_check "seedream_edit --check（真机）"  python3 .agents/skills/seedream-image-edit/scripts/seedream_edit.py --check
 
-hdr "4/5 站点界面文案双语（T.zh / T.en）"
+# 前端资源要带内容哈希（`?v=`）：否则 IDE 内置浏览器会出现"新 HTML + 旧 CSS/JS"的混合缓存，
+# 表现是主题按钮变成空框且点击无效（实测过）。改了 app.{css,js} 必须重新打戳。
+run_check "前端版本戳（app.css/app.js 内容哈希）" python3 tools/stamp_frontend.py --check
+
+hdr "4/5 站点界面文案双语（T.zh / T.en）与前端版本戳"
 if [ -f tools/i18n.py ]; then
   if out=$(python3 tools/i18n.py ui 2>&1); then
     echo "$out" | head -1 | sed 's/^/     /'
