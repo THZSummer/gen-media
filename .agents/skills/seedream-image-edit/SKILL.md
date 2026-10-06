@@ -104,7 +104,7 @@ python3 scripts/seedream_edit.py --image base.png --prompt "..." --seed 7 \
 | `--prompt-optimization {standard,fast}` | 仅 `seedream 5.0 pro`，给参考图时才有意义 | 工作流值（standard） |
 | `--watermark` / `--no-watermark` | 加/不加 "AI generated" 水印 | 工作流值（false） |
 | `--max-images` / `--fail-on-partial` | 一次要几张关联图 / 缺图即失败（仅 lite/4.5/4.0） | 工作流值 |
-| `--format` | 保存格式（png / jpeg / webp / exr…） | 工作流值（png） |
+| `--format` | 保存格式（本机 `SaveImageAdvanced` 只接受 **png / exr / avif**） | 工作流值（png） |
 | `--filename-prefix` | 输出前缀（同时是留档名） | `seedream-edit` |
 | `--api-key` / `--api-key-file` / `--auth-token` | 凭据（见上） | `$COMFYUI_API_KEY` |
 | `--dry-run` | 只打印 API 图：**不上传、不提交** | 关闭 |
