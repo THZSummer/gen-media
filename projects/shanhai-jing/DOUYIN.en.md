@@ -23,6 +23,9 @@ Our real moat (verifiable sourcing, correct counts, seal handling) is not the se
 > **Phasing decision (settled 2026-10-07)**: **short term publishes image posts with in-app music only; video moves to the long term.**
 > The three traffic tiers below and the route analysis in §5 are unchanged; only the **execution order** changes. Image posts first, to learn which creature names carry traffic and which cover earns clicks; the video phase then starts from that data. The image-post phase therefore chases data, not reach.
 
+> **Positioning (settled 2026-10-07)**: **Shan Hai Jing Verification Desk** — "what everyone assumes → what the source text says → I count it for you".
+> We do not build an illustrated catalogue (it would drown in the source text and the AI flood); we do **verification and error-correction**: **others hand you a picture, we hand you a judgement.** The full argument (including "why not just go to the original" and the music rules) is in §8 and §9.
+
 ---
 
 ## 1. Three Hard Things to Do First
@@ -146,7 +149,7 @@ Moving the Xiaohongshu package (illustrated plate + long sourcing copy) over unc
 
 ---
 
-## 5. Three Routes and a 30-Day Cadence
+## 5. Three Routes and a Phased Cadence
 
 ### Route A: Static image posts (reuse existing assets, zero rework)
 
@@ -230,7 +233,81 @@ Source: [Julian Xingtu "New Creator Onboarding Handbook"](https://www.xingtu.cn/
 
 ---
 
-## 8. Not Yet Verified (Honest List)
+## 8. Positioning: Why Watch Ours Instead of the Original
+
+> **Shan Hai Jing Verification Desk** — "what everyone assumes → what the source text says → I count it for you".
+> We do not build an illustrated catalogue (it would drown in the source text and the AI flood); we do **verification and error-correction**: **others hand you a picture, we hand you a judgement.**
+
+### 8.1 The uncomfortable part first: the current package is replaceable
+
+The source text is free and public, in-app music is provided by the platform, and anyone can generate AI images — **if a post is just "the source text + a good-looking picture + free music", there is no reason to watch us.**
+What holds up is only **what we add**. Every substitute has one hard flaw, and each flaw is our opening:
+
+| Substitute | Hard flaw | Our translation layer |
+|------------|-----------|----------------------|
+| Reading the source directly | 30,000+ characters, rare glyphs, no punctuation; Guo Pu's commentary is classical Chinese; **the text has no pictures** | One creature per period: one passage → one legible picture plus one plain-language line |
+| Museum originals / old paintings | Scattered across collections and catalogues, with copyright and access barriers; old paintings follow another interpretive tradition that need not match the text (**unverified**) | We produce the picture, and the picture is **verifiable** |
+| The existing flood of AI Shan Hai Jing images | Saturated, and **largely wrong**: our own measurements — bo-yi scored **0 hits in 21 images** on Z-Image; a 20-image sample of lu-shu had **19 images** stamped with garbled seals or fake characters | **Correct counts + character-by-character sourcing + real characters composited by tooling** |
+| Existing explainer videos / articles | Mostly retellings of dictionary entries: no sources, no re-checking, nothing to follow | A series (one creature per period) plus an audit trail (source edition, round records, pixel evidence) |
+
+### 8.2 But "rigour" alone earns no clicks
+
+This is the platform reality we have to accept: nobody clicks because sourcing is verifiable. They click for four things — **contrast / controversy / identity / aesthetics**:
+
+| Hook type | Template | Material we already have |
+|-----------|----------|--------------------------|
+| Contrast | "You think X; the source actually says Y" | The nine-tailed fox is described only as "can eat people" — **not** a demon fox, **not** an auspicious omen |
+| Controversy / correction | "Nine of ten of those X pictures online are wrong" | bo-yi 0/21; lu-shu 19 of 20 with garbled seals; the 7024-pixel seal-erasure evidence on the final |
+| Identity | "This is our own mythology, and nobody has drawn it from the text" | The ochre-coloured gongbi idiom plus the fixed cartouche / volume / passage layout |
+| Aesthetics | Say nothing, just show the plate | `01-<slug>.png` (the unlettered plate) |
+
+**The three goals (educate / promote / attract traffic) are one single action on Douyin**: hook them first, then teach. Reverse the order and all three collapse together.
+
+### 8.3 Per-period content formula: contrast → source → verification → conclusion
+
+Worked example (nine-tailed fox; **every number comes from our own archived records**):
+
+| Beat | Content |
+|------|---------|
+| (1) Contrast (cover / first-image title) | "The nine-tailed fox: nine of ten AI pictures get the tails wrong." |
+| (2) Source | "*Shan Hai Jing*, Nan Shan Jing, Qingqiu Mountain: 'there is a beast, shaped like a fox with nine tails, its voice like a baby's, it can eat people; whoever eats it is not poisoned.'" |
+| (3) Verification | "Two phrasings on the same passage: the descriptive one (`a fox with nine tails`) produced **only 1 correct image in 6**; the naming one (`The nine-tailed fox of Chinese mythology`) produced **8 correct in 8** — the model can draw it, but **only once you name it**." |
+| (4) Conclusion + question | "The text never makes it a demon or an omen — only 'it can eat people'. When did the fox in your head become beautiful?" |
+
+> ⚠️ **Numbers must come from archived records** (`rounds/rNN-review.md`); never invent one to sharpen a hook. This matters more than the hook itself — the whole positioning rests on being checkable.
+
+### 8.4 Account identity to build (not started)
+
+On Douyin, what gets "promoted" is not a single work but **the series**. None of the following five exists yet, and they outrank producing more images:
+
+| # | Item | Requirement | Status |
+|---|------|-------------|--------|
+| 1 | Account name | Consistent with the "verification desk" positioning | To decide |
+| 2 | Avatar | A square crop of a plate (no lettering, no frame) | To do |
+| 3 | Bio | Three lines: what we do / why we are credible / how often we post | To write |
+| 4 | Series naming | One prefix (e.g. "Verification No. N"), echoing the cartouche layout | To decide |
+| 5 | Uniform end card | A 3-second type card (series name + one line "the sources are public") | To do |
+
+---
+
+## 9. Music Selection Rules (in-app library)
+
+**Premise**: the Douyin library **does** include guofeng / classical / instrumental categories (search "guofeng", "guqin", "xiao", "xun", "shakuhachi", "zheng" on the publishing screen, or browse a guofeng playlist), and both image posts and videos can carry music. But the library varies by account, region and time, so **rules beat a track list**.
+
+| # | Rule | Reason |
+|---|------|--------|
+| 1 | **Instrumental first** (guqin, xiao, xun, shakuhachi, zheng) | The frame contains vertical source text and a cartouche to read; vocals fight for attention |
+| 2 | Mood should be **solemn / vast**, never "hype" | Hype tracks push the piece toward a spectacle reel, clash with the sourcing tone, and get swiped faster without a matching payoff |
+| 3 | **BPM 60–90** | Slow tempo buys dwell time; image posts live on this |
+| 4 | **Do not ride trending meme tracks** | Meme tracks attract meme-consuming audiences and skew the account tag |
+| 5 | Match the edit rhythm | Image posts sit in a 15–30 s loop; never let the music cut off hard at the end |
+| 6 | ⛔ **Commercial boundary** | In-app library licences generally cover "publishing inside this platform" only; commissions, selling goods, and reposting to Xiaohongshu / Bilibili / Channels need separate commercial licensing (self-media sources, medium confidence) |
+
+> Record the track name, whether it is instrumental, and the BPM in `publish.json`; after 12 posts, review which music accompanied the higher first-image dwell time.
+
+---
+
+## 10. Not Yet Verified (Honest List)
 
 1. **Official wording of the content quality score**: currently only a self-media reading (originality 40 / information gain 35 / interaction 25, below 60 throttled, traffic -60%); no Douyin official page found → do not cite the numbers as fact.
 2. **Douyin's minimum image count and recommendation weight for image posts**: no official page found; follow the live publishing screen.
@@ -241,7 +318,7 @@ Source: [Julian Xingtu "New Creator Onboarding Handbook"](https://www.xingtu.cn/
 
 ---
 
-## 9. Sources
+## 11. Sources
 
 | # | Source | Used for |
 |---|--------|----------|
@@ -256,6 +333,7 @@ Source: [Julian Xingtu "New Creator Onboarding Handbook"](https://www.xingtu.cn/
 | 9 | [Two platforms launch content scoring, low-quality AI content scores low across the board (Sohu account, single source)](https://www.sohu.com/a/1034712070_122616458) | §4 quality score (low confidence) |
 | 10 | [Why Douyin suddenly bets on AI news and long articles after a decade of short video (iHeima)](http://www.iheima.com/article-394394.html) | §4 MAU and long-form strategy |
 | 11 | Xu, Li & Lyu, *Framing traditional Chinese painting on short-form video platforms: a comparative study of Douyin and Red Note*, Digital Scholarship in the Humanities, 2026, [doi:10.1093/llc/fqag089](https://doi.org/10.1093/llc/fqag089) | §3 academic side-note that the same painting content is framed differently on the two platforms (metadata only; full text not retrieved) |
+| 12 | [BGM copyright infringement risk analysis for short-video platforms](https://m.toutiao.com/article/7469346882645459491/) | [A practical guide to commercial music on Douyin](https://m.php.cn/faq/2105791.html) | §9 commercial boundary (self-media sources, medium confidence) |
 
 ---
 
@@ -263,6 +341,7 @@ Source: [Julian Xingtu "New Creator Onboarding Handbook"](https://www.xingtu.cn/
 
 | Date | Version | Change | Author |
 |------|---------|--------|--------|
+| 2026-10-07 | v0.4 | **Positioning settled plus music rules**: added §8 "Positioning: why watch ours instead of the original" (**Shan Hai Jing Verification Desk**; substitute-flaw table / four hook types / the "contrast → source → verification → conclusion" formula with a nine-tailed fox worked example / five account-identity tasks) and §9 "Music selection rules" (six rules plus the in-app commercial boundary); §0 gained the positioning line; the old §8/§9 became §10/§11, and source 12 was added | Xiaoqi |
 | 2026-10-07 | v0.3 | **Phasing decision frozen (user's call): short term publishes image posts with in-app music only; video moves to the long term.** §0 gained a phasing note (the image-post phase chases data, not reach); §5's "30-day cadence" became a "phased cadence" — weeks 1–4 image posts (cover A/B tests, one long essay per creature, a `publish.json` ledger), from week 5 video (deterministic editing as the main line, generative video only as an accent, video skills brought into the gate), with an explicit start condition (≥12 image posts plus two datasets) | Xiaoqi |
 | 2026-10-07 | v0.2 | **Added "How to choose among the four publishing entries" (§2.1)**: publish video = main line (including the concrete 1080x1920 canvas recipe for 3:4 plates), publish image post = floor and probe, publish article (long essay) = secondary priority, publish panoramic video = skip (it requires 360° equirectangular material); the old spec table becomes §2.2 and the S.O.P. becomes §2.3 | Xiaoqi |
 | 2026-10-07 | v0.1 | Created: Douyin compliance checklist (mandatory AI-labelling path, S.O.P.), nine-dimension theme fit score, three traffic tiers, three routes plus a 30-day cadence, Xingtu monetisation thresholds, risk countermeasures; 6 unverified items flagged | Xiaoqi |
