@@ -36,10 +36,15 @@
 | 1 | Illustrated main plate (baimiao creature + woodcut frame + cartouche) | 1080x1440 | 3:4 | 1 / period |
 | 2 | Source card (volume + original passage + Guo Pu's commentary) | 1080x1440 | 3:4 | 1 / period |
 | 3 | Series cover (woodblock-print style) | 1080x1440 | 3:4 | as needed |
+| 4 | **Period music** (played from the detail page's music switch; AI-generated, instrumental, 60–90 BPM) | mp3 ≈30 s · 44.1 kHz stereo · 128 kbps | — | 1 / period |
 
 > Cover and inner plates deliberately use **different bones**: inner plates are baimiao (simple lines,
 > easy to lock structurally), the cover is woodblock print (stronger impact). This is a division of
 > labour, not style drift.
+> ⚠️ The music is **not an accessory to the picture**: it follows the selection rules in
+> [DOUYIN.en.md](DOUYIN.en.md) §9 (instrumental, solemn and vast, 60–90 BPM), is generated with
+> `comfyui-music-minimax3`, and is transcoded into place by `scripts/place_bgm.py` (the master stays in
+> `work/`; the committed file is 128 kbps).
 
 ---
 
@@ -66,7 +71,7 @@ shanhai-jing/
 ├── scripts/               project scripts (typesetting the illustrated verse, etc.)
 └── subjects/              sub-themes: one creature per directory
     ├── jiu-wei-hu/        nine-tailed fox (Nan Shan Jing · Qingqiu Mountain)
-    │   ├── period-01/     period 1: finals + controls/ + manifest.json
+    │   ├── period-01/     period 1: finals + controls/ + bgm/ (period music) + manifest.json
     │   └── rounds/        per-round notes + scoring review (rNN-review.md)
     ├── lu-shu/            lu-shu (Nan Shan Jing · Niuyang Mountain)
     │   ├── period-01/     first period: 3 finals + controls/ (same-round and cross-engine) + manifest.json
@@ -188,6 +193,10 @@ prior rather than noise. Only two routes are left: **generate several and pick a
 - [ ] if a cross-engine comparison was run, it is recorded in `rounds/rNN-review.md` (Seedream has the strongest traits but adds an inscription and seals in 6/6, so no engine switch)
 - [ ] the suppression round is recorded in `rounds/rNN-review.md` (R5/R9: **neither negation nor rewriting the prior can suppress the seal**)
 - [ ] if "stronger" is wanted (bold tiger stripes / heavier tails): the bone sentence is adjusted for both subjects and both are re-run in the same round, otherwise E (series consistency) will drop
+- [ ] **for a period with music**: `bgm/<slug>-bgm.mp3` is in place (128 kbps, ≤2 MB, stereo 44.1 kHz) and the manifest's `audio.sha256` matches the file (`place_bgm.py` self-check 4)
+- [ ] **the music was listened to and confirmed instrumental** (`--instrumental` is only a prompt-level constraint; no script can verify how it sounds)
+- [ ] the detail page's music switch works: click to play / click again to stop / leaving the page stops it (`work/music_probe.py`, 13/13)
+- [ ] the music is credited as AI-generated (the switch's `title`/`aria-label` carry `musicCredit`); it is never presented as human-composed or human-performed
 
 ---
 
@@ -195,6 +204,7 @@ prior rather than noise. Only two routes are left: **generate several and pick a
 
 | Date | Version | Change | Author |
 |------|---------|---------|--------|
+| 2026-10-07 | v0.9 | **Period music plus a music switch on the site's detail page**: added delivery item 4 (music) and a §5 "Music" pipeline (generate → `place_bgm.py` transcode-and-place → site playback); the fox's first track is in place (template A guqin, 62 BPM, seed 9097, 30 s, 128 kbps; the 227 kbps master stays in `work/`); the checklist gained four items (including "listened to and confirmed instrumental" and the AI credit); the site gained a `reel.audio` data contract and a `.fb-music` switch (see dev-guide references/site.md §5.1/§6/§9) | 小七 |
 | 2026-10-07 | v0.8 | **Douyin distribution research**: added [DOUYIN.md](DOUYIN.en.md) / [DOUYIN.en.md](DOUYIN.en.md) — three hard gates (real-name verification / an explicit AI-content label is now a mandatory publishing step / never claim "restoration, authentic artifact" or turn quoted lines into efficacy promises), a nine-dimension fit score (subject 5 versus format 2), three traffic tiers, three routes (static image posts / process short video / long sourcing essay) with a 30-day cadence, Xingtu monetisation thresholds, risk countermeasures and 6 unverified items; README navigation and layout tree synced | 小七 |
 | 2026-10-05 | v0.1 | Project created: the three decisions (baimiao as the bone / strict sourcing / Xiaohongshu 3:4) settled; nine-tailed fox chosen for the tuning period; probe findings recorded (Z-Image-Turbo renders woodcut texture convincingly but cannot control countable traits, draws garbled seals, and adds colour unbidden) | 小七 |
 | 2026-10-05 | v0.2 | **Tuning-period loop closed**: R1 disproved prompt-controlled counting (6/6) -> a programmatic control image plus ControlNet locked the nine tails (R2, certified by counting: 9) -> typesetting produced the illustrated main plate and the source card (R3, 5 layout self-checks passed). Added `scripts/{control_image,font_coverage,typeset_zanzhi}.py`; the seal is postponed because the seal-script typeface is unresolved | 小七 |

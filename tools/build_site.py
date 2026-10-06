@@ -592,9 +592,10 @@ def gallery_label(file):
 
 
 # ── 卷（reel = 可连续上下滑的一组作品）──────────────────────────────────────
-def reel(rid, title, desc, items, *, poster=None, periods=None, text_ref=None, doc=None):
+def reel(rid, title, desc, items, *, poster=None, periods=None, text_ref=None, doc=None,
+         audio=None):
     items = [it for it in items if it]
-    return {
+    out = {
         "id": rid,
         "title": title,
         "desc": desc,
@@ -609,6 +610,36 @@ def reel(rid, title, desc, items, *, poster=None, periods=None, text_ref=None, d
         "doc": doc,
         "items": items,
     }
+    # 本期配乐（可选）：详情页据此显示音乐开关。**没有就不写这个键**，
+    # 免得每个卷都挂一个 null 让数据变胖。
+    if audio:
+        out["audio"] = audio
+    return out
+
+
+def reel_audio(pdir, man):
+    """把期 manifest 的 `audio` 段翻成站点数据（仓库相对路径 + 字节数）。
+
+    约定 manifest 写法（见 projects/shanhai-jing/README.md §交付物）::
+
+        "audio": {"file": "bgm/jiu-wei-hu-bgm.mp3", "duration_s": 30.0,
+                  "seed": 9097, "sha256": "...", "preset": "...", "skill": "..."}
+
+    文件不存在就返回 None —— 宁可不显示开关，也不要一个点了没声音的按钮。
+    """
+    a = man.get("audio")
+    if not isinstance(a, dict):
+        return None
+    f = a.get("file") or a.get("src")
+    if not f:
+        return None
+    abspath = os.path.join(pdir, f)
+    if not os.path.isfile(abspath):
+        return None
+    out = {k: v for k, v in a.items() if k not in ("file", "src")}
+    out["src"] = rel(os.path.join(pdir, f))
+    out["size"] = os.path.getsize(abspath)
+    return out
 
 
 def build_subject_reel(sid, meta, proot):
@@ -633,6 +664,7 @@ def build_subject_reel(sid, meta, proot):
         return cache[round_no].get(shot)
 
     finals, extras, periods, text_ref = [], [], [], None
+    audio = None
     for name in sorted(os.listdir(sdir)):
         if not re.fullmatch(r"period-\d+", name):
             continue
@@ -642,6 +674,10 @@ def build_subject_reel(sid, meta, proot):
             continue
         with open(mpath, encoding="utf-8") as fh:
             man = json.load(fh)
+
+        # 本期配乐：取第一个带 `audio` 且文件真在的期
+        if audio is None:
+            audio = reel_audio(pdir, man)
 
         caps = read_captions(pdir)
         note = plain(man.get("note", ""))
@@ -723,7 +759,8 @@ def build_subject_reel(sid, meta, proot):
                 poster=poster,
                 periods=periods,
                 text_ref=text_ref,
-                doc=maybe_path(os.path.join(sdir, "README.md")))
+                doc=maybe_path(os.path.join(sdir, "README.md")),
+                audio=audio)
 
 
 def build_gallery_reels(pid, pdir):

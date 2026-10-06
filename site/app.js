@@ -66,6 +66,8 @@
       notFound: '找不到这一项', loadFail: '数据载入失败',
       themeToLight: '切换到浅色', themeToDark: '切换到深色',
       themeLight: '浅色', themeDark: '深色',
+      musicPlay: '开音乐', musicStop: '关音乐', musicErr: '配乐不可用',
+      musicCredit: '配乐：AI 生成 · MiniMax Music 3',
       periodPfx: '第 ', periodSfx: ' 期',
       bootHint: '先在仓库根目录运行 <code>python3 tools/build_site.py</code>，并通过 HTTP 打开'
         + '（<code>python3 -m http.server</code>），不要直接双击 index.html。'
@@ -97,6 +99,8 @@
       notFound: 'Not found', loadFail: 'Failed to load site data',
       themeToLight: 'Switch to light', themeToDark: 'Switch to dark',
       themeLight: 'Light', themeDark: 'Dark',
+      musicPlay: 'Music', musicStop: 'Stop music', musicErr: 'Music unavailable',
+      musicCredit: 'Music: AI-generated · MiniMax Music 3',
       periodPfx: 'Period ', periodSfx: '',
       bootHint: 'Run <code>python3 tools/build_site.py</code> at the repository root first, and open '
         + 'the page over HTTP (<code>python3 -m http.server</code>) — do not double-click index.html.'
@@ -389,7 +393,8 @@
   }
 
   /* ── 详情页：全屏 feed（一屏一帧）──────────────────────────── */
-  var FEED = { open: false, pid: null, rid: null, list: [], runs: [], i: 0, raf: 0, bound: null };
+  var FEED = { open: false, pid: null, rid: null, list: [], runs: [], i: 0, raf: 0, bound: null,
+               audioOf: {}, musicOn: false, musicErr: false };
 
   function frameHTML(e, i) {
     var it = e.it;
@@ -476,6 +481,12 @@
         });
       });
       if (!list.length) { routeFail(pid + (rid ? '/r/' + rid : '')); return; }
+      // 配乐：卷级（reel.audio）。帧 → 所属卷 → 有没有配乐，换卷时音源跟着换。
+      var audioOf = {};
+      reels.forEach(function (r, ri) { if (r.audio && r.audio.src) audioOf[ri] = r.audio; });
+      FEED.audioOf = audioOf;
+      var hasAudio = Object.keys(audioOf).length > 0;
+      FEED.musicOn = false; FEED.musicErr = false;
       var start = Math.max(1, Math.min(n || 1, list.length));
       FEED.open = true; FEED.pid = pid; FEED.rid = rid || null;
       FEED.list = list; FEED.runs = computeRuns(); FEED.i = start - 1;
@@ -490,9 +501,21 @@
         + '<span class="fb-title">' + esc(feedTitleOf(proj, list[start - 1])) + '</span>'
         + '<span class="fb-count" id="fbcount">' + start + ' / ' + list.length + '</span>'
         + '<span class="fb-act">'
+        + (hasAudio
+          ? '<button type="button" class="fb-music" data-act="music" data-on="0" aria-pressed="false"'
+            + ' title="' + esc(t('musicPlay')) + ' · ' + esc(t('musicCredit')) + '"'
+            + ' aria-label="' + esc(t('musicPlay')) + ' · ' + esc(t('musicCredit')) + '">'
+            + '<svg class="ic" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">'
+            + '<path d="M9 17.5V5.5l9.5-2v12" fill="none" stroke="currentColor" stroke-width="1.7"'
+            + ' stroke-linecap="round" stroke-linejoin="round"/>'
+            + '<circle cx="6.6" cy="17.8" r="2.5" fill="currentColor"/>'
+            + '<circle cx="16.1" cy="15.8" r="2.5" fill="currentColor"/></svg>'
+            + '<span class="music-t">' + esc(t('musicPlay')) + '</span></button>'
+          : '')
         + '<button type="button" data-act="info">' + esc(t('info')) + '</button>'
         + '<button type="button" data-act="link">' + esc(t('link')) + '</button>'
         + '</span></div>'
+        + (hasAudio ? '<audio id="bgm" loop preload="none"></audio>' : '')
         + '<div class="runs" id="runs">' + FEED.runs.map(function (r) {
           return '<button type="button" class="' + esc(r.role) + '" data-run="' + r.from
             + '" style="flex-grow:' + r.n + '"></button>';
@@ -523,6 +546,9 @@
   function closeFeed() {
     if (!FEED.open) return;
     FEED.open = false;
+    var a = $('#bgm');
+    if (a) { a.pause(); a.removeAttribute('src'); }   // 离开详情页就停，别在后台响
+    FEED.musicOn = false; FEED.musicErr = false; FEED.audioOf = {};
     document.documentElement.removeAttribute('data-view');
     document.documentElement.removeAttribute('data-chrome');
     document.body.style.overflow = '';
@@ -530,6 +556,76 @@
     feedRoot.innerHTML = '';
     FEED.list = []; FEED.runs = [];
   }
+
+  /* ── 详情页配乐（卷级 reel.audio）────────────────────────────────
+     浏览器不允许无用户手势自动播放，所以这里**只提供开关**：点一下才开始。
+     换卷时音源切换（当前帧所属卷没有配乐就把开关藏起来并停声）。 */
+  function reelAudioAt(i) {
+    var e = FEED.list[i];
+    return (e && FEED.audioOf && FEED.audioOf[e.ri]) || null;
+  }
+
+  function paintMusic() {
+    var b = feedRoot.querySelector('.fb-music');
+    if (!b) return;
+    var au = reelAudioAt(FEED.i);
+    b.hidden = !au;
+    if (!au) return;
+    var on = !!FEED.musicOn && !FEED.musicErr;
+    var label = FEED.musicErr ? t('musicErr') : (on ? t('musicStop') : t('musicPlay'));
+    var full = label + ' · ' + t('musicCredit');
+    b.setAttribute('data-on', on ? '1' : '0');
+    b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    b.setAttribute('title', full);
+    b.setAttribute('aria-label', full);
+    var s = b.querySelector('.music-t');
+    if (s) s.textContent = label;
+  }
+
+  function syncMusic() {              // 换卷：切音源；本来在放就接着放
+    var a = $('#bgm');
+    paintMusic();
+    if (!a) return;
+    var au = reelAudioAt(FEED.i);
+    if (!au) { if (!a.paused) a.pause(); FEED.musicOn = false; return; }
+    if (a.getAttribute('data-cur') !== au.src) {
+      a.setAttribute('data-cur', au.src);
+      a.src = asset(au.src);
+      a.load();
+    }
+    if (FEED.musicOn && a.paused) playMusic();
+  }
+
+  function playMusic() {
+    var a = $('#bgm');
+    var au = reelAudioAt(FEED.i);
+    if (!a || !au) return;
+    if (a.getAttribute('data-cur') !== au.src) {
+      a.setAttribute('data-cur', au.src);
+      a.src = asset(au.src);
+    }
+    a.volume = 0.55;                  // 画面上的竖排原文要读，配乐让位
+    FEED.musicOn = true; FEED.musicErr = false;
+    var p = a.play();
+    if (p && p.catch) {
+      p.catch(function (err) {
+        // `AbortError` = play() 还没真正起播就被 pause()/换源打断了（用户连点两下就会遇到），
+        // **不是故障**——早先把它当故障，结果暂停后按钮文案变成「配乐不可用」（探针抓到的）。
+        if (err && err.name === 'AbortError') return;
+        FEED.musicOn = false; FEED.musicErr = true; paintMusic();
+      });
+    }
+    paintMusic();
+  }
+
+  function stopMusic() {
+    var a = $('#bgm');
+    if (a && !a.paused) a.pause();
+    FEED.musicOn = false;
+    paintMusic();
+  }
+
+  function toggleMusic() { if (FEED.musicOn) stopMusic(); else playMusic(); }
 
   // `data-cur` 记的是"我们让它显示哪张"（路径形式）。不能拿 img.src 比：
   // 赋值后浏览器会把 src 属性规范化成绝对 URL，跟路径永远不相等。
@@ -595,6 +691,7 @@
     if (p && p.classList.contains('on')) fillPanel();
     var rid = FEED.rid ? '/r/' + FEED.rid : '';
     history.replaceState(null, '', '#/w/' + FEED.pid + rid + '/' + (i + 1));
+    syncMusic();
     return i;
   }
 
@@ -783,6 +880,7 @@
     }
     if (act === 'prev') { ev.preventDefault(); step(-1); return; }
     if (act === 'next') { ev.preventDefault(); step(1); return; }
+    if (act === 'music') { ev.preventDefault(); toggleMusic(); return; }
   }
 
   function onFeedClick(ev) {
@@ -841,6 +939,10 @@
     }
     app.addEventListener('click', onClick);
     feedRoot.addEventListener('click', onFeedClick);
+    // 帧里点开视频（自带声）时先把配乐让出去，别两条音轨打架
+    feedRoot.addEventListener('play', function (ev) {
+      if (ev.target && ev.target.tagName === 'VIDEO' && FEED.musicOn) stopMusic();
+    }, true);
     document.addEventListener('keydown', onKey);
     window.addEventListener('scroll', function () {
       var top = $('#top');

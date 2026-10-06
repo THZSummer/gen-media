@@ -28,9 +28,12 @@
 | 1 | 图赞主图（白描兽 + 木刻边框 + 榜题） | 1080x1440 | 3:4 | 1 / 期 |
 | 2 | 原文卡（卷次 + 原文 + 郭璞注） | 1080x1440 | 3:4 | 1 / 期 |
 | 3 | 系列封面（木刻版画风） | 1080x1440 | 3:4 | 按需 |
+| 4 | **本期配乐**（详情页配乐开关播放；AI 生成、无词、BPM 60–90） | mp3 ≈30 s · 44.1 kHz 立体声 · 128 kbps | — | 1 / 期 |
 
 > 封面与内页**不同骨法**：内页白描（线条简单、利于锁结构），封面用木刻版画（冲击力强）。
 > 两者是刻意的分工，不是风格漂移。
+> ⚠️ 配乐**不是"配图附属品"**：它按 [DOUYIN.md](DOUYIN.md) §九 的选曲规则做（无词、肃穆苍茫、BPM 60–90），
+> 由 `comfyui-music-minimax3` 生成、`scripts/place_bgm.py` 转码落位（母版留 `work/`，入库的是 128 kbps）。
 
 ---
 
@@ -56,7 +59,7 @@ shanhai-jing/
 ├── scripts/               项目专用脚本（图赞制版排字等）
 └── subjects/              子主题：一兽一目录
     ├── jiu-wei-hu/        九尾狐（南山經 · 青丘之山）
-    │   ├── period-01/     第一期：成品 + controls/（同轮对照 + 擦除前原样）+ manifest.json
+    │   ├── period-01/     第一期：成品 + controls/（同轮对照 + 擦除前原样）+ bgm/（本期配乐）+ manifest.json
     │   ├── rounds/        逐轮记录 + 评分复核（rNN-review.md）
     │   └── rounds.py      轮次 prompt 定义（R7 追认 + R9 抑印实验；可 --dry 复跑）
     ├── lu-shu/            鹿蜀（南山經 · 杻陽之山）
@@ -70,7 +73,8 @@ shanhai-jing/
 
 > 项目脚本：`typeset_zanzhi.py`（制版）、`seal_check.py`（机械筛印候选）、
 > `corner_sheet.py`（四角/环带放大对照图，固定版面 + 自检 + `--enhance levels|redness`）、
-> `patch_region.py`（擦除，带自检）、`run_round.py`（轮次驱动）
+> `patch_region.py`（擦除，带自检）、`run_round.py`（轮次驱动）、
+> `place_bgm.py`（配乐转码落位 + 写回 manifest，带自检）
 ```
 
 > 目录约定与 [bio-splice](../bio-splice/README.md) 一致：`subjects/<子主题>/period-NN/`，
@@ -138,6 +142,26 @@ Z-Image-Turbo 在"册页 · 陈年纸本"这类骨法下，**几乎每张都在�
 > 下一件若要浓，应当把骨法句的纸色/墨色一起调暗，并**让两件同轮重跑**。
 
 
+### 配乐（2026-10-07 加）
+
+```
+① 生成   comfyui-music-minimax3（远端 ComfyUI · MiniMax Music 3）：
+         --instrumental + caption（模板见该技能 references/caption-templates.md）
+         ⏱️ 成本 ≈ 16.7 s 墙钟 / 1 s 音频（30 s 实测 460 s）→ 按"最短够用"要时长
+② 落位   scripts/place_bgm.py：ffmpeg 转 128 kbps + 剥元数据 → bgm/<slug>-bgm.mp3
+         → 算 sha256/时长 → 写回 manifest 的 `audio` 段（自检：体积/时长/编码/回读一致）
+③ 播放   站点详情页的配乐开关读 reel.audio（见 dev-guide references/site.md §5.1 / §6）
+```
+
+- **母版留 `work/`，入库的是转码版**：30 s 的 V0 约 850 KB，128 kbps 约 480 KB，站点上听不出差别。
+- **一卷一首**（`reel` 级，不是帧级）：同一子主题的成品与对照共用同一首曲子。
+- ⛔ **不做自动播放**：详情页给的是开关（浏览器要求用户手势）。离开详情页必停。
+- ⚠️ **许可待核**：模型是开放权重 + MiniMax-Music3 COMMUNITY LICENSE，**商用前读许可原文**；
+  在核实前按 [DOUYIN.md](DOUYIN.md) §九 第 6 条"待核实"处理。
+- **本期实际**：九尾狐 · 模板 A 古琴（62 BPM、箫远、磬稀）· seed 9097 · 30 s · sha256 `c5a5b7c96330…`。
+
+---
+
 ## 六、条目清单
 
 | 子主题 | 兽名 | 卷次 | 可数特征（验收硬指标） | 状态 |
@@ -170,6 +194,10 @@ Z-Image-Turbo 在"册页 · 陈年纸本"这类骨法下，**几乎每张都在�
 - [ ] 跨引擎对照若跑过，已记入 `rounds/rNN-review.md`（Seedream 特征最强但 6/6 题款盖章，不换代）
 - [ ] 抑印轮已记入 `rounds/rNN-review.md`（R5/R9 结论：**否定式与改写先验都不能抑印**）
 - [ ] 若追求"更浓"（浓虎纹 / 更浓的尾巴）：已确认骨法与两件同期一起调，否则必掉 E 系列一致
+- [ ] **有配乐的期**：`bgm/<slug>-bgm.mp3` 已落位（128 kbps、≤2 MB、双声道 44.1 kHz），manifest 的 `audio.sha256` 与实际文件一致（`place_bgm.py` 自检 ④）
+- [ ] **配乐经人耳确认无词**（`--instrumental` 只是提示词层面的约束，脚本验不了听感）
+- [ ] 站点详情页配乐开关可用：点一下开 / 再点一下关 / 离开详情页停（`work/music_probe.py`，13/13）
+- [ ] 配乐已署名"AI 生成"（按钮 `title`/`aria-label` 带 `musicCredit`），未声称原创或人类演奏
 
 ---
 
@@ -177,6 +205,7 @@ Z-Image-Turbo 在"册页 · 陈年纸本"这类骨法下，**几乎每张都在�
 
 | 日期 | 版本 | 变更内容 | 作者 |
 |------|------|----------|------|
+| 2026-10-07 | v0.9 | **本期配乐 + 站点详情页配乐开关**：新增交付物第 4 项（配乐）与 §五「配乐」工艺（生成 → `place_bgm.py` 转码落位 → 站点播放）；九尾狐首条配乐落位（模板 A 古琴 62 BPM / seed 9097 / 30 s / 128 kbps，母版 227 kbps 留 `work/`）；检查清单加 4 项（含"人耳确认无词"与署名）；站点侧新增 `reel.audio` 数据契约与 `.fb-music` 开关（详见 dev-guide references/site.md §5.1/§6/§9） | 小七 |
 | 2026-10-07 | v0.8 | **抖音分发调研**：新增 [DOUYIN.md](DOUYIN.md) / [DOUYIN.en.md](DOUYIN.en.md) —— 三条硬门槛（实名 / AI 内容显式标识已是发布必经环节 / 不得称"复原·真迹"或把原文改成功效承诺）、九维适配度评分（题材 5 分 vs 形态 2 分）、三档流量预期、三条路线（静图图文 / 过程短视频 / 长图文考据）+ 30 天节奏、星图变现门槛表、风险对策与 6 项未核实项；README 顶部导航与结构树同步 | 小七 |
 | 2026-10-05 | v0.1 | 建立项目：三条决定（白描为骨 / 严格考据 / 小红书 3:4）落定；定调期选定九尾狐；记录探针实测（Z-Image-Turbo 木刻质感成立但可数属性不可控、模型会画乱码印章并擅自加色） | 小七 |
 | 2026-10-05 | v0.2 | **定调期闭环跑通**：R1 证伪 prompt 控计数（6/6）→ 程序化结构控制图 + ControlNet 锁住九尾（R2 逐条点数确证 9 条）→ 制版产出图赞主图与原文卡（R3，5 项排版自检通过）。新增 `scripts/{control_image,font_coverage,typeset_zanzhi}.py`；印章因篆体字库未解决而暂缺 | 小七 |

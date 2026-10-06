@@ -67,6 +67,7 @@ site/data/index.json      {counts, projects:[卡片 … 卡片.strip 见 §3]}
 site/data/<pid>.json      {id, kind, title, desc, readme, summary, plan, rubric, stats,
                            reels:[{id, title, desc, poster, cover, count, finals, bytes,
                                    periods:[{id,title,note,doc}], text_ref, doc,
+                                   audio:{src,size,duration_s,seed,sha256,preset,skill,generated},
                                    items:[{kind, src, thumb, size, role, period, label,
                                            note, shot, round, engine, seed, sha256,
                                            prompt, scores}]}]}
@@ -101,6 +102,23 @@ site/data/<pid>.json      {id, kind, title, desc, readme, summary, plan, rubric,
   bio-splice 是 A–E 五维、shanhai-jing 是 A–F 六维。
 - 新增内容后重跑生成器；`main()` 末尾会拿 SUMMARY.md 的基线（12/60/135/59）自检，
   不一致就退出码 2。
+
+### 5.1 详情页配乐（`reel.audio`）
+
+**数据侧**：期 manifest 里可选写一段 `audio`，生成器（`reel_audio()`）把它翻成站点数据：
+
+```json
+"audio": {"file": "bgm/jiu-wei-hu-bgm.mp3", "duration_s": 30.0, "seed": 9097,
+          "sha256": "…", "preset": "模板 A · 古琴独奏", "skill": "comfyui-music-minimax3",
+          "generated": "2026-10-07"}
+```
+
+- `file` 相对**期目录**；生成器换成仓库相对路径（配 `size`），前端按 §6 的 `BASE` 拼接。
+- **文件不存在就不出 `audio` 键**：宁可不显示开关，也不要一个点了没声音的按钮。
+- 一卷一个配乐（`reel` 级，不是帧级）：同一子主题的成品/对照共用同一首曲子。
+- 音频产物入库（是交付物，不是中间产物），但**按"最短够用"出**：30 s / 128 kbps 约 480 KB；
+  V0 高码率母版留在 `work/`，站点上是转码后的版本。转码与落位走
+  `projects/shanhai-jing/scripts/place_bgm.py`（ffmpeg 转码 + 写回 manifest + 自检）。
 
 ### 缩略图（卡片与占位**不得直出原图**）
 
@@ -151,6 +169,18 @@ site/data/<pid>.json      {id, kind, title, desc, readme, summary, plan, rubric,
   不显式 flex 就是行内流——`aspect-ratio` 失效、卡片下面的标题说明整行消失。
 - 详细页是覆盖层（`#feed`），不是 `<dialog>` 灯箱：**灯箱已随 feed 一起移除**，
   元数据从"灯箱侧栏"搬到信息面板。
+- **详情页配乐开关**（2026-10-07 加，卷有 `reel.audio` 时才渲染）：
+  - 位置在最上面的 feed 栏 `.fb-act` 里（`data-act="music"`），样式与文案沿用主题开关的约定：
+    **内联 SVG 音符 + 可见文字**（`musicPlay` / `musicStop`），窄屏 ≤720px 只留图标；
+    `data-on="1"` 与 `aria-pressed` 表示正在播放，`title`/`aria-label` 里带**配乐署名**
+    （`musicCredit`：配乐是 AI 生成的，主动标注）。
+  - ⛔ **不做自动播放**：浏览器要求用户手势，静默 `play()` 会被拦。开关就是那个手势；
+    被拦或文件坏了 → `musicErr`（`配乐不可用`）+ 按钮回到关闭态，不假装在放。
+  - 一个隐藏的 `<audio id="bgm" loop preload="none">` 承载播放；`volume=0.55`（画面上有竖排原文要读）。
+  - **离开详情页必停**（`closeFeed()` 里 pause + 清 `src`）；**换卷换音源**（`activate()` → `syncMusic()`），
+    当前帧所属卷没有配乐就把开关藏起来并停声；点开帧内视频时先让配乐闭嘴（避免两条音轨打架）。
+  - 改了这段按 §9 验：开关存在且 `data-on` 随点击翻转、`#bgm` 的 `src` 指向 `reel.audio.src`、
+    离开详情页后 `#bgm.paused === true`。
 
 ## 7. 本地预览
 
@@ -190,8 +220,28 @@ XDG_RUNTIME_DIR=/tmp/xdg $CH --headless=new --no-sandbox --disable-gpu \
 
 数 DOM 结构（`class="fr"` / `class="pcard"` / `#runs button`）验证渲染，比只看 HTTP 200 可靠。
 
-`--dump-dom` 看不到的交互（点语言、开信息面板、键盘换帧、进度条跳段、沉浸模式），
-用一张**临时驱动页**（与 `index.html` 同构 + 末尾一段按 query 触发动作的脚本）
+> ⚠️ **2026-10-07 实测补充：chromium 需要「写在工作区内的 HOME」**。只加 `--user-data-dir`
+> 不够——`HOME=/home/usb` 时 crashpad 起不来（`chrome_crashpad_handler: --database is required`），
+> **stdout 为空**，很容易误判成"页面没渲染"。三组对照：
+
+```sh
+WS=/home/usb/wks/gits/GitHub/gen-media
+mkdir -p $WS/work/home-dir $WS/work/chrome-prof
+# A) HOME 不变 + --user-data-dir 在工作区          → 0 字节 DOM（crashpad 报 --database is required）
+# B) HOME=$WS/work/home-dir + --user-data-dir       → ✅ 18160 字节 DOM
+# C) A + --disable-crash-reporter --disable-breakpad → 仍然 0 字节
+env HOME=$WS/work/home-dir XDG_RUNTIME_DIR=/tmp/xdg \
+  /snap/chromium/current/usr/lib/chromium-browser/chrome \
+  --headless=new --no-sandbox --disable-gpu --disable-dev-shm-usage \
+  --user-data-dir=$WS/work/chrome-prof \
+  --virtual-time-budget=9000 --dump-dom 'http://127.0.0.1:8090/#/w/shanhai-jing/r/jiu-wei-hu/2'
+```
+
+（`--no-zygote --single-process` 这套旗标在本机**会 SIGTRAP 崩溃**（exit 133），别再用它兜底；
+需要的是上面的 HOME。）截图仍按 §9 开头那条：**`--screenshot` 不要加** `--no-zygote --single-process`。
+
+`--dump-dom` 看不到的交互（点语言、开信息面板、键盘换帧、进度条跳段、沉浸模式、
+**详情页配乐开关**），用一张**临时驱动页**（与 `index.html` 同构 + 末尾一段按 query 触发动作的脚本）
 在仓库根跑完就删；三个必须知道的坑：
 
 1. **轮询等待，别用固定 `setTimeout`**：固定延时会在 fetch/render 之前触发，动作落空
@@ -202,11 +252,27 @@ XDG_RUNTIME_DIR=/tmp/xdg $CH --headless=new --no-sandbox --disable-gpu \
 3. **每次一个全新 `--user-data-dir`**：共用一个 profile 会撞 SingletonLock（chromium 直接退出、
    stdout 为空），而且磁盘缓存会让下一轮拿到上一轮的 `app.js`（实测：英文那轮渲染出中文）。
    再加 `--disk-cache-size=1` 更稳。
+4. **配乐开关要连点两下**（2026-10-07 加）：第一下开、第二下关。**第二下的断言不能只看
+   `data-on=0`**——`play()` 的 promise 会被紧随其后的 `pause()` 以 `AbortError` 打断，
+   若把它当播放故障，按钮文案会错成「配乐不可用」（`site/app.js` 的 catch 里已按
+   `err.name === 'AbortError'` 放行；探针要同时断言"关闭后文案回到 action"）。
+   还要验"离开详情页音频已暂停"：`#bgm` 会随 `feedRoot.innerHTML=''` 一起被移除，
+   所以要在点击前把音频元素句柄存到 `window` 上，之后读那个 detached 元素的 `paused`。
 
-**本机实测可用的 chromium 旗标（2026-10-06 复核）**：`--dump-dom` 必须加 `--no-zygote --single-process`
-（否则只吐 crashpad 报错、stdout 为空）；**`--screenshot` 反过来不能加这两个**（单进程下合成帧拿不到，
-报 `blink.mojom.WidgetHost` 且不落文件）。两种情况都要 `--user-data-dir` 指向**工作区内的可写目录**
-（`/tmp` 下的 profile 会被文件沙箱挡掉），并先 `mkdir -p /tmp/xdg && chmod 700 /tmp/xdg` 再给 `XDG_RUNTIME_DIR`。
+**本机实测可用的 chromium 旗标（2026-10-07 更正）**：
+~~`--dump-dom` 必须加 `--no-zygote --single-process`~~ —— **这条 2026-10-07 被推翻**：
+本机现在加这两个旗标会 **SIGTRAP 崩溃（exit 133）**、stdout 仍是空。
+真正缺的是 **`HOME` 必须指向工作区内的可写目录**（crashpad 需要在那里建数据库），
+见上一条三组对照。现行可用组合：
+
+```sh
+HOME=$WS/work/home-dir XDG_RUNTIME_DIR=/tmp/xdg $CH --headless=new --no-sandbox \
+  --disable-gpu --disable-dev-shm-usage --user-data-dir=$WS/work/chrome-prof-<每轮新建> \
+  --disk-cache-size=1 --virtual-time-budget=9000 --dump-dom '<url>'
+```
+
+`--screenshot` 同样用这套（**不加** `--no-zygote --single-process`，单进程下合成帧拿不到、
+报 `blink.mojom.WidgetHost` 且不落文件）。先 `mkdir -p /tmp/xdg && chmod 700 /tmp/xdg` 再给 `XDG_RUNTIME_DIR`。
 
 主题现在**默认深色**，两套都要看：默认（不带参数）必须深色 —— 无头 chromium 的系统偏好本来就是浅色，
 所以「`matchMedia('(prefers-color-scheme: light)').matches === true` 而 `body` 背景仍是 `rgb(11,11,13)`」

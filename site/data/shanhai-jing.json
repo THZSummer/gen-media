@@ -362,7 +362,19 @@
      "sha256": "",
      "prompt": ""
     }
-   ]
+   ],
+   "audio": {
+    "duration_s": 29.989,
+    "seed": 9097,
+    "preset": "模板 A · 古琴独奏（62 BPM，萧远、磬稀）",
+    "skill": "comfyui-music-minimax3",
+    "generated": "2026-10-07",
+    "sha256": "c5a5b7c96330669ea492036775dde414be133e1f67e4da11d21df942dc8eadfe",
+    "note": "AI 生成配乐（开放权重，商用前读模型许可）；母版 226 kbps 留在 work/，入库版本为 128k 转码",
+    "caption": "Global Metadata: Chinese guqin instrumental, 62 BPM, D minor pentatonic with a lowered sixth, solemn and quietly ominous, an ancient beast's lair at dusk, slow and unhurried throughout, no vocals at all.\nVocal Details: fully instrumental, no voice, no humming, no choir, no lyrics.\nArrangement: solo guqin with sparse plucked notes and long silences, a low bamboo flute (xiao) drifting far behind, a single deep struck stone every few phrases, faint distant wind and paper texture, large empty-hall reverb, no drums, no percussion, no bass, never building to a climax.",
+    "src": "projects/shanhai-jing/subjects/jiu-wei-hu/period-01/bgm/jiu-wei-hu-bgm.mp3",
+    "size": 480696
+   }
   },
   {
    "id": "lu-shu",

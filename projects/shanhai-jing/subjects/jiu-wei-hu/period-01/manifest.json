@@ -1,151 +1,162 @@
 {
- "period": "period-01",
- "note": "定调期首件：九尾狐（南山經 · 青丘之山）。骨法为赭石设色工笔；出图为纯文生图 + **点名神话生物的 prompt 写法**（8/8 出九尾），已撤销程序化控制图装置（见 rounds/r05-review.md）。已制版产出图赞主图与原文卡。R9 做了抑印措辞实验（12 张，12/12 仍有印 → 措辞抑印证伪，见 rounds/r09-review.md）；定稿按同一条规则改用 patch_region.py 擦除原 R7 m202 四角的两枚淡印，擦除后逐像素核对：变动只落在两个补丁框内。印章层（真印）因篆体字库未解决而暂缺。",
- "from": "work/shanhai-jing/jiu-wei-hu/r02/",
- "text_ref": {
-  "volume": "山海經 · 南山經",
-  "volume_en": "Shan Hai Jing · Nan Shan Jing",
-  "passage": "又東三百里，曰青丘之山。其陽多玉，其陰多青䨼。有獸焉，其狀如狐而九尾，其音如嬰兒，能食人。食者不蠱。",
-  "commentary": null,
-  "commentary_note": "郭璞注文尚未逐条录入，录入前成品不得出现注文",
-  "place": "青丘之山"
- },
- "entries": [
-  {
-   "final": "01-jiu-wei-hu.png",
-   "role": "final",
-   "source_round": 7,
-   "source_engine": "z-image-turbo",
-   "source_shot": "m202",
-   "source_file": "work/shanhai-jing/jiu-wei-hu/r07/shj-jwh-r7-m202_00001_.png",
-   "seed": 202,
-   "steps": 20,
-   "control_strength": 0.75,
-   "prompt_id": "12b96264-86a5-4d0f-ad08-f2671f7d9348",
-   "prompt": "The nine-tailed fox of Chinese mythology, standing on a rocky outcrop and looking back over its shoulder. Its nine long tails spread out behind it, thick and full of fur. Painted in the manner of a traditional Chinese album leaf, fine ink brushwork, delicate fur strokes, ink and pale colour on aged paper.",
-   "countable_check": {
-    "trait": "九尾",
-    "expected": 9,
-    "method": "裁尾区放大目视点数（**目视点数，非机械确证**）：读作九尾、尾羽彼此有缝",
-    "multi_tail_rate": "点名式 prompt 8/8；描述式 prompt 1/6（R6 对照）",
-    "zoom_file": "work/shanhai-jing/jiu-wei-hu/r07/m202-tails.png"
-   },
-   "kind": "plate",
-   "note": "设色画心：供制版使用；已擦除 2 处模型淡印（见 seal_erasure）",
-   "control_image": null,
-   "seal_erasure": {
-    "tool": "scripts/patch_region.py",
-    "when": "2026-10-06",
-    "boxes": [
-     [
-      0,
-      1266,
-      66,
-      94
-     ],
-     [
-      950,
-      1284,
-      74,
-      76
-     ]
-    ],
-    "feather": 12,
-    "target": "模型自画的极淡朱印 2 枚（BL、BR；4× 放大可见，seal_check 环带阈值未检出）",
-    "self_check": {
-     "cinnabar_before": [
-      22,
-      60
-     ],
-     "cinnabar_after": [
-      0,
-      0
-     ],
-     "seam_luma_delta": [
-      2.0,
-      2.0
-     ]
+  "period": "period-01",
+  "note": "定调期首件：九尾狐（南山經 · 青丘之山）。骨法为赭石设色工笔；出图为纯文生图 + **点名神话生物的 prompt 写法**（8/8 出九尾），已撤销程序化控制图装置（见 rounds/r05-review.md）。已制版产出图赞主图与原文卡。R9 做了抑印措辞实验（12 张，12/12 仍有印 → 措辞抑印证伪，见 rounds/r09-review.md）；定稿按同一条规则改用 patch_region.py 擦除原 R7 m202 四角的两枚淡印，擦除后逐像素核对：变动只落在两个补丁框内。印章层（真印）因篆体字库未解决而暂缺。",
+  "from": "work/shanhai-jing/jiu-wei-hu/r02/",
+  "text_ref": {
+    "volume": "山海經 · 南山經",
+    "volume_en": "Shan Hai Jing · Nan Shan Jing",
+    "passage": "又東三百里，曰青丘之山。其陽多玉，其陰多青䨼。有獸焉，其狀如狐而九尾，其音如嬰兒，能食人。食者不蠱。",
+    "commentary": null,
+    "commentary_note": "郭璞注文尚未逐条录入，录入前成品不得出现注文",
+    "place": "青丘之山"
+  },
+  "entries": [
+    {
+      "final": "01-jiu-wei-hu.png",
+      "role": "final",
+      "source_round": 7,
+      "source_engine": "z-image-turbo",
+      "source_shot": "m202",
+      "source_file": "work/shanhai-jing/jiu-wei-hu/r07/shj-jwh-r7-m202_00001_.png",
+      "seed": 202,
+      "steps": 20,
+      "control_strength": 0.75,
+      "prompt_id": "12b96264-86a5-4d0f-ad08-f2671f7d9348",
+      "prompt": "The nine-tailed fox of Chinese mythology, standing on a rocky outcrop and looking back over its shoulder. Its nine long tails spread out behind it, thick and full of fur. Painted in the manner of a traditional Chinese album leaf, fine ink brushwork, delicate fur strokes, ink and pale colour on aged paper.",
+      "countable_check": {
+        "trait": "九尾",
+        "expected": 9,
+        "method": "裁尾区放大目视点数（**目视点数，非机械确证**）：读作九尾、尾羽彼此有缝",
+        "multi_tail_rate": "点名式 prompt 8/8；描述式 prompt 1/6（R6 对照）",
+        "zoom_file": "work/shanhai-jing/jiu-wei-hu/r07/m202-tails.png"
+      },
+      "kind": "plate",
+      "note": "设色画心：供制版使用；已擦除 2 处模型淡印（见 seal_erasure）",
+      "control_image": null,
+      "seal_erasure": {
+        "tool": "scripts/patch_region.py",
+        "when": "2026-10-06",
+        "boxes": [
+          [
+            0,
+            1266,
+            66,
+            94
+          ],
+          [
+            950,
+            1284,
+            74,
+            76
+          ]
+        ],
+        "feather": 12,
+        "target": "模型自画的极淡朱印 2 枚（BL、BR；4× 放大可见，seal_check 环带阈值未检出）",
+        "self_check": {
+          "cinnabar_before": [
+            22,
+            60
+          ],
+          "cinnabar_after": [
+            0,
+            0
+          ],
+          "seam_luma_delta": [
+            2.0,
+            2.0
+          ]
+        },
+        "pixel_proof": "与 controls/jiu-wei-hu-r7-m202-seal-tainted.png 逐像素比对：差异 7024 px，全部落在两个补丁框内（框外 0 px）",
+        "visual": "四角 12% / 6× 目视：BL、BR 两枚淡印已除，四角无印、无伪字",
+        "evidence": [
+          "work/shanhai-jing/corner-inspect/jwh-final-corners-2x2.jpg（擦除前）",
+          "work/shanhai-jing/corner-inspect/jwh-v2-corners.jpg（擦除后）",
+          "work/shanhai-jing/corner-inspect/jwh-bottom-band-x4.png / jwh-bottom-band-v2.png（下缘环带 4×）"
+        ]
+      }
     },
-    "pixel_proof": "与 controls/jiu-wei-hu-r7-m202-seal-tainted.png 逐像素比对：差异 7024 px，全部落在两个补丁框内（框外 0 px）",
-    "visual": "四角 12% / 6× 目视：BL、BR 两枚淡印已除，四角无印、无伪字",
-    "evidence": [
-     "work/shanhai-jing/corner-inspect/jwh-final-corners-2x2.jpg（擦除前）",
-     "work/shanhai-jing/corner-inspect/jwh-v2-corners.jpg（擦除后）",
-     "work/shanhai-jing/corner-inspect/jwh-bottom-band-x4.png / jwh-bottom-band-v2.png（下缘环带 4×）"
-    ]
-   }
-  },
-  {
-   "final": "02-jiu-wei-hu-zan.png",
-   "role": "final",
-   "kind": "card",
-   "note": "图赞主图：卷次 + 榜题 + 画心 + 点睛句 + 出處",
-   "source": "scripts/typeset_zanzhi.py",
-   "size": "1080x1440"
-  },
-  {
-   "final": "03-jiu-wei-hu-wen.png",
-   "role": "final",
-   "kind": "card",
-   "note": "原文卡：竖排榜题 + 卷次 + 竖排原文（右起，50 字）",
-   "source": "scripts/typeset_zanzhi.py",
-   "size": "1080x1440"
-  },
-  {
-   "final": "controls/jiu-wei-hu-r7-m202-seal-tainted.png",
-   "role": "retired-control",
-   "kind": "plate",
-   "source_round": 7,
-   "source_shot": "m202",
-   "seed": 202,
-   "source_file": "work/shanhai-jing/jiu-wei-hu/r07/shj-jwh-r7-m202_00001_.png",
-   "note": "擦除前原样：R7 m202 定稿四角 BL、BR 各有一枚**极淡**的模型朱印 —— 4× 放大可见，而 seal_check.py 的环带阈值未检出（机械筛漏判）。留作「擦除前」对照。"
-  },
-  {
-   "final": "controls/jiu-wei-hu-r9-s2-1811-strong-tails-sealed.png",
-   "role": "control",
-   "kind": "plate",
-   "source_round": 9,
-   "source_shot": "s2-1811",
-   "seed": 1811,
-   "source_file": "work/shanhai-jing/jiu-wei-hu/r09/shj-jiu-wei-hu-r9-s2-1811_00001_.png",
-   "note": "更浓的尾巴（有印）：R9 抑印实验的最优候选 —— 尾扇更浓、九尾读得更清楚（A 5），但四角有印、墨色更重（F/B/E 各降档，加权 4.63 < 定稿 4.80）→ 不换代；只作「更浓的尾巴长什么样」的参考。见 rounds/r09-review.md"
-  },
-  {
-   "final": "controls/nine-tails-control.png",
-   "role": "retired-control",
-   "source": "scripts/control_image.py",
-   "self_check": {
-    "tail_count": 9,
-    "min_gap_px": 31.52,
-    "border_ink_px": 0
-   },
-   "note": "已废弃的控制图（保留为教训记录，见 rounds/r05-review.md）；本项目现用纯文生图"
-  },
-  {
-   "final": "controls/nine-tails-control-plume.png",
-   "role": "retired-control",
-   "note": "已废弃的控制图（保留为教训记录，见 rounds/r05-review.md）；本项目现用纯文生图",
-   "source": "scripts/control_image.py",
-   "self_check": {
-    "tail_count": 9,
-    "min_gap_px": 15.83,
-    "border_ink_px": 0
-   }
+    {
+      "final": "02-jiu-wei-hu-zan.png",
+      "role": "final",
+      "kind": "card",
+      "note": "图赞主图：卷次 + 榜题 + 画心 + 点睛句 + 出處",
+      "source": "scripts/typeset_zanzhi.py",
+      "size": "1080x1440"
+    },
+    {
+      "final": "03-jiu-wei-hu-wen.png",
+      "role": "final",
+      "kind": "card",
+      "note": "原文卡：竖排榜题 + 卷次 + 竖排原文（右起，50 字）",
+      "source": "scripts/typeset_zanzhi.py",
+      "size": "1080x1440"
+    },
+    {
+      "final": "controls/jiu-wei-hu-r7-m202-seal-tainted.png",
+      "role": "retired-control",
+      "kind": "plate",
+      "source_round": 7,
+      "source_shot": "m202",
+      "seed": 202,
+      "source_file": "work/shanhai-jing/jiu-wei-hu/r07/shj-jwh-r7-m202_00001_.png",
+      "note": "擦除前原样：R7 m202 定稿四角 BL、BR 各有一枚**极淡**的模型朱印 —— 4× 放大可见，而 seal_check.py 的环带阈值未检出（机械筛漏判）。留作「擦除前」对照。"
+    },
+    {
+      "final": "controls/jiu-wei-hu-r9-s2-1811-strong-tails-sealed.png",
+      "role": "control",
+      "kind": "plate",
+      "source_round": 9,
+      "source_shot": "s2-1811",
+      "seed": 1811,
+      "source_file": "work/shanhai-jing/jiu-wei-hu/r09/shj-jiu-wei-hu-r9-s2-1811_00001_.png",
+      "note": "更浓的尾巴（有印）：R9 抑印实验的最优候选 —— 尾扇更浓、九尾读得更清楚（A 5），但四角有印、墨色更重（F/B/E 各降档，加权 4.63 < 定稿 4.80）→ 不换代；只作「更浓的尾巴长什么样」的参考。见 rounds/r09-review.md"
+    },
+    {
+      "final": "controls/nine-tails-control.png",
+      "role": "retired-control",
+      "source": "scripts/control_image.py",
+      "self_check": {
+        "tail_count": 9,
+        "min_gap_px": 31.52,
+        "border_ink_px": 0
+      },
+      "note": "已废弃的控制图（保留为教训记录，见 rounds/r05-review.md）；本项目现用纯文生图"
+    },
+    {
+      "final": "controls/nine-tails-control-plume.png",
+      "role": "retired-control",
+      "note": "已废弃的控制图（保留为教训记录，见 rounds/r05-review.md）；本项目现用纯文生图",
+      "source": "scripts/control_image.py",
+      "self_check": {
+        "tail_count": 9,
+        "min_gap_px": 15.83,
+        "border_ink_px": 0
+      }
+    }
+  ],
+  "cartouche": "九尾狐",
+  "cover_line": "其狀如狐而九尾",
+  "cartouche_font": "Noto Serif CJK（42277 码位级覆盖，含生僻字 䨼）",
+  "seal_status": "两层：① 真印（篆体）层仍缺 —— 篆体字库未解决（见 PLAN.md §三）；② 模型自画的乱码印/伪字按硬伤处理 —— 本骨法下命中率极高（R9 抽查 12/12 有印），且**两条措辞抑印路线均已证伪**（否定式 R3 9 张、改写先验 R9 12 张）。定稿做法：四角 12% / 6× 放大目视准入 + patch_region.py 擦除（带自检 + 逐像素核对）；本期定稿擦除 2 处（BL、BR），原样保留在 controls/ 作对照。",
+  "rounds": [
+    "r01: 证伪 prompt 控计数",
+    "r02–r04: 控制图路线（已废弃，保留为教训）",
+    "r05–r08: 撤销控制装置，改用点名式 prompt —— 8/8 出九尾",
+    "r07: 定稿轮追认存档（prompt 已录进 rounds.py，可复跑）",
+    "r09: 抑印措辞实验（4 种骨法句 × 3 seed = 12 张，12/12 仍有印 → 证伪；见 rounds/r09-review.md）"
+  ],
+  "bone": "赭石设色（工笔淡彩）—— R7 定案，非白描墨线",
+  "process": "纯文生图（点名式 prompt），无控制图 / 无 ControlNet；印面：四角 12% / 6× 目视（scripts/corner_sheet.py 出图留档）＋ scripts/patch_region.py 擦除（含残留/接缝自检）",
+  "slug": "jiu-wei-hu",
+  "audio": {
+    "file": "bgm/jiu-wei-hu-bgm.mp3",
+    "duration_s": 29.989,
+    "seed": 9097,
+    "preset": "模板 A · 古琴独奏（62 BPM，萧远、磬稀）",
+    "skill": "comfyui-music-minimax3",
+    "generated": "2026-10-07",
+    "sha256": "c5a5b7c96330669ea492036775dde414be133e1f67e4da11d21df942dc8eadfe",
+    "note": "AI 生成配乐（开放权重，商用前读模型许可）；母版 226 kbps 留在 work/，入库版本为 128k 转码",
+    "caption": "Global Metadata: Chinese guqin instrumental, 62 BPM, D minor pentatonic with a lowered sixth, solemn and quietly ominous, an ancient beast's lair at dusk, slow and unhurried throughout, no vocals at all.\nVocal Details: fully instrumental, no voice, no humming, no choir, no lyrics.\nArrangement: solo guqin with sparse plucked notes and long silences, a low bamboo flute (xiao) drifting far behind, a single deep struck stone every few phrases, faint distant wind and paper texture, large empty-hall reverb, no drums, no percussion, no bass, never building to a climax."
   }
- ],
- "cartouche": "九尾狐",
- "cover_line": "其狀如狐而九尾",
- "cartouche_font": "Noto Serif CJK（42277 码位级覆盖，含生僻字 䨼）",
- "seal_status": "两层：① 真印（篆体）层仍缺 —— 篆体字库未解决（见 PLAN.md §三）；② 模型自画的乱码印/伪字按硬伤处理 —— 本骨法下命中率极高（R9 抽查 12/12 有印），且**两条措辞抑印路线均已证伪**（否定式 R3 9 张、改写先验 R9 12 张）。定稿做法：四角 12% / 6× 放大目视准入 + patch_region.py 擦除（带自检 + 逐像素核对）；本期定稿擦除 2 处（BL、BR），原样保留在 controls/ 作对照。",
- "rounds": [
-  "r01: 证伪 prompt 控计数",
-  "r02–r04: 控制图路线（已废弃，保留为教训）",
-  "r05–r08: 撤销控制装置，改用点名式 prompt —— 8/8 出九尾",
-  "r07: 定稿轮追认存档（prompt 已录进 rounds.py，可复跑）",
-  "r09: 抑印措辞实验（4 种骨法句 × 3 seed = 12 张，12/12 仍有印 → 证伪；见 rounds/r09-review.md）"
- ],
- "bone": "赭石设色（工笔淡彩）—— R7 定案，非白描墨线",
- "process": "纯文生图（点名式 prompt），无控制图 / 无 ControlNet；印面：四角 12% / 6× 目视（scripts/corner_sheet.py 出图留档）＋ scripts/patch_region.py 擦除（含残留/接缝自检）",
- "slug": "jiu-wei-hu"
 }

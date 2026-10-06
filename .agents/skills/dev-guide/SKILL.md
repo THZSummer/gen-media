@@ -123,6 +123,7 @@ cd ../.. && git submodule update --remote GitHub/gen-media && git add GitHub/gen
 
 | 日期 | 版本 | 变更 |
 |------|------|------|
+| 2026-10-07 | v1.10 | **详情页配乐（`reel.audio`）+ 无头验证旗标更正**：`references/site.md` 新增 §5.1（`audio` 数据契约：期 manifest → 卷级音频、文件不存在就不出开关、入库 128 kbps 而母版留 `work/`）与 §6 配乐开关约定（内联 SVG + 可见文字、不做自动播放、离开详情页必停、换卷换源、`AbortError` 不算故障）；§9 更正 **chromium 需要写在工作区内的 `HOME`**（否则 crashpad 报 `--database is required`、DOM 为空），并推翻此前"`--dump-dom` 必须加 `--no-zygote --single-process`"的记录（本机现在会 SIGTRAP） | 小七 |
 | 2026-10-07 | v1.9 | **`check.sh` 纳入音频技能 `comfyui-music-minimax3`**：第 3 步加它的离线 `test_skill.py`（43 项，含 mock ComfyUI 全往返）与真机 `--check`（3 个权重 + 7 个节点，不占 GPU）；**真机出片不进自动检查**（一次 20 s 音频约 5.5 分钟，属人工决定）。同轮修掉共享引擎的一处缺口：`comfyui_convert.OUTPUT_NODE_CLASSES` 补认 `SaveAudioAdvanced`（原先只认 SaveImage/SaveVideo/SaveWEBM/SaveAudio，音频模板会被判"没有输出节点"） | 小七 |
 | 2026-10-05 | v1.0 | 建立：按 DSH 项目技能规范（`.agents/skills/<name>/SKILL.md`）落位，收录双语、站点、技能、生成、资产、协作六类规范与交付前检查脚本 |
 | 2026-10-05 | v1.1 | **随扁平化重构同步**：结构描述从"两个内容库"改为三块（`.agents/skills/` / `projects/` / `methods/`）；技能路径 `image-gen/skills/**`、`video-gen/skills/**` → `.agents/skills/**`；`i18n` 排除前缀随之收敛；站点文档的示例路径改为 `projects/...`；协作文档订正 submodule 事实（`gits` 以指针引用本仓库） | 小七 |
