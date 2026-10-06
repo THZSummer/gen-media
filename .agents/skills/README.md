@@ -10,6 +10,8 @@
 >
 > 📌 **准入标准：只收录带脚本、有自检入口、能在真机跑通的技能。** 纯文档（教你怎么用外部 CLI、但仓库里没有可执行代码）不进这个库。
 > 2026-10-05 按此标准移除了 9 个无脚本的方舟 Seedream 云端文档技能。
+> 2026-10-06 **按同一标准重新收录** Seedream 云端出图：`seedream-text-to-image`——
+> 这次带脚本（转换 / 提交 / 轮询 / 下载 / 留档）、带自检（离线 `test_skill.py` + 真机 `--check` + 付费矩阵 `verify_params.py`）。
 >
 > 🗂️ **本目录由 image-gen/skills 与 video-gen/skills 合并而来**（2026-10-05 扁平化）：图像与视频技能不再分库，按能力放在一起。
 
@@ -22,6 +24,7 @@
 | 你手里有 / 条件 | 加载技能 |
 |------------------|----------|
 | 只有文字描述，要**出图** | [text-to-image-comfyui](text-to-image-comfyui/SKILL.md) —— 两个引擎：Z-Image-Turbo（快）/ Qwen-Image（细、支持真负向） |
+| 只有文字，要**云端付费模型**出图（本机零权重） | [seedream-text-to-image](seedream-text-to-image/SKILL.md) —— 本机 ComfyUI 编排 + ByteDance Seedream 5.0 云端推理（pro / flash / lite / 4.5 / 4.0），按张计费、要 ComfyUI 账号 API Key |
 | 有一张控制图（线稿 / 照片 / 姿态图），要按结构出图 | [image-edit-comfyui](image-edit-comfyui/SKILL.md) —— Fun Union ControlNet，控制强度与生效区间可调 |
 | 要合并多张图 / 比对两张图 / 去元数据 / 缩放裁切 | [image-tools](image-tools/SKILL.md) —— **不用 AI**，确定性、可复现 |
 | 只有文字，要**带同步音频**的短视频 | [text-to-video-fastvideo3](text-to-video-fastvideo3/SKILL.md) —— FastH3 t2va（本地 ComfyUI） |
@@ -37,6 +40,12 @@
 | 音频 | **原生同步生成**（t2va / fl2va，音视频一次出） | 需显式开 `generate_audio`，效果有坑 |
 | 适合 | 反复试 prompt、要音画同出、不赶时间 | 出成品、要高清、要多种输入路径 |
 
+> 🔀 **还有第三条路：模型在云端、编排在本机 ComfyUI**。`seedream-text-to-image` 用 ComfyUI 的
+> **partner（付费）节点**调 ByteDance Seedream：本机不装权重、不占显存，但**按张计费**，
+> 且无头调用必须带 ComfyUI 账号 API Key（桌面端界面点 Run 的登录态不够用）。
+> 三条路的取舍：本机权重（免费、可无限重跑、吃显存）／ComfyUI 付费节点（按张计费、省显存）／
+> 方舟 ARK 直连（按量计费、不经过 ComfyUI）。
+
 ---
 
 ## 二、技能地图
@@ -47,6 +56,7 @@
 │
 ├── 🖼️ 出图
 │   ├── text-to-image-comfyui/           文生图：Z-Image-Turbo（12 步，~25s/张）+ Qwen-Image（细节、真负向）
+│   ├── seedream-text-to-image/        文生图：ByteDance Seedream 5.0 —— **模型在云端**，ComfyUI 付费节点，按张计费
 │   └── image-edit-comfyui/              控制图生图：Z-Image Fun Union ControlNet（Canny 驱动）
 │
 ├── 🎬 出片（本地 ComfyUI · 同一套 FastH3 权重，不能同时跑）
@@ -62,6 +72,7 @@
 | 技能 | 一句话 | 输入 → 输出 | 自检 |
 |------|--------|-------------|------|
 | [text-to-image-comfyui](text-to-image-comfyui/SKILL.md) | 远程 ComfyUI 跑 Z-Image-Turbo / Qwen-Image 文生图 | prompt（+ 负向）→ 图片文件 | `comfyui_gen.py --check` / `comfyui_qwen.py --check` |
+| [seedream-text-to-image](seedream-text-to-image/SKILL.md) | ComfyUI 付费节点跑 **ByteDance Seedream 5.0**（云端模型） | prompt → 图片文件 | `seedream_gen.py --check` / `test_skill.py` |
 | [image-edit-comfyui](image-edit-comfyui/SKILL.md) | 远程 ComfyUI 跑 Fun Union ControlNet 控制图生图 | 控制图 + prompt → 图片文件 | `comfyui_edit.py --check` |
 | [text-to-video-fastvideo3](text-to-video-fastvideo3/SKILL.md) | 远程 ComfyUI 跑 FastH3 文生视频 | 结构化 prompt → mp4（带音频轨） | `comfyui_video.py --check` |
 | [image-to-video-fastvideo3](image-to-video-fastvideo3/SKILL.md) | 远程 ComfyUI 跑 FastH3 图生视频（首帧/可选尾帧） | 1–2 张图 + prompt → mp4（带音频轨） | `comfyui_i2v.py --check` |
@@ -72,6 +83,7 @@
 ### 组合用法
 
 - **从文字到成品**：`text-to-image-comfyui` 逐轮出图 → `image-tools` 拼版速览 + 像素比对（与同轮底座对照）
+- **要云端模型的画质/中文理解、又不想装权重**：`seedream-text-to-image`（本机 ComfyUI 编排，推理在 ByteDance 云端；按张计费，先 `--dry-run`）
 - **按结构控制构图**：控制图 → `image-edit-comfyui`（调 `--control-strength` / `--canny-low,high`）→ `image-tools` 比对改动是否真的落到区域上
 - **图 → 视频**：`text-to-image-comfyui` 出首帧 → `image-to-video-fastvideo3` 让它动起来
 - **交付前规范化**：`image-tools` 的 `ffkit strip`（剥 tEXt 元数据，像素不变）+ `contact_sheet`（合图）+ `resize`（出缩略图）
@@ -89,6 +101,7 @@ http://192.168.3.5:18000            # ComfyUI 0.38.0，RTX 4060 Ti 8GB
 |------|------------------------------|----------|----------|
 | text-to-image-comfyui（Z-Image） | `z_image_turbo_bf16` / `qwen_3_4b` / `ae` | `python3 scripts/comfyui_gen.py --check` | ✅ `reachable: true` |
 | text-to-image-comfyui（Qwen） | `qwen_image_2512_fp8_e4m3fn` / `qwen_2.5_vl_7b_fp8_scaled` / `qwen_image_vae` | `python3 scripts/comfyui_qwen.py --check` | ✅ `missing: []` |
+| seedream-text-to-image | **本机不需要权重**；要节点 `ByteDanceSeedreamNodeV3` + ComfyUI 账号 API Key + credits | `python3 scripts/seedream_gen.py --check` | ✅ 节点在位、`schema_drift: none`；真机出图 pro 1K+thinking **63 秒**，参数矩阵 **6/6**（`verify_params.py --yes`，3 分 41 秒） |
 | image-edit-comfyui | 上面 Z-Image 三件 + `Z-Image-Turbo-Fun-Controlnet-Union.safetensors` | `python3 scripts/comfyui_edit.py --check` | ✅ `missing: []`，真机参数矩阵 **28/28** 通过 |
 | text-to-video-fastvideo3 | 4 个模型文件 + **9 个节点类** | `python3 scripts/comfyui_video.py --check` | ✅ |
 | image-to-video-fastvideo3 | 同上（共用权重） | `python3 scripts/comfyui_i2v.py --check` | ✅ |
@@ -97,6 +110,8 @@ http://192.168.3.5:18000            # ComfyUI 0.38.0，RTX 4060 Ti 8GB
 > 改完环境（换机器 / 换模型 / 升级 ComfyUI）先跑上面这一列，再谈出图出片。
 > 视频节点的**节点类**比图像节点新：ComfyUI 版本偏旧时是节点缺失而不是模型缺失。
 > `image-edit-comfyui` 另有真机全参数验证脚本 `scripts/verify_params.py`（对每个参数真实出图并用像素差证明改动落地）。
+> `seedream-text-to-image` 同样有 `scripts/verify_params.py`，但它是**付费**的（每步一张图），
+> 且必须先有 ComfyUI 账号 API Key；没有凭据会以 `SKIPPED_NO_CREDENTIAL` 退出而不是假装通过。
 
 ---
 
@@ -108,6 +123,8 @@ http://192.168.3.5:18000            # ComfyUI 0.38.0，RTX 4060 Ti 8GB
 | I2I | Image-to-Image，图生图（本库用控制图驱动） |
 | ControlNet / 控制图 | 用一张图约束结构（本库用 `Canny` 预处理 + `ZImageFunControlnet` 应用） |
 | 引擎 | 文生图的两条实现：Z-Image-Turbo（快）/ Qwen-Image（细） |
+| partner 节点 / API 节点 | ComfyUI 里**推理不在本机**的节点（`ByteDanceSeedreamNodeV3` 等）：本机不装权重，按张计费 |
+| ComfyUI 账号 API Key | platform.comfy.org 发的凭据；无头调用付费节点必须放进 `extra_data.api_key_comfy_org`，否则报 `Unauthorized` |
 | T2V / I2V | Text-to-Video / Image-to-Video |
 | t2va / fl2va | FastH3 的两个工作流：文生视频+音频 / 首尾帧+音频 |
 | `--seed` | 固定随机种子，用于复现（同 seed 同参数 → 像素一致） |
@@ -125,3 +142,4 @@ http://192.168.3.5:18000            # ComfyUI 0.38.0，RTX 4060 Ti 8GB
 | 2026-10-04 | v1.4 | image-gen 侧：参数静默失效治理 + 复现判据统一；新增 image-tools | 小七 |
 | 2026-10-05 | v1.5 | image-gen 侧：收敛为只留可执行技能（移除 9 个纯文档技能） | 小七 |
 | **2026-10-05** | **v2.0** | **扁平化合并**：`image-gen/.agents/skills/README.md` 与 `video-gen/.agents/skills/README.md` 合并为本文件；目录从 `image-gen/skills`、`video-gen/skills` 迁至仓库根 `.agents/skills/`；技能地图与选路表改为图像/视频统一索引（5 个技能） | 小七 |
+| 2026-10-06 | v2.1 | **重新收录 Seedream 云端出图**：新增 [`seedream-text-to-image`](seedream-text-to-image/SKILL.md)（ComfyUI partner 节点跑 ByteDance Seedream 5.0，本机零权重、按张计费、无头要 API Key）；选路表/技能地图/技能表/自检表各加一行，补"第三条路"（模型在云端、编排在本机）的取舍说明与两条术语 | 小七 |

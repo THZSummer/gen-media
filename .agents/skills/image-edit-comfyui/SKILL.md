@@ -1,7 +1,7 @@
 ---
 name: comfyui-image-edit
 description: 通过 HTTP API 调用远程 ComfyUI（默认 http://192.168.3.5:18000）跑 Z-Image-Turbo Fun Union ControlNet 图生图/编辑工作流：上传控制图 → Canny（可关）→ ControlNet patch → 采样 → 下载；支持 prompt/seed/steps/cfg/sampler/scheduler/denoise/shift/control 强度与区间/Canny 阈值/强制尺寸/batch/文件名前缀/各模型覆盖/大图预缩放/关闭预处理器等全部参数。触发词：ComfyUI 图生图、ControlNet、controlnet union、z-image fun、Canny 生图、参考图生成、control to image、192.168.3.5、image edit。
-whenToUse: 当需要用一张控制图（线稿/照片/Canny 边缘图）驱动出图，或要跑 ComfyUI 的 Z-Image-Turbo Fun Union ControlNet 工作流时使用。纯文生图用 ark-image-text-to-image 或 comfyui-text-to-image；Qwen-Image 引擎（真负向、更写实）见 comfyui-text-to-image 的 comfyui_qwen.py。
+whenToUse: 当需要用一张控制图（线稿/照片/Canny 边缘图）驱动出图，或要跑 ComfyUI 的 Z-Image-Turbo Fun Union ControlNet 工作流时使用。纯文生图用 comfyui-text-to-image（本机权重）或 seedream-text-to-image（Seedream 云端付费模型）；Qwen-Image 引擎（真负向、更写实）见 comfyui-text-to-image 的 comfyui_qwen.py。
 ---
 
 # ComfyUI 图生图 / ControlNet 编辑（Z-Image-Turbo Fun Union）

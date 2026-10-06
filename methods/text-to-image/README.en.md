@@ -2,7 +2,7 @@
 
 > 🌐 Language: **English** | [中文](README.md)
 
-> Input: a prompt. Output: a still image. Currently uses `doubao-seedream-5-0-lite` (included in Agent Plan Medium, agent-plan profile).
+> Input: a prompt. Output: a still image. Currently uses `doubao-seedream-5-0-lite` (included in Agent Plan Medium, agent-plan profile). A second entrance is ComfyUI's paid partner node (the model is likewise in the cloud; see the end of §2).
 > Back to [methods overview](../README.en.md)
 
 ---
@@ -70,6 +70,28 @@ Measured (2026-08-01):
 | **Generate a new viewpoint from a reference image** | `--input @front image` + "change to a back / side viewpoint, keep the appearance, clothing and wings unchanged" | ✅ Front → back, appearance stays consistent |
 
 > **Value**: a multi-angle character gallery can be **generated recursively from reference images** (front image → generate back / side), giving far better appearance consistency than generating each one independently (drawing each from nothing). In the prompt, stress "keep the appearance / clothing / wings of @图像N unchanged, change only the viewpoint / pose".
+
+### The other route: ComfyUI's Seedream partner node (model in the cloud, orchestration local)
+
+The two sections above go **arkcli → Volcengine ARK direct**, billed on the ARK account. The same Seedream has a second entrance: ComfyUI's paid **partner (API) node** `ByteDanceSeedreamNodeV3` — the graph is orchestrated in your local ComfyUI while **inference still runs in ByteDance's cloud**; no weights and no VRAM locally, but billed per image (against ComfyUI account credits).
+
+| | ARK direct (§3 of this document) | ComfyUI partner node |
+|---|---|---|
+| Billing | Volcengine ARK pay-as-you-go / Agent Plan | ComfyUI account credits |
+| Model keys | `doubao-seedream-5-0-lite` / `doubao-seedream-5-0-pro-260628` | `seedream 5.0 pro` / `seedream 5.0 flash` / `seedream 5.0 lite` / `seedream-4-5-251128` / `seedream-4-0-250828` |
+| Size | pixels via `--size` (lite has a 3,686,400 lower bound) | presets (pro offers 1K / 2K tiers) or `Custom` + width/height |
+| Good for | Batch generation, ARK's image-to-image editing | Already using ComfyUI, or chaining Seedream with other nodes into one graph |
+
+> ⚠️ **The two model naming schemes are not interchangeable**: the ComfyUI side is `seedream 5.0 pro` (a space, no version), the ARK side is `doubao-seedream-5-0-pro-260628`; the pixel floor differs too (on the ComfyUI side pro offers a 1K tier).
+>
+> ⛔ **Headless calls must carry a ComfyUI account API key** (in the request body as `extra_data.api_key_comfy_org`). Clicking Run in the desktop UI uses the front-end browser session, and the server stores no credential itself — measured: headless requests always report `Unauthorized: Please login first to use this node.`.
+
+> Measured (2026-10-06): pro 1K + thinking takes about **63 seconds** end to end per image; the 6-step
+> parameter matrix (including one `--size 1440x2560` and one `seedream 5.0 flash` run) totalled **3 min 41 s**.
+
+Commands, parameter surface and pitfalls: the
+[seedream-text-to-image](../../.agents/skills/seedream-text-to-image/SKILL.md) skill
+(`scripts/seedream_gen.py --check` / `--dry-run` / `--api-key-file`).
 
 ---
 
@@ -165,6 +187,7 @@ Take the shot's **most representative static instant** and do not describe motio
 - [ ] The prompt contains subject / scene / tone / composition
 - [ ] The image is saved to disk (local_path), not relying on the 24h URL
 - [ ] The storyboard frame has passed review (if applicable, see project §4.3)
+- [ ] If using the ComfyUI partner node: the model name follows the ComfyUI spelling (`seedream 5.0 pro`), and headless calls carry a ComfyUI account API key
 
 ---
 
@@ -176,3 +199,4 @@ Take the shot's **most representative static instant** and do not describe motio
 | 2026-08-01 | v1.1 | Measured corrections: for image aspect ratio use `--size` rather than `--ratio` (`--ratio` is video-only; when ignored, a 2048×2048 square is the default); recorded the size pixel lower bound of 3,686,400 (1920×1080 rejected) and compliant sizes | 小七 |
 | 2026-08-01 | v1.2 | Added seedream-5.0-pro: platform pay-as-you-go routing, full version ID, no pixel lower bound (1920×1080 works), core selling point "precise image editing" (change background / swap scene while keeping the person; bamboo forest → cyber measured successfully); model comparison table + command templates + pitfalls updated | 小七 |
 | 2026-08-02 | v1.3 | Newly measured pro image-to-image extensions: multi-image reference (@图像N reference fusion) + generating a new viewpoint from a reference image (front → back while keeping the appearance); multi-angle galleries can be generated recursively | 小七 |
+| 2026-10-06 | v1.4 | Added the second entrance: ComfyUI's paid partner node `ByteDanceSeedreamNodeV3` (model in the cloud, orchestration local, zero local weights, billed per image) — the two model naming schemes, and the measured conclusion that headless calls must carry a ComfyUI account API key; points to the [seedream-text-to-image](../../.agents/skills/seedream-text-to-image/SKILL.md) skill | 小七 |

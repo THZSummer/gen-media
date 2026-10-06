@@ -2,7 +2,7 @@
 
 > 🌐 语言：**中文** ｜ [English](README.en.md)
 
-> 输入：prompt。输出：静态图片。当前走 `doubao-seedream-5-0-lite`（Agent Plan Medium 含，agent-plan profile）。
+> 输入：prompt。输出：静态图片。当前走 `doubao-seedream-5-0-lite`（Agent Plan Medium 含，agent-plan profile）。 另一条入口是 ComfyUI 的付费 partner 节点（模型同样在云端，见 §二末）。
 > 返回[方法总览](../README.md)
 
 ---
@@ -70,6 +70,33 @@
 | **参考图生成新视角** | `--input @正面图` + "改为背面/侧面视角，形象服装翅膀不变" | ✅ 正面→背面，形象保持一致 |
 
 > **价值**：多角度角色图库可以**用参考图递归生成**（正面图→生成背面/侧面），比独立生成（每张凭空画）形象一致性高得多。prompt 里强调"保持@图像N的形象/服装/翅膀不变，只改视角/姿势"。
+
+### 另一条路：ComfyUI 的 Seedream partner 节点（模型在云端，编排在本机）
+
+上面两节走的是 **arkcli → 火山方舟 ARK 直连**，账记在方舟。同样的 Seedream 还有第二条入口：
+ComfyUI 的付费 **partner（API）节点** `ByteDanceSeedreamNodeV3` —— 图在本机 ComfyUI 里编排，
+**推理仍在 ByteDance 云端**；本机不装权重、不占显存，但按张计费（账记在 ComfyUI 账号 credits）。
+
+| | 方舟 ARK 直连（本篇 §三） | ComfyUI partner 节点 |
+|---|---|---|
+| 账 | 火山方舟按量 / Agent Plan | ComfyUI 账号 credits |
+| 模型键 | `doubao-seedream-5-0-lite` / `doubao-seedream-5-0-pro-260628` | `seedream 5.0 pro` / `seedream 5.0 flash` / `seedream 5.0 lite` / `seedream-4-5-251128` / `seedream-4-0-250828` |
+| 尺寸 | `--size` 写像素（lite 有 3,686,400 下限） | 预设（pro 有 1K / 2K 档）或 `Custom` + 宽高 |
+| 适合 | 批量出图、要 ARK 的图生图编辑 | 已经在用 ComfyUI，或要把 Seedream 与其它节点串成一张图 |
+
+> ⚠️ **两套模型名不能互相抄**：ComfyUI 侧是 `seedream 5.0 pro`（空格、不带版本号），方舟侧是
+> `doubao-seedream-5-0-pro-260628`；像素下限也不同（ComfyUI 侧 pro 有 1K 档可用）。
+>
+> ⛔ **无头调用必须带 ComfyUI 账号 API Key**（请求体 `extra_data.api_key_comfy_org`）。
+> 桌面端界面点 Run 用的是前端浏览器登录态，服务端自己并没有存凭据 —— 实测无头请求一律报
+> `Unauthorized: Please login first to use this node.`。
+
+> 实测（2026-10-06）：pro 1K + thinking 单张端到端约 **63 秒**；参数矩阵 6 步
+> （含 `--size 1440x2560` 与换 `seedream 5.0 flash` 各一次）合计 **3 分 41 秒**。
+
+命令、参数面与踩坑见技能
+[seedream-text-to-image](../../.agents/skills/seedream-text-to-image/SKILL.md)
+（`scripts/seedream_gen.py --check` / `--dry-run` / `--api-key-file`）。
 
 ---
 
@@ -165,6 +192,7 @@ arkcli +gen --model "$MODEL" --profile platform_cn-beijing_accountwide \
 - [ ] prompt 含主体/场景/色调/构图
 - [ ] 图片已落盘（local_path），不依赖 24h URL
 - [ ] 分镜图已过审（如适用，见项目 §4.3）
+- [ ] 若走 ComfyUI partner 节点：模型名用 ComfyUI 侧写法（`seedream 5.0 pro`），无头调用已带 ComfyUI 账号 API Key
 
 ---
 
@@ -176,3 +204,4 @@ arkcli +gen --model "$MODEL" --profile platform_cn-beijing_accountwide \
 | 2026-08-01 | v1.1 | 实测修正：图片比例用 `--size` 而非 `--ratio`（`--ratio` 仅视频有效，忽略后默认 2048×2048 正方形）；记录 size 像素下限 3,686,400（1920×1080 被拒）及合规尺寸 | 小七 |
 | 2026-08-01 | v1.2 | 新增 seedream-5.0-pro：platform 按量路由、完整版本 ID、无像素下限（1920×1080 可用）、核心卖点"精准图像编辑"（改背景/换场景保人物，实测竹林→赛博成功）；模型对比表 + 命令模板 + 踩坑点更新 | 小七 |
 | 2026-08-02 | v1.3 | 实测新增 pro 图生图扩展：多图参考（@图像N 引用融合）+ 参考图生成新视角（正面→背面保形象），多角度图库可递归生成 | 小七 |
+| 2026-10-06 | v1.4 | 新增第二条入口：ComfyUI 付费 partner 节点 `ByteDanceSeedreamNodeV3`（模型在云端、编排在本机、本机零权重、按张计费）——两套模型名的差异、无头必带 ComfyUI 账号 API Key 的实测结论，指向技能 [seedream-text-to-image](../../.agents/skills/seedream-text-to-image/SKILL.md) | 小七 |

@@ -1,7 +1,7 @@
 ---
 name: comfyui-text-to-image
 description: 通过 HTTP API 调用远程 ComfyUI（默认 http://192.168.3.5:18000）跑 Z-Image-Turbo 文生图工作流出图：把 ComfyUI UI 版 workflow JSON（含 definitions.subgraphs 子图）转成 /prompt API 格式，提交排队、轮询 /history、从 /view 下载成品到本地。触发词：ComfyUI、comfy、z-image、z-image-turbo、18000、192.168.3.5、工作流生图、跑 workflow、远程出图、text to image comfyui。
-whenToUse: 当用户要求用 ComfyUI（尤其 192.168.3.5:18000 的 Z-Image-Turbo 文生图工作流）出图时使用。若要用火山方舟 Seedream 云端 API 出图，改用 ark-image-text-to-image。
+whenToUse: 当用户要求用 ComfyUI（尤其 192.168.3.5:18000 的 Z-Image-Turbo 文生图工作流）出图时使用。要出 Seedream（**模型在云端**的付费 partner 节点，本机零权重、按张计费）改用 seedream-text-to-image。
 ---
 
 # ComfyUI 文生图（远程 API · 双引擎）
