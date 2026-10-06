@@ -32,6 +32,7 @@ gen-media 是"图片生成 + 视频生成"的作品集仓库，**扁平化为三
 | 6 | **新增技能要能被 DSH 发现**：放在 `.agents/skills/<kebab-name>/SKILL.md` | 目录名 = frontmatter `name`；见 [references/skills.md](references/skills.md) |
 | 7 | **技能根下的索引 README 不写 frontmatter**（写了会被当成技能加载） | `.agents/skills/README.md` 无 YAML 头；见 [references/skills.md](references/skills.md) |
 | 8 | **图片不成对改**：成品与对照用 PNG，合图/审计图用 JPEG | 见 [references/assets.md](references/assets.md) |
+| 9 | **站点是「列表页 + 详情页」两层**：列表页是 billboard + 横向行，详情页是一屏一帧的全屏 feed（上下滑动换图）；卡片只用缩略图 | `python3 tools/i18n.py ui`；改前端后按 [references/site.md](references/site.md) §9 无头验证 |
 
 ## 工作流
 
@@ -72,8 +73,13 @@ $EDITOR .agents/skills/<kebab-name>/SKILL.md
 
 ### 改站点
 
-- 数据层：改 `tools/build_site.py`（只读、幂等），产物 `site/data/*.json` 随仓库提交。
-- 前端：改 `site/app.{css,js}`（纯 vanilla，无框架/CDN/构建）；**任何界面文案都要同时写 `T.zh` 与 `T.en`**。
+- 形态是**流媒体式两层**：列表页（`#/` 与 `#/p/<pid>`：billboard + 横向行）
+  → 详情页（`#/w/<pid>[/r/<rid>][/<n>]`：全屏 feed，一屏一帧 = 一张图 + 一段文字，上下滑动换图）。
+- 数据层：改 `tools/build_site.py`（只读、幂等），产物 `site/data/*.json` 随仓库提交；
+  帧级文字也在这里装配（**不在前端拼文案**）。
+- 前端：改 `site/app.{css,js}`（纯 vanilla，无框架/CDN/构建）；**任何界面文案都要同时写 `T.zh` 与 `T.en`**，
+  改完跑 `python3 tools/i18n.py ui`。
+- 资源纪律：卡片/占位用 `thumb`，只有详情页当前 ±2 帧才换原图。
 - 本地看：`tools/preview.sh`（必须走 http，别双击 `index.html`）。
 - 发布：Pages 源为 `main` + `/`（根目录放 `.nojekyll` 关掉 Jekyll）；详见 [references/site.md](references/site.md)。
 
@@ -94,14 +100,14 @@ cd ../.. && git submodule update --remote GitHub/gen-media && git add GitHub/gen
 .agents/skills/dev-guide/scripts/check.sh          # 一键跑完全部机械检查
 ```
 
-脚本依次执行：双语三项体检 → 站点数据幂等性 → 三个技能自检 → 文档链接扫描。通过后再人工确认：新文档有没有英文版？新界面文案有没有中英两份？新图有没有进 `manifest.json`？中间产物有没有被误加进 git？
+脚本依次执行：双语三项体检 → 站点数据幂等性 → 技能自检 → **站点界面文案双语（`i18n.py ui`）** → 技能自身格式。通过后再人工确认：新文档有没有英文版？新界面文案有没有中英两份？新图有没有进 `manifest.json`？中间产物有没有被误加进 git？
 
 ## 详细参考
 
 | 参考 | 内容 |
 |------|------|
 | [references/i18n.md](references/i18n.md) | 双语规范：命名、切换行格式、翻什么/不翻什么、`tools/i18n.py` 用法与判据 |
-| [references/site.md](references/site.md) | 站点：双语实现、Pages 零复制发布、路径可移植性、本地预览、线上验证 |
+| [references/site.md](references/site.md) | 站点：列表页/详情页两层结构与路由、feed 数据契约、缩略图纪律、双语界面文案、无头验证、零复制发布 |
 | [references/skills.md](references/skills.md) | 技能库：DSH 项目技能格式（目录结构 / frontmatter / 发现优先级）、准入标准、脚本纪律 |
 | [references/generation.md](references/generation.md) | 生成纪律：期内恒定、同轮对照、评分维度、像素判据、轮次记录 |
 | [references/assets.md](references/assets.md) | 资产：PNG/JPEG 分工、体积与单文件上限、不入库清单、可复现性说法 |
@@ -121,3 +127,4 @@ cd ../.. && git submodule update --remote GitHub/gen-media && git add GitHub/gen
 | 2026-10-05 | v1.1 | **随扁平化重构同步**：结构描述从"两个内容库"改为三块（`.agents/skills/` / `projects/` / `methods/`）；技能路径 `image-gen/skills/**`、`video-gen/skills/**` → `.agents/skills/**`；`i18n` 排除前缀随之收敛；站点文档的示例路径改为 `projects/...`；协作文档订正 submodule 事实（`gits` 以指针引用本仓库） | 小七 |
 | 2026-10-05 | v1.2 | **dev-guide 自身迁入 `.agents/skills/`**：与 5 个执行技能并列（技能根 rank 从 `project-dsh` 换到 `project-agents`），`.dsh/` 目录随之移除；`i18n` 排除前缀收敛为 `(".agents/skills/",)`；`check.sh` 的 `ROOT` 推导注释同步（深度未变，`../../..` 仍指向仓库根）；清理此前替换遗留的重复枚举 | 小七 |
 | 2026-10-05 | v1.3 | **索引 README 不写 frontmatter**：`.agents/skills/README.md` 去掉 YAML 头（带 frontmatter 的 md 在技能根下会被当成技能加载，实测它曾以 `gen-media-skills-index` 身份出现在技能目录里）；硬性要求新增第 7 条 + `references/skills.md` 补判断标准 | 小七 |
+| 2026-10-05 | v1.4 | **站点改为流媒体式两层**：列表页（billboard + 横向行）与详情页（全屏 feed，一屏一帧、上下滑动换图），灯箱移除；`build_site.py` 的数据契约改为`reels[].items[]`（帧级文字 + `index.json` 里的 `strip` 首页卡片）；新增第 9 条硬性要求、`i18n.py ui` 界面文案体检（并进 `check.sh` 第 4 步）、`references/site.md` 重写 | 小七 |

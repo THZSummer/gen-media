@@ -156,3 +156,4 @@ python3 tools/i18n.py links           # 把英文版的相对链接改指 .en.md
 | 2026-10-05 | v1.0 | 从 `gits` 拆出 `Book/image-gen` 与 `Book/video-gen`，独立成库 | 小七 |
 | 2026-10-05 | v1.3 | 新增双语规范（中文默认 + `X.en.md`）与 `tools/i18n.py` | 小七 |
 | 2026-10-05 | v2.0 | **扁平化重构**：取消 `image-gen/` 与 `video-gen/` 两库划分，改为 `.agents/skills/`（5 个技能合一处）+ `projects/`（9 个项目）+ `methods/`（视频方法）；两个技能索引合并、两个项目索引与模板合并；`tools/{i18n,build_site}.py` 与 dev-guide 同步；**订正"本仓库是唯一副本、不再有上游"的失实表述**——`gits` 以 submodule 引用本仓库 | 小七 |
+| 2026-10-05 | v2.1 | **站点改版为流媒体式两层**：列表页（billboard + 横向行：`#/`、`#/p/<pid>`）+ 详情页（全屏 feed，一屏一帧 = 一张图 + 一段文字，**上下滑动换图**：`#/w/<pid>[/r/<rid>][/<n>]`），灯箱移除；`build_site.py` 数据契约改为 `reels[].items[]`（帧级文字）并在 `index.json` 里给首页预生成 `strip` 卡片；卡片只用缩略图、详情页只预载当前 ±2 帧原图；新增 `i18n.py ui` 界面文案双语体检 | 小七 |

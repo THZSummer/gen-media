@@ -1,5 +1,6 @@
 {
  "id": "bone-china-doll",
+ "kind": "gallery",
  "title": {
   "zh": "骨瓷人偶",
   "en": "Bone-China Doll"
@@ -9,226 +10,498 @@
   "en": "A doll series under one material constraint (bone china), developed with round-by-round A/B ablations."
  },
  "readme": "projects/bone-china-doll/README.md",
+ "summary": null,
+ "plan": null,
+ "rubric": null,
  "data": "bone-china-doll.json",
- "images": [
-  {
-   "file": "final-bone-china-princess-east.png",
-   "path": "projects/bone-china-doll/out/final-bone-china-princess-east.png",
-   "thumb": "site/thumbs/projects/bone-china-doll/out/final-bone-china-princess-east.jpg",
-   "size": 4081240,
-   "group": "out",
-   "final": true
-  },
-  {
-   "file": "final-bone-china-princess-gauze.png",
-   "path": "projects/bone-china-doll/out/final-bone-china-princess-gauze.png",
-   "thumb": "site/thumbs/projects/bone-china-doll/out/final-bone-china-princess-gauze.jpg",
-   "size": 1922949,
-   "group": "out",
-   "final": true
-  },
-  {
-   "file": "final-bone-china-princess-life.png",
-   "path": "projects/bone-china-doll/out/final-bone-china-princess-life.png",
-   "thumb": "site/thumbs/projects/bone-china-doll/out/final-bone-china-princess-life.jpg",
-   "size": 1827133,
-   "group": "out",
-   "final": true
-  },
-  {
-   "file": "final-bone-china-princess-v2.png",
-   "path": "projects/bone-china-doll/out/final-bone-china-princess-v2.png",
-   "thumb": "site/thumbs/projects/bone-china-doll/out/final-bone-china-princess-v2.jpg",
-   "size": 2751070,
-   "group": "out",
-   "final": true
-  },
-  {
-   "file": "final-bone-china-princess.png",
-   "path": "projects/bone-china-doll/out/final-bone-china-princess.png",
-   "thumb": "site/thumbs/projects/bone-china-doll/out/final-bone-china-princess.jpg",
-   "size": 1450675,
-   "group": "out",
-   "final": true
-  },
-  {
-   "file": "detail-study-joint-hand.png",
-   "path": "projects/bone-china-doll/out/detail-study-joint-hand.png",
-   "thumb": "site/thumbs/projects/bone-china-doll/out/detail-study-joint-hand.jpg",
-   "size": 2300144,
-   "group": "out",
-   "final": false
-  },
-  {
-   "file": "full-figure.png",
-   "path": "projects/bone-china-doll/out/final-set-east/full-figure.png",
-   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-east/full-figure.jpg",
-   "size": 1851372,
-   "group": "final-set-east",
-   "final": false
-  },
-  {
-   "file": "hero.png",
-   "path": "projects/bone-china-doll/out/final-set-east/hero.png",
-   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-east/hero.jpg",
-   "size": 4081240,
-   "group": "final-set-east",
-   "final": false
-  },
-  {
-   "file": "portrait.png",
-   "path": "projects/bone-china-doll/out/final-set-east/portrait.png",
-   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-east/portrait.jpg",
-   "size": 2760979,
-   "group": "final-set-east",
-   "final": false
-  },
-  {
-   "file": "seated.png",
-   "path": "projects/bone-china-doll/out/final-set-east/seated.png",
-   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-east/seated.jpg",
-   "size": 3026531,
-   "group": "final-set-east",
-   "final": false
-  },
-  {
-   "file": "tang-portrait.png",
-   "path": "projects/bone-china-doll/out/final-set-east/tang-portrait.png",
-   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-east/tang-portrait.jpg",
-   "size": 2791851,
-   "group": "final-set-east",
-   "final": false
-  },
-  {
-   "file": "airy-turn.png",
-   "path": "projects/bone-china-doll/out/final-set-gauze/airy-turn.png",
-   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-gauze/airy-turn.jpg",
-   "size": 3005604,
-   "group": "final-set-gauze",
-   "final": false
-  },
-  {
-   "file": "gauze-macro.png",
-   "path": "projects/bone-china-doll/out/final-set-gauze/gauze-macro.png",
-   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-gauze/gauze-macro.jpg",
-   "size": 1267612,
-   "group": "final-set-gauze",
-   "final": false
-  },
-  {
-   "file": "hero.png",
-   "path": "projects/bone-china-doll/out/final-set-gauze/hero.png",
-   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-gauze/hero.jpg",
-   "size": 1922949,
-   "group": "final-set-gauze",
-   "final": false
-  },
-  {
-   "file": "portrait.png",
-   "path": "projects/bone-china-doll/out/final-set-gauze/portrait.png",
-   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-gauze/portrait.jpg",
-   "size": 2709040,
-   "group": "final-set-gauze",
-   "final": false
-  },
-  {
-   "file": "skin-macro.png",
-   "path": "projects/bone-china-doll/out/final-set-gauze/skin-macro.png",
-   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-gauze/skin-macro.jpg",
-   "size": 1364422,
-   "group": "final-set-gauze",
-   "final": false
-  },
-  {
-   "file": "doze.png",
-   "path": "projects/bone-china-doll/out/final-set-life/doze.png",
-   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-life/doze.jpg",
-   "size": 1845561,
-   "group": "final-set-life",
-   "final": false
-  },
-  {
-   "file": "gauze-macro.png",
-   "path": "projects/bone-china-doll/out/final-set-life/gauze-macro.png",
-   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-life/gauze-macro.jpg",
-   "size": 1267612,
-   "group": "final-set-life",
-   "final": false
-  },
-  {
-   "file": "hero.png",
-   "path": "projects/bone-china-doll/out/final-set-life/hero.png",
-   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-life/hero.jpg",
-   "size": 1827133,
-   "group": "final-set-life",
-   "final": false
-  },
-  {
-   "file": "mat-by-window.png",
-   "path": "projects/bone-china-doll/out/final-set-life/mat-by-window.png",
-   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-life/mat-by-window.jpg",
-   "size": 2210077,
-   "group": "final-set-life",
-   "final": false
-  },
-  {
-   "file": "prone.png",
-   "path": "projects/bone-china-doll/out/final-set-life/prone.png",
-   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-life/prone.jpg",
-   "size": 1887619,
-   "group": "final-set-life",
-   "final": false
-  },
-  {
-   "file": "recline.png",
-   "path": "projects/bone-china-doll/out/final-set-life/recline.png",
-   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-life/recline.jpg",
-   "size": 1895333,
-   "group": "final-set-life",
-   "final": false
-  },
-  {
-   "file": "seated.png",
-   "path": "projects/bone-china-doll/out/final-set-life/seated.png",
-   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-life/seated.jpg",
-   "size": 2180537,
-   "group": "final-set-life",
-   "final": false
-  },
-  {
-   "file": "skin-macro.png",
-   "path": "projects/bone-china-doll/out/final-set-life/skin-macro.png",
-   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-life/skin-macro.jpg",
-   "size": 1364422,
-   "group": "final-set-life",
-   "final": false
-  },
-  {
-   "file": "full-figure.png",
-   "path": "projects/bone-china-doll/out/final-set/full-figure.png",
-   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set/full-figure.jpg",
-   "size": 2850012,
-   "group": "final-set",
-   "final": false
-  },
-  {
-   "file": "portrait.png",
-   "path": "projects/bone-china-doll/out/final-set/portrait.png",
-   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set/portrait.jpg",
-   "size": 2775911,
-   "group": "final-set",
-   "final": false
-  },
-  {
-   "file": "seated.png",
-   "path": "projects/bone-china-doll/out/final-set/seated.png",
-   "thumb": "site/thumbs/projects/bone-china-doll/out/final-set/seated.jpg",
-   "size": 3166827,
-   "group": "final-set",
-   "final": false
-  }
- ],
  "stats": {
+  "reels": 5,
+  "images": 27,
   "finals": 5
- }
+ },
+ "reels": [
+  {
+   "id": "out",
+   "title": {
+    "zh": "定稿单图",
+    "en": "Final stills"
+   },
+   "desc": {
+    "zh": "以「骨瓷」质感为统一材质约束的人偶形象系列，逐轮做 A/B 消融对照。",
+    "en": "A doll series under one material constraint (bone china), developed with round-by-round A/B ablations."
+   },
+   "poster": "site/thumbs/projects/bone-china-doll/out/final-bone-china-princess-east.jpg",
+   "cover": "projects/bone-china-doll/out/final-bone-china-princess-east.png",
+   "count": 6,
+   "finals": 5,
+   "bytes": 14333211,
+   "periods": [],
+   "text_ref": null,
+   "doc": null,
+   "items": [
+    {
+     "kind": "image",
+     "file": "final-bone-china-princess-east.png",
+     "src": "projects/bone-china-doll/out/final-bone-china-princess-east.png",
+     "thumb": "site/thumbs/projects/bone-china-doll/out/final-bone-china-princess-east.jpg",
+     "size": 4081240,
+     "role": "final",
+     "period": "",
+     "label": {
+      "zh": "定稿 · 东方古典",
+      "en": "Final · Classical East"
+     },
+     "note": ""
+    },
+    {
+     "kind": "image",
+     "file": "final-bone-china-princess-gauze.png",
+     "src": "projects/bone-china-doll/out/final-bone-china-princess-gauze.png",
+     "thumb": "site/thumbs/projects/bone-china-doll/out/final-bone-china-princess-gauze.jpg",
+     "size": 1922949,
+     "role": "final",
+     "period": "",
+     "label": {
+      "zh": "定稿 · 半纱半瓷",
+      "en": "Final · Gauze porcelain"
+     },
+     "note": ""
+    },
+    {
+     "kind": "image",
+     "file": "final-bone-china-princess-life.png",
+     "src": "projects/bone-china-doll/out/final-bone-china-princess-life.png",
+     "thumb": "site/thumbs/projects/bone-china-doll/out/final-bone-china-princess-life.jpg",
+     "size": 1827133,
+     "role": "final",
+     "period": "",
+     "label": {
+      "zh": "定稿 · 起居瞬间",
+      "en": "Final · Living moment"
+     },
+     "note": ""
+    },
+    {
+     "kind": "image",
+     "file": "final-bone-china-princess-v2.png",
+     "src": "projects/bone-china-doll/out/final-bone-china-princess-v2.png",
+     "thumb": "site/thumbs/projects/bone-china-doll/out/final-bone-china-princess-v2.jpg",
+     "size": 2751070,
+     "role": "final",
+     "period": "",
+     "label": {
+      "zh": "定稿 · v2",
+      "en": "Final · v2"
+     },
+     "note": ""
+    },
+    {
+     "kind": "image",
+     "file": "final-bone-china-princess.png",
+     "src": "projects/bone-china-doll/out/final-bone-china-princess.png",
+     "thumb": "site/thumbs/projects/bone-china-doll/out/final-bone-china-princess.jpg",
+     "size": 1450675,
+     "role": "final",
+     "period": "",
+     "label": {
+      "zh": "定稿 · 公主",
+      "en": "Final · Princess"
+     },
+     "note": ""
+    },
+    {
+     "kind": "image",
+     "file": "detail-study-joint-hand.png",
+     "src": "projects/bone-china-doll/out/detail-study-joint-hand.png",
+     "thumb": "site/thumbs/projects/bone-china-doll/out/detail-study-joint-hand.jpg",
+     "size": 2300144,
+     "role": "image",
+     "period": "",
+     "label": {
+      "zh": "关节手部研究",
+      "en": "Jointed hand study"
+     },
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "final-set",
+   "title": {
+    "zh": "第二阶段定稿",
+    "en": "Phase 2 finals"
+   },
+   "desc": {
+    "zh": "第二阶段定稿",
+    "en": "Phase 2 finals"
+   },
+   "poster": "site/thumbs/projects/bone-china-doll/out/final-set/full-figure.jpg",
+   "cover": "projects/bone-china-doll/out/final-set/full-figure.png",
+   "count": 3,
+   "finals": 0,
+   "bytes": 8792750,
+   "periods": [],
+   "text_ref": null,
+   "doc": null,
+   "items": [
+    {
+     "kind": "image",
+     "file": "full-figure.png",
+     "src": "projects/bone-china-doll/out/final-set/full-figure.png",
+     "thumb": "site/thumbs/projects/bone-china-doll/out/final-set/full-figure.jpg",
+     "size": 2850012,
+     "role": "image",
+     "period": "",
+     "label": {
+      "zh": "全身",
+      "en": "Full figure"
+     },
+     "note": ""
+    },
+    {
+     "kind": "image",
+     "file": "portrait.png",
+     "src": "projects/bone-china-doll/out/final-set/portrait.png",
+     "thumb": "site/thumbs/projects/bone-china-doll/out/final-set/portrait.jpg",
+     "size": 2775911,
+     "role": "image",
+     "period": "",
+     "label": {
+      "zh": "肖像",
+      "en": "Portrait"
+     },
+     "note": ""
+    },
+    {
+     "kind": "image",
+     "file": "seated.png",
+     "src": "projects/bone-china-doll/out/final-set/seated.png",
+     "thumb": "site/thumbs/projects/bone-china-doll/out/final-set/seated.jpg",
+     "size": 3166827,
+     "role": "image",
+     "period": "",
+     "label": {
+      "zh": "坐姿",
+      "en": "Seated"
+     },
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "final-set-east",
+   "title": {
+    "zh": "三阶段 · 东方古典公主",
+    "en": "Phase 3 · Classical Eastern princess"
+   },
+   "desc": {
+    "zh": "三阶段 · 东方古典公主",
+    "en": "Phase 3 · Classical Eastern princess"
+   },
+   "poster": "site/thumbs/projects/bone-china-doll/out/final-set-east/full-figure.jpg",
+   "cover": "projects/bone-china-doll/out/final-set-east/full-figure.png",
+   "count": 5,
+   "finals": 0,
+   "bytes": 14511973,
+   "periods": [],
+   "text_ref": null,
+   "doc": null,
+   "items": [
+    {
+     "kind": "image",
+     "file": "full-figure.png",
+     "src": "projects/bone-china-doll/out/final-set-east/full-figure.png",
+     "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-east/full-figure.jpg",
+     "size": 1851372,
+     "role": "image",
+     "period": "",
+     "label": {
+      "zh": "全身",
+      "en": "Full figure"
+     },
+     "note": ""
+    },
+    {
+     "kind": "image",
+     "file": "hero.png",
+     "src": "projects/bone-china-doll/out/final-set-east/hero.png",
+     "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-east/hero.jpg",
+     "size": 4081240,
+     "role": "image",
+     "period": "",
+     "label": {
+      "zh": "主图",
+      "en": "Hero"
+     },
+     "note": ""
+    },
+    {
+     "kind": "image",
+     "file": "portrait.png",
+     "src": "projects/bone-china-doll/out/final-set-east/portrait.png",
+     "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-east/portrait.jpg",
+     "size": 2760979,
+     "role": "image",
+     "period": "",
+     "label": {
+      "zh": "肖像",
+      "en": "Portrait"
+     },
+     "note": ""
+    },
+    {
+     "kind": "image",
+     "file": "seated.png",
+     "src": "projects/bone-china-doll/out/final-set-east/seated.png",
+     "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-east/seated.jpg",
+     "size": 3026531,
+     "role": "image",
+     "period": "",
+     "label": {
+      "zh": "坐姿",
+      "en": "Seated"
+     },
+     "note": ""
+    },
+    {
+     "kind": "image",
+     "file": "tang-portrait.png",
+     "src": "projects/bone-china-doll/out/final-set-east/tang-portrait.png",
+     "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-east/tang-portrait.jpg",
+     "size": 2791851,
+     "role": "image",
+     "period": "",
+     "label": {
+      "zh": "唐装肖像",
+      "en": "Tang-style portrait"
+     },
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "final-set-gauze",
+   "title": {
+    "zh": "四阶段 · 半纱半瓷",
+    "en": "Phase 4 · Half gauze, half porcelain"
+   },
+   "desc": {
+    "zh": "四阶段 · 半纱半瓷",
+    "en": "Phase 4 · Half gauze, half porcelain"
+   },
+   "poster": "site/thumbs/projects/bone-china-doll/out/final-set-gauze/airy-turn.jpg",
+   "cover": "projects/bone-china-doll/out/final-set-gauze/airy-turn.png",
+   "count": 5,
+   "finals": 0,
+   "bytes": 10269627,
+   "periods": [],
+   "text_ref": null,
+   "doc": null,
+   "items": [
+    {
+     "kind": "image",
+     "file": "airy-turn.png",
+     "src": "projects/bone-china-doll/out/final-set-gauze/airy-turn.png",
+     "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-gauze/airy-turn.jpg",
+     "size": 3005604,
+     "role": "image",
+     "period": "",
+     "label": {
+      "zh": "轻纱转身",
+      "en": "Airy turn"
+     },
+     "note": ""
+    },
+    {
+     "kind": "image",
+     "file": "gauze-macro.png",
+     "src": "projects/bone-china-doll/out/final-set-gauze/gauze-macro.png",
+     "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-gauze/gauze-macro.jpg",
+     "size": 1267612,
+     "role": "image",
+     "period": "",
+     "label": {
+      "zh": "轻纱微距",
+      "en": "Gauze macro"
+     },
+     "note": ""
+    },
+    {
+     "kind": "image",
+     "file": "hero.png",
+     "src": "projects/bone-china-doll/out/final-set-gauze/hero.png",
+     "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-gauze/hero.jpg",
+     "size": 1922949,
+     "role": "image",
+     "period": "",
+     "label": {
+      "zh": "主图",
+      "en": "Hero"
+     },
+     "note": ""
+    },
+    {
+     "kind": "image",
+     "file": "portrait.png",
+     "src": "projects/bone-china-doll/out/final-set-gauze/portrait.png",
+     "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-gauze/portrait.jpg",
+     "size": 2709040,
+     "role": "image",
+     "period": "",
+     "label": {
+      "zh": "肖像",
+      "en": "Portrait"
+     },
+     "note": ""
+    },
+    {
+     "kind": "image",
+     "file": "skin-macro.png",
+     "src": "projects/bone-china-doll/out/final-set-gauze/skin-macro.png",
+     "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-gauze/skin-macro.jpg",
+     "size": 1364422,
+     "role": "image",
+     "period": "",
+     "label": {
+      "zh": "肤质微距",
+      "en": "Skin macro"
+     },
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "final-set-life",
+   "title": {
+    "zh": "五阶段 · 起居瞬间",
+    "en": "Phase 5 · Living moments"
+   },
+   "desc": {
+    "zh": "五阶段 · 起居瞬间",
+    "en": "Phase 5 · Living moments"
+   },
+   "poster": "site/thumbs/projects/bone-china-doll/out/final-set-life/doze.jpg",
+   "cover": "projects/bone-china-doll/out/final-set-life/doze.png",
+   "count": 8,
+   "finals": 0,
+   "bytes": 14478294,
+   "periods": [],
+   "text_ref": null,
+   "doc": null,
+   "items": [
+    {
+     "kind": "image",
+     "file": "doze.png",
+     "src": "projects/bone-china-doll/out/final-set-life/doze.png",
+     "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-life/doze.jpg",
+     "size": 1845561,
+     "role": "image",
+     "period": "",
+     "label": {
+      "zh": "伏案打盹",
+      "en": "Dozing"
+     },
+     "note": ""
+    },
+    {
+     "kind": "image",
+     "file": "gauze-macro.png",
+     "src": "projects/bone-china-doll/out/final-set-life/gauze-macro.png",
+     "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-life/gauze-macro.jpg",
+     "size": 1267612,
+     "role": "image",
+     "period": "",
+     "label": {
+      "zh": "轻纱微距",
+      "en": "Gauze macro"
+     },
+     "note": ""
+    },
+    {
+     "kind": "image",
+     "file": "hero.png",
+     "src": "projects/bone-china-doll/out/final-set-life/hero.png",
+     "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-life/hero.jpg",
+     "size": 1827133,
+     "role": "image",
+     "period": "",
+     "label": {
+      "zh": "主图",
+      "en": "Hero"
+     },
+     "note": ""
+    },
+    {
+     "kind": "image",
+     "file": "mat-by-window.png",
+     "src": "projects/bone-china-doll/out/final-set-life/mat-by-window.png",
+     "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-life/mat-by-window.jpg",
+     "size": 2210077,
+     "role": "image",
+     "period": "",
+     "label": {
+      "zh": "窗边矮榻",
+      "en": "Mat by the window"
+     },
+     "note": ""
+    },
+    {
+     "kind": "image",
+     "file": "prone.png",
+     "src": "projects/bone-china-doll/out/final-set-life/prone.png",
+     "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-life/prone.jpg",
+     "size": 1887619,
+     "role": "image",
+     "period": "",
+     "label": {
+      "zh": "伏卧",
+      "en": "Prone"
+     },
+     "note": ""
+    },
+    {
+     "kind": "image",
+     "file": "recline.png",
+     "src": "projects/bone-china-doll/out/final-set-life/recline.png",
+     "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-life/recline.jpg",
+     "size": 1895333,
+     "role": "image",
+     "period": "",
+     "label": {
+      "zh": "侧卧",
+      "en": "Reclining"
+     },
+     "note": ""
+    },
+    {
+     "kind": "image",
+     "file": "seated.png",
+     "src": "projects/bone-china-doll/out/final-set-life/seated.png",
+     "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-life/seated.jpg",
+     "size": 2180537,
+     "role": "image",
+     "period": "",
+     "label": {
+      "zh": "坐姿",
+      "en": "Seated"
+     },
+     "note": ""
+    },
+    {
+     "kind": "image",
+     "file": "skin-macro.png",
+     "src": "projects/bone-china-doll/out/final-set-life/skin-macro.png",
+     "thumb": "site/thumbs/projects/bone-china-doll/out/final-set-life/skin-macro.jpg",
+     "size": 1364422,
+     "role": "image",
+     "period": "",
+     "label": {
+      "zh": "肤质微距",
+      "en": "Skin macro"
+     },
+     "note": ""
+    }
+   ]
+  }
+ ]
 }

@@ -1,5 +1,6 @@
 {
  "id": "shanhai-jing",
+ "kind": "periods",
  "title": {
   "zh": "山海经 · 图赞",
   "en": "Shan Hai Jing · Illustrated Verses"
@@ -11,118 +12,150 @@
  "readme": "projects/shanhai-jing/README.md",
  "summary": null,
  "plan": "projects/shanhai-jing/PLAN.md",
- "data": "shanhai-jing.json",
  "rubric": {
   "zh": "A 考据准确 .25 ｜ F 气韵生动 .25 ｜ B 骨法纯正 .15 ｜ C 制式完整 .15 ｜ D 辨识度 .10 ｜ E 系列一致 .10",
   "en": "A sourcing accuracy .25 | F vitality of brushwork .25 | B bone purity .15 | C format completeness .15 | D legibility .10 | E series consistency .10"
  },
- "sheet": null,
- "sheet_thumb": null,
- "groups": [],
- "subjects": [
+ "data": "shanhai-jing.json",
+ "stats": {
+  "reels": 1,
+  "periods": 1,
+  "finals": 3,
+  "controls": 2
+ },
+ "reels": [
   {
    "id": "jiu-wei-hu",
    "title": {
-    "zh": "jiu-wei-hu",
-    "en": "jiu-wei-hu"
+    "zh": "九尾狐",
+    "en": "Nine-Tailed Fox"
    },
-   "group": "",
-   "stats": {
-    "periods": 1,
-    "finals": 3,
-    "controls": 2,
-    "mean": 0.0,
-    "bytes": 3498133
+   "desc": {
+    "zh": "定调期首件：九尾狐（南山經 · 青丘之山）。骨法为赭石设色工笔；出图为纯文生图 + 点名神话生物的 prompt 写法（8/8 出九尾），已撤销程序化控制图装置（见 rounds/r05-review.md）。已制版产出图赞主图与原文卡；印章层因篆体字库未解决而暂缺。",
+    "en": "定调期首件：九尾狐（南山經 · 青丘之山）。骨法为赭石设色工笔；出图为纯文生图 + 点名神话生物的 prompt 写法（8/8 出九尾），已撤销程序化控制图装置（见 rounds/r05-review.md）。已制版产出图赞主图与原文卡；印章层因篆体字库未解决而暂缺。"
    },
-   "thumb": null,
-   "sheet": null,
-   "readme": null,
-   "parts": null,
-   "audits": [],
+   "poster": "site/thumbs/projects/shanhai-jing/subjects/jiu-wei-hu/period-01/01-jiu-wei-hu.jpg",
+   "cover": "projects/shanhai-jing/subjects/jiu-wei-hu/period-01/01-jiu-wei-hu.png",
+   "count": 5,
+   "finals": 3,
+   "bytes": 3498133,
    "periods": [
     {
      "id": "period-01",
-     "note": "定调期首件：九尾狐（南山經 · 青丘之山）。骨法为赭石设色工笔；出图为纯文生图 + **点名神话生物的 prompt 写法**（8/8 出九尾），已撤销程序化控制图装置（见 rounds/r05-review.md）。已制版产出图赞主图与原文卡；印章层因篆体字库未解决而暂缺。",
-     "sheet": null,
-     "thumb": null,
-     "readme": null,
-     "bytes": 3498133,
-     "entries": [
-      {
-       "file": "01-jiu-wei-hu.png",
-       "path": "projects/shanhai-jing/subjects/jiu-wei-hu/period-01/01-jiu-wei-hu.png",
-       "thumb": "site/thumbs/projects/shanhai-jing/subjects/jiu-wei-hu/period-01/01-jiu-wei-hu.jpg",
-       "size": 2309083,
-       "role": "final",
-       "shot": "m202",
-       "round": 7,
-       "engine": "z-image-turbo",
-       "seed": 202,
-       "sha256": "",
-       "prompt": "The nine-tailed fox of Chinese mythology, standing on a rocky outcrop and looking back over its shoulder. Its nine long tails spread out behind it, thick and full of fur. Painted in the manner of a traditional Chinese album leaf, fine ink brushwork, delicate fur strokes, ink and pale colour on aged paper.",
-       "scores": null
-      },
-      {
-       "file": "02-jiu-wei-hu-zan.png",
-       "path": "projects/shanhai-jing/subjects/jiu-wei-hu/period-01/02-jiu-wei-hu-zan.png",
-       "thumb": "site/thumbs/projects/shanhai-jing/subjects/jiu-wei-hu/period-01/02-jiu-wei-hu-zan.jpg",
-       "size": 1072964,
-       "role": "final",
-       "shot": "",
-       "round": null,
-       "engine": "",
-       "seed": null,
-       "sha256": "",
-       "prompt": ""
-      },
-      {
-       "file": "03-jiu-wei-hu-wen.png",
-       "path": "projects/shanhai-jing/subjects/jiu-wei-hu/period-01/03-jiu-wei-hu-wen.png",
-       "thumb": "site/thumbs/projects/shanhai-jing/subjects/jiu-wei-hu/period-01/03-jiu-wei-hu-wen.jpg",
-       "size": 102873,
-       "role": "final",
-       "shot": "",
-       "round": null,
-       "engine": "",
-       "seed": null,
-       "sha256": "",
-       "prompt": ""
-      },
-      {
-       "file": "controls/nine-tails-control.png",
-       "path": "projects/shanhai-jing/subjects/jiu-wei-hu/period-01/controls/nine-tails-control.png",
-       "thumb": "site/thumbs/projects/shanhai-jing/subjects/jiu-wei-hu/period-01/controls/nine-tails-control.jpg",
-       "size": 6504,
-       "role": "retired-control",
-       "shot": "",
-       "round": null,
-       "engine": "",
-       "seed": null,
-       "sha256": "",
-       "prompt": ""
-      },
-      {
-       "file": "controls/nine-tails-control-plume.png",
-       "path": "projects/shanhai-jing/subjects/jiu-wei-hu/period-01/controls/nine-tails-control-plume.png",
-       "thumb": "site/thumbs/projects/shanhai-jing/subjects/jiu-wei-hu/period-01/controls/nine-tails-control-plume.jpg",
-       "size": 6709,
-       "role": "retired-control",
-       "shot": "",
-       "round": null,
-       "engine": "",
-       "seed": null,
-       "sha256": "",
-       "prompt": ""
-      }
-     ]
+     "title": {
+      "zh": "",
+      "en": ""
+     },
+     "note": "定调期首件：九尾狐（南山經 · 青丘之山）。骨法为赭石设色工笔；出图为纯文生图 + 点名神话生物的 prompt 写法（8/8 出九尾），已撤销程序化控制图装置（见 rounds/r05-review.md）。已制版产出图赞主图与原文卡；印章层因篆体字库未解决而暂缺。",
+     "doc": null
+    }
+   ],
+   "text_ref": {
+    "volume": "山海經 · 南山經",
+    "volume_en": "Shan Hai Jing · Nan Shan Jing",
+    "passage": "又東三百里，曰青丘之山。其陽多玉，其陰多青䨼。有獸焉，其狀如狐而九尾，其音如嬰兒，能食人。食者不蠱。",
+    "commentary": null,
+    "commentary_note": "郭璞注文尚未逐条录入，录入前成品不得出现注文",
+    "place": "青丘之山"
+   },
+   "doc": null,
+   "items": [
+    {
+     "kind": "image",
+     "file": "01-jiu-wei-hu.png",
+     "src": "projects/shanhai-jing/subjects/jiu-wei-hu/period-01/01-jiu-wei-hu.png",
+     "thumb": "site/thumbs/projects/shanhai-jing/subjects/jiu-wei-hu/period-01/01-jiu-wei-hu.jpg",
+     "size": 2309083,
+     "role": "final",
+     "period": "period-01",
+     "label": {
+      "zh": "白描画心",
+      "en": "Ink plate"
+     },
+     "note": "供制版使用",
+     "shot": "m202",
+     "round": 7,
+     "engine": "z-image-turbo",
+     "seed": 202,
+     "sha256": "",
+     "prompt": "The nine-tailed fox of Chinese mythology, standing on a rocky outcrop and looking back over its shoulder. Its nine long tails spread out behind it, thick and full of fur. Painted in the manner of a traditional Chinese album leaf, fine ink brushwork, delicate fur strokes, ink and pale colour on aged paper.",
+     "scores": null
+    },
+    {
+     "kind": "image",
+     "file": "02-jiu-wei-hu-zan.png",
+     "src": "projects/shanhai-jing/subjects/jiu-wei-hu/period-01/02-jiu-wei-hu-zan.png",
+     "thumb": "site/thumbs/projects/shanhai-jing/subjects/jiu-wei-hu/period-01/02-jiu-wei-hu-zan.jpg",
+     "size": 1072964,
+     "role": "final",
+     "period": "period-01",
+     "label": {
+      "zh": "图赞主图",
+      "en": "Illustrated verse"
+     },
+     "note": "卷次 + 榜题 + 画心 + 点睛句 + 出處",
+     "shot": "",
+     "round": null,
+     "engine": "scripts/typeset_zanzhi.py",
+     "seed": null,
+     "sha256": "",
+     "prompt": ""
+    },
+    {
+     "kind": "image",
+     "file": "03-jiu-wei-hu-wen.png",
+     "src": "projects/shanhai-jing/subjects/jiu-wei-hu/period-01/03-jiu-wei-hu-wen.png",
+     "thumb": "site/thumbs/projects/shanhai-jing/subjects/jiu-wei-hu/period-01/03-jiu-wei-hu-wen.jpg",
+     "size": 102873,
+     "role": "final",
+     "period": "period-01",
+     "label": {
+      "zh": "原文卡",
+      "en": "Source-text card"
+     },
+     "note": "竖排榜题 + 卷次 + 竖排原文（右起，50 字）",
+     "shot": "",
+     "round": null,
+     "engine": "scripts/typeset_zanzhi.py",
+     "seed": null,
+     "sha256": "",
+     "prompt": ""
+    },
+    {
+     "kind": "image",
+     "file": "nine-tails-control.png",
+     "src": "projects/shanhai-jing/subjects/jiu-wei-hu/period-01/controls/nine-tails-control.png",
+     "thumb": "site/thumbs/projects/shanhai-jing/subjects/jiu-wei-hu/period-01/controls/nine-tails-control.jpg",
+     "size": 6504,
+     "role": "retired-control",
+     "period": "period-01",
+     "label": null,
+     "note": "已废弃的控制图（保留为教训记录，见 rounds/r05-review.md）；本项目现用纯文生图",
+     "shot": "",
+     "round": null,
+     "engine": "scripts/control_image.py",
+     "seed": null,
+     "sha256": "",
+     "prompt": ""
+    },
+    {
+     "kind": "image",
+     "file": "nine-tails-control-plume.png",
+     "src": "projects/shanhai-jing/subjects/jiu-wei-hu/period-01/controls/nine-tails-control-plume.png",
+     "thumb": "site/thumbs/projects/shanhai-jing/subjects/jiu-wei-hu/period-01/controls/nine-tails-control-plume.jpg",
+     "size": 6709,
+     "role": "retired-control",
+     "period": "period-01",
+     "label": null,
+     "note": "已废弃的控制图（保留为教训记录，见 rounds/r05-review.md）；本项目现用纯文生图",
+     "shot": "",
+     "round": null,
+     "engine": "scripts/control_image.py",
+     "seed": null,
+     "sha256": "",
+     "prompt": ""
     }
    ]
   }
- ],
- "stats": {
-  "subjects": 1,
-  "periods": 1,
-  "finals": 3,
-  "controls": 0
- }
+ ]
 }

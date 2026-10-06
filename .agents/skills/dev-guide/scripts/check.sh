@@ -19,7 +19,7 @@ ok()   { printf '  ✅ %s\n' "$1"; pass=$((pass + 1)); }
 bad()  { printf '  ❌ %s\n' "$1"; fail=$((fail + 1)); }
 hdr()  { printf '\n%s\n' "── $1"; }
 
-hdr "1/4 双语文档（缺件 / 疑似未翻译 / 英文版断链 必须全 0）"
+hdr "1/5 双语文档（缺件 / 疑似未翻译 / 英文版断链 必须全 0）"
 if [ -f tools/i18n.py ]; then
   out=$(python3 tools/i18n.py check 2>&1)
   echo "$out" | head -1 | sed 's/^/     /'
@@ -32,7 +32,7 @@ else
   bad "缺少 tools/i18n.py"
 fi
 
-hdr "2/4 站点数据可重新生成且幂等"
+hdr "2/5 站点数据可重新生成且幂等"
 if [ -f tools/build_site.py ]; then
   before=$(git status --porcelain -- site/data/ 2>/dev/null | wc -l)
   if python3 tools/build_site.py --quiet >/dev/null 2>&1; then
@@ -49,7 +49,7 @@ else
   bad "缺少 tools/build_site.py"
 fi
 
-hdr "3/4 技能自检"
+hdr "3/5 技能自检"
 run_check() { # $1=描述 $2=解释器 $3=脚本路径 ...
   local desc=$1; shift
   if [ ! -e "$2" ]; then printf '  ⏭  %s（%s 不存在，跳过）\n' "$desc" "$2"; return; fi
@@ -61,7 +61,20 @@ run_check "image-edit-comfyui mock"       python3 .agents/skills/image-edit-comf
 run_check "comfyui_gen --check（真机）"    python3 .agents/skills/text-to-image-comfyui/scripts/comfyui_gen.py --check
 run_check "comfyui_edit --check（真机）"   python3 .agents/skills/image-edit-comfyui/scripts/comfyui_edit.py --check
 
-hdr "4/4 开发规范技能自身格式（DSH 项目技能）"
+hdr "4/5 站点界面文案双语（T.zh / T.en）"
+if [ -f tools/i18n.py ]; then
+  if out=$(python3 tools/i18n.py ui 2>&1); then
+    echo "$out" | head -1 | sed 's/^/     /'
+    ok "界面文案双语一致（键一致 / 英文无中文 / 无 T 表外中文串）"
+  else
+    echo "$out" | sed 's/^/     /'
+    bad "界面文案体检未通过"
+  fi
+else
+  bad "缺少 tools/i18n.py"
+fi
+
+hdr "5/5 开发规范技能自身格式（DSH 项目技能）"
 SK="$SKILL_DIR/SKILL.md"
 if [ -f "$SK" ]; then
   name=$(sed -n 's/^name:[[:space:]]*//p' "$SK" | head -1)

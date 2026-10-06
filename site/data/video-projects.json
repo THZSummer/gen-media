@@ -1,0 +1,233 @@
+{
+ "id": "video-projects",
+ "kind": "videos",
+ "title": {
+  "zh": "视频项目",
+  "en": "Video Projects"
+ },
+ "desc": {
+  "zh": "图生视频 / 文生视频的成片与方法手册，图片项目的产物在这里被消费。",
+  "en": "Image-to-video / text-to-video films and method notes; image projects feed in here."
+ },
+ "readme": "projects/README.md",
+ "summary": null,
+ "plan": null,
+ "rubric": null,
+ "data": "video-projects.json",
+ "stats": {
+  "projects": 5,
+  "clips": 7
+ },
+ "reels": [
+  {
+   "id": "giant-kingdom",
+   "title": {
+    "zh": "蝴蝶女大冒险",
+    "en": "Butterfly Girl"
+   },
+   "desc": {
+    "zh": "穿越到巨人女儿国：体型反差的视觉奇观（巨手遮天 / 掌心如地 / 一肩一世界）。",
+    "en": "Into the giant kingdom: a body-scale contrast spectacle (a hand blotting out the sky, a palm for ground, a shoulder for a world)."
+   },
+   "poster": "site/thumbs/projects/giant-kingdom/out/storyboard/shot1_final.jpg",
+   "cover": "projects/giant-kingdom/out/video/butterfly_girl_v3_full.mp4",
+   "count": 1,
+   "finals": 0,
+   "bytes": 13154449,
+   "periods": [],
+   "text_ref": null,
+   "doc": "projects/giant-kingdom/README.md",
+   "items": [
+    {
+     "kind": "video",
+     "file": "butterfly_girl_v3_full.mp4",
+     "src": "projects/giant-kingdom/out/video/butterfly_girl_v3_full.mp4",
+     "thumb": "site/thumbs/projects/giant-kingdom/out/storyboard/shot1_final.jpg",
+     "poster": "projects/giant-kingdom/out/storyboard/shot1_final.jpg",
+     "size": 13154449,
+     "role": "video",
+     "period": "",
+     "label": {
+      "zh": "成片",
+      "en": "Film"
+     },
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "step-scenery",
+   "title": {
+    "zh": "移步换景",
+    "en": "Step Scenery"
+   },
+   "desc": {
+    "zh": "移步换景：少女穿越时空，一步一世界（茶室 → 竹林 → 沙漠 → 赛博 → 星空 → 雪原 → 茶室闭环）。",
+    "en": "Step scenery: a girl crossing time, one step one world (tea room → bamboo → desert → cyber → starfield → snow → back to the tea room)."
+   },
+   "poster": "site/thumbs/projects/step-scenery/out/storyboard/shot1.jpg",
+   "cover": "projects/step-scenery/out/video/v1-mini/step_scenery_full.mp4",
+   "count": 1,
+   "finals": 0,
+   "bytes": 13519504,
+   "periods": [],
+   "text_ref": null,
+   "doc": "projects/step-scenery/README.md",
+   "items": [
+    {
+     "kind": "video",
+     "file": "step_scenery_full.mp4",
+     "src": "projects/step-scenery/out/video/v1-mini/step_scenery_full.mp4",
+     "thumb": "site/thumbs/projects/step-scenery/out/storyboard/shot1.jpg",
+     "poster": "projects/step-scenery/out/storyboard/shot1.jpg",
+     "size": 13519504,
+     "role": "video",
+     "period": "",
+     "label": {
+      "zh": "成片",
+      "en": "Film"
+     },
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "step-scenery-v2",
+   "title": {
+    "zh": "移步换景 v2",
+    "en": "Step Scenery v2"
+   },
+   "desc": {
+    "zh": "移步换景 v2：同故事，seedance-2.0 原生音频版（每镜自带场景音效）。",
+    "en": "Step scenery v2: same story, seedance-2.0 native-audio version, each shot with its own ambience."
+   },
+   "poster": "site/thumbs/projects/step-scenery-v2/out/storyboard/shot1.jpg",
+   "cover": "projects/step-scenery-v2/out/video/step_scenery_15s.mp4",
+   "count": 2,
+   "finals": 0,
+   "bytes": 11347501,
+   "periods": [],
+   "text_ref": null,
+   "doc": "projects/step-scenery-v2/README.md",
+   "items": [
+    {
+     "kind": "video",
+     "file": "step_scenery_15s.mp4",
+     "src": "projects/step-scenery-v2/out/video/step_scenery_15s.mp4",
+     "thumb": "site/thumbs/projects/step-scenery-v2/out/storyboard/shot1.jpg",
+     "poster": "projects/step-scenery-v2/out/storyboard/shot1.jpg",
+     "size": 5919737,
+     "role": "video",
+     "period": "",
+     "label": {
+      "zh": "step scenery 15s",
+      "en": "step scenery 15s"
+     },
+     "note": ""
+    },
+    {
+     "kind": "video",
+     "file": "step_scenery_15s_v2.mp4",
+     "src": "projects/step-scenery-v2/out/video/step_scenery_15s_v2.mp4",
+     "thumb": "site/thumbs/projects/step-scenery-v2/out/storyboard/shot1.jpg",
+     "poster": "projects/step-scenery-v2/out/storyboard/shot1.jpg",
+     "size": 5427764,
+     "role": "video",
+     "period": "",
+     "label": {
+      "zh": "step scenery 15s v2",
+      "en": "step scenery 15s v2"
+     },
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "survival-island",
+   "title": {
+    "zh": "荒岛求生",
+    "en": "Survival Island"
+   },
+   "desc": {
+    "zh": "荒岛求生：6 镜 30s 剧情短片，18 岁东方少女 × 极致反差（荒岛不荒、人更惨）。",
+    "en": "Survival island: a 6-shot 30s narrative short — an 18-year-old Eastern girl and extreme contrast."
+   },
+   "poster": "site/thumbs/projects/survival-island/out/seam_after.jpg",
+   "cover": "projects/survival-island/out/survival_island_full.mp4",
+   "count": 2,
+   "finals": 0,
+   "bytes": 21899504,
+   "periods": [],
+   "text_ref": null,
+   "doc": "projects/survival-island/README.md",
+   "items": [
+    {
+     "kind": "video",
+     "file": "survival_island_full.mp4",
+     "src": "projects/survival-island/out/survival_island_full.mp4",
+     "thumb": "site/thumbs/projects/survival-island/out/seam_after.jpg",
+     "poster": "projects/survival-island/out/seam_after.jpg",
+     "size": 10960323,
+     "role": "video",
+     "period": "",
+     "label": {
+      "zh": "survival island full",
+      "en": "survival island full"
+     },
+     "note": ""
+    },
+    {
+     "kind": "video",
+     "file": "survival_island_narrated.mp4",
+     "src": "projects/survival-island/out/survival_island_narrated.mp4",
+     "thumb": "site/thumbs/projects/survival-island/out/seam_after.jpg",
+     "poster": "projects/survival-island/out/seam_after.jpg",
+     "size": 10939181,
+     "role": "video",
+     "period": "",
+     "label": {
+      "zh": "survival island narrated",
+      "en": "survival island narrated"
+     },
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "tea-shake-dance",
+   "title": {
+    "zh": "来杯好茶摇一摇",
+    "en": "Tea Shake Dance"
+   },
+   "desc": {
+    "zh": "来杯好茶摇一摇：艺术舞蹈短片，以「摇一摇」为动作母题，茶文化跳成现代舞（6 镜逐镜详解）。",
+    "en": "Tea shake dance: an art-dance short built on the \"shake\" motif, turning tea culture into modern dance (all 6 shots detailed)."
+   },
+   "poster": "site/thumbs/projects/tea-shake-dance/out/storyboard/shot1_final.jpg",
+   "cover": "projects/tea-shake-dance/out/video/tea_shake_narrated.mp4",
+   "count": 1,
+   "finals": 0,
+   "bytes": 12325377,
+   "periods": [],
+   "text_ref": null,
+   "doc": "projects/tea-shake-dance/README.md",
+   "items": [
+    {
+     "kind": "video",
+     "file": "tea_shake_narrated.mp4",
+     "src": "projects/tea-shake-dance/out/video/tea_shake_narrated.mp4",
+     "thumb": "site/thumbs/projects/tea-shake-dance/out/storyboard/shot1_final.jpg",
+     "poster": "projects/tea-shake-dance/out/storyboard/shot1_final.jpg",
+     "size": 12325377,
+     "role": "video",
+     "period": "",
+     "label": {
+      "zh": "成片",
+      "en": "Film"
+     },
+     "note": ""
+    }
+   ]
+  }
+ ]
+}

@@ -20,20 +20,175 @@
     "zh": "跨物种、跨界的“部位移植”图像实验：12 个子主题 × 5 期，135 件成品，每轮带同轮底座对照，成品全部经五维评分过关。",
     "en": "Cross-species / cross-kingdom part-transplant studies: 12 sub-themes × 5 periods, 135 curated finals, each round paired with a same-round base control."
    },
-   "cover": "projects/bio-splice/subjects/horn-atlas/sheet-thumb.jpg",
+   "cover": "site/thumbs/projects/bio-splice/subjects/horn-atlas/sheet.jpg",
    "readme": "projects/bio-splice/README.md",
    "summary": "projects/bio-splice/SUMMARY.md",
+   "plan": "projects/bio-splice/PLAN.md",
    "data": "bio-splice.json",
    "stats": {
-    "subjects": 12,
+    "reels": 12,
     "periods": 60,
     "finals": 135,
     "controls": 59
    },
-   "groups": [
-    "甲",
-    "乙",
-    "丙"
+   "reel_count": 12,
+   "strip": [
+    {
+     "title": {
+      "zh": "龟 + 蛇（玄武）",
+      "en": "Turtle + Snake (Black Tortoise)"
+     },
+     "poster": "projects/bio-splice/subjects/turtle-snake/sheet-thumb.jpg",
+     "route": "w/bio-splice/r/turtle-snake",
+     "count": 13,
+     "unit": {
+      "zh": "件成品",
+      "en": "finals"
+     }
+    },
+    {
+     "title": {
+      "zh": "猫 + 鹰",
+      "en": "Cat + Eagle"
+     },
+     "poster": "projects/bio-splice/subjects/cat-eagle/sheet-thumb.jpg",
+     "route": "w/bio-splice/r/cat-eagle",
+     "count": 14,
+     "unit": {
+      "zh": "件成品",
+      "en": "finals"
+     }
+    },
+    {
+     "title": {
+      "zh": "龙 · 九似",
+      "en": "Dragon · Nine Resemblances"
+     },
+     "poster": "projects/bio-splice/subjects/dragon-nines/sheet-thumb.jpg",
+     "route": "w/bio-splice/r/dragon-nines",
+     "count": 10,
+     "unit": {
+      "zh": "件成品",
+      "en": "finals"
+     }
+    },
+    {
+     "title": {
+      "zh": "鱼 + 鸟（鲲鹏）",
+      "en": "Fish + Bird (Kunpeng)"
+     },
+     "poster": "projects/bio-splice/subjects/fish-bird/sheet-thumb.jpg",
+     "route": "w/bio-splice/r/fish-bird",
+     "count": 11,
+     "unit": {
+      "zh": "件成品",
+      "en": "finals"
+     }
+    },
+    {
+     "title": {
+      "zh": "鹿 + 鹤（鹿鹤同春）",
+      "en": "Deer + Crane"
+     },
+     "poster": "projects/bio-splice/subjects/deer-crane/sheet-thumb.jpg",
+     "route": "w/bio-splice/r/deer-crane",
+     "count": 9,
+     "unit": {
+      "zh": "件成品",
+      "en": "finals"
+     }
+    },
+    {
+     "title": {
+      "zh": "捕蝇草 + 动物器官",
+      "en": "Venus Flytrap + Animal Parts"
+     },
+     "poster": "projects/bio-splice/subjects/flytrap-fang/sheet-thumb.jpg",
+     "route": "w/bio-splice/r/flytrap-fang",
+     "count": 11,
+     "unit": {
+      "zh": "件成品",
+      "en": "finals"
+     }
+    },
+    {
+     "title": {
+      "zh": "地衣 = 真菌 + 藻",
+      "en": "Lichen = Fungus + Alga"
+     },
+     "poster": "projects/bio-splice/subjects/lichen/sheet-thumb.jpg",
+     "route": "w/bio-splice/r/lichen",
+     "count": 11,
+     "unit": {
+      "zh": "件成品",
+      "en": "finals"
+     }
+    },
+    {
+     "title": {
+      "zh": "冬虫夏草 = 菌 + 虫",
+      "en": "Cordyceps = Fungus + Insect"
+     },
+     "poster": "projects/bio-splice/subjects/cordyceps/sheet-thumb.jpg",
+     "route": "w/bio-splice/r/cordyceps",
+     "count": 11,
+     "unit": {
+      "zh": "件成品",
+      "en": "finals"
+     }
+    },
+    {
+     "title": {
+      "zh": "花 + 鸟",
+      "en": "Flower + Bird"
+     },
+     "poster": "projects/bio-splice/subjects/flower-bird/sheet-thumb.jpg",
+     "route": "w/bio-splice/r/flower-bird",
+     "count": 12,
+     "unit": {
+      "zh": "件成品",
+      "en": "finals"
+     }
+    },
+    {
+     "title": {
+      "zh": "树 + 兽",
+      "en": "Tree + Beast"
+     },
+     "poster": "projects/bio-splice/subjects/tree-beast/sheet-thumb.jpg",
+     "route": "w/bio-splice/r/tree-beast",
+     "count": 11,
+     "unit": {
+      "zh": "件成品",
+      "en": "finals"
+     }
+    },
+    {
+     "title": {
+      "zh": "角 · 图鉴",
+      "en": "Horn Atlas"
+     },
+     "poster": "projects/bio-splice/subjects/horn-atlas/sheet-thumb.jpg",
+     "route": "w/bio-splice/r/horn-atlas",
+     "count": 11,
+     "unit": {
+      "zh": "件成品",
+      "en": "finals"
+     }
+    },
+    {
+     "title": {
+      "zh": "翅 · 图鉴",
+      "en": "Wing Atlas"
+     },
+     "poster": "projects/bio-splice/subjects/wing-atlas/sheet-thumb.jpg",
+     "route": "w/bio-splice/r/wing-atlas",
+     "count": 11,
+     "unit": {
+      "zh": "件成品",
+      "en": "finals"
+     }
+    }
    ]
   },
   {
@@ -49,10 +204,81 @@
    },
    "cover": "site/thumbs/projects/giant-kingdom/out/storyboard/shot1_final.jpg",
    "readme": "projects/README.md",
+   "summary": null,
+   "plan": null,
+   "data": "video-projects.json",
    "stats": {
     "projects": 5,
     "clips": 7
-   }
+   },
+   "reel_count": 5,
+   "strip": [
+    {
+     "title": {
+      "zh": "蝴蝶女大冒险",
+      "en": "Butterfly Girl"
+     },
+     "poster": "site/thumbs/projects/giant-kingdom/out/storyboard/shot1_final.jpg",
+     "route": "w/video-projects/r/giant-kingdom",
+     "count": 1,
+     "unit": {
+      "zh": "段成片",
+      "en": "films"
+     }
+    },
+    {
+     "title": {
+      "zh": "移步换景",
+      "en": "Step Scenery"
+     },
+     "poster": "site/thumbs/projects/step-scenery/out/storyboard/shot1.jpg",
+     "route": "w/video-projects/r/step-scenery",
+     "count": 1,
+     "unit": {
+      "zh": "段成片",
+      "en": "films"
+     }
+    },
+    {
+     "title": {
+      "zh": "移步换景 v2",
+      "en": "Step Scenery v2"
+     },
+     "poster": "site/thumbs/projects/step-scenery-v2/out/storyboard/shot1.jpg",
+     "route": "w/video-projects/r/step-scenery-v2",
+     "count": 2,
+     "unit": {
+      "zh": "段成片",
+      "en": "films"
+     }
+    },
+    {
+     "title": {
+      "zh": "荒岛求生",
+      "en": "Survival Island"
+     },
+     "poster": "site/thumbs/projects/survival-island/out/seam_after.jpg",
+     "route": "w/video-projects/r/survival-island",
+     "count": 2,
+     "unit": {
+      "zh": "段成片",
+      "en": "films"
+     }
+    },
+    {
+     "title": {
+      "zh": "来杯好茶摇一摇",
+      "en": "Tea Shake Dance"
+     },
+     "poster": "site/thumbs/projects/tea-shake-dance/out/storyboard/shot1_final.jpg",
+     "route": "w/video-projects/r/tea-shake-dance",
+     "count": 1,
+     "unit": {
+      "zh": "段成片",
+      "en": "films"
+     }
+    }
+   ]
   },
   {
    "id": "bone-china-doll",
@@ -67,10 +293,82 @@
    },
    "cover": "site/thumbs/projects/bone-china-doll/out/final-bone-china-princess-east.jpg",
    "readme": "projects/bone-china-doll/README.md",
+   "summary": null,
+   "plan": null,
    "data": "bone-china-doll.json",
    "stats": {
+    "reels": 5,
+    "images": 27,
     "finals": 5
-   }
+   },
+   "reel_count": 5,
+   "strip": [
+    {
+     "title": {
+      "zh": "定稿单图",
+      "en": "Final stills"
+     },
+     "poster": "site/thumbs/projects/bone-china-doll/out/final-bone-china-princess-east.jpg",
+     "route": "w/bone-china-doll/r/out",
+     "count": 5,
+     "unit": {
+      "zh": "件成品",
+      "en": "finals"
+     }
+    },
+    {
+     "title": {
+      "zh": "第二阶段定稿",
+      "en": "Phase 2 finals"
+     },
+     "poster": "site/thumbs/projects/bone-china-doll/out/final-set/full-figure.jpg",
+     "route": "w/bone-china-doll/r/final-set",
+     "count": 3,
+     "unit": {
+      "zh": "件成品",
+      "en": "finals"
+     }
+    },
+    {
+     "title": {
+      "zh": "三阶段 · 东方古典公主",
+      "en": "Phase 3 · Classical Eastern princess"
+     },
+     "poster": "site/thumbs/projects/bone-china-doll/out/final-set-east/full-figure.jpg",
+     "route": "w/bone-china-doll/r/final-set-east",
+     "count": 5,
+     "unit": {
+      "zh": "件成品",
+      "en": "finals"
+     }
+    },
+    {
+     "title": {
+      "zh": "四阶段 · 半纱半瓷",
+      "en": "Phase 4 · Half gauze, half porcelain"
+     },
+     "poster": "site/thumbs/projects/bone-china-doll/out/final-set-gauze/airy-turn.jpg",
+     "route": "w/bone-china-doll/r/final-set-gauze",
+     "count": 5,
+     "unit": {
+      "zh": "件成品",
+      "en": "finals"
+     }
+    },
+    {
+     "title": {
+      "zh": "五阶段 · 起居瞬间",
+      "en": "Phase 5 · Living moments"
+     },
+     "poster": "site/thumbs/projects/bone-china-doll/out/final-set-life/doze.jpg",
+     "route": "w/bone-china-doll/r/final-set-life",
+     "count": 8,
+     "unit": {
+      "zh": "件成品",
+      "en": "finals"
+     }
+    }
+   ]
   },
   {
    "id": "character-lookbook",
@@ -85,7 +383,8 @@
    },
    "cover": null,
    "readme": "projects/character-lookbook/README.md",
-   "stats": {}
+   "stats": {},
+   "strip": []
   },
   {
    "id": "shanhai-jing",
@@ -101,14 +400,67 @@
    "cover": "site/thumbs/projects/shanhai-jing/subjects/jiu-wei-hu/period-01/02-jiu-wei-hu-zan.jpg",
    "readme": "projects/shanhai-jing/README.md",
    "summary": null,
+   "plan": "projects/shanhai-jing/PLAN.md",
    "data": "shanhai-jing.json",
    "stats": {
-    "subjects": 1,
+    "reels": 1,
     "periods": 1,
     "finals": 3,
-    "controls": 0
+    "controls": 2
    },
-   "groups": []
+   "reel_count": 1,
+   "strip": [
+    {
+     "title": {
+      "zh": "白描画心",
+      "en": "Ink plate"
+     },
+     "poster": "site/thumbs/projects/shanhai-jing/subjects/jiu-wei-hu/period-01/01-jiu-wei-hu.jpg",
+     "route": "w/shanhai-jing/r/jiu-wei-hu/1",
+     "count": null,
+     "unit": null
+    },
+    {
+     "title": {
+      "zh": "图赞主图",
+      "en": "Illustrated verse"
+     },
+     "poster": "site/thumbs/projects/shanhai-jing/subjects/jiu-wei-hu/period-01/02-jiu-wei-hu-zan.jpg",
+     "route": "w/shanhai-jing/r/jiu-wei-hu/2",
+     "count": null,
+     "unit": null
+    },
+    {
+     "title": {
+      "zh": "原文卡",
+      "en": "Source-text card"
+     },
+     "poster": "site/thumbs/projects/shanhai-jing/subjects/jiu-wei-hu/period-01/03-jiu-wei-hu-wen.jpg",
+     "route": "w/shanhai-jing/r/jiu-wei-hu/3",
+     "count": null,
+     "unit": null
+    },
+    {
+     "title": {
+      "zh": "九尾狐",
+      "en": "Nine-Tailed Fox"
+     },
+     "poster": "site/thumbs/projects/shanhai-jing/subjects/jiu-wei-hu/period-01/controls/nine-tails-control.jpg",
+     "route": "w/shanhai-jing/r/jiu-wei-hu/4",
+     "count": null,
+     "unit": null
+    },
+    {
+     "title": {
+      "zh": "九尾狐",
+      "en": "Nine-Tailed Fox"
+     },
+     "poster": "site/thumbs/projects/shanhai-jing/subjects/jiu-wei-hu/period-01/controls/nine-tails-control-plume.jpg",
+     "route": "w/shanhai-jing/r/jiu-wei-hu/5",
+     "count": null,
+     "unit": null
+    }
+   ]
   }
  ]
 }

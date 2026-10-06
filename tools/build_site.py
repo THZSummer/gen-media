@@ -1,22 +1,30 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-从 manifest / 评分复核 / 目录结构生成站点数据（site/data/*.json）。
+从 manifest / 评分复核 / README / 目录结构生成站点数据（site/data/*.json）。
 
 设计原则：
   * 只读——不改动任何图片或既有文件
   * 幂等——同样的输入产出完全相同的 JSON（无时间戳、排序稳定）
   * 零依赖——只用标准库，随仓库本身一起工作
 
+数据契约（**流媒体式前端**要的东西）：每个有内容的项目导出一份 `<pid>.json`，
+核心是 `reels[]`（一"卷"= 可连续上下滑的一组作品）+ 每卷里的 `items[]`（一帧 = 一张图
+或一段视频）。**文字全部挂在帧上**（标签 / 说明 / 提示词 / 评分），前端只负责渲染，
+不再自己拼文案、也不再按项目名硬编码渲染器。
+
+    {id, kind, title, desc, readme, summary, plan, rubric, stats,
+     reels: [{id, title, desc, poster, count, period_refs, text_ref,
+              items: [{kind, src, thumb, size, role, period, label, note,
+                       shot, round, engine, seed, sha256, prompt, scores}]}]}
+
+首页只读 `index.json`：项目卡片里带一条 `strip`（首页横向行的卡片），
+所以**首屏不需要拉任何项目数据**。
+
 用法：
     python3 tools/build_site.py            # 生成并打印统计
     python3 tools/build_site.py --quiet    # 只生成
-
-数据来源：
-    projects/bio-splice/SUMMARY.md             交付清单表（子主题/组/期/成品/对照/均分）
-    projects/bio-splice/subjects/*/period-*/manifest.json   每个成品的元数据
-    projects/bio-splice/subjects/*/rounds/rNN-review.md     每个镜头的 A–E 评分
-    projects/*/                                  项目封面与说明（扁平化后图片与视频项目同处一处）
+    python3 tools/build_site.py --no-thumbs  # 跳过缩略图（网格直出原图）
 """
 
 import json
@@ -25,7 +33,6 @@ import re
 import shutil
 import subprocess
 import sys
-from collections import Counter
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT_DIR = os.path.join(ROOT, "site", "data")
@@ -34,7 +41,7 @@ BIO = "projects/bio-splice"
 
 # ── 缩略图 ──────────────────────────────────────────────────────────────────
 # 网格若直出原图，bio-splice 单页要加载 266 张、合计 306 MB（均值 1.47 MB）。
-# 所以 build 时生成 site/thumbs/：**网格与封面用缩略图，灯箱仍用原图**。
+# 所以 build 时生成 site/thumbs/：**卡片与占位用缩略图，详情页当前帧才用原图**。
 # 命名镜像源路径、扩展名改 .jpg，便于排查对应关系。
 THUMB_DIR = os.path.join("site", "thumbs")
 THUMB_MAX = 480          # 最长边（px）
@@ -55,7 +62,7 @@ def ffmpeg_bin():
 def thumb_of(src):
     """返回 src 的缩略图（仓库相对路径），必要时生成。
 
-    ⚠️ 两个必须守住的约束（**都实际踩过**）：
+    ⚠️ 三个必须守住的约束（**都实际踩过**）：
 
     1. `src` 可能是**绝对路径**。直接 `os.path.join(THUMB_DIR, src)` 会丢掉 `THUMB_DIR`
        前缀（`os.path.join` 遇到绝对分量会丢弃前面的），把缩略图写进源目录。
@@ -63,6 +70,8 @@ def thumb_of(src):
     2. 源本身是 `.jpg` 时，上面那个 bug 会让输出路径**正好等于源路径**，
        `ffmpeg -y` 会直接把原图覆盖成 480px 缩略图（不可逆的素材损毁）。
        → 显式断言：输出必须落在 `THUMB_DIR` 内，且不等于源。
+    3. **已经是缩略图**的路径不能再缩一遍（会生成 `site/thumbs/site/thumbs/...` 套娃）。
+       → 命中 `THUMB_DIR` 前缀就直接返回。
 
     另：**增量**（存在且不比源旧就跳过，保证 build 幂等）；**优雅退化**（没有 ffmpeg 时返回原图）。
     """
@@ -71,6 +80,8 @@ def thumb_of(src):
     # 归一为仓库相对路径（CWD == 仓库根 是本脚本的既有前提）
     srcrel = os.path.relpath(src, ROOT) if os.path.isabs(src) else src
     srcrel = srcrel.replace(os.sep, "/")
+    if os.path.normpath(srcrel).startswith(os.path.normpath(THUMB_DIR) + os.sep):
+        return srcrel
     if not THUMB_STATE["enabled"]:
         return srcrel
     exe = ffmpeg_bin()
@@ -97,7 +108,80 @@ def thumb_of(src):
     THUMB_STATE["made"] += 1
     return out
 
-# ── 双语标题（人工维护一次；其余文案从仓库里现成的中文文档取原文） ──────────────
+
+# ── 文字工具 ────────────────────────────────────────────────────────────────
+MD_LINK = re.compile(r"\[([^\]]*)\]\(([^)]*)\)")
+
+
+def plain(s):
+    """把 README 里的一小段 markdown 还原成能直接上屏的纯文本。
+
+    仓库文档里的说明句常带 `**加粗**`、`「」`、行内代码与链接；直接塞进 JSON
+    会在页面上露出星号。这里只做去噪，不改写内容。
+    """
+    if not s:
+        return ""
+    s = MD_LINK.sub(r"\1", s)
+    s = s.replace("**", "").replace("`", "")
+    s = re.sub(r"(?<!\*)\*(?!\*)", "", s)
+    s = s.replace("<br>", " ").replace("\\", "")
+    return re.sub(r"[ \t]+", " ", s).strip()
+
+
+def first_para(readme):
+    """取 README 的第一段正文，作为说明文字的兜底（中英同文，取自中文文档）。
+
+    跳过标题 / 引用块（`>`）/ 代码围栏 / 表格 / 图片行，取到第一段连续正文为止。
+    """
+    if not readme or not os.path.isfile(readme):
+        return ""
+    para = []
+    with open(readme, encoding="utf-8") as fh:
+        for raw in fh:
+            line = raw.strip()
+            if not para:
+                if (not line or line.startswith(("#", ">", "```", "|", "!", "---"))
+                        or line.startswith("<!--")):
+                    continue
+                para.append(line)
+            else:
+                if not line or line.startswith(("#", "```", "|", "---")):
+                    break
+                para.append(line)
+    return plain(" ".join(para))
+
+
+def en_mate(p):
+    """`X.md` → `X.en.md`（本仓库的双语命名约定）。"""
+    return re.sub(r"\.md$", ".en.md", p) if p and p.endswith(".md") else None
+
+
+def read_para(path):
+    """一段文档的中英说明：中文取 `X.md`，英文取 `X.en.md`；英文缺件时退回中文。"""
+    zh = first_para(path)
+    en = first_para(en_mate(path)) if path else ""
+    return {"zh": zh, "en": en or zh}
+
+
+H1 = re.compile(r"^#\s+(.*)$")
+PERIOD_PREFIX = re.compile(r"^(?:第\s*[0-9一二三四五六七八九十]+\s*(?:期|部分)\s*·\s*|Period\s*\d+\s*·\s*|Part\s*\d+\s*·\s*)",
+                           re.I)
+
+
+def read_h1(path, strip_prefix=False):
+    """README 的一级标题（期标题常写成「第一期 · 猫头鹰」，可去掉序号前缀）。"""
+    if not path or not os.path.isfile(path):
+        return ""
+    with open(path, encoding="utf-8") as fh:
+        for line in fh:
+            m = H1.match(line.strip())
+            if m:
+                t = plain(m.group(1))
+                return PERIOD_PREFIX.sub("", t) if strip_prefix else t
+    return ""
+
+
+# ── 双语标题（人工维护一次；其余文案从仓库里现成的文档取原文） ──────────────
 SUBJECT_TITLES = {
     "cat-eagle":     ("猫 + 鹰", "Cat + Eagle"),
     "dragon-nines":  ("龙 · 九似", "Dragon · Nine Resemblances"),
@@ -111,6 +195,8 @@ SUBJECT_TITLES = {
     "tree-beast":    ("树 + 兽", "Tree + Beast"),
     "wing-atlas":    ("翅 · 图鉴", "Wing Atlas"),
     "horn-atlas":    ("角 · 图鉴", "Horn Atlas"),
+    # 山海经（没有 SUMMARY.md，标题靠这张表；缺失时退回目录名）
+    "jiu-wei-hu":    ("九尾狐", "Nine-Tailed Fox"),
 }
 
 GROUPS = {
@@ -182,8 +268,6 @@ RUBRICS = {
 }
 
 # 视频项目的一句话说明（**双语**，与 projects/README.md 的项目表同源）。
-# 以前 videos.json 的 desc 是空字符串；若改成抓 README 首段，抓到的是副标题而不是正文，
-# 而且中英同文。登记过的用这里，未登记的才退回 README 首段。
 VIDEO_DOCS = {
     "giant-kingdom": (
         "穿越到巨人女儿国：体型反差的视觉奇观（巨手遮天 / 掌心如地 / 一肩一世界）。",
@@ -210,6 +294,58 @@ VIDEO_DOCS = {
     ),
 }
 
+# 视频项目的双语名（中文取自各项目 README 的一级标题）
+VIDEO_TITLES = {
+    "giant-kingdom":   ("蝴蝶女大冒险", "Butterfly Girl"),
+    "step-scenery":    ("移步换景", "Step Scenery"),
+    "step-scenery-v2": ("移步换景 v2", "Step Scenery v2"),
+    "survival-island": ("荒岛求生", "Survival Island"),
+    "tea-shake-dance": ("来杯好茶摇一摇", "Tea Shake Dance"),
+}
+
+# 图集项目（无 manifest）的**卷**：目录 → 阶段标题（全部取自各项目 README 的阶段划分）
+GALLERY_REELS = {
+    "bone-china-doll": {
+        "out":             ("定稿单图", "Final stills"),
+        "final-set":       ("第二阶段定稿", "Phase 2 finals"),
+        "final-set-east":  ("三阶段 · 东方古典公主", "Phase 3 · Classical Eastern princess"),
+        "final-set-gauze": ("四阶段 · 半纱半瓷", "Phase 4 · Half gauze, half porcelain"),
+        "final-set-life":  ("五阶段 · 起居瞬间", "Phase 5 · Living moments"),
+    },
+}
+
+# 图集项目的逐帧标签：文件名（去扩展名）→ 双语短语。
+# 这些名字来自文件命名与 README 里已有的中文说法，不是新编的内容描述。
+GALLERY_FILE_LABELS = {
+    "hero": "主图 / Hero",
+    "portrait": "肖像 / Portrait",
+    "seated": "坐姿 / Seated",
+    "full-figure": "全身 / Full figure",
+    "tang-portrait": "唐装肖像 / Tang-style portrait",
+    "airy-turn": "轻纱转身 / Airy turn",
+    "gauze-macro": "轻纱微距 / Gauze macro",
+    "skin-macro": "肤质微距 / Skin macro",
+    "macro-wrist": "手腕微距 / Wrist macro",
+    "macro-chest": "胸前微距 / Chest macro",
+    "macro-hairpin": "发簪微距 / Hairpin macro",
+    "macro-necklace": "项链微距 / Necklace macro",
+    "macro-slipper": "绣鞋微距 / Slipper macro",
+    "macro-tiara": "冠饰微距 / Tiara macro",
+    "doze": "伏案打盹 / Dozing",
+    "mat-by-window": "窗边矮榻 / Mat by the window",
+    "prone": "伏卧 / Prone",
+    "recline": "侧卧 / Reclining",
+    "detail-study-joint-hand": "关节手部研究 / Jointed hand study",
+    "final-bone-china-princess": "定稿 · 公主 / Final · Princess",
+    "final-bone-china-princess-v2": "定稿 · v2 / Final · v2",
+    "final-bone-china-princess-east": "定稿 · 东方古典 / Final · Classical East",
+    "final-bone-china-princess-gauze": "定稿 · 半纱半瓷 / Final · Gauze porcelain",
+    "final-bone-china-princess-life": "定稿 · 起居瞬间 / Final · Living moment",
+}
+
+# 帧的角色（前端按 role 上徽标与配色；这里只定义**取值**，文案在 app.js 的 T 里）
+ROLE_FINAL = "final"
+
 VERDICT_OK = "✅"
 
 
@@ -230,6 +366,13 @@ def walk_files(sub):
         for f in files:
             out.append(os.path.join(base, f))
     return sorted(out)
+
+
+def maybe_path(p):
+    return rel(p) if os.path.isfile(p) else None
+
+
+IMG_RE = re.compile(r"\.(png|jpe?g|webp)$", re.I)
 
 
 # ── SUMMARY.md 交付清单表 ────────────────────────────────────────────────────
@@ -316,9 +459,151 @@ def parse_review(path):
     return scores
 
 
-def build_subject(sid, meta, proot=None):
-    """装配一个子主题。`proot` 是项目根（默认 bio-splice）——扁平化后不止一个项目有期结构。"""
-    sdir = os.path.join(proot or BIO, "subjects", sid)
+# ── 期 README 的「成品表」→ 逐帧短标签 ──────────────────────────────────────
+# 表头形如 `| # | 文件 | 移植部位 | 评分 | prompt_id | sha256 |`，第三列就是
+# 「这张画的是什么」。实测有 8 种列布局（移植部位 / 拼接语义 / 叠加 / 只有评分），
+# 所以只认「第二列是指向本目录图片的 Markdown 链接」的行，取第三列；第三列长得像
+# 分数就丢弃。取不到就留空——前端会退回期级说明。实测覆盖率约 46%，
+# 剩下的一半是「只有评分」的布局，宁缺毋滥。
+SCORE_LIKE = re.compile(r"^\*{0,2}[\d.]+")
+
+
+def read_captions(pdir):
+    """{文件名: {zh, en}}：期 README 成品表第三列的逐帧短标签。"""
+    out = {}
+    for lang, fn in (("zh", "README.md"), ("en", "README.en.md")):
+        p = os.path.join(pdir, fn)
+        if not os.path.isfile(p):
+            continue
+        with open(p, encoding="utf-8") as fh:
+            for line in fh:
+                if not line.startswith("|"):
+                    continue
+                cells = [c.strip() for c in line.strip().strip("|").split("|")]
+                if len(cells) < 3:
+                    continue
+                m = MD_LINK.search(cells[1])
+                if not m or not IMG_RE.search(m.group(2)):
+                    continue
+                cap = plain(cells[2])
+                if not cap or SCORE_LIKE.match(cap):
+                    continue
+                out.setdefault(os.path.basename(m.group(2)), {})[lang] = cap
+    return {k: {"zh": v.get("zh", v.get("en", "")), "en": v.get("en", v.get("zh", ""))}
+            for k, v in out.items()}
+
+
+def frame_label(caps, filename, note, ekind=""):
+    """逐帧标签 → (label|None, note 正文)。
+
+    取值顺序：README 成品表的短标签 > manifest note 的抬头 > manifest `kind`（画心/卡片）。
+    都没有就返回 None——前端退回 role 的名字（定稿 / 对照 / 合图），**不硬翻、不留空**。
+    """
+    head, rest = split_note(note)
+    c = caps.get(filename)
+    if c and c.get("zh"):
+        label = {"zh": c["zh"], "en": c.get("en") or LABEL_EN.get(c["zh"], "")}
+    elif head:
+        label = {"zh": head["zh"], "en": LABEL_EN.get(head["zh"], "")}
+    elif ekind in FRAME_KIND_LABELS:
+        zh, en = FRAME_KIND_LABELS[ekind]
+        label = {"zh": zh, "en": en}
+    else:
+        label = None
+    return label, rest
+
+
+def split_note(note):
+    """把 manifest 的 `note` 拆成（短标签, 余下正文）。
+
+    shanhai-jing 的 note 写成「图赞主图：卷次 + 榜题 + 画心 + 点睛句 + 出處」，
+    冒号前那截正好是这张图的类型（抬头上限 12 字，避免把整句当标题）；
+    没有冒号时退一步认「白描画心（供制版使用）」这种「短语（限定）」写法。
+    """
+    note = plain(note)
+    if "：" in note:
+        head, rest = note.split("：", 1)
+        if 0 < len(head) <= 12:
+            return {"zh": head, "en": ""}, rest.strip()
+    m = re.match(r"^([^（）()]{2,12})[（(]([^）)]*)[）)]\s*$", note)
+    if m:
+        return {"zh": m.group(1).strip(), "en": ""}, m.group(2).strip()
+    return None, note
+
+
+# manifest 里 `kind` 字段的双语名（区分画心与制版卡；没有更具体的标签时用它）
+FRAME_KIND_LABELS = {
+    "plate": ("白描画心", "Ink plate"),
+    "card": ("图赞卡片", "Verse card"),
+}
+
+# note 抬头只有中文、但英文界面也需要一个能读的标题时，用这张小表；查不到就留空，
+# 前端会退回 role 的名字（定稿 / 对照 / 合图）——**不硬翻、不留空**。
+LABEL_EN = {
+    "白描画心": "Ink plate",
+    "图赞主图": "Illustrated verse",
+    "原文卡": "Source-text card",
+    "第 1 轮审计": "Round 1 audit",
+}
+
+
+# ── 帧（feed 的一屏）────────────────────────────────────────────────────────
+def image_frame(src, role, *, label=None, note="", period="", **meta):
+    """一张图 = 详情页里的一帧。src 为仓库相对路径。"""
+    abspath = os.path.join(ROOT, src)
+    return {
+        "kind": "image",
+        "file": os.path.basename(src),
+        "src": rel(src),
+        "thumb": thumb_of(abspath),
+        "size": os.path.getsize(abspath) if os.path.isfile(abspath) else 0,
+        "role": role,
+        "period": period,
+        "label": label,
+        "note": note,
+        **meta,
+    }
+
+
+def prettify(stem):
+    return re.sub(r"[_\-]+", " ", stem).strip()
+
+
+def gallery_label(file):
+    stem = os.path.splitext(file)[0]
+    if stem in GALLERY_FILE_LABELS:
+        zh, _, en = GALLERY_FILE_LABELS[stem].partition(" / ")
+        return {"zh": zh, "en": en or zh}
+    return {"zh": prettify(stem), "en": prettify(stem)}
+
+
+# ── 卷（reel = 可连续上下滑的一组作品）──────────────────────────────────────
+def reel(rid, title, desc, items, *, poster=None, periods=None, text_ref=None, doc=None):
+    items = [it for it in items if it]
+    return {
+        "id": rid,
+        "title": title,
+        "desc": desc,
+        "poster": poster or next((it.get("thumb") or it.get("src") for it in items), None),
+        "cover": next((it.get("src") for it in items), None),
+        "count": len(items),
+        # 成品数单列一份：卷的总数里混着合图/对照/审计，卡片上写"36 件"会虚高
+        "finals": sum(1 for it in items if it.get("role") == ROLE_FINAL),
+        "bytes": sum(it.get("size") or 0 for it in items),
+        "periods": periods or [],
+        "text_ref": text_ref,
+        "doc": doc,
+        "items": items,
+    }
+
+
+def build_subject_reel(sid, meta, proot):
+    """装配一个「期结构」子主题：成品在前，合图 / 对照 / 轮次审计在后。
+
+    顺序是刻意的——**正文与过程件分开**：一进来滑到的都是定稿；
+    继续往下才是同轮对照、本期合图、轮次审计（每帧都带 role 徽标与配色）。
+    """
+    sdir = os.path.join(proot, "subjects", sid)
     if not os.path.isdir(sdir):
         return None
     zh, en = SUBJECT_TITLES.get(sid, (meta.get("zh_title") or sid, sid))
@@ -333,7 +618,7 @@ def build_subject(sid, meta, proot=None):
             cache[round_no] = parse_review(reviews[round_no])
         return cache[round_no].get(shot)
 
-    periods = []
+    finals, extras, periods, text_ref = [], [], [], None
     for name in sorted(os.listdir(sdir)):
         if not re.fullmatch(r"period-\d+", name):
             continue
@@ -344,83 +629,192 @@ def build_subject(sid, meta, proot=None):
         with open(mpath, encoding="utf-8") as fh:
             man = json.load(fh)
 
-        entries = []
+        caps = read_captions(pdir)
+        note = plain(man.get("note", ""))
+        ptitle = read_h1(os.path.join(pdir, "README.md"), strip_prefix=True)
+        ptitle_en = read_h1(os.path.join(pdir, "README.en.md"), strip_prefix=True)
+        # 期标题来自期 README 的一级标题；没有 README（shanhai-jing）就留空，
+        # 前端会用「第 N 期」的界面标签兜底——**不要把目录名 period-01 当标题**
+        period_title = {"zh": ptitle, "en": ptitle_en}
+        periods.append({
+            "id": name,
+            "title": period_title,
+            "note": note,
+            "doc": maybe_path(os.path.join(pdir, "README.md")),
+        })
+        text_ref = text_ref or man.get("text_ref")
+
+        period_finals, period_extras = [], []
         for ent in man.get("entries", []):
             fn = ent.get("final")
             if not fn:
                 continue
-            item = {
-                "file": fn,
-                "path": rel(os.path.join(pdir, fn)),
-                "thumb": thumb_of(os.path.join(pdir, fn)),
-                "size": os.path.getsize(os.path.join(pdir, fn)),
-                "role": ent.get("role", "final"),
-                "shot": ent.get("source_shot", ""),
-                "round": ent.get("source_round"),
-                "engine": ent.get("source_engine", ""),
-                "seed": ent.get("seed"),
-                "sha256": ent.get("sha256", ""),
-                "prompt": ent.get("prompt", ""),
-            }
-            if item["role"] == "final" and item["round"]:
-                item["scores"] = scores_for(item["round"], item["shot"])
-            entries.append(item)
+            src = rel(os.path.join(pdir, fn))
+            if not os.path.isfile(os.path.join(ROOT, src)):
+                continue
+            role = ent.get("role", ROLE_FINAL)
+            label, note_body = frame_label(caps, os.path.basename(fn),
+                                           ent.get("note", ""), ent.get("kind", ""))
+            frame = image_frame(
+                src, role,
+                label=label,
+                note=note_body,
+                period=name,
+                shot=ent.get("source_shot", ""),
+                round=ent.get("source_round"),
+                engine=ent.get("source_engine", "") or ent.get("source", ""),
+                seed=ent.get("seed"),
+                sha256=ent.get("sha256", ""),
+                prompt=ent.get("prompt", ""),
+            )
+            if role == ROLE_FINAL and frame["round"]:
+                frame["scores"] = scores_for(frame["round"], frame["shot"])
+            (period_finals if role == ROLE_FINAL else period_extras).append(frame)
 
-        periods.append({
-            "id": name,
-            "note": man.get("note", ""),
-            "sheet": rel(os.path.join(pdir, "sheet.jpg")) if os.path.isfile(os.path.join(pdir, "sheet.jpg")) else None,
-            "thumb": thumb_of(os.path.join(pdir, "sheet.jpg")),
-            "readme": rel(os.path.join(pdir, "README.md")) if os.path.isfile(os.path.join(pdir, "README.md")) else None,
-            "bytes": sum(e["size"] for e in entries),
-            "entries": entries,
-        })
+        # 本期合图（把本期的成品拼在一张上）——放在本期成品之后
+        sheet = os.path.join(pdir, "sheet.jpg")
+        if os.path.isfile(sheet):
+            period_extras.insert(0, image_frame(
+                rel(sheet), "sheet", period=name,
+                label={"zh": "本期合图", "en": "Period contact sheet"},
+                note=note))
+        finals += period_finals
+        extras += period_extras
 
-    audits = [{"round": n, "path": rel(p), "thumb": thumb_of(p)}
-              for n, p in sorted(audit_files.items())]
+    if not finals and not extras:
+        return None
 
-    def maybe(relpath):
-        return rel(relpath) if os.path.isfile(relpath) else None
+    # 子主题总览合图与轮次审计图排在最后
+    for p in (os.path.join(sdir, "sheet.jpg"),):
+        if os.path.isfile(p):
+            extras.append(image_frame(rel(p), "sheet",
+                                      label={"zh": "全套合图", "en": "All-periods contact sheet"},
+                                      note=read_para(os.path.join(sdir, "README.md"))["zh"]))
+    for n, p in sorted(audit_files.items()):
+        extras.append(image_frame(rel(p), "audit", round=n,
+                                  label={"zh": "第 %d 轮审计" % n, "en": "Round %d audit" % n},
+                                  note=""))
 
-    return {
-        "id": sid,
-        "title": {"zh": zh, "en": en},
-        "group": meta["group"],
-        "stats": {
-            "periods": meta["periods"],
-            "finals": meta["finals"],
-            "controls": meta["controls"],
-            "mean": meta["mean"],
-            "bytes": sum(p["bytes"] for p in periods),
-        },
-        "thumb": maybe(os.path.join(sdir, "sheet-thumb.jpg")),
-        "sheet": maybe(os.path.join(sdir, "sheet.jpg")),
-        "readme": maybe(os.path.join(sdir, "README.md")),
-        "parts": maybe(os.path.join(sdir, "parts.md")),
-        "audits": audits,
-        "periods": periods,
-    }
+    desc = read_para(os.path.join(sdir, "README.md"))
+    if not desc["zh"]:
+        # 子主题没有自己的 README（shanhai-jing）：拿本期 manifest 的 note 当卷说明——
+        # 那句话本来就是这个子主题最完整的交代，不必再编一段。
+        desc = {"zh": periods[0]["note"] if periods else "",
+                "en": periods[0]["note"] if periods else ""}
+    # 子主题自带的 sheet-thumb.jpg 本来就是缩略图 → 直接当卡面，**不要再缩一遍**
+    # （缩一遍只会多出一堆 site/thumbs/…/sheet-thumb.jpg 套娃文件）
+    st = os.path.join(sdir, "sheet-thumb.jpg")
+    poster = rel(st) if os.path.isfile(st) else None
+    return reel(sid, {"zh": zh, "en": en}, desc, finals + extras,
+                poster=poster,
+                periods=periods,
+                text_ref=text_ref,
+                doc=maybe_path(os.path.join(sdir, "README.md")))
 
 
-IMG_RE = re.compile(r"\.(png|jpe?g|webp)$", re.I)
-
-
-def pick_cover(pid, pdir):
-    """挑项目封面：显式覆写 → `final-*` → 期目录首图 → 项目首图。
-
-    优先级是"确定性"的（walk_files 已排序），所以同输入永远同一张封面。
-    """
-    if pid in COVERS:
-        p = COVERS[pid]
-        return rel(p) if p and os.path.isfile(p) else None
+def build_gallery_reels(pid, pdir):
+    """图集项目：**按目录分卷**（每个阶段一卷），成品在前、其余按目录名排序。"""
     imgs = [p for p in walk_files(pdir) if IMG_RE.search(p)]
-    # 排除对照图/审计图：它们是过程件，不代表项目观感
-    imgs = [p for p in imgs if "/controls/" not in p and "audit" not in os.path.basename(p).lower()]
-    for pat in (r"/final[-_]", r"/period-\d+/0?1-", r"/sheet-thumb\."):
-        for p in imgs:
-            if re.search(pat, p, re.I):
-                return rel(p)
-    return rel(imgs[0]) if imgs else None
+    imgs = [p for p in imgs if not GALLERY_SKIP.search(rel(p))]
+    if not imgs:
+        return []
+    labels = GALLERY_REELS.get(pid, {})
+    buckets = {}
+    for p in imgs:
+        buckets.setdefault(os.path.basename(os.path.dirname(p)), []).append(p)
+
+    def order(d):
+        return (0 if d == "out" else 1, d)
+
+    reels = []
+    for d in sorted(buckets, key=order):
+        paths = buckets[d]
+        finals = sorted(p for p in paths if os.path.basename(p).lower().startswith("final"))
+        rest = sorted(p for p in paths if p not in finals)
+        items = []
+        for p in finals + rest:
+            f = os.path.basename(p)
+            items.append(image_frame(rel(p), ROLE_FINAL if p in finals else "image",
+                                     label=gallery_label(f)))
+        zh, en = labels.get(d, (d, d))
+        # 卷说明：第一段用项目简介（双语、已人工校过），其余阶段用阶段名——都比
+        # 「README 第一段」稳，后者抓到的常是 markdown 项目符号清单。
+        if d == "out":
+            desc = {"zh": DOCS.get(pid, ("", ""))[0], "en": DOCS.get(pid, ("", ""))[1]}
+        else:
+            desc = {"zh": zh, "en": en}
+        reels.append(reel(d, {"zh": zh, "en": en}, desc, items))
+    return reels
+
+
+def build_video_reels():
+    """视频项目：**每个子项目一卷**，卷里是它的成片。"""
+    vroot = "projects"
+    reels = []
+    if not os.path.isdir(vroot):
+        return reels
+    for pid in sorted(os.listdir(vroot)):
+        pdir = os.path.join(vroot, pid)
+        if not os.path.isdir(pdir) or pid.startswith("_"):
+            continue
+        clips = [p for p in walk_files(pdir) if p.lower().endswith(".mp4")]
+        clips = [p for p in clips if not SKIP_VIDEO.search(p)]
+        if not clips:
+            continue
+        imgs = [p for p in walk_files(pdir) if re.search(r"\.(jpg|jpeg|png)$", p, re.I)]
+
+        def pick_poster(clip):
+            # 先在同目录附近的图片里按偏好挑，退化为项目内第一张图
+            for pat in POSTER_PREF:
+                for img in imgs:
+                    if pat.search(img):
+                        return img
+            return None
+
+        items = []
+        for clip in sorted(clips):
+            poster = pick_poster(clip)
+            stem = os.path.splitext(os.path.basename(clip))[0]
+            items.append({
+                "kind": "video",
+                "file": os.path.basename(clip),
+                "src": rel(clip),
+                "thumb": thumb_of(os.path.join(ROOT, poster)) if poster else None,
+                "poster": rel(poster) if poster else None,
+                "size": os.path.getsize(clip),
+                "role": "video",
+                "period": "",
+                "label": {"zh": "成片" if len(clips) == 1 else prettify(stem),
+                          "en": "Film" if len(clips) == 1 else prettify(stem)},
+                "note": "",
+            })
+        rp = os.path.join(pdir, "README.md")
+        zh, en = VIDEO_TITLES.get(pid, (read_h1(rp) or pid, pid))
+        reels.append(reel(pid, {"zh": zh, "en": en}, video_desc(pid, rp), items,
+                          doc=maybe_path(rp)))
+    return reels
+
+
+def video_desc(pid, readme):
+    """视频项目说明：登记过的用双语一句话，未登记的退化为 README 首段（中英同文）。"""
+    if pid in VIDEO_DOCS:
+        zh, en = VIDEO_DOCS[pid]
+        return {"zh": zh, "en": en}
+    p = first_para(readme)
+    return {"zh": p, "en": p}
+
+
+SKIP_VIDEO = re.compile(r"(^|/)(api_|test_|shot_|chain_shot)", re.I)
+POSTER_PREF = [
+    re.compile(r"storyboard/shot1_final\.(jpg|jpeg|png)$", re.I),
+    re.compile(r"storyboard/shot1.*\.(jpg|jpeg|png)$", re.I),
+    re.compile(r"keyframes/shot1.*\.(jpg|jpeg|png)$", re.I),
+    re.compile(r"storyboard/.*\.(jpg|jpeg|png)$", re.I),
+    re.compile(r".*\.(jpg|jpeg|png)$", re.I),
+]
+
+# 扁平图集项目：排除中间件 / 对照 / 审计 / 微距消融板
+GALLERY_SKIP = re.compile(r"(^|/)(controls?|audit|macro|refs?|storyboard|frame)", re.I)
 
 
 def discover_subjects(pdir):
@@ -451,7 +845,7 @@ def discover_subjects(pdir):
             except ValueError:
                 continue
             for e in man.get("entries", []):
-                if e.get("role") == "final":
+                if e.get("role") == ROLE_FINAL:
                     finals += 1
                 else:
                     controls += 1
@@ -464,125 +858,25 @@ def discover_subjects(pdir):
     return rows
 
 
-def build_periods_project(pid, pdir):
-    """装配一个「期结构」项目（有 subjects/*/period-*/manifest.json）。
+def pick_cover(pid, pdir):
+    """挑项目封面：显式覆写 → `final-*` → 期目录首图 → 项目首图。
 
-    返回 (card, data)；数据另存为 `site/data/<pid>.json`，前端按 `#/p/<pid>` 懒加载。
-    子主题元数据：有 SUMMARY.md 就用它，没有就自动发现。
+    优先级是"确定性"的（walk_files 已排序），所以同输入永远同一张封面。
     """
-    summary = os.path.join(pdir, "SUMMARY.md")
-    rows = parse_summary(summary) if os.path.isfile(summary) else discover_subjects(pdir)
-    subjects = [s for s in (build_subject(m["id"], m, pdir) for m in rows) if s]
-    if not subjects:
-        return None, None
-
-    def gkey(s):
-        return {"甲": 0, "乙": 1, "丙": 2}.get(s["group"], 9)
-    subjects.sort(key=lambda s: (gkey(s), -s["stats"]["mean"]))
-
-    groups = []
-    for g in ("甲", "乙", "丙"):
-        members = [s["id"] for s in subjects if s["group"] == g]
-        if members:
-            groups.append({"id": g, "title": {"zh": GROUPS[g][0], "en": GROUPS[g][1]},
-                           "subjects": members})
-
-    finals = sum(1 for s in subjects for p in s["periods"] for e in p["entries"] if e["role"] == "final")
-    controls = sum(1 for s in subjects for p in s["periods"] for e in p["entries"] if e["role"] == "control")
-    periods = sum(len(s["periods"]) for s in subjects)
-
-    title = PROJECTS.get(pid, (pid, pid))
-    desc = DOCS.get(pid, ("", ""))
-    cover = pick_cover(pid, pdir)
-    card = {
-        "id": pid, "kind": "periods",
-        "title": {"zh": title[0], "en": title[1]},
-        "desc": {"zh": desc[0], "en": desc[1]},
-        "cover": thumb_of(os.path.join(ROOT, cover)) if cover else None,
-        "readme": maybe_path(os.path.join(pdir, "README.md")),
-        "summary": maybe_path(summary),
-        "data": pid + ".json",
-        "stats": {"subjects": len(subjects), "periods": periods,
-                  "finals": finals, "controls": controls},
-        "groups": [g["id"] for g in groups],
-    }
-    # 首个合图当页首大图（bio-splice 固定用 horn-atlas；其它项目取第一个有合图的子主题）
-    feat = None
-    for s in subjects:
-        if s.get("sheet"):
-            feat = s
-            break
-    data = {
-        "id": pid,
-        "title": {"zh": title[0], "en": title[1]},
-        "desc": {"zh": desc[0], "en": desc[1]},
-        "readme": card["readme"],
-        "summary": card["summary"],
-        "plan": maybe_path(os.path.join(pdir, "PLAN.md")),
-        "data": pid + ".json",
-        "rubric": RUBRICS.get(pid),
-        "sheet": feat["sheet"] if feat else None,
-        "sheet_thumb": feat.get("thumb") if feat else None,
-        "groups": groups,
-        "subjects": subjects,
-        "stats": card["stats"],
-    }
-    return card, data
-
-
-# ── 扁平图集项目（无 manifest，只有一堆成品图）────────────────────────────────
-GALLERY_SKIP = re.compile(r"(^|/)(controls?|audit|macro|refs?|storyboard|frame)", re.I)
-
-
-def build_gallery_project(pid, pdir):
-    """装配一个「图集」项目：把项目里的成品图平铺成网格。
-
-    适用于 bone-china-doll 这种**没有 manifest**、成品直接摊在 `out/` 下的项目。
-    成品判定：文件名以 `final` 开头优先；其余图片按目录分组展示（排除中间件/对照/审计）。
-    """
+    if pid in COVERS:
+        p = COVERS[pid]
+        return rel(p) if p and os.path.isfile(p) else None
     imgs = [p for p in walk_files(pdir) if IMG_RE.search(p)]
-    imgs = [p for p in imgs if not GALLERY_SKIP.search(rel(p))]
-    if not imgs:
-        return None, None
-    finals = [p for p in imgs if os.path.basename(p).lower().startswith("final")]
-    rest = [p for p in imgs if p not in finals]
-    ordered = sorted(finals) + sorted(rest)
-
-    items = []
-    for p in ordered:
-        items.append({
-            "file": os.path.basename(p),
-            "path": rel(p),
-            "thumb": thumb_of(p),
-            "size": os.path.getsize(p),
-            "group": os.path.basename(os.path.dirname(p)),
-            "final": p in finals,
-        })
-    title = PROJECTS.get(pid, (pid, pid))
-    desc = DOCS.get(pid, ("", ""))
-    cover = pick_cover(pid, pdir)
-    card = {
-        "id": pid, "kind": "gallery",
-        "title": {"zh": title[0], "en": title[1]},
-        "desc": {"zh": desc[0], "en": desc[1]},
-        "cover": thumb_of(os.path.join(ROOT, cover)) if cover else None,
-        "readme": maybe_path(os.path.join(pdir, "README.md")),
-        "data": pid + ".json",
-        "stats": {"finals": len(finals)} if finals else {"images": len(items)},
-    }
-    data = {
-        "id": pid,
-        "title": card["title"],
-        "desc": card["desc"],
-        "readme": card["readme"],
-        "data": pid + ".json",
-        "images": items,
-        "stats": card["stats"],
-    }
-    return card, data
+    # 排除对照图/审计图：它们是过程件，不代表项目观感
+    imgs = [p for p in imgs if "/controls/" not in p and "audit" not in os.path.basename(p).lower()]
+    for pat in (r"/final[-_]", r"/period-\d+/0?1-", r"/sheet-thumb\."):
+        for p in imgs:
+            if re.search(pat, p, re.I):
+                return rel(p)
+    return rel(imgs[0]) if imgs else None
 
 
-def classify_project(pid, pdir):
+def kind_of_reel(pid, pdir):
     """项目归类：periods（有期 manifest）/ videos（有 mp4）/ gallery（有图）/ empty。"""
     if discover_subjects(pdir):
         return "periods"
@@ -593,14 +887,135 @@ def classify_project(pid, pdir):
     return "empty"
 
 
+def strip_of(kind, pid, reels, cap=12):
+    """首页横向行的卡片（**写进 index.json**，首页因此不必拉任何项目数据）。
+
+    1. 有多个卷（子主题 / 阶段 / 视频项目）→ 每卷一张卡，点进该卷的第一帧；
+    2. 只有一个卷 → 直接摊开这一卷的帧（最多 12 张），点进那一帧。
+    """
+    cards = []
+    if len(reels) > 1:
+        for r in reels[:cap]:
+            n = r["finals"] or r["count"]
+            cards.append({
+                "title": r["title"], "poster": r["poster"],
+                "route": "w/%s/r/%s" % (pid, r["id"]),
+                "count": n,
+                "unit": {"zh": "件成品" if kind != "videos" else "段成片",
+                         "en": "finals" if kind != "videos" else "films"},
+            })
+        return cards
+    for r in reels:
+        for i, it in enumerate(r["items"][:cap], 1):
+            cards.append({
+                "title": it.get("label") or r["title"],
+                "poster": it.get("thumb") or it.get("src"),
+                "route": "w/%s/r/%s/%d" % (pid, r["id"], i),
+                "count": None, "unit": None,
+            })
+    return cards
+
+
+def project_doc(pid, kind, pdir, reels, *, cover=None, plan=None, summary=None, rubric=None):
+    """装配项目文档与首页卡片（两者的关系：卡片带 strip，文档带 reels）。"""
+    title = PROJECTS.get(pid, (pid, pid))
+    desc = DOCS.get(pid, ("", ""))
+    total = sum(r["count"] for r in reels)
+    n_final = sum(1 for r in reels for it in r["items"] if it.get("role") == ROLE_FINAL)
+    n_control = sum(1 for r in reels for it in r["items"]
+                    if it.get("role") in ("control", "retired-control"))
+    if kind == "videos":
+        stats = {"projects": len(reels), "clips": total}
+    elif kind == "periods":
+        stats = {"reels": len(reels), "periods": sum(len(r["periods"]) for r in reels),
+                 "finals": n_final, "controls": n_control}
+    else:
+        stats = {"reels": len(reels), "images": total, "finals": n_final}
+    if cover is None:
+        cover = pick_cover(pid, pdir)
+    poster = cover if cover and cover.startswith(THUMB_DIR + "/") else (
+        thumb_of(os.path.join(ROOT, cover)) if cover else None)
+    doc = {
+        "id": pid, "kind": kind,
+        "title": {"zh": title[0], "en": title[1]},
+        "desc": {"zh": desc[0], "en": desc[1]},
+        "readme": maybe_path(os.path.join(pdir, "README.md")),
+        "summary": summary,
+        "plan": plan,
+        "rubric": rubric,
+        "data": pid + ".json",
+        "stats": stats,
+        "reels": reels,
+    }
+    card = {
+        "id": pid, "kind": kind,
+        "title": doc["title"], "desc": doc["desc"],
+        "cover": poster,
+        "readme": doc["readme"],
+        "summary": summary,
+        "plan": plan,
+        "data": pid + ".json",
+        "stats": stats,
+        "reel_count": len(reels),
+        "strip": strip_of(kind, pid, reels),
+    }
+    return card, doc
+
+
+def build_periods_project(pid, pdir):
+    """「期结构」项目：一卷 = 一个子主题。子主题元数据有 SUMMARY.md 就用，没有就自动发现。"""
+    summary = os.path.join(pdir, "SUMMARY.md")
+    rows = parse_summary(summary) if os.path.isfile(summary) else discover_subjects(pdir)
+    reels = [r for r in (build_subject_reel(m["id"], m, pdir) for m in rows) if r]
+    if not reels:
+        return None, None
+
+    def gkey(r):
+        m = next((x for x in rows if x["id"] == r["id"]), {})
+        return ({"甲": 0, "乙": 1, "丙": 2}.get(m.get("group", ""), 9),
+                -m.get("mean", 0.0))
+    reels.sort(key=gkey)
+    return project_doc(pid, "periods", pdir, reels,
+                       plan=maybe_path(os.path.join(pdir, "PLAN.md")),
+                       summary=maybe_path(summary),
+                       rubric=RUBRICS.get(pid))
+
+
+def build_gallery_project(pid, pdir):
+    """「图集」项目：一卷 = 一个阶段目录（bone-china-doll 这种没有 manifest 的项目）。"""
+    reels = build_gallery_reels(pid, pdir)
+    if not reels:
+        return None, None
+    return project_doc(pid, "gallery", pdir, reels)
+
+
+def build_video_project():
+    """视频汇总项目：一卷 = 一个视频子项目。
+
+    `pdir` 传 `projects/`（README 就是项目索引），封面直接用第一卷首帧的缩略图，
+    免得为了挑封面去 walk 整个仓库。
+    """
+    reels = build_video_reels()
+    if not reels:
+        return None, None
+    cover = None
+    for r in reels:
+        for it in r["items"]:
+            cover = it.get("thumb") or it.get("poster")
+            break
+        if cover:
+            break
+    return project_doc("video-projects", "videos", PROJECTS_DIR, reels, cover=cover)
+
+
 def build_other_projects():
     """**扫描 `projects/` 自动收录**项目卡片。
 
-    口径（与 classify_project 一致）：
+    口径（与 kind_of_reel 一致）：
       * `_` 开头（_template）跳过
-      * 含 `.mp4` 的归视频汇总卡（kind=videos，见 build_videos）
-      * 有 `subjects/*/period-*/manifest.json` 的走期结构（kind=periods，前端有详情页）
-      * 有图的走图集（kind=gallery，前端也有详情页）
+      * 含 `.mp4` 的归视频汇总（kind=videos）
+      * 有 `subjects/*/period-*/manifest.json` 的走期结构（kind=periods）
+      * 有图的走图集（kind=gallery）
       * 都没有的（character-lookbook）仍外链 README
     返回 (cards, data_files)：data_files 是 {文件名: 对象}，由 main 落盘。
     """
@@ -613,18 +1028,18 @@ def build_other_projects():
             continue
         if pid == "bio-splice":
             continue          # 旗舰项目单独装配（页首大图固定用 horn-atlas，见 main）
-        kind = classify_project(pid, pdir)
+        kind = kind_of_reel(pid, pdir)
         if kind == "videos":
-            continue                              # 视频项目 → 汇总卡
+            continue                              # 视频 → 汇总项目
         if kind == "periods":
-            card, data = build_periods_project(pid, pdir)
+            card, doc = build_periods_project(pid, pdir)
         elif kind == "gallery":
-            card, data = build_gallery_project(pid, pdir)
+            card, doc = build_gallery_project(pid, pdir)
         else:
-            card, data = None, None
+            card, doc = None, None
         if card:
             cards.append(card)
-            data_files[card["data"]] = data
+            data_files[card["data"]] = doc
             continue
         # 无内容：保留外链卡片，明确显示"暂无成品"
         title = PROJECTS.get(pid, (pid, pid))
@@ -636,172 +1051,48 @@ def build_other_projects():
             "cover": None,
             "readme": maybe_path(os.path.join(pdir, "README.md")),
             "stats": {},
+            "strip": [],
         })
     return cards, data_files
 
 
-def maybe_path(p):
-    return rel(p) if os.path.isfile(p) else None
-
-
-# ── 视频 ────────────────────────────────────────────────────────────────────
-SKIP_VIDEO = re.compile(r"(^|/)(api_|test_|shot_|chain_shot)", re.I)
-POSTER_PREF = [
-    re.compile(r"storyboard/shot1_final\.(jpg|jpeg|png)$", re.I),
-    re.compile(r"storyboard/shot1.*\.(jpg|jpeg|png)$", re.I),
-    re.compile(r"keyframes/shot1.*\.(jpg|jpeg|png)$", re.I),
-    re.compile(r"storyboard/.*\.(jpg|jpeg|png)$", re.I),
-    re.compile(r".*\.(jpg|jpeg|png)$", re.I),
-]
-
-
-def build_videos():
-    # 扁平化后图片与视频项目同在 projects/；图片项目里没有 .mp4，
-    # 下面的 `if not clips: continue` 自然把它们排除，无需另列白名单。
-    vroot = "projects"
-    projects = []
-    total = 0
-    if not os.path.isdir(vroot):
-        return {"projects": [], "clips": 0}
-    for pid in sorted(os.listdir(vroot)):
-        pdir = os.path.join(vroot, pid)
-        if not os.path.isdir(pdir) or pid.startswith("_"):
-            continue
-        clips = [p for p in walk_files(pdir) if p.lower().endswith(".mp4")]
-        clips = [p for p in clips if not SKIP_VIDEO.search(p)]
-        if not clips:
-            continue
-
-        imgs = [p for p in walk_files(pdir) if re.search(r"\.(jpg|jpeg|png)$", p, re.I)]
-
-        def pick_poster(clip):
-            # 先在同目录附近的图片里按偏好挑，退化为项目内第一张图
-            for pat in POSTER_PREF:
-                for img in imgs:
-                    if pat.search(img):
-                        return rel(img)
-            return None
-
-        items = []
-        for clip in sorted(clips):
-            size = os.path.getsize(clip)
-            total += size
-            poster = pick_poster(clip)
-            items.append({
-                "file": os.path.basename(clip),
-                "path": rel(clip),
-                "size": size,
-                "poster": poster,
-                "thumb": thumb_of(os.path.join(ROOT, poster)) if poster else None,
-            })
-
-        zh, en = pid, pid
-        # 项目 README 第一行标题（形如 "# 巨人的国度 —— ..."）
-        title_zh = pid
-        rp = os.path.join(pdir, "README.md")
-        if os.path.isfile(rp):
-            with open(rp, encoding="utf-8") as fh:
-                for line in fh:
-                    if line.startswith("# "):
-                        title_zh = line[2:].strip()
-                        break
-        projects.append({
-            "id": pid,
-            "title": {"zh": title_zh, "en": pid},
-            # 说明：登记过的取双语一句话，未登记的退回 README 首段
-            "desc": video_desc(pid, rp),
-            "readme": maybe_path(rp),
-            "clips": items,
-            "poster": items[0]["poster"] if items else None,
-            "size": sum(c["size"] for c in items),
-            "count": len(items),
-        })
-    return {"projects": projects, "clips": total}
-
-
-def video_desc(pid, readme):
-    """视频项目说明：登记过的用双语一句话，未登记的退化为 README 首段（中英同文）。"""
-    if pid in VIDEO_DOCS:
-        zh, en = VIDEO_DOCS[pid]
-        return {"zh": zh, "en": en}
-    return first_para(readme)
-
-
-def first_para(readme):
-    """取 README 的第一段正文，作为双语说明的兜底（中英同文，取自中文文档）。
-
-    跳过标题 / 引用块（`>`）/ 代码围栏 / 表格 / 图片行，取到第一段连续正文为止。
-    """
-    if not os.path.isfile(readme):
-        return {"zh": "", "en": ""}
-    para = []
-    with open(readme, encoding="utf-8") as fh:
-        for raw in fh:
-            line = raw.strip()
-            if not para:
-                if (not line or line.startswith(("#", ">", "```", "|", "!", "---"))
-                        or line.startswith("<!--")):
-                    continue
-                para.append(line)
-            else:
-                if not line or line.startswith(("#", "```", "|", "---")):
-                    break
-                para.append(line)
-    text = " ".join(para).strip()
-    return {"zh": text, "en": text}
-
-
 def main():
     quiet = "--quiet" in sys.argv
-    # `--no-thumbs`：跳过缩略图（网格直出原图）。给"只想看数据"或没有 ffmpeg 的环境用。
+    # `--no-thumbs`：跳过缩略图（卡片直出原图）。给"只想看数据"或没有 ffmpeg 的环境用。
     THUMB_STATE["enabled"] = "--no-thumbs" not in sys.argv
     os.makedirs(OUT_DIR, exist_ok=True)
 
     # bio-splice 也走**通用的「期结构」装配**，不再内联特写——
     # 这样 shanhai-jing 这类同构项目自动获得同样的详情页。
     bio_card, bio = build_periods_project("bio-splice", BIO)
-    subjects = bio["subjects"]
-    groups = bio["groups"]
-    finals = sum(1 for s in subjects for p in s["periods"] for e in p["entries"] if e["role"] == "final")
-    controls = sum(1 for s in subjects for p in s["periods"] for e in p["entries"] if e["role"] == "control")
-    periods = sum(len(s["periods"]) for s in subjects)
-    scored = sum(1 for s in subjects for p in s["periods"] for e in p["entries"] if e.get("scores"))
+    bio_reels = bio["reels"]
+    subjects = len(bio_reels)
+    periods = sum(len(r["periods"]) for r in bio_reels)
+    finals = sum(1 for r in bio_reels for it in r["items"] if it["role"] == ROLE_FINAL)
+    controls = sum(1 for r in bio_reels for it in r["items"] if it["role"] == "control")
+    scored = sum(1 for r in bio_reels for it in r["items"] if it.get("scores"))
+    total_bytes = sum(r["bytes"] for r in bio_reels)
     # bio 的页首大图固定用 horn-atlas（封面与合图都从它取，保持既有观感）
     horn = os.path.join(BIO, "subjects", "horn-atlas", "sheet.jpg")
     if os.path.isfile(horn):
-        bio["sheet"] = rel(horn)
-        bio["sheet_thumb"] = thumb_of(horn)
-        bio["cover"] = rel(os.path.join(BIO, "subjects", "horn-atlas", "sheet-thumb.jpg"))
-        bio_card["cover"] = bio["cover"]
+        bio["cover"] = rel(horn)
+        bio["cover_thumb"] = thumb_of(horn)
+        bio_card["cover"] = bio["cover_thumb"]
 
-    videos = build_videos()
+    video_card, video_doc = build_video_project()
     others, other_data = build_other_projects()
-
-    zh, en = PROJECTS["bio-splice"]
-    vz, ve = PROJECTS["video-projects"]
-    video_card = {
-        "id": "video-projects", "kind": "videos",
-        "title": {"zh": vz, "en": ve},
-        "desc": {"zh": DOCS["video-projects"][0], "en": DOCS["video-projects"][1]},
-        # 缩略图挂在 clip 上（poster 是 .jpg，且可能被多个 clip 共用，故取首个 clip 的 thumb）
-        "cover": ((videos["projects"][0]["clips"][0].get("thumb")
-                   or videos["projects"][0].get("poster")) if videos["projects"] else None),
-        # 指向项目索引（原 video-gen/README.md 已随扁平化合并删除）
-        "readme": maybe_path(os.path.join(PROJECTS_DIR, "README.md")),
-        "stats": {"projects": len(videos["projects"]), "clips": sum(p["count"] for p in videos["projects"])},
-    }
 
     index = {
         "counts": {
-            "subjects": len(subjects),
+            "subjects": subjects,
             "periods": periods,
             "finals": finals,
             "controls": controls,
             "scored": scored,
-            "videos": sum(p["count"] for p in videos["projects"]),
-            "video_bytes": videos["clips"],
+            "videos": (video_card or {}).get("stats", {}).get("clips", 0),
+            "video_bytes": sum(r["bytes"] for r in video_doc["reels"]) if video_doc else 0,
         },
-        "projects": [bio_card, video_card] + others,
+        "projects": [bio_card] + ([video_card] if video_card else []) + others,
     }
 
     def dump(name, obj):
@@ -811,26 +1102,28 @@ def main():
             fh.write("\n")
         return os.path.getsize(p)
 
-    # 每个有详情页的项目各存一份 `<pid>.json`（前端按 #/p/<pid> 懒加载）
+    # 每个有内容的项目各存一份 `<pid>.json`（前端按 #/p/<pid> · #/w/... 懒加载）
     project_files = dict(other_data)
     project_files[bio["data"]] = bio
+    if video_doc:
+        project_files[video_doc["data"]] = video_doc
 
     sizes = [("index.json", dump("index.json", index))]
     sizes += [(n, dump(n, o)) for n, o in sorted(project_files.items())]
-    sizes += [("videos.json", dump("videos.json", videos))]
 
     if not quiet:
         print("生成完毕 → site/data/")
         for n, s in sizes:
-            print("  %-18s %7.1f KB" % (n, s / 1024))
+            print("  %-22s %7.1f KB" % (n, s / 1024))
         print()
-        print("  子主题 %d ｜ 期 %d ｜ 成品 %d ｜ 对照 %d ｜ 有评分 %d"
-              % (len(subjects), periods, finals, controls, scored))
+        print("  卷 %d ｜ 期 %d ｜ 成品 %d ｜ 对照 %d ｜ 有评分 %d ｜ 成品合计 %.1f MB"
+              % (subjects, periods, finals, controls, scored, total_bytes / 1048576))
+        vc = index["counts"]
         print("  视频 %d 个 / %.1f MB ｜ 其它项目 %d 个"
-              % (index["counts"]["videos"], videos["clips"] / 1048576, len(others)))
+              % (vc["videos"], vc["video_bytes"] / 1048576, len(others)))
         t = THUMB_STATE
         if not t["enabled"]:
-            print("  缩略图：已禁用（--no-thumbs），网格直出原图")
+            print("  缩略图：已禁用（--no-thumbs），卡片直出原图")
         elif t["failed"] and not ffmpeg_bin():
             print("  缩略图：⚠️  %d 张退化为原图（缺 ffmpeg）" % t["failed"])
         else:
@@ -839,7 +1132,7 @@ def main():
 
     # 交付基线校验（与 SUMMARY.md 的合计数对齐）
     want = {"subjects": 12, "periods": 60, "finals": 135, "controls": 59}
-    got = {"subjects": len(subjects), "periods": periods, "finals": finals, "controls": controls}
+    got = {"subjects": subjects, "periods": periods, "finals": finals, "controls": controls}
     if got != want:
         print("\n⚠️  与 SUMMARY.md 基线不一致：期望 %s，实际 %s" % (want, got), file=sys.stderr)
         return 2

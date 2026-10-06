@@ -288,12 +288,110 @@ def cmd_check(args) -> int:
     return 1 if (problems and args.strict) else 0
 
 
+def js_block(src: str, at: int) -> str:
+    """从 `at` 之后的第一个 `{` 起做括号配对，返回最外层大括号之间的内容。"""
+    i = src.index("{", at)
+    depth = 0
+    for j in range(i, len(src)):
+        c = src[j]
+        if c == "{":
+            depth += 1
+        elif c == "}":
+            depth -= 1
+            if depth == 0:
+                return src[i + 1:j]
+    return ""
+
+
+HAN_RE = re.compile(r"[\u3400-\u4dbf\u4e00-\u9fff]")
+JS_KEY_RE = re.compile(r"([A-Za-z0-9_]+)\s*:")
+
+
+def js_keys(block: str) -> set:
+    """取一段 JS 对象字面量的键名（先把字符串值抹掉，免得值里的冒号被当成键）。"""
+    return set(JS_KEY_RE.findall(re.sub(r"'[^']*'", "''", block)))
+
+
+def strip_js_comment(line: str) -> str:
+    """去掉行尾 `//` 注释（引号数为偶数才认，免得把 `https://` 也切了）。
+
+    只用于「T 表外还有没有中文」这一条检查——注释里的中文是给人看的，不算漏翻。
+    """
+    idx = line.find("//")
+    while idx != -1:
+        head = line[:idx]
+        if head.count("'") % 2 == 0 and head.count('"') % 2 == 0:
+            return head
+        idx = line.find("//", idx + 2)
+    return line
+
+
+def cmd_ui(_args) -> int:
+    """站点界面文案体检：`site/app.js` 的 T.zh / T.en 必须**键一致、值不串语言**，
+    且除 T 表之外不再有硬编码的中文串（界面文案漏翻的第一现场）。"""
+    path = os.path.join(ROOT, "site", "app.js")
+    if not os.path.isfile(path):
+        print("找不到 site/app.js")
+        return 1
+    src = read("site/app.js")
+    try:
+        block = js_block(src, src.index("var T = {"))
+        zh = js_block(block, block.index("zh: {"))
+        en = js_block(block, block.index("en: {"))
+    except ValueError:
+        print("解析 T.zh / T.en 失败：site/app.js 的结构变了？")
+        return 1
+
+    kz, ke = js_keys(zh), js_keys(en)
+    problems = []
+    for k in sorted(kz - ke):
+        problems.append(("英文缺键", k))
+    for k in sorted(ke - kz):
+        problems.append(("中文缺键", k))
+    # 代码里 t('key') 引用的键必须都在表里（写错键名界面会直接显示键名）
+    used = set(re.findall(r"\bt\(\s*'([A-Za-z0-9_]+)'\s*\)", src))
+    for k in sorted(used - kz):
+        problems.append(("引用了不存在的文案键", k))
+    # 未被直接引用的键**只提示不判失败**：role*/统计项/文档链接这类键是通过
+    # ROLE / STATK / ['readme','summary','plan'] 这类表间接取用的，静态扫描看不到。
+    idle = sorted(kz - used)
+    # 英文值里出现汉字 = 这条界面文案没翻
+    for line in en.splitlines():
+        if ":" in line and HAN_RE.search(line):
+            problems.append(("英文文案含中文", line.strip()))
+
+    # T 表之外还出现中文的行（注释不算）——界面文案漏翻的第一现场。
+    # 不做"字符串字面量"级别的解析：JS 里的正则字面量 `/[&<>"']/g` 会让朴素扫描错位。
+    body = re.sub(r"/\*.*?\*/", "", src.replace(block, ""), flags=re.S)
+    stray = []
+    for n, line in enumerate(body.splitlines(), 1):
+        code = strip_js_comment(line)
+        s = code.strip()
+        if not s or s.startswith(("//", "*", "/*")):
+            continue
+        if HAN_RE.search(code):
+            stray.append((n, s[:64]))
+    for n, s in stray:
+        problems.append(("T 表外中文", f"第 {n} 行：{s}"))
+
+    print(f"界面文案：中文 {len(kz)} 条 / 英文 {len(ke)} 条；T 表外中文 {len(stray)} 行；"
+          f"未被直接引用 {len(idle)} 条（含间接引用，仅提示）")
+    for kind, extra in problems[:30]:
+        print(f"  [{kind}] {extra}")
+    if len(problems) > 30:
+        print(f"  … 另有 {len(problems) - 30} 条")
+    if not problems:
+        print("✅ 界面文案双语一致")
+    return 1 if problems else 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description="双语文档流水线")
     sub = ap.add_subparsers(dest="cmd", required=True)
     sub.add_parser("status").set_defaults(func=cmd_status)
     sub.add_parser("switch").set_defaults(func=cmd_switch)
     sub.add_parser("links").set_defaults(func=cmd_links)
+    sub.add_parser("ui").set_defaults(func=cmd_ui)
     p = sub.add_parser("check")
     p.add_argument("--strict", action="store_true", help="有问题时退出码 1")
     p.add_argument("--ratio", type=float, default=0.5, help="未翻译判定阈值（默认 0.5）")

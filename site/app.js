@@ -1,4 +1,13 @@
-/* 生成式媒体画廊 · 无依赖前端
+/* 生成式媒体 · 流媒体式前端（无依赖、无框架、无构建）
+ *
+ * 两层结构：
+ *   列表页 —— `#/`（billboard 巨幅头图 + 每个项目一条横向行 + 全部项目）
+ *             `#/p/<pid>`（项目页：项目头图 + 每卷一条横向行）
+ *   详情页 —— `#/w/<pid>[/r/<rid>][/<n>]`：全屏 feed，**一屏一帧 = 一张图 + 一段文字，
+ *             上下滑动换图**（原生 scroll-snap；另支持 ↑↓←→ / PgUp·PgDn / Home·End）。
+ *
+ * 资源策略：卡片与占位一律用 site/thumbs 的缩略图；详情页只把**当前帧 ±2** 换成原图，
+ * 滑走就退回缩略图——否则 bio-splice 一卷就有 30 件、合计 300 MB。
  *
  * 站点前缀：仓库既可本地预览（站点根 = 仓库根），也可部署到 GitHub Pages 子路径
  * （/gen-media/），因此所有资源路径都由 BASE 前缀拼出。
@@ -9,8 +18,10 @@
   var BASE = location.pathname.replace(/[^/]*$/, '');      // '/' 或 '/gen-media/'
   var REPO = 'https://github.com/THZSummer/gen-media';
   var LANG_KEY = 'gm-lang';
+  var BILL_MS = 7000;          // billboard 轮播间隔
+  var FEED_WINDOW = 2;         // 详情页预载原图的半径（±N 帧）
 
-  var asset = function (p) { return BASE + p; };
+  var asset = function (p) { return p ? BASE + p : ''; };
   var docURL = function (p) { return REPO + '/blob/main/' + p; };
   var esc = function (s) {
     return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
@@ -21,88 +32,111 @@
     if (!b && b !== 0) return '';
     return b < 1048576 ? (b / 1024).toFixed(0) + ' KB' : (b / 1048576).toFixed(1) + ' MB';
   };
-  var num = function (n) { return String(n); };
+  var hasCJK = function (s) { return /[\u3400-\u9fff]/.test(String(s || '')); };
+  var $ = function (s) { return document.querySelector(s); };
 
-  /* ── 文案 ──────────────────────────────────────────────────── */
+  /* ── 文案（**新增任何界面文案都要同时写两份**）───────────────── */
   var T = {
     zh: {
-      home: '首页', bio: '生物拼接', videos: '视频', gallery: '画廊',
-      lead: '图片与视频生成的作品集。图片由本机 ComfyUI 出图（Z-Image-Turbo / Qwen-Image / ControlNet），'
-          + '视频由本地 FastH3 出片；各项目的成品、提示词、种子与评分记录都留档可查。',
-      subjects: '子主题', periods: '期', finals: '成品', controls: '对照', mean: '均分',
-      clips: '视频', projects: '项目', videosN: '视频', scored: '带评分',
-      openProject: '项目主页', summary: '全线总结', plan: '规划', readme: '说明',
-      parts: '部位表', sheet: '合图', openFull: '看原图', backHome: '← 返回首页',
-      backProject: '← 返回项目', prev: '← 上一张', next: '下一张 →',
+      home: '首页', projects: '项目',
+      featured: '精选', browse: '开始浏览', details: '项目详情', viewAll: '查看全部',
+      allProjects: '全部项目',
+      periods: '期', finals: '成品', controls: '对照',
+      reels: '卷', images: '图片', works: '件', clips: '成片', projectsN: '项目',
+      noCover: '暂无成品', emptyProject: '这个项目还没有成品图，先看仓库里的说明。',
+      roleFinal: '定稿', roleControl: '对照', roleRetired: '已废弃对照', roleSheet: '合图',
+      roleAudit: '轮次审计', roleImage: '图', roleVideo: '成片',
+      prev: '上一张', next: '下一张', back: '返回',
+      info: '信息', raw: '原图', link: '链接', copyLink: '复制链接',
+      copied: '已复制', close: '关闭',
       score: '评分', seed: '种子', round: '轮次', engine: '引擎', shot: '镜头',
-      sha: 'SHA-256', prompt: '提示词', copy: '复制', copied: '已复制',
-      controlsTitle: '对照图（同轮底座，未评分）',
-      audits: '轮次审计图', allSubjects: '全部子主题',
-      noteLang: '期说明为中文原文。',
-      videoHint: '封面为分镜图，点击播放（不预载，不播放不耗流量）',
-      clipN: '个片段', totalSize: '合计',
-      perPeriod: '本期',
-      gridHint: '网格里的图是原图，滚动到才加载；点击可看大图与元数据。',
-      noCover: '暂无成品图',
-      footFrom: '数据由 tools/build_site.py 从各期 manifest.json 与评分复核自动生成。',
-      footRepo: '源码仓库'
+      period: '期', size: '体积', sha: 'SHA-256', prompt: '提示词', file: '文件',
+      copy: '复制', note: '说明', kind: '类型',
+      sourceText: '原文', volume: '卷次', place: '出处', commentary: '郭璞注',
+      commentaryNote: '注文尚未逐条录入，成品里不出现注文。',
+      readme: '说明', summary: '交付清单', plan: '规划', rubric: '评分维度',
+      noteLang: '说明为中文原文',
+      feedHint: '上下滑动换图 · 点击画面隐藏文字 · Esc 返回',
+      videoHint: '视频不预载：滑到这一屏才出声画（点击播放）',
+      up: '上一屏', down: '下一屏',
+      footFrom: '数据由 tools/build_site.py 从各期 manifest.json、评分复核与 README 生成。',
+      footRepo: '源码仓库',
+      notFound: '找不到这一项', loadFail: '数据载入失败',
+      periodPfx: '第 ', periodSfx: ' 期',
+      bootHint: '先在仓库根目录运行 <code>python3 tools/build_site.py</code>，并通过 HTTP 打开'
+        + '（<code>python3 -m http.server</code>），不要直接双击 index.html。'
     },
     en: {
-      home: 'Home', bio: 'Bio Splice', videos: 'Videos', gallery: 'Gallery',
-      lead: 'A portfolio of image and video generation. Images are rendered by a local ComfyUI '
-          + '(Z-Image-Turbo / Qwen-Image / ControlNet) and video by a local FastH3; '
-          + 'finals, prompts, seeds and review records are archived per project.',
-      subjects: 'sub-themes', periods: 'periods', finals: 'finals', controls: 'controls', mean: 'mean',
-      clips: 'videos', projects: 'projects', videosN: 'videos', scored: 'scored',
-      openProject: 'Project home', summary: 'Full summary', plan: 'Plan', readme: 'Readme',
-      parts: 'Part table', sheet: 'Contact sheet', openFull: 'Open original', backHome: '← Home',
-      backProject: '← Project', prev: '← Prev', next: 'Next →',
+      home: 'Home', projects: 'Projects',
+      featured: 'Featured', browse: 'Start watching', details: 'Project details', viewAll: 'View all',
+      allProjects: 'All projects',
+      periods: 'periods', finals: 'finals', controls: 'controls',
+      reels: 'parts', images: 'images', works: 'works', clips: 'films', projectsN: 'projects',
+      noCover: 'No finals yet', emptyProject: 'No finals here yet — see the notes in the repository.',
+      roleFinal: 'Final', roleControl: 'Control', roleRetired: 'Retired control', roleSheet: 'Contact sheet',
+      roleAudit: 'Round audit', roleImage: 'Image', roleVideo: 'Film',
+      prev: 'Previous', next: 'Next', back: 'Back',
+      info: 'Info', raw: 'Original', link: 'Link', copyLink: 'Copy link',
+      copied: 'Copied', close: 'Close',
       score: 'score', seed: 'seed', round: 'round', engine: 'engine', shot: 'shot',
-      sha: 'SHA-256', prompt: 'Prompt', copy: 'copy', copied: 'copied',
-      controlsTitle: 'Controls (same-round base, not scored)',
-      audits: 'Round audits', allSubjects: 'All sub-themes',
-      noteLang: 'Period notes are in Chinese.',
-      videoHint: 'Poster is a storyboard frame; click to play (not preloaded)',
-      clipN: 'clips', totalSize: 'total',
-      perPeriod: 'this period',
-      gridHint: 'Grid images are the originals, loaded lazily as you scroll; click for a large view with metadata.',
-      noCover: 'no finals yet',
-      footFrom: 'Data is generated by tools/build_site.py from each period manifest.json and review notes.',
-      footRepo: 'Repository'
+      period: 'period', size: 'size', sha: 'SHA-256', prompt: 'Prompt', file: 'file',
+      copy: 'copy', note: 'note', kind: 'type',
+      sourceText: 'Source text', volume: 'Volume', place: 'Place', commentary: 'Commentary',
+      commentaryNote: 'Commentary is not transcribed yet, so it never appears in the works.',
+      readme: 'Readme', summary: 'Delivery list', plan: 'Plan', rubric: 'Scoring rubric',
+      noteLang: 'Notes are in Chinese',
+      feedHint: 'Swipe or scroll to change image · tap to hide the text · Esc to go back',
+      videoHint: 'Videos are not preloaded: this one loads only when you reach it (click to play)',
+      up: 'Previous', down: 'Next',
+      footFrom: 'Data generated by tools/build_site.py from each period manifest.json, review notes and READMEs.',
+      footRepo: 'Repository',
+      notFound: 'Not found', loadFail: 'Failed to load site data',
+      periodPfx: 'Period ', periodSfx: '',
+      bootHint: 'Run <code>python3 tools/build_site.py</code> at the repository root first, and open '
+        + 'the page over HTTP (<code>python3 -m http.server</code>) — do not double-click index.html.'
     }
   };
   var LANG = localStorage.getItem(LANG_KEY) === 'en' ? 'en' : 'zh';
-  var t = function (k) { return (T[LANG] && T[LANG][k]) || (T.zh[k] || k); };
-  var other = function () { return LANG === 'en' ? 'zh' : 'en'; };
+  // 注意用 hasOwnProperty 而不是 `||`：英文表里 `periodSfx: ''` 是**合法文案**，
+  // 用 `||` 会掉进中文兜底，英文界面就会冒出「Period 1 期」。
+  var t = function (k) {
+    var tab = T[LANG] || T.zh;
+    if (tab && Object.prototype.hasOwnProperty.call(tab, k)) return tab[k];
+    return Object.prototype.hasOwnProperty.call(T.zh, k) ? T.zh[k] : k;
+  };
   var title = function (o) { return (o && (o[LANG] || o.zh || o.en)) || ''; };
-  var subTitle = function (o) { return (o && (o[other()] || '')) || ''; };
+  var subTitle = function (o) { return (o && (LANG === 'en' ? (o.zh || '') : (o.en || ''))) || ''; };
+  var ROLE = {
+    final: 'roleFinal', control: 'roleControl', 'retired-control': 'roleRetired',
+    sheet: 'roleSheet', audit: 'roleAudit', image: 'roleImage', video: 'roleVideo'
+  };
+  var roleName = function (r) { return t(ROLE[r] || 'roleImage'); };
+  // 统计项 → 文案键（顺序即展示顺序；数据里没有的项自动不渲染）
+  var STATK = {
+    reels: 'reels', periods: 'periods', finals: 'finals', controls: 'controls',
+    images: 'images', projects: 'projectsN', clips: 'clips'
+  };
+  var STAT_ORDER = ['reels', 'periods', 'finals', 'controls', 'images', 'projects', 'clips'];
 
   /* ── 数据 ──────────────────────────────────────────────────── */
-  var IDX = null, BIO = null, VID = null;
-  var $ = function (s) { return document.querySelector(s); };
-  var app = $('#app');
+  var IDX = null;
+  var CACHE = {};                 // pid → 项目文档
+  var app = $('#app'), feedRoot = $('#feed');
 
-  function load() {
-    // 只预载索引与视频（小）；**项目详情按需懒加载**（#/p/<id> → site/data/<id>.json），
-    // 这样新增项目不用改这里，也不会一次性把 270 KB 的 bio-splice.json 都拉下来。
-    var names = ['index', 'videos'];
-    return Promise.all(names.map(function (n) {
-      return fetch(BASE + 'site/data/' + n + '.json', { cache: 'no-cache' }).then(function (r) {
-        if (!r.ok) throw new Error(n + ': HTTP ' + r.status);
-        return r.json();
-      });
-    })).then(function (d) { IDX = d[0]; VID = d[1]; });
-  }
-
-  var PROJ_CACHE = {};
-  function ensureProject(id) {
-    if (PROJ_CACHE[id]) { BIO = PROJ_CACHE[id]; return Promise.resolve(BIO); }
-    var card = IDX.projects.filter(function (p) { return p.id === id; })[0];
-    var file = (card && card.data) || (id + '.json');
+  function getJSON(file) {
     return fetch(BASE + 'site/data/' + file, { cache: 'no-cache' }).then(function (r) {
       if (!r.ok) throw new Error(file + ': HTTP ' + r.status);
       return r.json();
-    }).then(function (d) { PROJ_CACHE[id] = d; BIO = d; return d; });
+    });
+  }
+  function loadIndex() { return getJSON('index.json').then(function (d) { IDX = d; }); }
+  function ensureProject(pid) {
+    if (CACHE[pid]) return Promise.resolve(CACHE[pid]);
+    var card = (IDX.projects || []).filter(function (p) { return p.id === pid; })[0];
+    return getJSON((card && card.data) || (pid + '.json')).then(function (d) {
+      CACHE[pid] = d;
+      return d;
+    });
   }
 
   /* ── 顶栏 / 页脚 ───────────────────────────────────────────── */
@@ -113,23 +147,26 @@
     $('#brand-en').style.display = LANG === 'en' ? 'inline' : 'none';
 
     var full = (location.hash || '#/').replace(/^#\/?/, '');
-    // 导航**从 index.json 派生**：**凡是有站内详情页的项目**都进导航
-    // （期结构 / 图集 / 视频汇总），不再把某一个项目写死成顶级项。
+    // 导航**从 index.json 派生**：凡是有站内内容的项目都进导航，不硬编码某个项目
     var items = [['#/', t('home'), '']];
-    IDX.projects.forEach(function (p) {
-      var key = p.kind === 'videos' ? 'videos' : (p.data ? 'p/' + p.id : null);
-      if (key) items.push(['#/' + key, title(p.title), key]);
+    (IDX.projects || []).forEach(function (p) {
+      if (p.kind === 'project') return;                 // 无内容项目只在"全部项目"里出现
+      items.push(['#/p/' + p.id, title(p.title), p.id]);
     });
     $('#nav').innerHTML = items.map(function (it) {
-      var on = it[2] === '' ? full === ''
-        : (full === it[2] || full.indexOf(it[2] + '/') === 0);
+      var on;
+      if (it[2] === '') { on = full === ''; }
+      else {
+        // 项目页 `p/<id>` 与详情页 `w/<id>/...` 都算"在这个项目里"
+        on = full === 'p/' + it[2] || full.indexOf('p/' + it[2] + '/') === 0
+          || full === 'w/' + it[2] || full.indexOf('w/' + it[2] + '/') === 0;
+      }
       return '<a href="' + it[0] + '"' + (on ? ' class="on"' : '') + '>' + esc(it[1]) + '</a>';
     }).join('') + '<a href="' + REPO + '" target="_blank" rel="noopener">GitHub ↗</a>';
 
     Array.prototype.forEach.call($('#lang').querySelectorAll('button'), function (b) {
       b.classList.toggle('on', b.dataset.lang === LANG);
     });
-
     $('#foot').innerHTML = '<span>' + esc(t('footFrom')) + '</span>'
       + '<a href="' + REPO + '" target="_blank" rel="noopener">' + esc(t('footRepo')) + ' ↗</a>';
   }
@@ -138,445 +175,643 @@
     LANG = l === 'en' ? 'en' : 'zh';
     localStorage.setItem(LANG_KEY, LANG);
     shell();
+    if (FEED.open) { showFeed(FEED.pid, FEED.rid, FEED.i + 1); return; }
     render();
   }
 
-  /* ── 首页 ──────────────────────────────────────────────────── */
-  function statList(pairs) {
-    return '<ul class="stats">' + pairs.map(function (p) {
-      return '<li><b>' + esc(num(p[1])) + '</b><span>' + esc(p[0]) + '</span></li>';
-    }).join('') + '</ul>';
+  /* ── 小工具 ────────────────────────────────────────────────── */
+  function statList(stats, keys) {
+    var li = (keys || STAT_ORDER).filter(function (k) { return stats && stats[k]; })
+      .map(function (k) {
+        return '<li><b>' + esc(stats[k]) + '</b><span>' + esc(t(STATK[k] || k)) + '</span></li>';
+      });
+    return li.length ? '<ul class="stats">' + li.join('') + '</ul>' : '';
   }
+
+  function statsText(stats, keys) {
+    return (keys || STAT_ORDER).filter(function (k) { return stats && stats[k]; })
+      .map(function (k) { return stats[k] + ' ' + t(STATK[k] || k); })
+      .join(' · ');
+  }
+
+  function pager(pid) {
+    // 帧的统一路由：#/w/<pid>[/r/<rid>][/<n>]
+    return function (rid, n) {
+      var base = '#/w/' + pid + (rid ? '/r/' + rid : '');
+      return n ? base + '/' + n : base;
+    };
+  }
+
+  function cardHTML(href, poster, label, sub, badge, ext) {
+    // 只有一张**懒加载**的图（早先还给每张卡铺了一层 CSS 背景图当"模糊底衬"，
+    // 背景图不能懒加载 → 360 张卡的项目页会一口气拉满十几 MB）
+    var img = poster
+      ? '<img loading="lazy" decoding="async" src="' + esc(asset(poster)) + '" alt="' + esc(label) + '">'
+      : '<span class="ph">' + esc(t('noCover')) + '</span>';
+    return '<a class="pcard" href="' + esc(href) + '"' + (ext ? ' target="_blank" rel="noopener"' : '') + '>'
+      + '<span class="tile">' + img + (badge ? '<span class="play">' + esc(badge) + '</span>' : '') + '</span>'
+      + '<span class="cap"><b>' + esc(label) + '</b><i>' + esc(sub || '') + '</i></span></a>';
+  }
+
+  function railHTML(titleZh, sub, moreHref, cards) {
+    if (!cards.length) return '';
+    var h = '<section class="row"><div class="row-hd"><h2>' + esc(titleZh) + '</h2>'
+      + '<span class="row-sub">' + esc(sub || '') + '</span>'
+      + '<span class="nav2"><button type="button" data-rail="-1" aria-label="' + esc(t('prev')) + '">‹</button>'
+      + '<button type="button" data-rail="1" aria-label="' + esc(t('next')) + '">›</button></span>'
+      + (moreHref ? '<a class="more" href="' + esc(moreHref) + '">' + esc(t('viewAll')) + ' ›</a>' : '')
+      + '</div><div class="rail">' + cards.join('') + '</div></section>';
+    return h;
+  }
+
+  /* ── 首页（列表页第一层）────────────────────────────────────── */
+  var billTimer = null, billIdx = 0;
 
   function viewHome() {
-    var c = IDX.counts;
-    var h = '<h1>' + esc(t('gallery')) + '</h1><p class="lead">' + esc(t('lead')) + '</p>';
-    h += statList([
-      [t('subjects'), c.subjects], [t('periods'), c.periods], [t('finals'), c.finals],
-      [t('controls'), c.controls], [t('videosN'), c.videos]
-    ]);
-    h += '<h2>' + esc(t('projects')) + '</h2><div class="grid">';
-    IDX.projects.forEach(function (p) {
-      // 有站内详情页的（期结构 / 图集）走 #/p/<id>；视频汇总走 #/videos；
-      // 都没有的（无成品的项目）才外链 README。
-      var inSite = p.kind === 'videos' ? '#/videos' : (p.data ? '#/p/' + p.id : null);
-      var href = inSite || (p.readme ? docURL(p.readme) : REPO);
-      var ext = inSite ? '' : ' target="_blank" rel="noopener"';
-      var meta = [];
-      if (p.stats.subjects) meta.push(p.stats.subjects + ' ' + t('subjects'));
-      if (p.stats.periods) meta.push(p.stats.periods + ' ' + t('periods'));
-      if (p.stats.finals) meta.push(p.stats.finals + ' ' + t('finals'));
-      if (p.stats.controls) meta.push(p.stats.controls + ' ' + t('controls'));
-      if (p.stats.projects) meta.push(p.stats.projects + ' ' + t('projects'));
-      if (p.stats.clips) meta.push(p.stats.clips + ' ' + t('clips'));
-      h += '<a class="card" href="' + href + '"' + ext + '>'
-        + thumbHTML(p.cover, title(p.title))
-        + '<div class="body"><div class="t">' + esc(title(p.title)) + '</div>'
-        + '<div class="sub">' + esc(subTitle(p.title)) + '</div>'
-        + '<div class="meta">' + esc(meta.join(' · ')) + '</div></div></a>';
+    var withData = (IDX.projects || []).filter(function (p) { return p.cover; });
+    var h = '<div class="bill-wrap" id="billwrap">';
+    withData.forEach(function (p, i) {
+      h += '<section class="bill' + (i === 0 ? ' on' : '') + '" data-i="' + i + '">'
+        + '<div class="bill-bg" style="background-image:url(' + esc(asset(p.cover)) + ')"></div>'
+        + '<div class="wrap bill-in"><div>'
+        + '<p class="kicker">' + esc(t('featured')) + '</p>'
+        + '<h1>' + esc(title(p.title)) + '</h1>'
+        + '<p class="sub">' + esc(subTitle(p.title)) + '</p>'
+        + '<p class="lead">' + esc(title(p.desc)) + '</p>'
+        + '<ul class="chips">' + (statsText(p.stats) ? '<li>' + esc(statsText(p.stats)) + '</li>' : '') + '</ul>'
+        + '<div class="acts">'
+        + '<a class="btn primary" href="#/w/' + esc(p.id) + '">▶ ' + esc(t('browse')) + '</a>'
+        + '<a class="btn" href="#/p/' + esc(p.id) + '">' + esc(t('details')) + '</a>'
+        + '</div>'
+        + '<div class="dots">' + withData.map(function (x, j) {
+          return '<button type="button" data-bill="' + j + '"' + (j === i ? ' class="on"' : '')
+            + ' aria-label="' + esc(title(x.title)) + '"></button>';
+        }).join('') + '</div>'
+        + '</div><div class="art"><img loading="lazy" decoding="async" src="' + esc(asset(p.cover))
+        + '" alt="' + esc(title(p.title)) + '"></div>'
+        + '</div></section>';
     });
-    return h + '</div>';
+    h += '</div>';
+
+    h += '<div class="wrap rows">';
+    (IDX.projects || []).forEach(function (p) {
+      var cards = (p.strip || []).map(function (s) {
+        var sub = s.count ? s.count + ' ' + title(s.unit) : '';
+        return cardHTML('#/' + s.route, s.poster, title(s.title), sub, null, false);
+      });
+      if (!cards.length) return;                        // 无内容项目只在下方"全部项目"里露面
+      h += railHTML(title(p.title), subTitle(p.title) + (p.reel_count ? ' · ' + p.reel_count + ' '
+        + t('reels') : ''), '#/p/' + p.id, cards);
+    });
+    h += '</div>';
+
+    h += '<div class="wrap"><h2 class="sec">' + esc(t('allProjects')) + '</h2><div class="rail">'
+      + (IDX.projects || []).map(function (p) {
+        var inSite = p.kind !== 'project';
+        var href = inSite ? '#/p/' + p.id : (p.readme ? docURL(p.readme) : REPO);
+        var sub = statsText(p.stats) || (inSite ? '' : t('noCover'));
+        return cardHTML(href, p.cover, title(p.title), sub, null, !inSite);
+      }).join('') + '</div></div>';
+    return h;
   }
 
-  function thumbHTML(src, alt) {
-    if (!src) return '<div class="thumb empty">' + esc(t('noCover')) + '</div>';
-    return '<div class="thumb"><img loading="lazy" decoding="async" src="' + esc(asset(src))
-      + '" alt="' + esc(alt) + '"></div>';
+  function mountBillboard() {
+    if (billTimer) { clearInterval(billTimer); billTimer = null; }
+    var slides = document.querySelectorAll('.bill');
+    if (slides.length < 2) return;
+    var go = function (i) {
+      billIdx = (i + slides.length) % slides.length;
+      Array.prototype.forEach.call(slides, function (s, j) {
+        s.classList.toggle('on', j === billIdx);
+      });
+      Array.prototype.forEach.call(document.querySelectorAll('.bill.on .dots button'), function (b, j) {
+        b.classList.toggle('on', j === billIdx);
+      });
+    };
+    var wrap = $('#billwrap');
+    var start = function () {
+      if (billTimer) clearInterval(billTimer);
+      billTimer = setInterval(function () { go(billIdx + 1); }, BILL_MS);
+    };
+    start();
+    wrap.addEventListener('mouseenter', function () { clearInterval(billTimer); billTimer = null; });
+    wrap.addEventListener('mouseleave', start);
+    wrap.addEventListener('click', function (e) {
+      var b = e.target.closest && e.target.closest('[data-bill]');
+      if (!b) return;
+      go(parseInt(b.getAttribute('data-bill'), 10));
+      start();
+    });
   }
 
-  /* ── 期结构项目总览（bio-splice / shanhai-jing 通用）────────── */
-  function viewBio() {
-    var pid = BIO.id;
-    var h = '<div class="crumb"><a href="#/">' + esc(t('backHome')) + '</a></div>'
-      + '<h1>' + esc(title(BIO.title)) + ' <span class="sub" style="color:var(--muted);font-size:15px">'
-      + esc(subTitle(BIO.title)) + '</span></h1>';
-    // 说明取自数据（原来是写死的 bioLead，第二个项目会显示错的文案）
-    var lead = BIO.desc && (BIO.desc[LANG] || BIO.desc.zh);
-    if (lead) h += '<p class="lead">' + esc(lead) + '</p>';
-    h += statList([
-      [t('subjects'), BIO.subjects.length],
-      [t('periods'), BIO.subjects.reduce(function (a, s) { return a + s.stats.periods; }, 0)],
-      [t('finals'), BIO.subjects.reduce(function (a, s) { return a + s.stats.finals; }, 0)],
-      [t('controls'), BIO.subjects.reduce(function (a, s) { return a + s.stats.controls; }, 0)]
-    ]);
-    h += '<p class="lead" style="font-size:13px">' + esc(t('gridHint')) + '</p>';
-    // 评分维度**按项目从数据取**：bio-splice 是 A–E 五维，shanhai-jing 是 A–F 六维。
-    var rub = BIO.rubric && (BIO.rubric[LANG] || BIO.rubric.zh);
-    if (rub) h += '<ul class="chips"><li>' + esc(rub) + '</li></ul>';
+  /* ── 项目页（列表页第二层：每卷一条横向行）──────────────────── */
+  function periodLabel(id) {
+    var n = (String(id).match(/(\d+)/) || [])[1] || id;
+    return t('periodPfx') + parseInt(n, 10) + t('periodSfx');
+  }
 
-    var links = [['readme', BIO.readme], ['summary', BIO.summary], ['plan', BIO.plan]]
+  function viewProject(proj) {
+    var cover = proj.cover_thumb || (proj.reels[0] && proj.reels[0].poster);
+    var h = '<div class="hero"><div class="hero-bg" style="background-image:url(' + esc(asset(cover)) + ')"></div>'
+      + '<div class="wrap hero-in">'
+      + '<p class="crumb"><a href="#/">' + esc(t('home')) + '</a></p>'
+      + '<h1>' + esc(title(proj.title)) + '<span>' + esc(subTitle(proj.title)) + '</span></h1>'
+      + '<p class="lead">' + esc(title(proj.desc)) + '</p>'
+      + statList(proj.stats) + '</div></div>';
+
+    h += '<div class="wrap">';
+    var rub = proj.rubric && (proj.rubric[LANG] || proj.rubric.zh);
+    if (rub) h += '<ul class="chips"><li><b>' + esc(t('rubric')) + '</b> ' + esc(rub) + '</li></ul>';
+    var docs = [['readme', proj.readme], ['summary', proj.summary], ['plan', proj.plan]]
       .filter(function (x) { return x[1]; })
       .map(function (x) {
         return '<a href="' + docURL(x[1]) + '" target="_blank" rel="noopener">' + esc(t(x[0])) + ' ↗</a>';
       });
-    if (links.length) h += '<p class="lead" style="font-size:13px">' + links.join(' ｜ ') + '</p>';
+    // 期内说明是中文原文（manifest 的 note）；英文界面下把这件事标出来，别让人以为漏翻了
+    if (LANG === 'en') docs.push('<span class="muted">' + esc(t('noteLang')) + '</span>');
+    if (docs.length) h += '<p class="docs">' + docs.join('') + '</p>';
+    h += '</div>';
 
-    // 子主题卡片：**有分组就分组渲染，没有就平铺**
-    // （bio-splice 分甲/乙/丙；shanhai-jing 只有一个子主题、没有分组）
-    var blocks = (BIO.groups && BIO.groups.length)
-      ? BIO.groups.map(function (g) {
-          return { label: g.id + (LANG === 'en' ? '' : ' 组'), title: g.title,
-                   sub: subTitle(g.title), ids: g.subjects };
-        })
-      : [{ label: null, title: null, sub: '', ids: BIO.subjects.map(function (s) { return s.id; }) }];
-
-    blocks.forEach(function (b) {
-      if (b.title) {
-        h += '<h2>' + esc(b.label) + ' · ' + esc(title(b.title)) + '</h2>'
-          + '<p class="lead" style="font-size:13px;margin-top:-6px">' + esc(b.sub) + '</p>';
-      }
-      h += '<div class="grid">';
-      b.ids.forEach(function (sid) {
-        var s = BIO.subjects.filter(function (x) { return x.id === sid; })[0];
-        if (!s) return;
-        var meta = s.stats.periods + ' ' + esc(t('periods')) + ' · ' + s.stats.finals + ' ' + esc(t('finals'));
-        if (s.stats.mean > 0) meta += ' · ' + esc(t('mean')) + ' <b>' + s.stats.mean.toFixed(2) + '</b>';
-        h += '<a class="card" href="#/p/' + esc(pid) + '/s/' + esc(s.id) + '">'
-          + thumbHTML(s.thumb, s.id)
-          + '<div class="body"><div class="t">' + esc(title(s.title)) + '</div>'
-          + '<div class="sub">' + esc(subTitle(s.title)) + '</div>'
-          + '<div class="meta">' + meta + '</div>'
-          + '</div></a>';
+    h += '<div class="wrap rows">';
+    var to = pager(proj.id);
+    proj.reels.forEach(function (r) {
+      var cards = r.items.map(function (it, i) {
+        var lab = (it.label && (it.label[LANG] || it.label.zh)) || roleName(it.role);
+        var sub = [];
+        if (it.period) sub.push(periodLabel(it.period));
+        if (it.scores) sub.push(t('score') + ' ' + it.scores.total.toFixed(2));
+        else if (it.role !== 'final') sub.push(roleName(it.role));
+        return cardHTML(to(r.id, i + 1), it.thumb || it.src, lab, sub.join(' · '),
+          it.kind === 'video' ? '▶' : null, false);
       });
-      h += '</div>';
+      h += railHTML(title(r.title), (r.finals ? r.finals + ' ' + t('finals') + ' · ' : '')
+        + r.count + ' ' + t('works'), to(r.id, 1), cards);
     });
-    return h;
+    if (!proj.reels.length) h += '<p class="empty">' + esc(t('emptyProject')) + '</p>';
+    return h + '</div>';
   }
 
-  /* ── 图集项目（无 manifest，成品平铺）──────────────────────── */
-  function viewGallery() {
-    var h = '<div class="crumb"><a href="#/">' + esc(t('backHome')) + '</a></div>'
-      + '<h1>' + esc(title(BIO.title)) + ' <span class="sub" style="color:var(--muted);font-size:15px">'
-      + esc(subTitle(BIO.title)) + '</span></h1>';
-    var lead = BIO.desc && (BIO.desc[LANG] || BIO.desc.zh);
-    if (lead) h += '<p class="lead">' + esc(lead) + '</p>';
-    var nf = BIO.images.filter(function (i) { return i.final; }).length;
-    h += statList([[t('finals'), nf || BIO.images.length]]);
-    if (BIO.readme) {
-      h += '<p class="lead" style="font-size:13px"><a href="' + docURL(BIO.readme)
-        + '" target="_blank" rel="noopener">' + esc(t('readme')) + ' ↗</a></p>';
-    }
-    h += '<p class="lead" style="font-size:13px">' + esc(t('gridHint')) + '</p>';
+  /* ── 详情页：全屏 feed（一屏一帧）──────────────────────────── */
+  var FEED = { open: false, pid: null, rid: null, list: [], runs: [], i: 0, raf: 0, bound: null };
 
-    if (!BIO.images.length) {
-      return h + '<p class="lead">' + esc(t('noCover')) + '</p>';
-    }
-    // 成品在前，其余在后；按目录分组起小标题
-    var groups = [], seen = {};
-    BIO.images.forEach(function (img) {
-      var g = img.final ? '' : (img.group || '');
-      if (!seen[g]) { seen[g] = []; groups.push(g); }
-      seen[g].push(img);
-    });
-    groups.forEach(function (g) {
-      if (g) h += '<h2>' + esc(g) + '</h2>';
-      h += '<div class="finals">';
-      seen[g].forEach(function (img) {
-        h += '<div class="fin' + (img.final ? '' : ' ctrl') + '" data-lb-path="' + esc(img.path) + '">'
-          + '<img loading="lazy" decoding="async" src="' + esc(asset(img.thumb || img.path))
-          + '" alt="' + esc(img.file) + '">'
-          + '<div class="fmeta"><span>' + esc(img.file) + '</span>'
-          + '<span>' + mb(img.size) + '</span></div></div>';
-      });
-      h += '</div>';
-    });
-    return h;
-  }
+  function frameHTML(e, i) {
+    var it = e.it;
+    var lab = (it.label && (it.label[LANG] || it.label.zh)) || roleName(it.role);
+    var chips = ['<li class="role ' + esc(it.role) + '">' + esc(roleName(it.role)) + '</li>'];
+    if (it.period) chips.push('<li>' + esc(periodLabel(it.period)) + '</li>');
+    if (it.scores) chips.push('<li>' + esc(t('score')) + ' ' + it.scores.total.toFixed(2) + '</li>');
+    if (it.seed || it.seed === 0) chips.push('<li>' + esc(t('seed')) + ' ' + esc(it.seed) + '</li>');
+    if (it.size) chips.push('<li>' + esc(mb(it.size)) + '</li>');
 
-  /* ── 子主题页 ──────────────────────────────────────────────── */
-  function periodLabel(id) {
-    var n = (id.match(/(\d+)/) || [])[1] || id;
-    return (LANG === 'en' ? 'Period ' : '第 ') + parseInt(n, 10) + (LANG === 'en' ? '' : ' 期');
-  }
+    // 抬头：项目/卷/期 三级——一眼看出这一屏属于谁
+    // 期标题只有 README 一级标题给了才显示（shanhai-jing 没有期 README，就只显示卷名，
+    // 期次由下面的 chip 承担，别把目录名 period-01 顶到脸上）
+    var head = [title(e.reel.title), e.period ? title(e.period.title) : ''].filter(Boolean).join(' · ');
 
-  function scoreText(e) {
-    var s = e.scores;
-    if (!s) return '';
-    return s.total.toFixed(2);
-  }
-
-  function viewSubject(sid) {
-    var s = BIO.subjects.filter(function (x) { return x.id === sid; })[0];
-    if (!s) return '<p class="lead">404 · ' + esc(sid) + '</p>';
-    var h = '<div class="crumb"><a href="#/">' + esc(t('backHome')) + '</a> · '
-      + '<a href="#/p/' + esc(BIO.id) + '">' + esc(t('backProject')) + '</a></div>'
-      + '<h1>' + esc(title(s.title)) + ' <span style="color:var(--muted);font-size:15px">'
-      + esc(subTitle(s.title)) + '</span></h1>';
-
-    h += statList([
-      [t('periods'), s.stats.periods], [t('finals'), s.stats.finals],
-      [t('controls'), s.stats.controls], [t('mean'), s.stats.mean.toFixed(2)]
-    ]);
-
-    var links = [['readme', s.readme], ['parts', s.parts], ['sheet', s.sheet]]
-      .filter(function (x) { return x[1]; })
-      .map(function (x) {
-        return '<a href="' + docURL(x[1]) + '" target="_blank" rel="noopener">'
-          + esc(t(x[0])) + ' ↗</a>';
-      });
-    h += '<p class="lead" style="font-size:13px">' + links.join(' ｜ ')
-      + ' ｜ <span style="color:var(--muted)">' + esc(t('noteLang')) + '</span></p>';
-
-    if (s.sheet) {
-      h += '<figure class="sheet"><img loading="lazy" decoding="async" src="' + esc(asset(s.sheet_thumb || s.sheet))
-        + '" alt="' + esc(sid) + ' sheet" data-lb-path="' + esc(s.sheet) + '"></figure>';
+    var note = it.note || (e.period ? e.period.note : '') || title(e.reel.desc) || '';
+    var langNote = (LANG === 'en' && hasCJK(note)) ? t('noteLang') : '';
+    var src = '';
+    var tr = e.reel.text_ref;
+    if (tr && tr.passage) {
+      src = '<p class="fr-src" lang="zh"><span class="vol">'
+        + esc(title({ zh: tr.volume || '', en: tr.volume_en || tr.volume || '' })) + '</span>'
+        + esc(tr.passage) + '</p>';
     }
 
-    s.periods.forEach(function (p) {
-      var finals = p.entries.filter(function (e) { return e.role === 'final'; });
-      var ctrls = p.entries.filter(function (e) { return e.role !== 'final'; });
-      h += '<section class="period"><div class="phead"><span class="pid">' + esc(periodLabel(p.id))
-        + '</span><span class="pmeta">' + finals.length + ' ' + esc(t('finals'))
-        + ' · ' + esc(t('perPeriod')) + ' ' + mb(p.bytes)
-        + (p.readme ? ' · <a href="' + docURL(p.readme) + '" target="_blank" rel="noopener">' + esc(t('readme')) + ' ↗</a>' : '')
-        + '</span></div>';
-      if (p.note) h += '<p class="note">' + esc(p.note) + '</p>';
-      if (p.sheet) {
-        h += '<figure class="sheet"><img loading="lazy" decoding="async" src="' + esc(asset(p.thumb || p.sheet))
-          + '" alt="' + esc(p.id) + ' sheet" data-lb-path="' + esc(p.sheet) + '">'
-          + '<figcaption>' + esc(t('sheet')) + ' · ' + esc(t('openFull'))
-          + '</figcaption></figure>';
-      }
-      h += '<div class="finals">';
-      finals.forEach(function (e) {
-        h += '<div class="fin" data-lb-path="' + esc(e.path) + '"><img loading="lazy" decoding="async" src="'
-          + esc(asset(e.thumb || e.path)) + '" alt="' + esc(e.file) + '">'
-          + '<div class="fmeta"><span>' + esc(e.shot || e.file) + '</span>'
-          + '<span class="score">' + esc(scoreText(e)) + '</span></div></div>';
-      });
-      h += '</div>';
-      if (ctrls.length) {
-        h += '<div class="controls"><div class="ctitle">' + esc(t('controlsTitle')) + '</div><div class="cgrid">';
-        ctrls.forEach(function (e) {
-          h += '<div class="fin ctrl" data-lb-path="' + esc(e.path) + '"><img loading="lazy" decoding="async" src="'
-            + esc(asset(e.thumb || e.path)) + '" alt="' + esc(e.file) + '">'
-            + '<div class="fmeta"><span>' + esc(e.shot || e.file) + '</span><span></span></div></div>';
-        });
-        h += '</div></div>';
-      }
-      h += '</section>';
-    });
+    var media = it.kind === 'video'
+      ? '<video controls preload="none" playsinline data-src="' + esc(asset(it.src)) + '"'
+        + (it.thumb ? ' poster="' + esc(asset(it.thumb)) + '"' : '') + '></video>'
+      : '<img class="fr-img lqip" data-src="' + esc(asset(it.src)) + '" data-thumb="' + esc(asset(it.thumb || it.src))
+        + '" src="' + esc(asset(it.thumb || it.src)) + '" alt="' + esc(lab) + '">';
 
-    if (s.audits.length) {
-      h += '<details><summary>' + esc(t('audits')) + ' · ' + s.audits.length + '</summary><div class="audits">';
-      s.audits.forEach(function (a) {
-        h += '<img loading="lazy" decoding="async" src="' + esc(asset(a.thumb || a.path)) + '" alt="audit r'
-          + a.round + '" data-lb-path="' + esc(a.path) + '">';
-      });
-      h += '</div></details>';
-    }
-    return h;
+    return '<section class="fr" data-i="' + i + '" id="fr' + i + '">'
+      + '<div class="fr-bg" style="background-image:url(' + esc(asset(it.thumb || it.src)) + ')"></div>'
+      + '<div class="fr-media">' + media + '</div>'
+      + '<div class="fr-scrim"></div>'
+      + '<div class="fr-body"><div class="fr-in">'
+      + (head ? '<p class="fr-eyebrow">' + esc(head) + '</p>' : '')
+      + '<h2 class="fr-title">' + esc(lab) + '</h2>'
+      + (note ? '<p class="fr-note">' + esc(note) + '</p>' : '')
+      + src
+      + '<ul class="fr-chips">' + chips.join('')
+      + (langNote ? '<li>' + esc(langNote) + '</li>' : '') + '</ul>'
+      + '</div></div>'
+      + '<div class="fr-rail">'
+      + '<button type="button" data-act="info" class="big" title="' + esc(t('info')) + '" aria-label="'
+      + esc(t('info')) + '">ⓘ</button>'
+      + '<a href="' + esc(asset(it.src)) + '" target="_blank" rel="noopener" title="' + esc(t('raw'))
+      + '" aria-label="' + esc(t('raw')) + '">↗</a>'
+      + '<button type="button" data-act="link" class="big" title="' + esc(t('copyLink')) + '" aria-label="'
+      + esc(t('copyLink')) + '">⧉</button>'
+      + '</div>'
+      + '<div class="fr-nav">'
+      + '<button type="button" data-act="prev" aria-label="' + esc(t('up')) + '"'
+      + (i === 0 ? ' disabled' : '') + '>↑</button>'
+      + '<button type="button" data-act="next" aria-label="' + esc(t('down')) + '"'
+      + (i === FEED.list.length - 1 ? ' disabled' : '') + '>↓</button>'
+      + '</div></section>';
   }
 
-  /* ── 视频页 ────────────────────────────────────────────────── */
-  function viewVideos() {
-    var h = '<h1>' + esc(title(IDX.projects.filter(function (p) { return p.kind === 'videos'; })[0].title))
-      + '</h1><p class="lead">' + esc(t('videoHint')) + '</p>';
-    var all = VID.projects.reduce(function (a, p) { return a + p.size; }, 0);
-    h += statList([
-      [t('projects'), VID.projects.length],
-      [t('clips'), VID.projects.reduce(function (a, p) { return a + p.count; }, 0)],
-      [t('totalSize'), mb(all)]
-    ]);
-    VID.projects.forEach(function (p) {
-      h += '<h2>' + esc(title(p.title)) + '</h2>';
-      if (p.desc && (p.desc[LANG] || p.desc.zh)) {
-        h += '<p class="lead" style="font-size:13px;margin-top:-6px">'
-          + esc(p.desc[LANG] || p.desc.zh) + '</p>';
-      }
-      h += '<p class="lead" style="font-size:13px">' + esc(p.count + ' ' + t('clipN') + ' · ' + mb(p.size))
-        + (p.readme ? ' ｜ <a href="' + docURL(p.readme) + '" target="_blank" rel="noopener">' + esc(t('readme')) + ' ↗</a>' : '')
-        + '</p><div class="vgrid">';
-      p.clips.forEach(function (c) {
-        var poster = c.thumb || c.poster;
-        h += '<div class="vcard"><video controls preload="none" playsinline'
-          + (poster ? ' poster="' + esc(asset(poster)) + '"' : '')
-          + '><source src="' + esc(asset(c.path)) + '" type="video/mp4"></video>'
-          + '<div class="body"><div class="t">' + esc(c.file) + '</div>'
-          + '<div class="meta">' + mb(c.size) + '</div></div></div>';
-      });
-      h += '</div>';
+  function computeRuns() {
+    // 进度条按「卷 + 角色」分段：既知道自己在整卷的哪里，也能看出这段是定稿还是过程件
+    var runs = [];
+    FEED.list.forEach(function (e, i) {
+      var k = (e.ri || 0) + ':' + (e.it.role || 'image');
+      var last = runs[runs.length - 1];
+      if (last && last.k === k) { last.to = i; last.n++; }
+      else runs.push({ k: k, from: i, to: i, n: 1, role: e.it.role });
     });
-    return h;
+    return runs;
   }
 
-  /* ── 灯箱 ──────────────────────────────────────────────────── */
-  var LB = { items: [], i: 0 };
-  var dlg = null;
-
-  function buildLB(subject) {
-    /* 把当前页所有可放大对象摊平成一个线性列表，便于左右切换 */
-    var items = [];
-    if (subject.sheet) items.push({ src: subject.sheet, kind: 'sheet', label: subject.id + ' · sheet' });
-    subject.periods.forEach(function (p, pi) {
-      if (p.sheet) {
-        items.push({ src: p.sheet, kind: 'sheet', label: p.id + ' · sheet', note: p.note });
-      }
-      p.entries.forEach(function (e) {
-        items.push({ src: e.path, kind: e.role === 'final' ? 'final' : 'control', entry: e, label: e.file });
-      });
-    });
-    subject.audits.forEach(function (a) {
-      items.push({ src: a.path, kind: 'audit', label: 'audit · r' + a.round, round: a.round });
-    });
-    return items;
-  }
-
-  function infoHTML(it) {
-    var e = it.entry;
-    if (!e) {
-      return '<dl><dt>' + esc(t('sheet')) + '</dt><dd>' + esc(it.label) + '</dd>'
-        + (it.note ? '<dt>note</dt><dd>' + esc(it.note) + '</dd>' : '') + '</dl>';
-    }
-    var h = '';
-    if (e.scores) {
-      var s = e.scores;
-      h += '<div class="scores"><span>' + esc(t('score')) + ' <b>' + s.total.toFixed(2) + '</b></span>'
-        + '<span>A ' + s.A + '</span><span>B ' + s.B + '</span><span>C ' + s.C + '</span>'
-        + '<span>D ' + s.D + '</span><span>E ' + s.E + '</span></div>'
-        + '<div class="scores" style="background:none;padding:0;display:block;color:var(--muted)">'
-        + esc(s.verdict) + (s.region_diff ? ' · ' + esc(s.region_diff) : '') + '</div>';
-    }
-    h += '<dl>'
-      + '<dt>' + esc(t('shot')) + '</dt><dd>' + esc(e.shot) + '</dd>'
-      + '<dt>' + esc(t('round')) + '</dt><dd>R' + esc(e.round) + '</dd>'
-      + '<dt>' + esc(t('engine')) + '</dt><dd>' + esc(e.engine) + '</dd>'
-      + '<dt>' + esc(t('seed')) + '</dt><dd>' + esc(e.seed) + '</dd>'
-      + '<dt>' + esc(t('perPeriod')) + '</dt><dd>' + esc(mb(e.size)) + '</dd>'
-      + '<dt>' + esc(t('sha')) + '</dt><dd style="font-size:11px">' + esc(e.sha256) + '</dd>'
-      + '</dl>';
-    if (e.prompt) {
-      h += '<div style="display:flex;justify-content:space-between;align-items:center">'
-        + '<span style="font-size:12px;color:var(--muted)">' + esc(t('prompt')) + '</span>'
-        + '<button class="copy" type="button" data-copy="1">' + esc(t('copy')) + '</button></div>'
-        + '<pre>' + esc(e.prompt) + '</pre>';
-    }
-    return h;
-  }
-
-  function showLB() {
-    var it = LB.items[LB.i];
-    if (!it) return;
-    $('#lb-title').textContent = (LB.i + 1) + ' / ' + LB.items.length + ' · ' + it.label;
-    $('#lb-raw').href = asset(it.src);
-    $('#lb-raw').textContent = t('openFull') + ' ↗';
-    $('#lb-body').innerHTML = '<div class="lb-img"><img src="' + esc(asset(it.src))
-      + '" alt="' + esc(it.label) + '"></div><div class="lb-info">' + infoHTML(it) + '</div>';
-    var btn = $('#lb-body').querySelector('button[data-copy]');
-    if (btn) {
-      btn.addEventListener('click', function () {
-        navigator.clipboard.writeText(it.entry.prompt).then(function () {
-          btn.textContent = t('copied');
-          setTimeout(function () { btn.textContent = t('copy'); }, 1400);
+  function showFeed(pid, rid, n) {
+    return ensureProject(pid).then(function (proj) {
+      var list = [], reels = proj.reels || [];
+      reels.forEach(function (r, ri) {
+        if (rid && r.id !== rid) return;
+        r.items.forEach(function (it) {
+          list.push({
+            it: it, ri: ri, reel: r,
+            period: it.period
+              ? (r.periods || []).filter(function (p) { return p.id === it.period; })[0]
+              : null
+          });
         });
       });
+      if (!list.length) { routeFail(pid + (rid ? '/r/' + rid : '')); return; }
+      var start = Math.max(1, Math.min(n || 1, list.length));
+      FEED.open = true; FEED.pid = pid; FEED.rid = rid || null;
+      FEED.list = list; FEED.runs = computeRuns(); FEED.i = start - 1;
+
+      feedRoot.hidden = false;
+      document.documentElement.dataset.view = 'feed';
+      document.documentElement.dataset.chrome = 'on';
+      document.body.style.overflow = 'hidden';
+      feedRoot.innerHTML =
+        '<div class="feed-bar">'
+        + '<button type="button" class="fb-back" data-act="back" aria-label="' + esc(t('back')) + '">←</button>'
+        + '<span class="fb-title">' + esc(feedTitleOf(proj, list[start - 1])) + '</span>'
+        + '<span class="fb-count" id="fbcount">' + start + ' / ' + list.length + '</span>'
+        + '<span class="fb-act">'
+        + '<button type="button" data-act="info">' + esc(t('info')) + '</button>'
+        + '<button type="button" data-act="link">' + esc(t('link')) + '</button>'
+        + '</span></div>'
+        + '<div class="runs" id="runs">' + FEED.runs.map(function (r) {
+          return '<button type="button" class="' + esc(r.role) + '" data-run="' + r.from
+            + '" style="flex-grow:' + r.n + '"></button>';
+        }).join('') + '</div>'
+        + '<div class="feed" id="sc">' + list.map(frameHTML).join('') + '</div>'
+        + '<p class="feed-hint">' + esc(t('feedHint')) + '</p>'
+        + '<aside class="panel" id="panel" aria-hidden="true"></aside>';
+
+      // 提示语看过就够了：6 秒后自己淡出（点画面切 chrome 时会再回来）
+      setTimeout(function () {
+        var h = feedRoot.querySelector('.feed-hint');
+        if (h) h.classList.add('gone');
+      }, 6000);
+
+      var sc = $('#sc');
+      var jump = function () { sc.scrollTop = (start - 1) * sc.clientHeight; };
+      jump();
+      activate(FEED.i);
+      requestAnimationFrame(jump);       // 首帧高度偶发为 0，下一帧再对齐一次
+      bindFeed(sc);
+    }).catch(function (e) { routeFail(String(e.message || e)); });
+  }
+
+  function feedTitleOf(proj, e) {
+    return e ? [title(proj.title), title(e.reel.title)].filter(Boolean).join(' · ') : title(proj.title);
+  }
+
+  function closeFeed() {
+    if (!FEED.open) return;
+    FEED.open = false;
+    document.documentElement.removeAttribute('data-view');
+    document.documentElement.removeAttribute('data-chrome');
+    document.body.style.overflow = '';
+    feedRoot.hidden = true;
+    feedRoot.innerHTML = '';
+    FEED.list = []; FEED.runs = [];
+  }
+
+  // `data-cur` 记的是"我们让它显示哪张"（路径形式）。不能拿 img.src 比：
+  // 赋值后浏览器会把 src 属性规范化成绝对 URL，跟路径永远不相等。
+  function setImg(img, url) {
+    if (img.getAttribute('data-cur') === url) return false;
+    img.setAttribute('data-cur', url);
+    img.src = url;
+    return true;
+  }
+
+  function loadFrame(i) {
+    var sec = $('#fr' + i);
+    if (!sec) return;
+    var img = sec.querySelector('img.fr-img');
+    if (img) {
+      var o = img.getAttribute('data-src');
+      var show = function () { img.classList.remove('lqip'); img.classList.add('on'); };
+      img.onload = function () { if (img.getAttribute('data-cur') === o) show(); };
+      if (!setImg(img, o) && img.complete && img.naturalWidth) show();
     }
+    var v = sec.querySelector('video');
+    if (v && !v.getAttribute('src')) v.setAttribute('src', v.getAttribute('data-src'));
   }
 
-  function buildLBGallery(proj) {
-    /* 图集项目的灯箱列表：就是它的图片清单（成品在前） */
-    return (proj.images || []).map(function (img) {
-      return { src: img.path, kind: img.final ? 'final' : 'image', label: img.file };
+  function unloadFrame(i) {
+    var sec = $('#fr' + i);
+    if (!sec) return;
+    var img = sec.querySelector('img.fr-img');
+    if (img) {
+      setImg(img, img.getAttribute('data-thumb'));   // 退回缩略图，别把 300 MB 都挂在内存里
+      img.classList.remove('on');
+      img.classList.add('lqip');
+    }
+    var v = sec.querySelector('video');
+    if (v && !v.paused) v.pause();
+  }
+
+  function activate(i) {
+    if (!FEED.open) return FEED.i;
+    var n = FEED.list.length;
+    i = Math.max(0, Math.min(i, n - 1));
+    FEED.i = i;
+    var lo = Math.max(0, i - FEED_WINDOW), hi = Math.min(n - 1, i + FEED_WINDOW);
+    for (var k = 0; k < n; k++) {
+      if (k < lo || k > hi) unloadFrame(k);
+    }
+    for (var j = lo; j <= hi; j++) loadFrame(j);
+
+    var cnt = $('#fbcount');
+    if (cnt) cnt.textContent = (i + 1) + ' / ' + n;
+    var proj = CACHE[FEED.pid];
+    var ti = feedRoot.querySelector('.fb-title');
+    if (ti && proj) ti.textContent = feedTitleOf(proj, FEED.list[i]);
+    Array.prototype.forEach.call(feedRoot.querySelectorAll('.runs button'), function (b, bi) {
+      var r = FEED.runs[bi];
+      b.classList.toggle('on', !!r && i >= r.from && i <= r.to);
     });
+    var hint = feedRoot.querySelector('.feed-hint');
+    if (hint) {
+      hint.textContent = (FEED.list[i].it.kind === 'video') ? t('videoHint') : t('feedHint');
+    }
+    var p = $('#panel');
+    if (p && p.classList.contains('on')) fillPanel();
+    var rid = FEED.rid ? '/r/' + FEED.rid : '';
+    history.replaceState(null, '', '#/w/' + FEED.pid + rid + '/' + (i + 1));
+    return i;
   }
 
-  function openLB(list, i) {
-    LB.items = list; LB.i = Math.max(0, Math.min(i, list.length - 1));
-    if (!dlg.open) dlg.showModal();
-    showLB();
+  function bindFeed(sc) {
+    if (FEED.bound && FEED.bound !== sc) FEED.bound = null;
+    FEED.bound = sc;
+    sc.addEventListener('scroll', function () {
+      if (FEED.raf) return;
+      FEED.raf = requestAnimationFrame(function () {
+        FEED.raf = 0;
+        var i = Math.round(sc.scrollTop / Math.max(1, sc.clientHeight));
+        if (i !== FEED.i) activate(i);
+      });
+    }, { passive: true });
+    // 触屏上"甩"到下一屏时地址栏会伸缩、clientHeight 会变，滚动结束后再对齐一次
+    sc.addEventListener('touchend', function () {
+      var sec = $('#fr' + FEED.i);
+      if (sec) sec.scrollIntoView({ block: 'start' });
+    }, { passive: true });
   }
 
   function step(d) {
-    if (!LB.items.length) return;
-    LB.i = (LB.i + d + LB.items.length) % LB.items.length;
-    showLB();
+    var sc = $('#sc');
+    if (!sc) return;
+    var i = Math.max(0, Math.min(FEED.i + d, FEED.list.length - 1));
+    if (i === FEED.i) return;
+    activate(i);
+    sc.scrollTo({ top: i * sc.clientHeight, behavior: 'smooth' });
   }
 
-  /* ── 路由与事件 ────────────────────────────────────────────── */
-  var CURRENT = { subject: null, project: null };
+  function togglePanel(on) {
+    var p = $('#panel');
+    if (!p) return;
+    var want = on === undefined ? !p.classList.contains('on') : !!on;
+    p.classList.toggle('on', want);
+    p.setAttribute('aria-hidden', want ? 'false' : 'true');
+    if (want) fillPanel();
+  }
+
+  function fillPanel() {
+    var p = $('#panel');
+    var e = FEED.list[FEED.i];
+    if (!p || !e) return;
+    var it = e.it;
+    var proj = CACHE[FEED.pid] || {};
+    var lab = (it.label && (it.label[LANG] || it.label.zh)) || roleName(it.role);
+    var h = '<button type="button" class="close" data-act="info" aria-label="' + esc(t('close')) + '">×</button>'
+      + '<h3>' + esc(lab) + '</h3>'
+      + '<p class="p-sub">' + esc([title(proj.title), title(e.reel.title),
+        e.period ? title(e.period.title) : ''].filter(Boolean).join(' · ')) + '</p>';
+    var rows = [
+      [t('kind'), roleName(it.role)],
+      [t('period'), it.period ? periodLabel(it.period) : ''],
+      [t('shot'), it.shot || ''],
+      [t('round'), it.round ? 'R' + it.round : ''],
+      [t('engine'), it.engine || ''],
+      [t('seed'), (it.seed || it.seed === 0) ? String(it.seed) : ''],
+      [t('size'), mb(it.size)],
+      [t('file'), it.file || '']
+    ].filter(function (r) { return r[1]; });
+    if (it.sha256) rows.push([t('sha'), it.sha256]);
+    h += '<dl>' + rows.map(function (r) {
+      return '<dt>' + esc(r[0]) + '</dt><dd>' + esc(r[1]) + '</dd>';
+    }).join('') + '</dl>';
+
+    if (it.scores) {
+      var s = it.scores;
+      h += '<div class="score"><span>' + esc(t('score')) + ' <b>' + s.total.toFixed(2) + '</b></span>'
+        + '<span>A ' + s.A + '</span><span>B ' + s.B + '</span><span>C ' + s.C + '</span>'
+        + '<span>D ' + s.D + '</span><span>E ' + s.E + '</span></div>'
+        + '<p class="p-sub" style="margin-top:8px">' + esc(s.verdict || '')
+        + (s.region_diff ? ' · ' + esc(s.region_diff) : '') + '</p>';
+    }
+    var tr = e.reel.text_ref;
+    if (tr && tr.passage) {
+      h += '<p class="sec-t">' + esc(t('sourceText')) + '</p><div class="passage" lang="zh">'
+        + '<b>' + esc(t('volume')) + '</b>　' + esc(tr.volume || '')
+        + '<br>' + esc(tr.passage) + '</div>'
+        + '<dl style="margin-top:10px">'
+        + (tr.place ? '<dt>' + esc(t('place')) + '</dt><dd>' + esc(tr.place) + '</dd>' : '')
+        + '<dt>' + esc(t('commentary')) + '</dt><dd>' + esc(t('commentaryNote')) + '</dd>'
+        + '</dl>';
+    }
+    var note = it.note || (e.period ? e.period.note : '') || '';
+    if (note) h += '<p class="sec-t">' + esc(t('note')) + '</p><div class="passage">' + esc(note) + '</div>';
+    if (it.prompt) {
+      h += '<p class="sec-t"><span>' + esc(t('prompt')) + '</span>'
+        + '<button type="button" class="copy" data-act="copy">' + esc(t('copy')) + '</button></p>'
+        + '<pre>' + esc(it.prompt) + '</pre>';
+    }
+    if (e.reel.doc) {
+      h += '<p class="sec-t"><a href="' + docURL(e.reel.doc) + '" target="_blank" rel="noopener">'
+        + esc(t('readme')) + ' ↗</a></p>';
+    }
+    p.innerHTML = h;
+    p.scrollTop = 0;
+  }
+
+  function copyText(txt, btn) {
+    if (!txt || !navigator.clipboard || !navigator.clipboard.writeText) return;
+    navigator.clipboard.writeText(txt).then(function () {
+      if (!btn) return;
+      var old = btn.textContent;
+      btn.textContent = t('copied');
+      setTimeout(function () { btn.textContent = old; }, 1400);
+    }, function () {});
+  }
+
+  /* ── 路由 ──────────────────────────────────────────────────── */
+  function parse() {
+    var q = (location.hash || '#/').replace(/^#\/?/, '').split('/').filter(Boolean);
+    if (q[0] === 'videos') return { name: 'project', pid: 'video-projects' };
+    if (q[0] === 'p' && q[1]) return { name: 'project', pid: q[1] };
+    if (q[0] === 'bio-splice') {
+      return q[1] ? { name: 'feed', pid: 'bio-splice', rid: q[1], n: 1 }
+        : { name: 'project', pid: 'bio-splice' };
+    }
+    if (q[0] === 's' && q[1]) return { name: 'feed', pid: 'bio-splice', rid: q[1], n: 1 };
+    if (q[0] === 'w' && q[1]) {
+      var r = { name: 'feed', pid: q[1], rid: null, n: 1 };
+      if (q[2] === 'r' || q[2] === 's') {
+        r.rid = q[3] || null;
+        if (q[4]) r.n = parseInt(q[4], 10) || 1;
+      } else if (q[2]) {
+        r.n = parseInt(q[2], 10) || 1;
+      }
+      return r;
+    }
+    return { name: 'home' };
+  }
+
+  function routeFail(msg) {
+    closeFeed();
+    app.hidden = false;
+    app.innerHTML = '<p class="crumb"><a href="#/">← ' + esc(t('home')) + '</a></p>'
+      + '<p class="lead">' + esc(t('notFound')) + '：<code>' + esc(msg) + '</code></p>';
+  }
 
   function render() {
-    var r = (location.hash || '#/').replace(/^#\/?/, '');
-    var parts = r.split('/');
-    CURRENT.subject = null;
-    CURRENT.project = null;
+    var r = parse();
+    if (billTimer) { clearInterval(billTimer); billTimer = null; }
+    if (r.name !== 'feed') closeFeed();
+    app.hidden = false;
 
-    // 统一路由：#/p/<项目id> 与 #/p/<项目id>/s/<子主题id>
-    // 兼容旧链接：#/bio-splice → #/p/bio-splice；#/s/<sid> → #/p/bio-splice/s/<sid>
-    var pid = null, sub = null;
-    if (parts[0] === 'p' && parts[1]) {
-      pid = parts[1];
-      if (parts[2] === 's' && parts[3]) sub = parts[3];
-    } else if (parts[0] === 'bio-splice') {
-      pid = 'bio-splice'; sub = parts[1] || null;
-    } else if (parts[0] === 's' && parts[1]) {
-      pid = 'bio-splice'; sub = parts[1];
-    }
-
-    if (pid) {
-      app.innerHTML = '<p class="loading">载入中… / Loading…</p>';
-      ensureProject(pid).then(function (proj) {
-        CURRENT.project = proj;
-        if (sub) {
-          var s = (proj.subjects || []).filter(function (x) { return x.id === sub; })[0];
-          app.innerHTML = viewSubject(sub);
-          CURRENT.subject = s || null;
-        } else if (proj.images) {
-          app.innerHTML = viewGallery();
-        } else {
-          app.innerHTML = viewBio();
-        }
-        window.scrollTo(0, 0);
-      }).catch(function (e) {
-        app.innerHTML = '<div class="crumb"><a href="#/">' + esc(t('backHome')) + '</a></div>'
-          + '<p class="lead">' + esc(String(e.message || e)) + '</p>';
-      });
+    if (r.name === 'home') {
+      app.innerHTML = viewHome();
+      mountBillboard();
+      window.scrollTo(0, 0);
       return;
     }
-    if (parts[0] === 'videos') {
-      app.innerHTML = viewVideos();
-    } else {
-      app.innerHTML = viewHome();
+    if (r.name === 'project') {
+      var token = location.hash;
+      app.innerHTML = '<div class="wrap"><div class="skel" style="margin:26px 0"></div>'
+        + '<div class="skel"></div></div>';
+      ensureProject(r.pid).then(function (proj) {
+        if (location.hash !== token) return;      // 用户在加载途中又跳走了，别覆盖新页面
+        app.innerHTML = viewProject(proj);
+        window.scrollTo(0, 0);
+      }).catch(function (e) { routeFail(String(e.message || e)); });
+      return;
     }
-    window.scrollTo(0, 0);
+    if (r.name === 'feed') { showFeed(r.pid, r.rid, r.n); }
   }
 
+  /* ── 事件 ──────────────────────────────────────────────────── */
   function onClick(ev) {
-    var tgt = ev.target.closest ? ev.target.closest('[data-lb-path]') : null;
-    if (!tgt) return;
-    var path = tgt.getAttribute('data-lb-path');
-    // 期详情页走子主题列表；图集项目走图片清单
-    var list = CURRENT.subject ? buildLB(CURRENT.subject)
-      : (CURRENT.project && CURRENT.project.images ? buildLBGallery(CURRENT.project) : []);
-    if (!list.length) return;
-    ev.preventDefault();
-    var idx = list.findIndex(function (x) { return x.src === path; });
-    openLB(list, idx < 0 ? 0 : idx);
+    var el = ev.target.closest ? ev.target.closest('[data-rail],[data-act]') : null;
+    if (!el) return;
+
+    var rail = el.getAttribute('data-rail');
+    if (rail) {
+      var box = el.closest('.row-hd').parentNode.querySelector('.rail');
+      box.scrollBy({ left: parseInt(rail, 10) * Math.max(240, box.clientWidth * 0.8), behavior: 'smooth' });
+      return;
+    }
+    var act = el.getAttribute('data-act');
+    if (!act) return;
+    if (act === 'back') { ev.preventDefault(); location.hash = FEED.pid ? '#/p/' + FEED.pid : '#/'; return; }
+    if (act === 'info') { ev.preventDefault(); togglePanel(); return; }
+    if (act === 'link') { ev.preventDefault(); copyText(location.href, el); return; }
+    if (act === 'copy') {
+      ev.preventDefault();
+      var e = FEED.list[FEED.i];
+      copyText((e && e.it.prompt) || '', el);
+      return;
+    }
+    if (act === 'prev') { ev.preventDefault(); step(-1); return; }
+    if (act === 'next') { ev.preventDefault(); step(1); return; }
+  }
+
+  function onFeedClick(ev) {
+    var run = ev.target.closest ? ev.target.closest('.runs button') : null;
+    if (run) {
+      var sc = $('#sc');
+      var i = parseInt(run.getAttribute('data-run'), 10);
+      activate(i);
+      sc.scrollTo({ top: i * sc.clientHeight, behavior: 'smooth' });
+      return;
+    }
+    if (ev.target.closest && ev.target.closest('[data-act]')) { onClick(ev); return; }
+    // 点到播放器/链接/按钮时不要顺手把文字层藏了
+    if (ev.target.closest && ev.target.closest('video,a,button')) return;
+    // 点到画面本身 → 隐藏/显示文字层（沉浸模式）
+    if (ev.target.closest && ev.target.closest('.fr')) {
+      var off = document.documentElement.dataset.chrome === 'off';
+      document.documentElement.dataset.chrome = off ? 'on' : 'off';
+    }
+  }
+
+  function onKey(ev) {
+    if (!FEED.open) return;
+    var k = ev.key;
+    if (k === 'Escape') {
+      var p = $('#panel');
+      if (p && p.classList.contains('on')) togglePanel(false);
+      else location.hash = '#/p/' + FEED.pid;
+      ev.preventDefault();
+      return;
+    }
+    if (k === 'ArrowDown' || k === 'ArrowRight' || k === 'PageDown' || k === 'j') {
+      step(1); ev.preventDefault(); return;
+    }
+    if (k === 'ArrowUp' || k === 'ArrowLeft' || k === 'PageUp' || k === 'k') {
+      step(-1); ev.preventDefault(); return;
+    }
+    if (k === 'Home') { step(-FEED.list.length); ev.preventDefault(); return; }
+    if (k === 'End') { step(FEED.list.length); ev.preventDefault(); return; }
+    if (k === 'i') { togglePanel(); ev.preventDefault(); return; }
+    if (k === 'h') {
+      var off = document.documentElement.dataset.chrome === 'off';
+      document.documentElement.dataset.chrome = off ? 'on' : 'off';
+      ev.preventDefault();
+    }
   }
 
   function start() {
-    dlg = $('#lightbox');
     shell();
     $('#lang').addEventListener('click', function (e) {
       if (e.target.dataset && e.target.dataset.lang) setLang(e.target.dataset.lang);
     });
-    $('#lb-close').addEventListener('click', function () { dlg.close(); });
-    dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
-    dlg.addEventListener('close', function () { $('#lb-body').innerHTML = ''; });
-    document.addEventListener('keydown', function (e) {
-      if (!dlg.open) return;
-      if (e.key === 'ArrowLeft') step(-1);
-      else if (e.key === 'ArrowRight') step(1);
-    });
     app.addEventListener('click', onClick);
+    feedRoot.addEventListener('click', onFeedClick);
+    document.addEventListener('keydown', onKey);
+    window.addEventListener('scroll', function () {
+      var top = $('#top');
+      if (top) top.classList.toggle('solid', window.scrollY > 8);
+    }, { passive: true });
     window.addEventListener('hashchange', function () { shell(); render(); });
     render();
   }
 
-  load().then(start).catch(function (err) {
-    app.innerHTML = '<p class="lead">数据载入失败 / failed to load site data:<br><code>'
+  loadIndex().then(start).catch(function (err) {
+    app.innerHTML = '<p class="lead">' + esc(t('loadFail')) + ':<br><code>'
       + esc(err.message) + '</code></p>'
-      + '<p class="lead" style="font-size:13px">先在仓库根目录运行 <code>python3 tools/build_site.py</code>，'
-      + '并通过 HTTP 打开（<code>python3 -m http.server</code>），不要直接双击 index.html。</p>';
+      + '<p class="lead" style="font-size:13px">' + t('bootHint') + '</p>';
   });
 })();

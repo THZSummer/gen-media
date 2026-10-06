@@ -4,12 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>生成式媒体 · Generative Media</title>
-<meta name="description" content="图片生成与视频生成的作品集：生物拼接 12 个子主题 × 5 期，135 件成品。">
+<meta name="description" content="图片与视频生成的作品集：生物拼接、山海经图赞、骨瓷人偶、视频短片；每件成品都留档提示词、种子与评分。">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0b0b0d">
 <link rel="stylesheet" href="site/app.css">
 </head>
 <body>
 
-<header class="top">
+<header class="top" id="top">
   <a class="brand" href="#/"><b id="brand-zh">生成式媒体</b><span id="brand-en">Generative Media</span></a>
   <nav id="nav"></nav>
   <div class="lang" id="lang">
@@ -18,20 +20,12 @@
   </div>
 </header>
 
-<main id="app"><p class="loading">载入中… / Loading…</p></main>
+<main id="app" class="wrap"><p class="loading muted">载入中… / Loading…</p></main>
 
 <footer id="foot"></footer>
 
-<dialog id="lightbox">
-  <div class="lb-bar">
-    <span id="lb-title"></span>
-    <span class="lb-actions">
-      <a id="lb-raw" href="#" target="_blank" rel="noopener"></a>
-      <button id="lb-close" type="button">×</button>
-    </span>
-  </div>
-  <div class="lb-body" id="lb-body"></div>
-</dialog>
+<!-- 详情页：全屏 feed（一屏一帧，上下滑动换图） -->
+<div class="feed-root" id="feed" hidden></div>
 
 <script src="site/app.js"></script>
 </body>
