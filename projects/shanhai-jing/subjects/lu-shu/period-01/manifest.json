@@ -1,7 +1,7 @@
 {
  "period": "period-01",
  "slug": "lu-shu",
- "note": "鹿蜀首期（南山經 · 杻陽之山）。骨法沿用九尾狐 R7 定案的赭石设色工笔，骨法句逐字相同；出图为纯文生图（英文点名式 + 特征逐项），无控制图。R1–R3 定型写法并证伪「prompt 抑制印章」；R4 用同一 prompt 做了 Seedream 5.0 Pro 跨引擎对照（付费 6 张）——特征更强但 6/6 题款盖章，故不换代。首选成品 01-lu-shu.png 的四角经 4× 放大逐角确认无乱码印（本骨法下 20 张抽查有 19 张命中）。",
+ "note": "鹿蜀首期（南山經 · 杻陽之山）。骨法沿用九尾狐 R7 定案的赭石设色工笔，骨法句逐字相同；出图为纯文生图（英文点名式 + 特征逐项），无控制图。R1–R3 定型写法并证伪「prompt 抑制印章」；R4 用同一 prompt 做了 Seedream 5.0 Pro 跨引擎对照（付费 6 张）——特征更强但 6/6 题款盖章，故不换代；R5 再做抑印措辞实验（4 种骨法句 × 3 seed = 12 张，12/12 仍有印 → 证伪）：浓虎纹的候选虽然 A 满分，但系列一致与气韵/骨法各降档（加权 4.38 < 定稿 4.60），**定稿不变**。首选成品 01-lu-shu.png 的四角经 12%/6× 放大逐角确认无乱码印（本骨法下抽查命中率极高，约 1/20 干净）。",
  "from": "work/shanhai-jing/lu-shu/r01/",
  "text_ref": {
   "volume": "山海經 · 南山經",
@@ -16,12 +16,13 @@
  "cartouche": "鹿蜀",
  "cover_line": "佩之宜子孫",
  "cartouche_font": "Noto Serif CJK（与九尾狐同期同字库）",
- "seal_status": "两层：① 真印（篆体）层仍缺 —— 篆体字库未解决（见 PLAN.md §三）；② 模型自画的乱码印按硬伤剔除 —— 本骨法下命中率极高，首选成品是抽查中唯一四角干净的",
+ "seal_status": "两层：① 真印（篆体）层仍缺 —— 篆体字库未解决（见 PLAN.md §三）；② 模型自画的乱码印按硬伤剔除 —— 本骨法下命中率极高（R5 12/12 有印），两条措辞抑印路线（否定式 R3、改写先验 R5）均已证伪，故只能「多出几张挑干净的 + 四角放大目视准入」；首选成品是抽查中四角干净的那张，且经 12%/6× 复核。",
  "rounds": [
   "r01: 写法扫描（英文点名 / 英文特征前置 / 中文直述）—— 虎纹只有英文写得出来",
   "r02: 收敛（v5「只有尾巴是赤红」有效；中文直述二次证伪）",
   "r03: 印面抑制（no seal / no stamp / no writing 三写法，9 张全无效）",
-  "r04: 跨引擎对照（Seedream 5.0 Pro，付费 6 张：特征最强但 6/6 题款盖章）"
+  "r04: 跨引擎对照（Seedream 5.0 Pro，付费 6 张：特征最强但 6/6 题款盖章）",
+  "r05: 抑印措辞实验（换媒介名词 / 画满整张 / 换素白纸 × 3 seed = 12 张，12/12 仍有印 → 证伪；浓虎纹候选加权 4.38 < 定稿 4.60，不换代；见 rounds/r05-review.md）"
  ],
  "bone": "赭石设色（工笔淡彩）—— 与九尾狐 R7 同骨法句",
  "process": "纯文生图（英文点名式 + 特征逐项），无控制图 / 无 ControlNet；1024x1360 / 20 步 / Z-Image-Turbo",
@@ -113,6 +114,18 @@
    "prompt": "A horse of Chinese mythology with a pure white head, a body covered in bold black tiger stripes; only its long tail is cinnabar red, its mane and legs stay white. It is called the lu-shu and stands in profile on a rocky ledge. Painted in the manner of a traditional Chinese album leaf, fine ink brushwork, delicate fur strokes, ink and pale colour on aged paper.",
    "size": "1024x1360",
    "note": "跨引擎对照：Seedream 5.0 Pro 的特征最强（虎纹浓、赤尾清楚），但 6/6 都题款盖印、写出可辨认汉字 → 模型写汉字属硬伤，故本系列不换代；只作「浓虎纹长什么样」的参考"
+  },
+  {
+   "final": "controls/lu-shu-r5-s2-1922-bold-tiger-sealed.png",
+   "role": "control",
+   "kind": "plate",
+   "source_round": 5,
+   "source_engine": "z-image-turbo",
+   "source_shot": "s2-1922",
+   "seed": 1922,
+   "steps": 20,
+   "source_file": "work/shanhai-jing/lu-shu/r05/shj-lu-shu-r5-s2-1922_00001_.png",
+   "note": "更浓的虎纹（有印）：R5 抑印实验的最优候选（媒介句换成「a single unmounted sheet of xuan paper」、形态句用 bold black tiger stripes）—— 虎纹最强、四项全中（A 5），但四角有印（TR 一枚清楚朱印）、墨色与对比更重（F/B 各降一档、E 系列一致 3.5），加权 4.38 < 定稿 4.60 → 不换代。留档说明「单一维度更强 ≠ 整张更好」与浓虎纹的系列一致代价。见 rounds/r05-review.md"
   }
  ]
 }

@@ -65,13 +65,15 @@
 5) Scoring     six dimensions A-F (F vitality .25); `fatal` reserved for hard defects
 ```
 
-### Wording rules (measured on lu-shu R1-R4; write every later period this way)
+### Wording rules (measured on lu-shu R1-R5 / fox R7-R9; write every later period this way)
 
 | Rule | Evidence |
 |------|----------|
 | English naming + **itemised traits** | the lu-shu v5 wording (`pure white head` / `bold black tiger stripes` / `only its long tail is cinnabar red`) landed all four traits |
 | **Do not use a Chinese direct description** | the Chinese group failed 6/6 across two rounds: tiger markings collapse into spots, the coat drifts brown, the ochre oversaturates |
-| **"Do not draw X" does not work** | R3's three no-seal wordings were ignored by all nine images; suppressing seals needs a reworded style or tool erasure |
+| **"Do not draw X" does not work** | R3's three no-seal wordings were ignored by **all nine images** |
+| **Rewriting the prior does not suppress seals either** | R5/R9: four bone sentences (new medium noun / fill the sheet / plain white paper / control) x 3 seeds x 2 subjects = **all 24 images sealed** -> only "generate several and pick a clean one" (about 1/20) and "erase with a tool" are left |
+| **"Stronger" carries a series-consistency bill** | `bold` tiger stripes and heavier tails are reachable (A full marks), but ink and contrast rise with them: the stripe candidate weighted 4.38 against a 4.60 final, the fox candidate 4.63 against 4.80. Wanting stronger means darkening the whole bone sentence and re-running both subjects in the same round |
 | Confine the red explicitly | only `only its long tail is …` removed the mane the model otherwise invents |
 
 > WARNING: **this process differs substantially from the first version.** The first version treated "lock the
@@ -193,7 +195,7 @@ transfer to a second creature. Findings:
 |-----------|--------|-----------|
 | **A Sourcing accuracy** | .25 | passage verbatim, volume correct; **every countable trait counted and matching**; every described feature realised |
 | **F Vitality of brushwork** | .25 | fur texture, lines with brush intent and variation in density, a natural pose, a composition that breathes; **not a hollow outline drawing** |
-| **B Bone purity** | .15 | it is baimiao ink line; not ink wash, not guochao impasto, not Western print hatching |
+| **B Bone purity** | .15 | it follows this subject's bone (**currently gongbi light colour in ochre**; baimiao ink line before R7); not ink wash, not guochao impasto, not Western print hatching, and without visible pencil-style hatching |
 | **C Format completeness** | .15 | generous margin, upright composition, cartouche space and frame, fits the illustrated-verse format |
 | **D Legibility** | .10 | recognisable at a glance, not confusable with another creature |
 | **E Series consistency** | .10 | same line density, paper tone and margin as its batch |
@@ -209,7 +211,9 @@ transfer to a second creature. Findings:
 ### Thresholds (hard)
 
 - **non-empty `fatal` -> fail.** `fatal` covers: an **obvious counting error** (only one tail, clearly not nine), a wrong character in the passage, a wrong volume, a garbled seal, model-generated Chinese characters
-  - the **executable criterion** for "a garbled seal / model-generated characters" (established in the lu-shu period): magnify the four corners of every candidate 4x and look; `seal_check.py` only shortlists candidates mechanically (four automatic criteria were tried and all failed — see `subjects/lu-shu/rounds/r01-review.en.md` §4); if such an image must be kept, erase the region with `patch_region.py` and record `seal_erasure` in `manifest.json` (self-checked: residue <=5%, seam <=30)
+  - the **executable criterion** for "a garbled seal / model-generated characters" (established in the lu-shu period): magnify the four corners of every candidate to 12% of the short side at 6x (`scripts/corner_sheet.py` renders the sheet with a fixed layout and self-checks, optionally `--enhance levels|redness`); `seal_check.py` only shortlists candidates mechanically (four automatic criteria were tried and all failed — see `subjects/lu-shu/rounds/r01-review.en.md` §4)
+    - NEVER INVERT THE SCREEN: all five images it called `CLEAN` (3 lu-shu + 2 fox) carry seals to the eye, so it can raise suspicion but never give clearance
+    - if such an image must be kept, erase the region with `patch_region.py` and record `seal_erasure` in `manifest.json` (self-checks: residue <=5%, seam <=30; **plus a pixel-by-pixel comparison against the un-erased version, where every difference must fall inside the patch boxes**)
 - `A < 3`, **`F < 3`** or `C < 3` -> fail (an ugly image is equally undeliverable)
 - total >= 4.0 with `A >= 4` and `F >= 4` -> preferred final; >= 3.5 -> final; otherwise alternate (**not shipped**)
 
@@ -246,4 +250,5 @@ Every round carries a **same-round base control** (`period-NN/controls/`), follo
 | Date | Version | Change |
 |------|---------|--------|
 | 2026-10-05 | v0.1 | Plan created: positioning / source edition (Nan Shan Jing verified) / plate craft (four probe findings) / creature grouping / A-E acceptance; the structural-control path is marked open |
+| 2026-10-06 | v0.3 | **Seals: "suppress it with wording" is now fully falsified, and two criteria were corrected.** Lu-shu R5 / fox R9, 12 images each (4 bone sentences x 3 seeds, free and local) — **24/24 still sealed**, which together with R3's nine negated images means neither of the two prompt-based suppression routes works; also found that **the mechanical screen's `CLEAN` cannot be trusted** (5 images called clean all carry seals to the eye). §5 thresholds gained "never invert the screen" and "pixel-by-pixel comparison after erasure"; the B criterion is corrected to "this subject's bone (currently ochre colour)"; §3 wording rules gained the suppression and "stronger costs series consistency" rows. The fox final's two faint seals were erased under the existing rule (7024 differing pixels, all inside the patch boxes) | 小七 |
 | 2026-10-06 | v0.2 | **The first period (lu-shu) closed the loop and the craft gained two steps**: (1) the process table gained a "seal screen" (four corners at 4x -> `seal_check.py` shortlists -> `patch_region.py` erases and archives); (2) four "wording rules" were added (English naming + itemised traits / no Chinese direct description / negative clauses are useless / confine the red to one part), each backed by measurement; (3) the `fatal` threshold's "garbled seal / model-generated characters" gained an executable criterion; (4) the creature schedule records the completed first period and the cross-engine conclusion (Seedream has stronger traits but adds an inscription in 6/6, so no engine switch) |

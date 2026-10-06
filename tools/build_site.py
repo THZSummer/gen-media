@@ -533,8 +533,10 @@ def split_note(note):
 
 
 # manifest 里 `kind` 字段的双语名（区分画心与制版卡；没有更具体的标签时用它）
+# 默认画心名跟着**当前骨法**走：山海经 2026-10-06 起骨法是赭石设色（R7 定案），
+# 白描只是 R7 之前的路线；真要用白描，在 manifest 的 note 里显式写标签即可。
 FRAME_KIND_LABELS = {
-    "plate": ("白描画心", "Ink plate"),
+    "plate": ("设色画心", "Coloured plate"),
     "card": ("图赞卡片", "Verse card"),
 }
 
@@ -549,6 +551,9 @@ LABEL_EN = {
     "图赞主图": "Illustrated verse",
     "原文卡": "Source-text card",
     "第 1 轮审计": "Round 1 audit",
+    "擦除前原样": "Before erasure",
+    "更浓的虎纹（有印）": "Bolder stripes (sealed)",
+    "更浓的尾巴（有印）": "Stronger tails (sealed)",
 }
 
 

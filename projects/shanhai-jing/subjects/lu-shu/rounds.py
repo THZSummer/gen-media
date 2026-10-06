@@ -84,6 +84,33 @@ VARIANTS_R3 = {
            " without seal or inscription"),
 }
 
+# R5 抑印措辞实验：**不动形态句（v5）**，只动"介质与版面"那一句，一次只改一个变量。
+#   为什么换思路：R3 已证伪「no seal / no stamp / no writing」这套否定式（9 张全无效）；
+#   印是"装裱过的旧画"这个先验带来的——那就改写先验本身，而不是叫模型别画。
+#   s1 同轮底座对照（逐字复用现骨法句，量 seed 方差与印面基线）
+#   s2 变量＝媒介名词：album leaf（册页）→ a single unmounted sheet of xuan paper（未装裱单片）
+#   s3 变量＝版面：画面占满整张纸、不留空边（印章没有栖身的空白）
+#   s4 变量＝纸龄：aged paper（陈年纸本）→ plain white paper（素白纸，去掉"旧画"先验）
+#   四个骨法句与九尾狐 R9 逐字相同 —— 换兽不换实验设计，结论才能互相印证。
+SUBJECT_V5 = ("A horse of Chinese mythology with a pure white head, a body covered in bold black "
+              "tiger stripes; only its long tail is cinnabar red, its mane and legs stay white. "
+              "It is called the lu-shu and stands in profile on a rocky ledge.")
+STYLE_MEDIUM = ("Painted on a single unmounted sheet of xuan paper, fine ink brushwork, "
+                "delicate fur strokes, ink and pale colour on aged paper.")
+STYLE_FILLED = ("Painted in the manner of a traditional Chinese album leaf, fine ink brushwork, "
+                "delicate fur strokes, ink and pale colour on aged paper. The subject and the "
+                "ground fill the sheet out to all four edges, leaving no empty margin.")
+STYLE_NEWPAPER = ("Painted in the manner of a traditional Chinese album leaf, fine ink brushwork, "
+                  "delicate fur strokes, ink and pale colour on plain white paper.")
+
+SUPPRESS_VARIANTS = {
+    "s1": SUBJECT_V5 + " " + STYLE,
+    "s2": SUBJECT_V5 + " " + STYLE_MEDIUM,
+    "s3": SUBJECT_V5 + " " + STYLE_FILLED,
+    "s4": SUBJECT_V5 + " " + STYLE_NEWPAPER,
+}
+SUPPRESS_SEEDS = (1811, 1922, 2033)
+
 ROUNDS = {
     1: {
         "note": "R1 变体扫描：写法（点名 / 特征前置 / 中文直述）× seed，先看三特征落地率与是否出现模型写的汉字",
@@ -120,6 +147,18 @@ ROUNDS = {
              "width": CANVAS["width"], "height": CANVAS["height"], "steps": STEPS}
             for v, p in {"x1": VARIANTS["v1"], "x2": VARIANTS_R2["v5"]}.items()
             for s in (101, 202, 303)
+        ],
+    },
+    # R5 抑印措辞实验（免费，本地 Z-Image）：不改形态、只改"介质与版面"
+    5: {
+        "note": ("R5 抑印措辞实验：同形态句（v5）× 四种骨法句（s1 底座对照 / s2 换媒介名词 / "
+                 "s3 画面占满 / s4 换素白纸），每式 3 seed，看印面命中率能不能被措辞改写。"
+                 "**结果：12/12 仍有印（措辞抑印证伪）；浓虎纹候选加权 4.38 < 定稿 4.60，不换代** "
+                 "—— 见 rounds/r05-review.md"),
+        "shots": [
+            {"id": f"{v}-{s}", "variant": v, "prompt": p, "seed": s,
+             "width": CANVAS["width"], "height": CANVAS["height"], "steps": STEPS}
+            for v, p in SUPPRESS_VARIANTS.items() for s in SUPPRESS_SEEDS
         ],
     },
 }

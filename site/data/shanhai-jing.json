@@ -21,7 +21,7 @@
   "reels": 2,
   "periods": 2,
   "finals": 6,
-  "controls": 5
+  "controls": 8
  },
  "reels": [
   {
@@ -31,14 +31,14 @@
     "en": "Nine-Tailed Fox"
    },
    "desc": {
-    "zh": "定调期首件：九尾狐（南山經 · 青丘之山）。骨法为赭石设色工笔；出图为纯文生图 + 点名神话生物的 prompt 写法（8/8 出九尾），已撤销程序化控制图装置（见 rounds/r05-review.md）。已制版产出图赞主图与原文卡；印章层因篆体字库未解决而暂缺。",
-    "en": "定调期首件：九尾狐（南山經 · 青丘之山）。骨法为赭石设色工笔；出图为纯文生图 + 点名神话生物的 prompt 写法（8/8 出九尾），已撤销程序化控制图装置（见 rounds/r05-review.md）。已制版产出图赞主图与原文卡；印章层因篆体字库未解决而暂缺。"
+    "zh": "定调期首件：九尾狐（南山經 · 青丘之山）。骨法为赭石设色工笔；出图为纯文生图 + 点名神话生物的 prompt 写法（8/8 出九尾），已撤销程序化控制图装置（见 rounds/r05-review.md）。已制版产出图赞主图与原文卡。R9 做了抑印措辞实验（12 张，12/12 仍有印 → 措辞抑印证伪，见 rounds/r09-review.md）；定稿按同一条规则改用 patch_region.py 擦除原 R7 m202 四角的两枚淡印，擦除后逐像素核对：变动只落在两个补丁框内。印章层（真印）因篆体字库未解决而暂缺。",
+    "en": "定调期首件：九尾狐（南山經 · 青丘之山）。骨法为赭石设色工笔；出图为纯文生图 + 点名神话生物的 prompt 写法（8/8 出九尾），已撤销程序化控制图装置（见 rounds/r05-review.md）。已制版产出图赞主图与原文卡。R9 做了抑印措辞实验（12 张，12/12 仍有印 → 措辞抑印证伪，见 rounds/r09-review.md）；定稿按同一条规则改用 patch_region.py 擦除原 R7 m202 四角的两枚淡印，擦除后逐像素核对：变动只落在两个补丁框内。印章层（真印）因篆体字库未解决而暂缺。"
    },
    "poster": "site/thumbs/projects/shanhai-jing/subjects/jiu-wei-hu/period-01/01-jiu-wei-hu.jpg",
    "cover": "projects/shanhai-jing/subjects/jiu-wei-hu/period-01/01-jiu-wei-hu.png",
-   "count": 5,
+   "count": 7,
    "finals": 3,
-   "bytes": 3498133,
+   "bytes": 7928092,
    "periods": [
     {
      "id": "period-01",
@@ -46,7 +46,7 @@
       "zh": "",
       "en": ""
      },
-     "note": "定调期首件：九尾狐（南山經 · 青丘之山）。骨法为赭石设色工笔；出图为纯文生图 + 点名神话生物的 prompt 写法（8/8 出九尾），已撤销程序化控制图装置（见 rounds/r05-review.md）。已制版产出图赞主图与原文卡；印章层因篆体字库未解决而暂缺。",
+     "note": "定调期首件：九尾狐（南山經 · 青丘之山）。骨法为赭石设色工笔；出图为纯文生图 + 点名神话生物的 prompt 写法（8/8 出九尾），已撤销程序化控制图装置（见 rounds/r05-review.md）。已制版产出图赞主图与原文卡。R9 做了抑印措辞实验（12 张，12/12 仍有印 → 措辞抑印证伪，见 rounds/r09-review.md）；定稿按同一条规则改用 patch_region.py 擦除原 R7 m202 四角的两枚淡印，擦除后逐像素核对：变动只落在两个补丁框内。印章层（真印）因篆体字库未解决而暂缺。",
      "doc": null
     }
    ],
@@ -65,14 +65,14 @@
      "file": "01-jiu-wei-hu.png",
      "src": "projects/shanhai-jing/subjects/jiu-wei-hu/period-01/01-jiu-wei-hu.png",
      "thumb": "site/thumbs/projects/shanhai-jing/subjects/jiu-wei-hu/period-01/01-jiu-wei-hu.jpg",
-     "size": 2309083,
+     "size": 2307227,
      "role": "final",
      "period": "period-01",
      "label": {
       "zh": "设色画心",
       "en": "Coloured plate"
      },
-     "note": "供制版使用",
+     "note": "供制版使用；已擦除 2 处模型淡印（见 seal_erasure）",
      "shot": "m202",
      "round": 7,
      "engine": "z-image-turbo",
@@ -86,7 +86,7 @@
      "file": "02-jiu-wei-hu-zan.png",
      "src": "projects/shanhai-jing/subjects/jiu-wei-hu/period-01/02-jiu-wei-hu-zan.png",
      "thumb": "site/thumbs/projects/shanhai-jing/subjects/jiu-wei-hu/period-01/02-jiu-wei-hu-zan.jpg",
-     "size": 1072964,
+     "size": 1072459,
      "role": "final",
      "period": "period-01",
      "label": {
@@ -118,6 +118,46 @@
      "round": null,
      "engine": "scripts/typeset_zanzhi.py",
      "seed": null,
+     "sha256": "",
+     "prompt": ""
+    },
+    {
+     "kind": "image",
+     "file": "jiu-wei-hu-r7-m202-seal-tainted.png",
+     "src": "projects/shanhai-jing/subjects/jiu-wei-hu/period-01/controls/jiu-wei-hu-r7-m202-seal-tainted.png",
+     "thumb": "site/thumbs/projects/shanhai-jing/subjects/jiu-wei-hu/period-01/controls/jiu-wei-hu-r7-m202-seal-tainted.jpg",
+     "size": 2309083,
+     "role": "retired-control",
+     "period": "period-01",
+     "label": {
+      "zh": "擦除前原样",
+      "en": "Before erasure"
+     },
+     "note": "R7 m202 定稿四角 BL、BR 各有一枚极淡的模型朱印 —— 4× 放大可见，而 seal_check.py 的环带阈值未检出（机械筛漏判）。留作「擦除前」对照。",
+     "shot": "m202",
+     "round": 7,
+     "engine": "",
+     "seed": 202,
+     "sha256": "",
+     "prompt": ""
+    },
+    {
+     "kind": "image",
+     "file": "jiu-wei-hu-r9-s2-1811-strong-tails-sealed.png",
+     "src": "projects/shanhai-jing/subjects/jiu-wei-hu/period-01/controls/jiu-wei-hu-r9-s2-1811-strong-tails-sealed.png",
+     "thumb": "site/thumbs/projects/shanhai-jing/subjects/jiu-wei-hu/period-01/controls/jiu-wei-hu-r9-s2-1811-strong-tails-sealed.jpg",
+     "size": 2123237,
+     "role": "control",
+     "period": "period-01",
+     "label": {
+      "zh": "更浓的尾巴（有印）",
+      "en": "Stronger tails (sealed)"
+     },
+     "note": "R9 抑印实验的最优候选 —— 尾扇更浓、九尾读得更清楚（A 5），但四角有印、墨色更重（F/B/E 各降档，加权 4.63 < 定稿 4.80）→ 不换代；只作「更浓的尾巴长什么样」的参考。见 rounds/r09-review.md",
+     "shot": "s2-1811",
+     "round": 9,
+     "engine": "",
+     "seed": 1811,
      "sha256": "",
      "prompt": ""
     },
@@ -164,14 +204,14 @@
     "en": "Lu-Shu"
    },
    "desc": {
-    "zh": "鹿蜀首期（南山經 · 杻陽之山）。骨法沿用九尾狐 R7 定案的赭石设色工笔，骨法句逐字相同；出图为纯文生图（英文点名式 + 特征逐项），无控制图。R1–R3 定型写法并证伪「prompt 抑制印章」；R4 用同一 prompt 做了 Seedream 5.0 Pro 跨引擎对照（付费 6 张）——特征更强但 6/6 题款盖章，故不换代。首选成品 01-lu-shu.png 的四角经 4× 放大逐角确认无乱码印（本骨法下 20 张抽查有 19 张命中）。",
-    "en": "鹿蜀首期（南山經 · 杻陽之山）。骨法沿用九尾狐 R7 定案的赭石设色工笔，骨法句逐字相同；出图为纯文生图（英文点名式 + 特征逐项），无控制图。R1–R3 定型写法并证伪「prompt 抑制印章」；R4 用同一 prompt 做了 Seedream 5.0 Pro 跨引擎对照（付费 6 张）——特征更强但 6/6 题款盖章，故不换代。首选成品 01-lu-shu.png 的四角经 4× 放大逐角确认无乱码印（本骨法下 20 张抽查有 19 张命中）。"
+    "zh": "鹿蜀首期（南山經 · 杻陽之山）。骨法沿用九尾狐 R7 定案的赭石设色工笔，骨法句逐字相同；出图为纯文生图（英文点名式 + 特征逐项），无控制图。R1–R3 定型写法并证伪「prompt 抑制印章」；R4 用同一 prompt 做了 Seedream 5.0 Pro 跨引擎对照（付费 6 张）——特征更强但 6/6 题款盖章，故不换代；R5 再做抑印措辞实验（4 种骨法句 × 3 seed = 12 张，12/12 仍有印 → 证伪）：浓虎纹的候选虽然 A 满分，但系列一致与气韵/骨法各降档（加权 4.38 < 定稿 4.60），定稿不变。首选成品 01-lu-shu.png 的四角经 12%/6× 放大逐角确认无乱码印（本骨法下抽查命中率极高，约 1/20 干净）。",
+    "en": "鹿蜀首期（南山經 · 杻陽之山）。骨法沿用九尾狐 R7 定案的赭石设色工笔，骨法句逐字相同；出图为纯文生图（英文点名式 + 特征逐项），无控制图。R1–R3 定型写法并证伪「prompt 抑制印章」；R4 用同一 prompt 做了 Seedream 5.0 Pro 跨引擎对照（付费 6 张）——特征更强但 6/6 题款盖章，故不换代；R5 再做抑印措辞实验（4 种骨法句 × 3 seed = 12 张，12/12 仍有印 → 证伪）：浓虎纹的候选虽然 A 满分，但系列一致与气韵/骨法各降档（加权 4.38 < 定稿 4.60），定稿不变。首选成品 01-lu-shu.png 的四角经 12%/6× 放大逐角确认无乱码印（本骨法下抽查命中率极高，约 1/20 干净）。"
    },
    "poster": "site/thumbs/projects/shanhai-jing/subjects/lu-shu/period-01/01-lu-shu.jpg",
    "cover": "projects/shanhai-jing/subjects/lu-shu/period-01/01-lu-shu.png",
-   "count": 6,
+   "count": 7,
    "finals": 3,
-   "bytes": 8741495,
+   "bytes": 10892930,
    "periods": [
     {
      "id": "period-01",
@@ -179,7 +219,7 @@
       "zh": "",
       "en": ""
      },
-     "note": "鹿蜀首期（南山經 · 杻陽之山）。骨法沿用九尾狐 R7 定案的赭石设色工笔，骨法句逐字相同；出图为纯文生图（英文点名式 + 特征逐项），无控制图。R1–R3 定型写法并证伪「prompt 抑制印章」；R4 用同一 prompt 做了 Seedream 5.0 Pro 跨引擎对照（付费 6 张）——特征更强但 6/6 题款盖章，故不换代。首选成品 01-lu-shu.png 的四角经 4× 放大逐角确认无乱码印（本骨法下 20 张抽查有 19 张命中）。",
+     "note": "鹿蜀首期（南山經 · 杻陽之山）。骨法沿用九尾狐 R7 定案的赭石设色工笔，骨法句逐字相同；出图为纯文生图（英文点名式 + 特征逐项），无控制图。R1–R3 定型写法并证伪「prompt 抑制印章」；R4 用同一 prompt 做了 Seedream 5.0 Pro 跨引擎对照（付费 6 张）——特征更强但 6/6 题款盖章，故不换代；R5 再做抑印措辞实验（4 种骨法句 × 3 seed = 12 张，12/12 仍有印 → 证伪）：浓虎纹的候选虽然 A 满分，但系列一致与气韵/骨法各降档（加权 4.38 < 定稿 4.60），定稿不变。首选成品 01-lu-shu.png 的四角经 12%/6× 放大逐角确认无乱码印（本骨法下抽查命中率极高，约 1/20 干净）。",
      "doc": null
     }
    ],
@@ -315,6 +355,26 @@
      "seed": 101,
      "sha256": "",
      "prompt": "A horse of Chinese mythology with a pure white head, a body covered in bold black tiger stripes; only its long tail is cinnabar red, its mane and legs stay white. It is called the lu-shu and stands in profile on a rocky ledge. Painted in the manner of a traditional Chinese album leaf, fine ink brushwork, delicate fur strokes, ink and pale colour on aged paper."
+    },
+    {
+     "kind": "image",
+     "file": "lu-shu-r5-s2-1922-bold-tiger-sealed.png",
+     "src": "projects/shanhai-jing/subjects/lu-shu/period-01/controls/lu-shu-r5-s2-1922-bold-tiger-sealed.png",
+     "thumb": "site/thumbs/projects/shanhai-jing/subjects/lu-shu/period-01/controls/lu-shu-r5-s2-1922-bold-tiger-sealed.jpg",
+     "size": 2151435,
+     "role": "control",
+     "period": "period-01",
+     "label": {
+      "zh": "更浓的虎纹（有印）",
+      "en": "Bolder stripes (sealed)"
+     },
+     "note": "R5 抑印实验的最优候选（媒介句换成「a single unmounted sheet of xuan paper」、形态句用 bold black tiger stripes）—— 虎纹最强、四项全中（A 5），但四角有印（TR 一枚清楚朱印）、墨色与对比更重（F/B 各降一档、E 系列一致 3.5），加权 4.38 < 定稿 4.60 → 不换代。留档说明「单一维度更强 ≠ 整张更好」与浓虎纹的系列一致代价。见 rounds/r05-review.md",
+     "shot": "s2-1922",
+     "round": 5,
+     "engine": "z-image-turbo",
+     "seed": 1922,
+     "sha256": "",
+     "prompt": ""
     }
    ]
   }
