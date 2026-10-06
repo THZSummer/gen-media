@@ -27,7 +27,7 @@ gen-media/
 │   ├── bio-splice/ bone-china-doll/ character-lookbook/ shanhai-jing/     (image)
 │   └── giant-kingdom/ step-scenery/ step-scenery-v2/ survival-island/ tea-shake-dance/  (video)
 ├── methods/           video method notes: 10 of them (mostly cloud Ark Seedance)
-├── site/              bilingual gallery front end: app.css / app.js / data/*.json
+├── site/              bilingual gallery front end (**dark by default**, light opt-in): app.css / app.js / data/*.json
 └── tools/             toolchain: build_site.py, preview.sh, i18n.py
 ```
 
@@ -158,4 +158,5 @@ python3 tools/i18n.py links           # repoint English relative links at .en.md
 | 2026-10-05 | v1.0 | Split `Book/image-gen` and `Book/video-gen` out of `gits` into a standalone repository | 小七 |
 | 2026-10-05 | v1.3 | Added the bilingual convention (Chinese default + `X.en.md`) and `tools/i18n.py` | 小七 |
 | 2026-10-05 | v2.0 | **Flattening refactor**: dropped the `image-gen/` + `video-gen/` split in favour of `.agents/skills/` (5 techniques together) + `projects/` (9 projects) + `methods/` (video methods); the two skill indexes merged, the two project indexes and templates merged; `tools/{i18n,build_site}.py` and dev-guide updated; **corrected the inaccurate claim that "this repository is the only copy and has no upstream"** — `gits` references it as a submodule | 小七 |
+| 2026-10-06 | v2.2 | **The site theme is now "dark by default, light opt-in"**: it used to follow the OS (`prefers-color-scheme: light` supplied a light variant); dark is now always the default and the OS preference is **ignored**; the top bar gained an icon toggle (`☀`/`☾` with a bilingual accessible name that follows the language), the choice is stored in `localStorage['gm-theme']` and can be overridden with `?theme=light`, and `meta[theme-color]` follows it; the cinema bands (billboard / hero / feed) stay dark in both themes. `index.html` gained a five-line bootstrap to avoid a white flash | 小七 |
 | 2026-10-05 | v2.1 | **Site rebuilt as a two-layer streaming layout**: list pages (billboard + horizontal rails: `#/`, `#/p/<pid>`) and a detail page (full-screen feed, one frame = one image + one block of text, **swipe up/down to change image**: `#/w/<pid>[/r/<rid>][/<n>]`); the lightbox is gone; `build_site.py` now emits `reels[].items[]` (text lives on the frame) plus a pre-built `strip` per project in `index.json`; cards use thumbnails only and the feed preloads originals for the current ±2 frames; added the `i18n.py ui` check for bilingual UI copy | 小七 |

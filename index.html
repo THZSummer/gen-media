@@ -7,6 +7,18 @@
 <meta name="description" content="图片与视频生成的作品集：生物拼接、山海经图赞、骨瓷人偶、视频短片；每件成品都留档提示词、种子与评分。">
 <meta name="color-scheme" content="dark light">
 <meta name="theme-color" content="#0b0b0d">
+<script>
+/* 主题引导：**默认深色**，只在用户显式选过浅色（localStorage）或带了 ?theme= 时才标 light。
+   放在样式表之前执行，首屏就不会先画深色再跳浅色。语言/主题是两个独立开关。 */
+(function () {
+  try {
+    var q = (location.search.match(/[?&]theme=(dark|light)(?:&|$)/) || [])[1];
+    var t = q || localStorage.getItem('gm-theme');
+    if (t === 'light') document.documentElement.dataset.theme = 'light';
+    else document.documentElement.removeAttribute('data-theme');
+  } catch (e) { /* 隐私模式下 localStorage 可能抛错：忽略，走默认深色 */ }
+})();
+</script>
 <link rel="stylesheet" href="site/app.css">
 </head>
 <body>
@@ -18,6 +30,7 @@
     <button data-lang="zh" type="button">中文</button>
     <button data-lang="en" type="button">EN</button>
   </div>
+  <button class="theme" id="theme" type="button" aria-pressed="false"><i aria-hidden="true"></i></button>
 </header>
 
 <main id="app" class="wrap"><p class="loading muted">载入中… / Loading…</p></main>

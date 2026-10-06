@@ -128,8 +128,15 @@ site/data/<pid>.json      {id, kind, title, desc, readme, summary, plan, rubric,
 - 纯 vanilla：**无框架、无 CDN、无构建**；只加 `site/index.html`、`site/app.{css,js}` 与 `site/data/*.json`。
 - 图片 `loading="lazy" decoding="async"`；视频 `preload="none"` + 分镜图 `poster`（不滑到不下载）。
 - **导航从 `index.json` 派生**（有内容的 kind 自动进导航），不要把某个项目写死成顶级项。
-- 风格：暗色优先（`prefers-color-scheme: light` 有浅色变体）、海报不裁切
-  （缩略图铺一层模糊底 + 前景 `object-fit:contain`）、`prefers-reduced-motion` 下去掉动效。
+- **主题：默认深色，且不跟随系统**（`prefers-color-scheme` 有意不参与——2026-10-06 用户明确要求「默认深色」）。
+  浅色只能由用户显式切换：`<html data-theme="light">`；状态存 `localStorage['gm-theme']`。
+  - 引导脚本放在 **`index.html` 的 `<link rel=stylesheet>` 之前**（读 `?theme=dark|light` → `localStorage`），
+    首屏前打好标记，不闪白；深色是 `:root` 的默认值，切回深色用**移除属性**，样式表里不必把深色写两遍。
+  - 开关放在顶栏语言开关右侧：**只有图标**（深色下 `☀`、浅色下 `☾`，由 CSS `::before` 给，首屏就正确），
+    无障碍名走 `T.zh`/`T.en`（`themeToLight` / `themeToDark`）并随语言更新；`aria-pressed` 表示当前是否浅色。
+  - `<meta name="theme-color">` 跟着主题走（深 `#0b0b0d` / 浅 `#f7f6f3`）。
+  - 改了主题按 §9 验三件：默认深色（**系统偏好为浅色时仍须是深色**）、`?theme=light`、点击切换后刷新保持。
+- 海报不裁切（缩略图铺一层模糊底 + 前景 `object-fit:contain`）、`prefers-reduced-motion` 下去掉动效。
 - **头图带永远是暗的**（billboard 与项目页 hero 都用 `#0b0b0d` 底 + 白色文案）：
   浅色主题下把深色文字压在深色蒙版上会整块读不清，这是实测踩过的。
 - **poster 卡必须是 `display:flex;flex-direction:column`**：`.tile` / `.cap` 都是 `span`，
@@ -188,5 +195,12 @@ XDG_RUNTIME_DIR=/tmp/xdg $CH --headless=new --no-sandbox --disable-gpu \
    stdout 为空），而且磁盘缓存会让下一轮拿到上一轮的 `app.js`（实测：英文那轮渲染出中文）。
    再加 `--disk-cache-size=1` 更稳。
 
-暗色/浅色都要看：无头默认是浅色，暗色用驱动页注入一份 `:root{--bg:…}` 覆盖即可
-（`.bill` 与 `.hero` 是**永远暗**的影院带，两套主题下都不变）。
+**本机实测可用的 chromium 旗标（2026-10-06 复核）**：`--dump-dom` 必须加 `--no-zygote --single-process`
+（否则只吐 crashpad 报错、stdout 为空）；**`--screenshot` 反过来不能加这两个**（单进程下合成帧拿不到，
+报 `blink.mojom.WidgetHost` 且不落文件）。两种情况都要 `--user-data-dir` 指向**工作区内的可写目录**
+（`/tmp` 下的 profile 会被文件沙箱挡掉），并先 `mkdir -p /tmp/xdg && chmod 700 /tmp/xdg` 再给 `XDG_RUNTIME_DIR`。
+
+主题现在**默认深色**，两套都要看：默认（不带参数）必须深色 —— 无头 chromium 的系统偏好本来就是浅色，
+所以「`matchMedia('(prefers-color-scheme: light)').matches === true` 而 `body` 背景仍是 `rgb(11,11,13)`」
+正好是「不跟随系统」的直接证据；浅色用 `?theme=light`，或驱动页里点一下开关再看刷新后是否保持。
+（`.bill` 与 `.hero` 是**永远暗**的影院带，两套主题下都不变。）
