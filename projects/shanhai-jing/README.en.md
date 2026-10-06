@@ -2,7 +2,7 @@
 
 > 🌐 Language: **English** | [中文](README.md)
 
-> Back to [project index](../README.en.md) ｜ Full plan in [PLAN.en.md](PLAN.en.md) ｜ Techniques in [../../.agents/skills/README.md](../../.agents/skills/README.md)
+> Back to [project index](../README.en.md) ｜ Full plan in [PLAN.en.md](PLAN.en.md) ｜ Douyin assessment in [DOUYIN.en.md](DOUYIN.en.md) ｜ Techniques in [../../.agents/skills/README.md](../../.agents/skills/README.md)
 
 > A baimiao illustrated-verse series driven by the **verbatim text** of the *Shan Hai Jing*:
 > one creature per period, drawn in white-contour ink line, paired with the original passage, its
@@ -62,6 +62,7 @@
 shanhai-jing/
 ├── README.md              ← you are here (project entry)
 ├── PLAN.md                full plan: positioning / source edition / plate craft / creature list / acceptance
+├── DOUYIN.en.md           Douyin distribution research: compliance / theme fit / traffic (2026-10-07)
 ├── scripts/               project scripts (typesetting the illustrated verse, etc.)
 └── subjects/              sub-themes: one creature per directory
     ├── jiu-wei-hu/        nine-tailed fox (Nan Shan Jing · Qingqiu Mountain)
@@ -194,6 +195,7 @@ prior rather than noise. Only two routes are left: **generate several and pick a
 
 | Date | Version | Change | Author |
 |------|---------|---------|--------|
+| 2026-10-07 | v0.8 | **Douyin distribution research**: added [DOUYIN.md](DOUYIN.en.md) / [DOUYIN.en.md](DOUYIN.en.md) — three hard gates (real-name verification / an explicit AI-content label is now a mandatory publishing step / never claim "restoration, authentic artifact" or turn quoted lines into efficacy promises), a nine-dimension fit score (subject 5 versus format 2), three traffic tiers, three routes (static image posts / process short video / long sourcing essay) with a 30-day cadence, Xingtu monetisation thresholds, risk countermeasures and 6 unverified items; README navigation and layout tree synced | 小七 |
 | 2026-10-05 | v0.1 | Project created: the three decisions (baimiao as the bone / strict sourcing / Xiaohongshu 3:4) settled; nine-tailed fox chosen for the tuning period; probe findings recorded (Z-Image-Turbo renders woodcut texture convincingly but cannot control countable traits, draws garbled seals, and adds colour unbidden) | 小七 |
 | 2026-10-05 | v0.2 | **Tuning-period loop closed**: R1 disproved prompt-controlled counting (6/6) -> a programmatic control image plus ControlNet locked the nine tails (R2, certified by counting: 9) -> typesetting produced the illustrated main plate and the source card (R3, 5 layout self-checks passed). Added `scripts/{control_image,font_coverage,typeset_zanzhi}.py`; the seal is postponed because the seal-script typeface is unresolved | 小七 |
 | 2026-10-05 | v0.3 | **R4 rework round: overturns R2/R3's final selection.** The user called the delivered plate "the simplest, the ugliest"; on review that holds. Root cause: **the acceptance table had no "vitality" dimension** — the old A-E were all correctness/consistency, which pushed the selection toward "counts right but looks worst". Fixes: (1) added **F vitality of brushwork .25** with `F<3 -> fail`; (2) de-mechanised the control image (deterministic jitter + a rocky base) and **thickened the tails into plumes** (thin ribbon -> hollow outline; thick plume -> furry tail); (3) lowered control strength to 0.45-0.75. New plate P075 (4.50 on the new rubric; the old delivery re-scores only 4.00 and fails on F<3). Methodological gain: **concentrating fur at the tail root and leaving the blades clean makes countability and beauty compatible** | 小七 |
