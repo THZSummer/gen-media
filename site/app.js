@@ -66,8 +66,9 @@
       notFound: '找不到这一项', loadFail: '数据载入失败',
       themeToLight: '切换到浅色', themeToDark: '切换到深色',
       themeLight: '浅色', themeDark: '深色',
-      musicPlay: '开音乐', musicStop: '关音乐', musicErr: '配乐不可用',
-      musicCredit: '配乐：AI 生成 · MiniMax Music 3',
+      musicPlay: '开音乐', musicStop: '关音乐', musicErr: '音频不可用',
+      musicCredit: '音频：AI 生成',
+      narrPlay: '听解说', narrStop: '停解说', narrCredit: '解说：AI 合成语音',
       periodPfx: '第 ', periodSfx: ' 期',
       bootHint: '先在仓库根目录运行 <code>python3 tools/build_site.py</code>，并通过 HTTP 打开'
         + '（<code>python3 -m http.server</code>），不要直接双击 index.html。'
@@ -99,8 +100,9 @@
       notFound: 'Not found', loadFail: 'Failed to load site data',
       themeToLight: 'Switch to light', themeToDark: 'Switch to dark',
       themeLight: 'Light', themeDark: 'Dark',
-      musicPlay: 'Music', musicStop: 'Stop music', musicErr: 'Music unavailable',
-      musicCredit: 'Music: AI-generated · MiniMax Music 3',
+      musicPlay: 'Music', musicStop: 'Stop music', musicErr: 'Audio unavailable',
+      musicCredit: 'Audio: AI-generated',
+      narrPlay: 'Listen', narrStop: 'Stop listening', narrCredit: 'Narration: AI voice',
       periodPfx: 'Period ', periodSfx: '',
       bootHint: 'Run <code>python3 tools/build_site.py</code> at the repository root first, and open '
         + 'the page over HTTP (<code>python3 -m http.server</code>) — do not double-click index.html.'
@@ -486,6 +488,7 @@
       reels.forEach(function (r, ri) { if (r.audio && r.audio.src) audioOf[ri] = r.audio; });
       FEED.audioOf = audioOf;
       var hasAudio = Object.keys(audioOf).length > 0;
+      var audioHead = hasAudio ? audioOf[Object.keys(audioOf)[0]] : null;
       FEED.musicOn = false; FEED.musicErr = false;
       var start = Math.max(1, Math.min(n || 1, list.length));
       FEED.open = true; FEED.pid = pid; FEED.rid = rid || null;
@@ -503,14 +506,18 @@
         + '<span class="fb-act">'
         + (hasAudio
           ? '<button type="button" class="fb-music" data-act="music" data-on="0" aria-pressed="false"'
-            + ' title="' + esc(t('musicPlay')) + ' · ' + esc(t('musicCredit')) + '"'
-            + ' aria-label="' + esc(t('musicPlay')) + ' · ' + esc(t('musicCredit')) + '">'
+            + ' title="' + esc(t(audioHead.kind === 'narration' ? 'narrPlay' : 'musicPlay'))
+            + ' · ' + esc(t(audioHead.kind === 'narration' ? 'narrCredit' : 'musicCredit')) + '"'
+            + ' aria-label="' + esc(t(audioHead.kind === 'narration' ? 'narrPlay' : 'musicPlay'))
+            + ' · ' + esc(t(audioHead.kind === 'narration' ? 'narrCredit' : 'musicCredit')) + '">'
             + '<svg class="ic" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">'
             + '<path d="M9 17.5V5.5l9.5-2v12" fill="none" stroke="currentColor" stroke-width="1.7"'
             + ' stroke-linecap="round" stroke-linejoin="round"/>'
             + '<circle cx="6.6" cy="17.8" r="2.5" fill="currentColor"/>'
             + '<circle cx="16.1" cy="15.8" r="2.5" fill="currentColor"/></svg>'
-            + '<span class="music-t">' + esc(t('musicPlay')) + '</span></button>'
+            + '<span class="music-t">'
+            + esc(t(audioHead.kind === 'narration' ? 'narrPlay' : 'musicPlay'))
+            + '</span></button>'
           : '')
         + '<button type="button" data-act="info">' + esc(t('info')) + '</button>'
         + '<button type="button" data-act="link">' + esc(t('link')) + '</button>'
@@ -565,15 +572,23 @@
     return (e && FEED.audioOf && FEED.audioOf[e.ri]) || null;
   }
 
+  function audioKeys(au) {
+    // kind=narration -> 解说；bgm/缺省 -> 音乐。文案键与署名键一起换。
+    return (au && au.kind === 'narration')
+      ? { play: 'narrPlay', stop: 'narrStop', credit: 'narrCredit' }
+      : { play: 'musicPlay', stop: 'musicStop', credit: 'musicCredit' };
+  }
+
   function paintMusic() {
     var b = feedRoot.querySelector('.fb-music');
     if (!b) return;
     var au = reelAudioAt(FEED.i);
     b.hidden = !au;
     if (!au) return;
+    var k = audioKeys(au);
     var on = !!FEED.musicOn && !FEED.musicErr;
-    var label = FEED.musicErr ? t('musicErr') : (on ? t('musicStop') : t('musicPlay'));
-    var full = label + ' · ' + t('musicCredit');
+    var label = FEED.musicErr ? t('musicErr') : (on ? t(k.stop) : t(k.play));
+    var full = label + ' · ' + t(k.credit);
     b.setAttribute('data-on', on ? '1' : '0');
     b.setAttribute('aria-pressed', on ? 'true' : 'false');
     b.setAttribute('title', full);

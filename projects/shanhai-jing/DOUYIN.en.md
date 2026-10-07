@@ -20,7 +20,9 @@
 One line: **the subject is a gold mine; the format has to be rebuilt.**
 Our real moat (verifiable sourcing, correct counts, seal handling) is not the selling point on Douyin — it is the **hook inside a video script**, and that determines how we rewrite.
 
-> **Phasing decision (settled 2026-10-07)**: **short term publishes image posts with in-app music only; video moves to the long term.**
+> **Phasing decision (settled 2026-10-07)**: **short term publishes image posts with an explaining voice-over; video moves to the long term.**
+> The audio's leading role is **narration** (read the passage, translate it into plain language, report the counted traits) —
+the purpose is **to spread traditional culture and help ordinary people understand it** — while music is only a bed (-14 dB with sidechain ducking).
 > The three traffic tiers below and the route analysis in §5 are unchanged; only the **execution order** changes. Image posts first, to learn which creature names carry traffic and which cover earns clicks; the video phase then starts from that data. The image-post phase therefore chases data, not reach.
 
 > **Positioning (settled 2026-10-07)**: **Shan Hai Jing Verification Desk** — "what everyone assumes → what the source text says → I count it for you".
@@ -290,7 +292,30 @@ On Douyin, what gets "promoted" is not a single work but **the series**. None of
 
 ---
 
-## 9. Music Selection Rules (in-app library)
+## 9. Audio: Narration First, Music Only as a Bed
+
+**Roles first** (settled 2026-10-07, aligned with the project's purpose):
+
+| Role | Job | Criterion | Built by |
+|------|-----|-----------|----------|
+| **Narration** (primary) | Read the passage → plain-language translation → the counted traits, so someone who cannot read classical Chinese can follow | **high ASR word coverage** (measured 111 words / 59 %, threshold 55 %) | `projects/shanhai-jing/scripts/tts_narration.py` (TTS) |
+| Music (secondary) | Set the mood underneath; carries no explanatory duty | **0 ASR words** (instrumental) | `comfyui-music-minimax3` + `place_bgm.py` |
+
+> ⚠️ The two criteria point in **opposite directions**: narration must be *audible* (high coverage), music must have
+> *nobody singing* (0 words). Same ASR tool, two uses.
+> Also: **speaking and singing are different things** — MiniMax Music 3 is a music generator (its output is sung or
+> instrumental), so it cannot serve as TTS; its place in this pipeline is the music bed (and possibly a future
+> "chanted verse" — see §9.3).
+
+### 9.1 How to write the narration (it matters more than the music)
+
+- **One sentence per line**: the script splits on lines (`audio/narration.txt`), so editing the copy never touches code.
+- **Every sentence must have a job**: hook → source → plain language → correction → count → close (worked example in `subjects/jiu-wei-hu/period-01/audio/README.en.md` §2).
+- **Speak simplified Chinese**: TTS reads source-edition forms (獸／狀／嬰／蠱) unreliably; **the page keeps the source-edition forms**, so the two do not conflict.
+- **Never upgrade the passage into an efficacy promise**: only "this is what it says", never "wards off evil / cures illness" (§1.3 red lines).
+- Estimate **≈4.4 characters per second** (steady female voice): 45 s ≈ 200 characters.
+
+### 9.2 Music-bed selection rules (in-app library)
 
 **Premise**: the Douyin library **does** include guofeng / classical / instrumental categories (search "guofeng", "guqin", "xiao", "xun", "shakuhachi", "zheng" on the publishing screen, or browse a guofeng playlist), and both image posts and videos can carry music. But the library varies by account, region and time, so **rules beat a track list**.
 
@@ -306,6 +331,20 @@ On Douyin, what gets "promoted" is not a single work but **the series**. None of
 | 4 | **Do not ride trending meme tracks** | Meme tracks attract meme-consuming audiences and skew the account tag |
 | 5 | Match the edit rhythm | Image posts sit in a 15–30 s loop; never let the music cut off hard at the end |
 | 6 | ⛔ **Commercial boundary** | In-app library licences generally cover "publishing inside this platform" only; commissions, selling goods, and reposting to Xiaohongshu / Bilibili / Channels need separate commercial licensing (self-media sources, medium confidence) |
+
+### 9.3 A chanted verse (not done; a direction)
+
+The *Shan Hai Jing*'s "illustrated verses" are **zan** — four-character rhymed lines meant to be **chanted aloud**.
+We already have a model that sings (`comfyui-music-minimax3`: caption + lyrics → vocals), so a route exists that
+travels further than TTS:
+
+- hand the **verse** (or the key line) to the music model as lyrics and get a 20–30 s chant;
+- position: a memorable opener or end card, **never a replacement for the narration** (narration explains; chant makes it stick);
+- relationship to narration: one track may open with two chanted lines and then narrate, but it must be **archived in the same round** (generation parameters, seed, lyrics, mix settings).
+- ⚠️ Why it is not done yet: the narration track has to be stable first (it was established this round), and the licence is still unverified (the model-licence note under §9's table).
+
+> In other words: **the music model is not for reading a script aloud**. Reading goes to TTS (`tts_narration.py`);
+> the music model's places are (1) the BGM bed and (2) a chanted verse — both are extras on top of "explaining it clearly".
 
 > Record the track name, whether it is instrumental, and the BPM in `publish.json`; after 12 posts, review which music accompanied the higher first-image dwell time.
 

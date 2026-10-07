@@ -15,7 +15,13 @@ import base64
 import os
 import sys
 
-API_KEY = "ark-580bf5bc-39ec-462a-aafd-b5781c978eb1-7a791"
+API_KEY = os.environ.get("ARK_API_KEY") or ""
+if not API_KEY:
+    _kf = os.path.join(os.path.dirname(__file__), "..", "..", "..", "work", "ark_api_key")
+    if os.path.isfile(_kf):
+        API_KEY = open(_kf, encoding="utf-8").read().strip()
+if not API_KEY:
+    raise SystemExit("ARK_API_KEY 未设置：请 export ARK_API_KEY=... 或写入 work/ark_api_key（已 gitignore）")
 URL = "https://openspeech.bytedance.com/api/v3/plan/tts/unidirectional"
 RESOURCE_ID = "seed-tts-2.0"
 # 旁白用沉稳女声（uranus 系列），适合反思叙事

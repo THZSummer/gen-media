@@ -36,15 +36,17 @@
 | 1 | Illustrated main plate (baimiao creature + woodcut frame + cartouche) | 1080x1440 | 3:4 | 1 / period |
 | 2 | Source card (volume + original passage + Guo Pu's commentary) | 1080x1440 | 3:4 | 1 / period |
 | 3 | Series cover (woodblock-print style) | 1080x1440 | 3:4 | as needed |
-| 4 | **Period music** (played from the detail page's music switch; AI-generated, instrumental, 60–90 BPM) | mp3 ≈30 s · 44.1 kHz stereo · 128 kbps | — | 1 / period |
+| 4 | **Period narration** (played from the detail page's audio switch: **reads the passage → plain-language translation → the counted traits**; TTS) | mp3 ≈45–55 s · 24–44.1 kHz | — | 1 / period |
+| 5 | Music bed (optional instrumental BGM mixed into item 4 at -14 dB with sidechain ducking) | mp3 ≈30 s · 128 kbps | — | as needed |
 
 > Cover and inner plates deliberately use **different bones**: inner plates are baimiao (simple lines,
 > easy to lock structurally), the cover is woodblock print (stronger impact). This is a division of
 > labour, not style drift.
-> ⚠️ The music is **not an accessory to the picture**: it follows the selection rules in
-> [DOUYIN.en.md](DOUYIN.en.md) §9 (instrumental, solemn and vast, 60–90 BPM), is generated with
-> `comfyui-music-minimax3`, and is transcoded into place by `scripts/place_bgm.py` (the master stays in
-> `work/`; the committed file is 128 kbps).
+> ⚠️ **The audio's leading role is narration, not music**: the project exists to spread traditional culture and
+> **help ordinary people understand it** — the source is classical Chinese that nobody reads for fun, so someone has
+> to explain it. Music is only a bed (instrumental, solemn and vast, 60–90 BPM — see [DOUYIN.en.md](DOUYIN.en.md) §9)
+> generated with `comfyui-music-minimax3`; the narration is synthesised by `scripts/tts_narration.py`, and the two are
+> mixed into one track for the site.
 
 ---
 

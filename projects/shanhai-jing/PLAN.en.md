@@ -10,12 +10,19 @@
 
 | Item | Content |
 |------|---------|
-| One line | A baimiao illustrated-verse series driven by the verbatim *Shan Hai Jing*, one creature per period, verifiable character by character |
-| Platform | Xiaohongshu image posts (vertical 3:4) |
+| **Purpose** | **To spread traditional Chinese culture**: tell the *Shan Hai Jing*'s verifiable creatures in a way ordinary people **can follow and want to keep watching** |
+| **Goal** | One creature per period: first make it **visible** (the illustrated plate), then make it **understandable** (the **explaining voice-over**); video is a long-term form, not a precondition |
+| One line | An illustrated-verse series driven by the verbatim *Shan Hai Jing*, one creature per period, verifiable character by character |
+| Platform | Xiaohongshu image posts (vertical 3:4) plus Douyin image posts / long essays (see [DOUYIN.en.md](DOUYIN.en.md)) |
+| **Short-term form** | **Pictures + an explaining voice-over** (TTS reading: the passage, a plain-language translation, the counted traits); BGM is only a **bed** (-14 dB with sidechain ducking) and carries no explanatory duty |
 | Differentiation | **Verifiable scholarship**: volume + original passage + commentary, and **countable traits must be counted correctly** |
 | Not doing | No spectacle-driven "AI restores the Shan Hai Jing"; no unsourced invention; no text written by the model |
 
 **Why scholarship is the only way**: the subject is saturated in AI art — users have already seen a thousand nine-tailed foxes. The visuals are no longer scarce; **being checkable is**.
+
+**Why narration is the only way through**: the source is classical Chinese, unpunctuated and full of rare characters — **ordinary viewers bounce off it**. Images solve "seeing"; **narration solves "understanding"**.
+The audio's leading role is therefore **narration, not music**: no score, however beautiful, can explain what "食者不蠱" means. The criteria are consequently inverted —
+**music must score 0 ASR words (instrumental) while narration must score high ASR coverage (audible)** (see `subjects/jiu-wei-hu/period-01/audio/README.en.md` §3).
 
 ---
 

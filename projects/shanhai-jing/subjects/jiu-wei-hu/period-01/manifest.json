@@ -148,7 +148,7 @@
   "bone": "赭石设色（工笔淡彩）—— R7 定案，非白描墨线",
   "process": "纯文生图（点名式 prompt），无控制图 / 无 ControlNet；印面：四角 12% / 6× 目视（scripts/corner_sheet.py 出图留档）＋ scripts/patch_region.py 擦除（含残留/接缝自检）",
   "slug": "jiu-wei-hu",
-  "audio": {
+  "bgm": {
     "file": "bgm/jiu-wei-hu-bgm.mp3",
     "duration_s": 29.989,
     "seed": 9097,
@@ -158,5 +158,28 @@
     "sha256": "c5a5b7c96330669ea492036775dde414be133e1f67e4da11d21df942dc8eadfe",
     "note": "AI 生成配乐（开放权重，商用前读模型许可）；母版 226 kbps 留在 work/，入库版本为 128k 转码",
     "caption": "Global Metadata: Chinese guqin instrumental, 62 BPM, D minor pentatonic with a lowered sixth, solemn and quietly ominous, an ancient beast's lair at dusk, slow and unhurried throughout, no vocals at all.\nVocal Details: fully instrumental, no voice, no humming, no choir, no lyrics.\nArrangement: solo guqin with sparse plucked notes and long silences, a low bamboo flute (xiao) drifting far behind, a single deep struck stone every few phrases, faint distant wind and paper texture, large empty-hall reverb, no drums, no percussion, no bass, never building to a climax."
+  },
+  "audio": {
+    "file": "audio/jiu-wei-hu-full.mp3",
+    "kind": "narration",
+    "duration_s": 49.126,
+    "sha256": "27458ebf046619b651d9e34725e37483687ce6f0ad84b51cdfd199739a816d47",
+    "voice": {
+      "engine": "edge-tts",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-10%",
+      "pitch": "-2Hz"
+    },
+    "parts": {
+      "narration": "audio/jiu-wei-hu-narration.mp3",
+      "bgm": "bgm/jiu-wei-hu-bgm.mp3"
+    },
+    "generated": "2026-10-07",
+    "verify": {
+      "asr_words": 111,
+      "script_chars": 188,
+      "expected_s": 42.7
+    },
+    "note": "讲解旁白（TTS）+ BGM 垫底；宗旨是帮普通用户理解，判据与配乐相反：讲解要 ASR 高命中"
   }
 }
