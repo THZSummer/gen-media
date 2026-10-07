@@ -343,6 +343,24 @@ travels further than TTS:
 - relationship to narration: one track may open with two chanted lines and then narrate, but it must be **archived in the same round** (generation parameters, seed, lyrics, mix settings).
 - ⚠️ Why it is not done yet: the narration track has to be stable first (it was established this round), and the licence is still unverified (the model-licence note under §9's table).
 
+**Measured (2026-10-07, the same passage)**: the passage was split into short lines and sung by the music model
+(caption demanding one syllable per note, no melisma, clear Mandarin; seed 4477; 25 s), then read back with offline
+ASR and compared against TTS speaking the same passage:
+
+| Version | CER (character error rate) | Keyword recall (青丘/兽/状如狐/九尾/婴儿/食人/不蛊) |
+|---------|---------------------------|---------------------------------------------------|
+| Sung (music model) | 0.654 | 1/7 |
+| Spoken (TTS, same passage) | 0.636 | 2/7 |
+| Spoken (whole narration, mostly plain language) | **0.191** | — |
+
+**This result cannot be used to claim "singing is worse"**: on the classical passage the two are equally bad
+(0.654 vs 0.636), which means **the passage defeated the ASR**, not that the melody did; it also means **this ASR
+criterion has no resolving power here**. The real difference is a matter of principle rather than measurement:
+**singing flattens tones** (melody levels or rewrites tone contours) while Chinese meaning leans heavily on tone,
+and singing carries far less information per second (held notes, breaths, filler) — in 30 s speech says ~130
+characters, singing maybe 40–60. Hence: **understanding comes from speech (information layer), memorability from
+singing (memory layer)** — not an either/or.
+
 > In other words: **the music model is not for reading a script aloud**. Reading goes to TTS (`tts_narration.py`);
 > the music model's places are (1) the BGM bed and (2) a chanted verse — both are extras on top of "explaining it clearly".
 
