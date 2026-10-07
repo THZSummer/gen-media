@@ -161,6 +161,38 @@ prior rather than noise. Only two routes are left: **generate several and pick a
 
 ---
 
+### Music (added 2026-10-07)
+
+```
+(1) Generate  comfyui-music-minimax3 (remote ComfyUI · MiniMax Music 3):
+              --instrumental plus a caption (templates in that skill's references/caption-templates.md)
+              cost ≈ 16.7 s of wall time per audio second (30 s measured at 460 s) — ask for the shortest usable length
+(2) Place     scripts/place_bgm.py: ffmpeg to 128 kbps + metadata strip -> bgm/<slug>-bgm.mp3
+              -> sha256/duration -> written back into the manifest's `audio` block
+              (self-checks: size / duration / codec / read-back consistency)
+(3) Play      the site's detail-page music switch reads reel.audio
+              (see dev-guide references/site.md §5.1 / §6)
+```
+
+- **The master stays in `work/`; the committed file is the transcode**: 30 s at V0 is ~850 KB,
+  at 128 kbps ~480 KB, and nobody can tell the difference on a web page.
+- **One track per reel** (reel-level, not frame-level): a subject's finals and its controls share one track.
+- ⛔ **No autoplay**: the detail page gives you a switch (browsers require a user gesture). Leaving the page always stops it.
+- ⚠️ **Licence unverified**: the weights are open-weight under the MiniMax-Music3 COMMUNITY LICENSE —
+  **read the licence before any commercial use**; until then it counts as unverified per
+  [DOUYIN.en.md](DOUYIN.en.md) §9 rule 6.
+- **This period**: nine-tailed fox · template A guqin (62 BPM, distant xiao, sparse chime) · seed 9097 · 30 s · sha256 `c5a5b7c96330…`.
+- **"Instrumental" is measured, not assumed**: `comfyui-music-minimax3/scripts/check_vocals.py` runs offline ASR —
+  this track scored **0 words / 0.00 % speech**, while a narrated control in the same run scored
+  **46 words / 53.2 %** (proving the method works). ASR recognises *words*, not wordless humming,
+  so the rule is **ASR 0 words + a human listen**; both must pass.
+- **Where the prompt (caption) is archived**: (1) this directory's `manifest.json` → `audio.caption`;
+  (2) the generation side, `work/music-out/jwh-caption.txt`; (3) the graph actually submitted,
+  `work/music-out/jwh-bgm-30s.api.json`; (4) four reusable templates in the skill's
+  `references/caption-templates.md`.
+
+---
+
 ## 6. Creature list
 
 | Sub-theme | Creature | Volume | Countable traits (hard acceptance) | Status |
@@ -194,7 +226,8 @@ prior rather than noise. Only two routes are left: **generate several and pick a
 - [ ] the suppression round is recorded in `rounds/rNN-review.md` (R5/R9: **neither negation nor rewriting the prior can suppress the seal**)
 - [ ] if "stronger" is wanted (bold tiger stripes / heavier tails): the bone sentence is adjusted for both subjects and both are re-run in the same round, otherwise E (series consistency) will drop
 - [ ] **for a period with music**: `bgm/<slug>-bgm.mp3` is in place (128 kbps, ≤2 MB, stereo 44.1 kHz) and the manifest's `audio.sha256` matches the file (`place_bgm.py` self-check 4)
-- [ ] **the music was listened to and confirmed instrumental** (`--instrumental` is only a prompt-level constraint; no script can verify how it sounds)
+- [ ] **the music passed an ASR check with 0 words** (`comfyui-music-minimax3/scripts/check_vocals.py <mp3> --control <a narrated video>`; if the control yields no words the run is void)
+- [ ] **a human listened and confirmed there are no vocals** (ASR recognises words, not wordless humming; `--instrumental` is only a prompt-level constraint)
 - [ ] the detail page's music switch works: click to play / click again to stop / leaving the page stops it (`work/music_probe.py`, 13/13)
 - [ ] the music is credited as AI-generated (the switch's `title`/`aria-label` carry `musicCredit`); it is never presented as human-composed or human-performed
 
@@ -204,6 +237,7 @@ prior rather than noise. Only two routes are left: **generate several and pick a
 
 | Date | Version | Change | Author |
 |------|---------|---------|--------|
+| 2026-10-07 | v0.10 | **Vocal check for the music**: the music skill gained `scripts/check_vocals.py` (offline vosk ASR + a same-run narrated control, so a broken ASR cannot be mistaken for "no vocals"); measured on this period's track **0 words / 0.00 % speech** against a control's **46 words / 53.2 %**, while a music-only track produced 3 hallucinated words (2.6 %) — that failure mode is documented. The checklist now requires **ASR 0 words + a human listen**, and the caption's archive locations are listed. §5 Music added in English (it had only been written in Chinese) | 小七 |
 | 2026-10-07 | v0.9 | **Period music plus a music switch on the site's detail page**: added delivery item 4 (music) and a §5 "Music" pipeline (generate → `place_bgm.py` transcode-and-place → site playback); the fox's first track is in place (template A guqin, 62 BPM, seed 9097, 30 s, 128 kbps; the 227 kbps master stays in `work/`); the checklist gained four items (including "listened to and confirmed instrumental" and the AI credit); the site gained a `reel.audio` data contract and a `.fb-music` switch (see dev-guide references/site.md §5.1/§6/§9) | 小七 |
 | 2026-10-07 | v0.8 | **Douyin distribution research**: added [DOUYIN.md](DOUYIN.en.md) / [DOUYIN.en.md](DOUYIN.en.md) — three hard gates (real-name verification / an explicit AI-content label is now a mandatory publishing step / never claim "restoration, authentic artifact" or turn quoted lines into efficacy promises), a nine-dimension fit score (subject 5 versus format 2), three traffic tiers, three routes (static image posts / process short video / long sourcing essay) with a 30-day cadence, Xingtu monetisation thresholds, risk countermeasures and 6 unverified items; README navigation and layout tree synced | 小七 |
 | 2026-10-05 | v0.1 | Project created: the three decisions (baimiao as the bone / strict sourcing / Xiaohongshu 3:4) settled; nine-tailed fox chosen for the tuning period; probe findings recorded (Z-Image-Turbo renders woodcut texture convincingly but cannot control countable traits, draws garbled seals, and adds colour unbidden) | 小七 |

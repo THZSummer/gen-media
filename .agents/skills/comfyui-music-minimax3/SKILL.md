@@ -27,7 +27,15 @@ python3 scripts/comfyui_music.py --check
 
 # ③ 看工作流暴露的参数与默认值
 python3 scripts/comfyui_music.py --list
+
+# ④ 出完音频后：人声（词）核查 —— 把"是不是纯音乐"变成可复现的数字（免费、离线）
+python3 scripts/check_vocals.py out/my-bgm.mp3 \
+    --control ../../../../projects/tea-shake-dance/out/video/tea_shake_narrated.mp4
 ```
+
+> `check_vocals.py` 需要 `vosk` + 一个模型目录（默认 `~/.cache/vosk/vosk-model-small-cn-0.22`，
+> 用 `--model` / `$VOSK_MODEL` 覆盖）；缺依赖时以 `SKIPPED_NO_VOSK*` 退出，**不假装通过**。
+> 它**不进 `check.sh`**：模型路径是机器相关的，属"每条音频人工决定"的检查（与付费矩阵同类）。
 
 ## ⏱️ 成本：真机实测 ≈ 16.7 s 墙钟 / 1 s 音频
 
@@ -125,11 +133,30 @@ python3 scripts/comfyui_music.py --caption "..." --instrumental --duration 20 --
 
 > 可复核证据：`references/verified-runs/2026-10-07-jwh-bgm-r1.json`（含参数、探测结果、mp3 sha256 与**实际提交的 API 图**，可原样重投）。
 
+### 🎤 人声核查（`check_vocals.py`，2026-10-07 建立）
+
+**动机**：`--instrumental` 只改 lyrics；caption 里写 `no vocals` 也只是措辞。所以"是不是纯音乐"必须**测**，不能靠感觉。
+
+**做法**：用离线 vosk（中文小模型）跑 ASR，并在**同一次运行里**带一个已知有旁白的对照——对照识别不出词就说明"方法没生效"，本次检测作废（防止把"ASR 坏了"误读成"没人声"）。
+
+**实测（2026-10-07）**：
+
+| 音频 | 时长 | 识别词数 | 语音占比 | 结论 |
+|------|------|---------|---------|------|
+| `jiu-wei-hu-bgm.mp3`（本技能出的配乐） | 29.99 s | **0** | **0.00 %** | 未检出人声词 |
+| `tea_shake_narrated.mp4`（对照：真有旁白） | 35.59 s | 46 | 53.2 % | 方法有效 ✅ |
+| `butterfly_girl_v3_full.mp4`（对照：音乐/音效轨） | 51.04 s | 3（「啊 嘿嘿 姐姐」） | 2.6 % | **ASR 会在音乐上幻觉** ⚠️ |
+
+**怎么用这个结果**：0 词是"纯音乐"的**强证据**，但不是绝对证明——
+① ASR 认的是**词**，无词哼唱/气声可能 0 词；② 模型分语种（默认中文，英文歌词要换模型）；
+③ 非 0 词要人耳复核，可能是幻觉（上表第三行就是）。
+**所以流程是：ASR 0 词 + 人耳终判**，两者都过才算"纯音乐"。
+
 ## 已知限制
 
 - **慢**：16.7 s 墙钟 / 1 s 音频是这台机器 + fp16 DiT + 30 步 + tiled 的成绩；换 int8 DiT / 减步数会变，但没人测过音质代价。
 - **不做听感判定**：脚本只验证"有音频、时长对、可复现"，**好不好听必须人耳**。别把 ETA 和字节数当成验收通过。
-- **纯音乐不是保证**：`--instrumental` 是提示词层面的约束。
+- **纯音乐不是保证**：`--instrumental` 是提示词层面的约束。`check_vocals.py` 的 ASR 0 词是强证据，但认词不认无词哼唱（见上"人声核查"）。
 - **模板会变**：节点接口名一旦被上游改动，`test_skill.py` 的接口断言会先失败——那是保护，不是故障。
 - **许可**：开放权重 + MiniMax-Music3 COMMUNITY LICENSE，**商用前读许可原文**（见 `references/caption-templates.md` §六）。
 
@@ -137,4 +164,5 @@ python3 scripts/comfyui_music.py --caption "..." --instrumental --duration 20 --
 
 | 日期 | 版本 | 变更 |
 |------|------|------|
+| 2026-10-07 | v1.1 | **加人声核查 `scripts/check_vocals.py`**：离线 vosk + **同法对照**（对照识别不出词就判定方法失效），把"是不是纯音乐"变成数字；实测本技能出的 30 s 配乐 **0 词 / 语音占比 0.00%**，而旁白对照 46 词 / 53.2%，另一条音乐轨被幻觉出 3 词（2.6%）。三条限制（认词不认哼唱 / 分语种 / 会幻觉）写进 SKILL.md；不进 `check.sh`（机器相关依赖，属人工决定的检查） |
 | 2026-10-07 | v1.0 | 建立：从用户提供的 `audio_minimax_music_3.json`（sha256 `841b9320ec6e…`）落位为技能；profile 打通 8 个子图接口；脚本支持 check/list/plan/生成 + 留档；离线自检 43 项；共享引擎补认 `SaveAudioAdvanced` 为输出节点；实测成本模型写进 `--eta` |
