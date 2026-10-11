@@ -212,6 +212,7 @@ PROJECTS = {
     "bone-china-doll":   ("骨瓷人偶", "Bone-China Doll"),
     "character-lookbook": ("角色设定图库", "Character Lookbook"),
     "shanhai-jing":      ("山海经 · 图赞", "Shan Hai Jing · Illustrated Verses"),
+    "ai-cant-replace-humans": ("AI 无法取代人类", "AI Cannot Replace Humans"),
     "video-projects":    ("视频项目", "Video Projects"),
 }
 
@@ -235,6 +236,13 @@ DOCS = {
         "面向小红书竖版；出图到制版的完整过程（含失败迭代）都留档。",
         "Illustrated-verse series driven by the verbatim Shan Hai Jing: one creature per period with "
         "volume, original passage and commentary; the full generate-to-typeset process is recorded.",
+    ),
+    "ai-cant-replace-humans": (
+        "竖版 15 s 短视频合集：用「只有人能想出来」的抽象剧情反讽「AI 能否取代人类」。"
+        "路线为参考生视频（图 + 提示词），提示词 100 选 1 海选；目前只立规范，子主题未开启。",
+        "A vertical 15-second short-video series: absurd plots “only a human could invent” satirising whether "
+        "AI can replace humans. Route is reference-to-video (image + prompt) with a 100 → 1 prompt funnel; "
+        "spec only so far, no sub-topics started.",
     ),
     "video-projects": (
         "图生视频 / 文生视频的成片与方法手册，图片项目的产物在这里被消费。",

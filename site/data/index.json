@@ -284,12 +284,12 @@
    "id": "ai-cant-replace-humans",
    "kind": "project",
    "title": {
-    "zh": "ai-cant-replace-humans",
-    "en": "ai-cant-replace-humans"
+    "zh": "AI 无法取代人类",
+    "en": "AI Cannot Replace Humans"
    },
    "desc": {
-    "zh": "",
-    "en": ""
+    "zh": "竖版 15 s 短视频合集：用「只有人能想出来」的抽象剧情反讽「AI 能否取代人类」。路线为参考生视频（图 + 提示词），提示词 100 选 1 海选；目前只立规范，子主题未开启。",
+    "en": "A vertical 15-second short-video series: absurd plots “only a human could invent” satirising whether AI can replace humans. Route is reference-to-video (image + prompt) with a 100 → 1 prompt funnel; spec only so far, no sub-topics started."
    },
    "cover": null,
    "readme": "projects/ai-cant-replace-humans/README.md",
