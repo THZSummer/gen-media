@@ -281,6 +281,22 @@
    ]
   },
   {
+   "id": "ai-cant-replace-humans",
+   "kind": "project",
+   "title": {
+    "zh": "ai-cant-replace-humans",
+    "en": "ai-cant-replace-humans"
+   },
+   "desc": {
+    "zh": "",
+    "en": ""
+   },
+   "cover": null,
+   "readme": "projects/ai-cant-replace-humans/README.md",
+   "stats": {},
+   "strip": []
+  },
+  {
    "id": "bone-china-doll",
    "kind": "gallery",
    "title": {

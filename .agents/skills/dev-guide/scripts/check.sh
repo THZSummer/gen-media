@@ -53,7 +53,17 @@ hdr "3/5 技能自检"
 run_check() { # $1=描述 $2=解释器 $3=脚本路径 ...
   local desc=$1; shift
   if [ ! -e "$2" ]; then printf '  ⏭  %s（%s 不存在，跳过）\n' "$desc" "$2"; return; fi
-  if "$@" >/dev/null 2>&1; then ok "$desc"; else bad "$desc"; fi
+  local out
+  # 第 3 步里有 7 项是打真机（192.168.3.5）的探活，会受网络/占用抖动影响。
+  # 实测出现过"连续通过里夹一次失败"的偶发，所以失败时把命令与输出尾巴打出来，
+  # 否则只看到一行 ❌ 却查不出是哪条命令、什么原因。
+  if out=$("$@" 2>&1); then
+    ok "$desc"
+  else
+    bad "$desc"
+    printf '     失败命令：%s\n' "$*"
+    printf '%s\n' "$out" | tail -4 | sed 's/^/     /'
+  fi
 }
 run_check "image-tools 离线自检"          python3 .agents/skills/image-tools/scripts/test_skill.py
 run_check "text-to-image-comfyui mock"    python3 .agents/skills/text-to-image-comfyui/scripts/test_skill.py

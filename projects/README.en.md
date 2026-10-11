@@ -67,6 +67,7 @@ cp -r _template <your-project>
 | [step-scenery/](step-scenery/README.en.md) | Video | Step scenery: a girl crossing time, one step one world (tea room → bamboo → desert → cyber → starfield → snow → tea room, closing the loop) | Planning |
 | [step-scenery-v2/](step-scenery-v2/README.en.md) | Video | Step scenery v2: same story, seedance-2.0 native-audio version (each shot carries its own ambience) | Planning |
 | [giant-kingdom/](giant-kingdom/README.en.md) | Video | Into the giant kingdom: body-scale contrast spectacle | Planning |
+| [ai-cant-replace-humans/](ai-cant-replace-humans/README.en.md) | Video | **AI cannot replace humans** (Who says AI can never replace humans): a vertical **15 s series** for Douyin-style platforms, using absurd plots "only a human could invent" to satirise whether AI can replace humans. Route = **reference-to-video (image + prompt)** with a **100 → 1** prompt selection funnel (done on the text and keyframe layers; running all 100 through i2v would cost ≈33 h of GPU); includes the **AI-generated content labelling** requirement. **No sub-topics started** | Planning (spec only) |
 
 > New projects append a row here.
 
@@ -94,3 +95,4 @@ projects/<image project>/out/storyboard/  ──►  projects/<video project>/ (
 | 2026-08-01 | v1.4 | video-gen side: project system and template, 5 video projects accumulated | 小七 |
 | 2026-10-05 | v1.5 | image-gen side: bone-china-doll added; shanhai-jing added later | 小七 |
 | **2026-10-05** | **v2.0** | **Flattening merge**: `image-gen/projects/README.md` and `video-gen/projects/README.md` merged into this file; directory moved to `projects/` at the repo root; templates merged into `_template/`; project list became one unified image/video table (9 projects) | 小七 |
+| 2026-10-11 | v2.1 | New project [ai-cant-replace-humans](ai-cant-replace-humans/README.en.md) (the 10th project): a vertical 15 s series for Douyin-style platforms, reference-to-video plus a 100 → 1 prompt selection funnel; **spec only, no sub-topics started** | 小七 |
