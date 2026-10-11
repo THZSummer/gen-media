@@ -31,6 +31,7 @@
 | 只有文字，要**带同步音频**的短视频 | [text-to-video-fastvideo3](text-to-video-fastvideo3/SKILL.md) —— FastH3 t2va（本地 ComfyUI） |
 | 有一张静图，要它动起来（首帧/可选尾帧） | [image-to-video-fastvideo3](image-to-video-fastvideo3/SKILL.md) —— FastH3 fl2va（本地 ComfyUI） |
 | 要一段**音乐 / BGM**（纯音乐、可脚本化、无 API 计费） | [comfyui-music-minimax3](comfyui-music-minimax3/SKILL.md) —— MiniMax Music 3（开放权重），caption + lyrics → mp3；**很慢：≈16.7 s 墙钟 / 1 s 音频** |
+| 要**先看清楚服务器有什么**（权重 / 节点 / 模板 / 历史 / 队列），或某个工作流**在本机能不能跑** | [comfyui-server](comfyui-server/SKILL.md) —— 一步生成都不做：只读探查 + `audit` 缺件点名 + 队列/显存运维（写操作要 `--yes`） |
 | 要云端托管、1080p / 长时长 / 多种输入 | [../methods/](../../methods/README.md)（方舟 Seedance，**不作为技能收录**，只有方法手册） |
 
 **本地 ComfyUI 与云端 Ark 的取舍**：
@@ -69,6 +70,9 @@
 ├── 🎵 出音频（本地 ComfyUI · 与上面两套不共用权重）
 │   └── comfyui-music-minimax3/        文生音乐：MiniMax Music 3（caption + lyrics → mp3；≈16.7 s 墙钟/音频秒）
 │
+├── 🔎 服务器探查与运维（不做生成 —— 只回答"现在有什么、能不能跑、谁在占"）
+│   └── comfyui-server/                 权重/节点/模板目录、audit 缺件点名、历史产物、队列与显存（写操作要 --yes）
+│
 └── 🧰 确定性工具（不调模型）
     └── image-tools/                     ffmpeg + numpy：拼版速览图、像素比对 + PSNR/SSIM、剥元数据、缩放裁切
 ```
@@ -84,12 +88,14 @@
 | [text-to-video-fastvideo3](text-to-video-fastvideo3/SKILL.md) | 远程 ComfyUI 跑 FastH3 文生视频 | 结构化 prompt → mp4（带音频轨） | `comfyui_video.py --check` |
 | [image-to-video-fastvideo3](image-to-video-fastvideo3/SKILL.md) | 远程 ComfyUI 跑 FastH3 图生视频（首帧/可选尾帧） | 1–2 张图 + prompt → mp4（带音频轨） | `comfyui_i2v.py --check` |
 | [comfyui-music-minimax3](comfyui-music-minimax3/SKILL.md) | 远程 ComfyUI 跑 **MiniMax Music 3** 文生音乐 | caption（+ lyrics）→ mp3（纯音乐/BGM 或整首歌） | `test_skill.py`（离线 43 项）/ `comfyui_music.py --check` |
+| [comfyui-server](comfyui-server/SKILL.md) | 查**服务器本身**：权重 / 节点 / 模板 / 历史 / 队列 + `audit` 判能不能跑 | 动词（status / models / nodes / templates / audit / history / queue …）→ JSON | `test_skill.py`（离线 64 项）/ `comfyui_server.py --check` |
 | [image-tools](image-tools/SKILL.md) | **不用 AI** 的确定性图片处理 | 多张图 → 速览图 / 比对报告 / 处理后的图 | `scripts/test_skill.py`（离线） |
 
 > ⚠️ 两个视频技能**共用同一套 35 GB 权重，不能同时跑**；权重压 8 GB 显存会流式换页，慢是必然的。
 
 ### 组合用法
 
+- **动手前的第一步**：`comfyui-server status` 看版本/显存、`queue` 看谁在跑、`models --search X` 确认权重在位；想拿官方模板当起点就 `templates --pull <name> --audit`，再交给对应生成技能
 - **从文字到成品**：`text-to-image-comfyui` 逐轮出图 → `image-tools` 拼版速览 + 像素比对（与同轮底座对照）
 - **要云端模型的画质/中文理解、又不想装权重**：`seedream-text-to-image`（本机 ComfyUI 编排，推理在 ByteDance 云端；按张计费，先 `--dry-run`）
 - **改已有的图**：`seedream-image-edit`（底图 + 指令；要局部就在标注层上画一笔，Painter 会按 alpha 合成进去）→ 交付前用 `image-tools` 比对改动是否真的落在目标区域
@@ -104,7 +110,7 @@
 
 ```bash
 # 服务器：远程 ComfyUI
-http://192.168.3.5:18000            # ComfyUI 0.38.0，RTX 4060 Ti 8GB
+http://192.168.3.5:18000            # ComfyUI 0.39.0，RTX 4060 Ti 8GB
 ```
 
 | 技能 | 需要的模型 / 节点（服务器上） | 自检命令 | 上次结果 |
@@ -117,6 +123,7 @@ http://192.168.3.5:18000            # ComfyUI 0.38.0，RTX 4060 Ti 8GB
 | text-to-video-fastvideo3 | 4 个模型文件 + **9 个节点类** | `python3 scripts/comfyui_video.py --check` | ✅ |
 | image-to-video-fastvideo3 | 同上（共用权重） | `python3 scripts/comfyui_i2v.py --check` | ✅ |
 | comfyui-music-minimax3 | `minimax_music3_dit_fp16` / `minimax_music3_text_encoder_pruned_int8_convrot` / `minimax_music3_dav` + **7 个节点类** | `python3 scripts/test_skill.py`（离线）+ `python3 scripts/comfyui_music.py --check` | ✅ 离线 **43/43**；`--check` `ok: true` |
+| comfyui-server | **不需要任何权重**（只查不跑）；读的是 `/system_stats`、`/api/models`、`/api/object_info`、`/templates/index.json`、`/queue` | `python3 scripts/test_skill.py`（离线）+ `python3 scripts/comfyui_server.py --check` | ✅ 离线 **64/64**；真机 `ok: true`（0.39.0 / 114 个权重文件 / 980 个节点类 / 598 个模板）；`audit` 对 6 个在用模板判 `ok: true`、对 3 个缺权重模板准确点名 |
 | image-tools | `ffmpeg` / `ffprobe`、Python 3 + numpy（**不需要 Pillow**） | `python3 scripts/test_skill.py` | ✅ `RESULT: PASS` |
 
 > 改完环境（换机器 / 换模型 / 升级 ComfyUI）先跑上面这一列，再谈出图出片。
@@ -150,6 +157,12 @@ http://192.168.3.5:18000            # ComfyUI 0.38.0，RTX 4060 Ti 8GB
 | 接触印相 / 速览图 | contact sheet，把一轮多张拼成一张带标签的大图 |
 | 像素判据 | 判断「改动是否生效」看**解码后的像素**，不看文件哈希（ComfyUI 会把执行图写进 PNG 的 tEXt，哈希必变） |
 | 落点 | 提示词里那个「件」实际应该长在什么位置/结构上 |
+| 探活 | 干活之前的第一个请求（本库统一用 `/system_stats`）：不可达立刻报错退出，不提交任务后长等 |
+| `audit` / 可跑性审计 | 把工作流引用的权重与节点类和服务器实际清单对账（`comfyui-server`）：先按 `node.mode` 分 active/bypass，再看 `/api/models/<folder>` 与 `/api/object_info` |
+| active / bypass 分支 | 工作流里 `mode` 为 0 的节点会执行，`2`（mute）/`4`（bypass）不执行但仍在图里；官方模板常备着"另一条分支"的权重，审计区分错就会误判 |
+| `model_patches` | 模型补丁目录：Z-Image Fun Union ControlNet 的权重在这里，**不在 `controlnet`**；`/api/object_info` 不枚举它，得查 `/api/models` |
+| userdata | ComfyUI 的 `/api/userdata`（桌面端"我保存的工作流"）；`/templates/index.json` 才是官方模板目录（本机 598 条），`/api/workflow_templates` 在 0.39.0 上是空的 |
+| 写操作护栏 / `--yes` | 会打断别人或改服务器状态的动词（`interrupt` / `free` / `clear-queue`）必须显式 `--yes`，否则退出码 3 且一个请求都不发 |
 
 ---
 
@@ -163,3 +176,4 @@ http://192.168.3.5:18000            # ComfyUI 0.38.0，RTX 4060 Ti 8GB
 | **2026-10-05** | **v2.0** | **扁平化合并**：`image-gen/.agents/skills/README.md` 与 `video-gen/.agents/skills/README.md` 合并为本文件；目录从 `image-gen/skills`、`video-gen/skills` 迁至仓库根 `.agents/skills/`；技能地图与选路表改为图像/视频统一索引（5 个技能） | 小七 |
 | 2026-10-06 | v2.1 | **重新收录 Seedream 云端出图**：新增 [`seedream-text-to-image`](seedream-text-to-image/SKILL.md)（ComfyUI partner 节点跑 ByteDance Seedream 5.0，本机零权重、按张计费、无头要 API Key）；选路表/技能地图/技能表/自检表各加一行，补"第三条路"（模型在云端、编排在本机）的取舍说明与两条术语 | 小七 |
 | 2026-10-06 | v2.2 | **新增 [`seedream-image-edit`](seedream-image-edit/SKILL.md)**：同一个 Seedream 付费节点做**图片编辑**——上传底图（+ 可选 RGBA 标注层，Painter 按 alpha 合成）接进 `model.images.image_N`，支持多图参考、`--size auto`（按底图比例挑预设）；用 `_shared.py` 复用姊妹技能的引擎，不复制凭据/schema 代码。同时给 `seedream_api.py` 补 `prune_ui_only()`（桌面导出图里的 `MarkdownNote` 会让 /prompt 判 `missing_node_type`）。选路表/技能地图/技能表/自检表/组合用法各加一行，补两条术语 | 小七 |
+| 2026-10-11 | v2.3 | **新增 [`comfyui-server`](comfyui-server/SKILL.md)**（技能库第 9 个）：把"**服务器本身**"当对象来查——状态/显存/队列、`/api/models` 权重目录、`/api/object_info` 节点 schema、`/templates/index.json` 官方模板（本机 598 个，可搜可拉）、`audit` 判某模板/工作流**在本机缺什么**、历史记录与任意产物下载、userdata 工作流；写操作 `interrupt`/`free`/`clear-queue`/`upload` 一律要 `--yes`（护栏缺失时退出码 3）。**边界判据**："这个功能在完全没有 prompt 的情况下还有意义吗？"有 → 归它；没有 → 归生成技能，因此它**一步生成都不做**（UI→API 转换仍在 `text-to-image-comfyui`）。选路表/技能地图/技能表/自检表/组合用法各加一行，新增 6 条术语；同时订正服务器版本 `0.38.0` → **`0.39.0`**（实测） | 小七 |

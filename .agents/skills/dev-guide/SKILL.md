@@ -123,6 +123,7 @@ cd ../.. && git submodule update --remote GitHub/gen-media && git add GitHub/gen
 
 | 日期 | 版本 | 变更 |
 |------|------|------|
+| 2026-10-11 | v1.11 | **`check.sh` 纳入 `comfyui-server`**（技能库第 9 个、也是第一个"不生成"的技能）：第 3 步加离线 `test_skill.py`（64 项，自带 mock ComfyUI）与真机 `--check`（只读探活，零花费、不占 GPU）。边界判据写进它的 SKILL.md：**"这个功能在完全没有 prompt 的情况下还有意义吗？"** 有 → 归服务器探查；没有 → 归生成技能——所以它一步生成都不做（UI→API 转换仍留在 `text-to-image-comfyui`），并把 `interrupt`/`free`/`clear-queue`/`upload` 全部要求 `--yes`（缺护栏退出码 3、不发请求）。准入标准未变（带脚本 / 有自检入口 / 真机跑通） | 小七 |
 | 2026-10-07 | v1.10 | **详情页配乐（`reel.audio`）+ 无头验证旗标更正**：`references/site.md` 新增 §5.1（`audio` 数据契约：期 manifest → 卷级音频、文件不存在就不出开关、入库 128 kbps 而母版留 `work/`）与 §6 配乐开关约定（内联 SVG + 可见文字、不做自动播放、离开详情页必停、换卷换源、`AbortError` 不算故障）；§9 更正 **chromium 需要写在工作区内的 `HOME`**（否则 crashpad 报 `--database is required`、DOM 为空），并推翻此前"`--dump-dom` 必须加 `--no-zygote --single-process`"的记录（本机现在会 SIGTRAP） | 小七 |
 | 2026-10-07 | v1.9 | **`check.sh` 纳入音频技能 `comfyui-music-minimax3`**：第 3 步加它的离线 `test_skill.py`（43 项，含 mock ComfyUI 全往返）与真机 `--check`（3 个权重 + 7 个节点，不占 GPU）；**真机出片不进自动检查**（一次 20 s 音频约 5.5 分钟，属人工决定）。同轮修掉共享引擎的一处缺口：`comfyui_convert.OUTPUT_NODE_CLASSES` 补认 `SaveAudioAdvanced`（原先只认 SaveImage/SaveVideo/SaveWEBM/SaveAudio，音频模板会被判"没有输出节点"） | 小七 |
 | 2026-10-05 | v1.0 | 建立：按 DSH 项目技能规范（`.agents/skills/<name>/SKILL.md`）落位，收录双语、站点、技能、生成、资产、协作六类规范与交付前检查脚本 |
