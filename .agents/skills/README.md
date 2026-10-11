@@ -13,6 +13,11 @@
 > 2026-10-06 **按同一标准重新收录** Seedream 云端出图：`seedream-text-to-image`——
 > 这次带脚本（转换 / 提交 / 轮询 / 下载 / 留档）、带自检（离线 `test_skill.py` + 真机 `--check` + 付费矩阵 `verify_params.py`）。
 >
+> ⚠️ **2026-10-11 的例外（已知并留在明面上）**：`seedance-reference-to-video` 按用户明确要求
+> **"只建不验"** 交付 —— 有脚本、有 `--check/--list/--plan` 入口，但**没跑过任何验证**，
+> 因此**尚未满足准入标准**，也**没有进 `check.sh`**。它自己的 SKILL.md 顶部写明了
+> "首次真机使用前必做的 5 步"与待补的验证记录。
+>
 > 🗂️ **本目录由 image-gen/skills 与 video-gen/skills 合并而来**（2026-10-05 扁平化）：图像与视频技能不再分库，按能力放在一起。
 
 ---
@@ -26,6 +31,7 @@
 | 只有文字描述，要**出图** | [text-to-image-comfyui](text-to-image-comfyui/SKILL.md) —— 两个引擎：Z-Image-Turbo（快）/ Qwen-Image（细、支持真负向） |
 | 只有文字，要**云端付费模型**出图（本机零权重） | [seedream-text-to-image](seedream-text-to-image/SKILL.md) —— 本机 ComfyUI 编排 + ByteDance Seedream 5.0 云端推理（pro / flash / lite / 4.5 / 4.0），按张计费、要 ComfyUI 账号 API Key |
 | **已有图片**要按提示词改（换背景 / 换主体 / 局部标注 / 多图参考） | [seedream-image-edit](seedream-image-edit/SKILL.md) —— 同一个 Seedream 付费节点，参考图接 `model.images.image_N`；也可用本机 ControlNet 那条路 |
+| 有**参考图**，要**云端**出片（1080p / 长时长 / 主体一致性，按次计费） | [seedance-reference-to-video](seedance-reference-to-video/SKILL.md) —— Seedance 2.5 付费 partner 节点做 r2v；⚠️ **只建未验**（见该技能顶部声明） |
 | 有一张控制图（线稿 / 照片 / 姿态图），要按结构出图 | [image-edit-comfyui](image-edit-comfyui/SKILL.md) —— Fun Union ControlNet，控制强度与生效区间可调 |
 | 要合并多张图 / 比对两张图 / 去元数据 / 缩放裁切 | [image-tools](image-tools/SKILL.md) —— **不用 AI**，确定性、可复现 |
 | 只有文字，要**带同步音频**的短视频 | [text-to-video-fastvideo3](text-to-video-fastvideo3/SKILL.md) —— FastH3 t2va（本地 ComfyUI） |
@@ -63,9 +69,12 @@
 │   ├── seedream-image-edit/             图片编辑：同一个 Seedream 云端节点，底图（+ 标注）接 model.images.image_N
 │   └── image-edit-comfyui/              控制图生图：Z-Image Fun Union ControlNet（Canny 驱动）
 │
-├── 🎬 出片（本地 ComfyUI · 同一套 FastH3 权重，不能同时跑）
-│   ├── text-to-video-fastvideo3/        文生视频 + 同步音频（t2va）
-│   └── image-to-video-fastvideo3/       图生视频 + 同步音频（fl2va，首帧/可选尾帧）
+├── 🎬 出片
+│   ├── text-to-video-fastvideo3/        文生视频 + 同步音频（t2va）· **本地** ComfyUI
+│   ├── image-to-video-fastvideo3/       图生视频 + 同步音频（fl2va，首帧/可选尾帧）· **本地** ComfyUI
+│   └── seedance-reference-to-video/     参考生视频：Seedance 2.5 **云端付费** partner 节点（r2v，最多 30 张参考图）⚠️ **未验证**
+│
+│   > 前两个共用同一套 FastH3 权重，**不能同时跑**；第三个本机零权重、按次计费。
 │
 ├── 🎵 出音频（本地 ComfyUI · 与上面两套不共用权重）
 │   └── comfyui-music-minimax3/        文生音乐：MiniMax Music 3（caption + lyrics → mp3；≈16.7 s 墙钟/音频秒）
@@ -84,6 +93,7 @@
 | [text-to-image-comfyui](text-to-image-comfyui/SKILL.md) | 远程 ComfyUI 跑 Z-Image-Turbo / Qwen-Image 文生图 | prompt（+ 负向）→ 图片文件 | `comfyui_gen.py --check` / `comfyui_qwen.py --check` |
 | [seedream-text-to-image](seedream-text-to-image/SKILL.md) | ComfyUI 付费节点跑 **ByteDance Seedream 5.0**（云端模型） | prompt → 图片文件 | `seedream_gen.py --check` / `test_skill.py` |
 | [seedream-image-edit](seedream-image-edit/SKILL.md) | 同一个 Seedream 云端节点做**图片编辑** | 底图（+ 标注层，可多张参考图）+ 指令 → 图片文件 | `seedream_edit.py --check` / `test_skill.py`（复用它那一份引擎） |
+| [seedance-reference-to-video](seedance-reference-to-video/SKILL.md) ⚠️ | ComfyUI 付费节点跑 **Seedance 2.5** 参考生视频（r2v） | 参考图（1–30 张）+ 提示词 → mp4（带同步音频） | `seedance_r2v.py --list`（离线）/ `--check`（真机）—— ⚠️ **均未跑过** |
 | [image-edit-comfyui](image-edit-comfyui/SKILL.md) | 远程 ComfyUI 跑 Fun Union ControlNet 控制图生图 | 控制图 + prompt → 图片文件 | `comfyui_edit.py --check` |
 | [text-to-video-fastvideo3](text-to-video-fastvideo3/SKILL.md) | 远程 ComfyUI 跑 FastH3 文生视频 | 结构化 prompt → mp4（带音频轨） | `comfyui_video.py --check` |
 | [image-to-video-fastvideo3](image-to-video-fastvideo3/SKILL.md) | 远程 ComfyUI 跑 FastH3 图生视频（首帧/可选尾帧） | 1–2 张图 + prompt → mp4（带音频轨） | `comfyui_i2v.py --check` |
@@ -120,6 +130,7 @@ http://192.168.3.5:18000            # ComfyUI 0.39.0，RTX 4060 Ti 8GB
 | seedream-text-to-image | **本机不需要权重**；要节点 `ByteDanceSeedreamNodeV3` + ComfyUI 账号 API Key + credits | `python3 scripts/seedream_gen.py --check` | ✅ 节点在位、`schema_drift: none`；真机出图 pro 1K+thinking **63 秒**，参数矩阵 **6/6**（`verify_params.py --yes`，3 分 41 秒） |
 | seedream-image-edit | 同上 + `LoadImage` / `Painter`（`Painter` 只在 `--annotate` 时需要） | `python3 scripts/seedream_edit.py --check` | ✅ 四类节点在位、`schema_drift: none`；真机编辑矩阵 **8/8**（`verify_edits.py --yes`，4 张图约 3 分钟）：背景改纯白落到像素上（边缘白占比 0.000→0.722）、标注合成图框内 1.000 不同/框外 0.00000、双参考 `image_1`+`image_2` 可用、flash + 参考图照跑 |
 | image-edit-comfyui | 上面 Z-Image 三件 + `Z-Image-Turbo-Fun-Controlnet-Union.safetensors` | `python3 scripts/comfyui_edit.py --check` | ✅ `missing: []`，真机参数矩阵 **28/28** 通过 |
+| seedance-reference-to-video ⚠️ | **本机不需要权重**；要节点 `ByteDance2ReferenceNodeV2` + `SaveVideo` + `LoadImage` + ComfyUI 账号 API Key + credits | `python3 scripts/seedance_r2v.py --list`（离线）/ `--check`（真机） | ⚠️ **未验证**：语法编译通过而已；`--check` / `--plan` / 真机出片**都没跑过**（按要求"只建不验"） |
 | text-to-video-fastvideo3 | 4 个模型文件 + **9 个节点类** | `python3 scripts/comfyui_video.py --check` | ✅ |
 | image-to-video-fastvideo3 | 同上（共用权重） | `python3 scripts/comfyui_i2v.py --check` | ✅ |
 | comfyui-music-minimax3 | `minimax_music3_dit_fp16` / `minimax_music3_text_encoder_pruned_int8_convrot` / `minimax_music3_dav` + **7 个节点类** | `python3 scripts/test_skill.py`（离线）+ `python3 scripts/comfyui_music.py --check` | ✅ 离线 **43/43**；`--check` `ok: true` |
@@ -177,3 +188,4 @@ http://192.168.3.5:18000            # ComfyUI 0.39.0，RTX 4060 Ti 8GB
 | 2026-10-06 | v2.1 | **重新收录 Seedream 云端出图**：新增 [`seedream-text-to-image`](seedream-text-to-image/SKILL.md)（ComfyUI partner 节点跑 ByteDance Seedream 5.0，本机零权重、按张计费、无头要 API Key）；选路表/技能地图/技能表/自检表各加一行，补"第三条路"（模型在云端、编排在本机）的取舍说明与两条术语 | 小七 |
 | 2026-10-06 | v2.2 | **新增 [`seedream-image-edit`](seedream-image-edit/SKILL.md)**：同一个 Seedream 付费节点做**图片编辑**——上传底图（+ 可选 RGBA 标注层，Painter 按 alpha 合成）接进 `model.images.image_N`，支持多图参考、`--size auto`（按底图比例挑预设）；用 `_shared.py` 复用姊妹技能的引擎，不复制凭据/schema 代码。同时给 `seedream_api.py` 补 `prune_ui_only()`（桌面导出图里的 `MarkdownNote` 会让 /prompt 判 `missing_node_type`）。选路表/技能地图/技能表/自检表/组合用法各加一行，补两条术语 | 小七 |
 | 2026-10-11 | v2.3 | **新增 [`comfyui-server`](comfyui-server/SKILL.md)**（技能库第 9 个）：把"**服务器本身**"当对象来查——状态/显存/队列、`/api/models` 权重目录、`/api/object_info` 节点 schema、`/templates/index.json` 官方模板（本机 598 个，可搜可拉）、`audit` 判某模板/工作流**在本机缺什么**、历史记录与任意产物下载、userdata 工作流；写操作 `interrupt`/`free`/`clear-queue`/`upload` 一律要 `--yes`（护栏缺失时退出码 3）。**边界判据**："这个功能在完全没有 prompt 的情况下还有意义吗？"有 → 归它；没有 → 归生成技能，因此它**一步生成都不做**（UI→API 转换仍在 `text-to-image-comfyui`）。选路表/技能地图/技能表/自检表/组合用法各加一行，新增 6 条术语；同时订正服务器版本 `0.38.0` → **`0.39.0`**（实测） | 小七 |
+| 2026-10-11 | v2.4 | **新增 [`seedance-reference-to-video`](seedance-reference-to-video/SKILL.md)**（技能库第 10 个）**⚠️ 按用户要求"只建不验"**：以一份导出的 UI 工作流（`ByteDance2ReferenceNodeV2`，`LoadImage → Seedance 2.5 → SaveVideo`）为资产 + 一份**本地缓存的** schema 快照（5 个模型键、动态下拉框子输入、autogrow 参考上限 30/9）静态构造；脚本 `seedance_r2v.py` 提供 `--list / --check / --show-default-prompt / --plan / 生成`，复用兄弟技能的凭据通道与 UI→API 转换器。**没跑过 `--check`/`--plan`/真机出片，没有 `test_skill.py`，未进 `check.sh`** —— 例外与"首次真机前必做的 5 步"写在文件头与该技能 SKILL.md 顶部。技能地图的"出片"组改为本地/云端混排并注明权重约束 | 小七 |

@@ -1,0 +1,224 @@
+{
+  "id": "7a06a6de-067d-4d41-b7bf-7d6add20ec8c",
+  "revision": 0,
+  "last_node_id": 24,
+  "last_link_id": 19,
+  "nodes": [
+    {
+      "id": 12,
+      "type": "LoadImage",
+      "pos": [
+        -330,
+        7930
+      ],
+      "size": [
+        289.984375,
+        349.984375
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            18
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "z-image-turbo_00020_.png",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "z-image-turbo_00020_.png",
+        "upload": "image"
+      }
+    },
+    {
+      "id": 16,
+      "type": "SaveVideo",
+      "pos": [
+        450,
+        7930
+      ],
+      "size": [
+        689.984375,
+        125.9375
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "link": 19
+        }
+      ],
+      "outputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "links": null
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "video/Seedance2.5_r2v",
+        "auto",
+        "auto",
+        "auto"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "video/Seedance2.5_r2v",
+        "format": "auto",
+        "format.codec": "auto",
+        "codec": "auto"
+      }
+    },
+    {
+      "id": 24,
+      "type": "ByteDance2ReferenceNodeV2",
+      "pos": [
+        0,
+        7930
+      ],
+      "size": [
+        399.984375,
+        496
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model.reference_images.image_1",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 18
+        },
+        {
+          "name": "model.reference_images.image_2",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "model.reference_videos.video_1",
+          "shape": 7,
+          "type": "VIDEO",
+          "link": null
+        },
+        {
+          "name": "model.reference_videos.video_2",
+          "shape": 7,
+          "type": "VIDEO",
+          "link": null
+        },
+        {
+          "name": "model.reference_audios.audio_1",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "model.reference_assets.asset_1",
+          "shape": 7,
+          "type": "STRING",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "VIDEO",
+          "type": "VIDEO",
+          "links": [
+            19
+          ]
+        },
+        {
+          "name": "draft_task_id",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ByteDance2ReferenceNodeV2"
+      },
+      "widgets_values": [
+        "Seedance 2.5",
+        "For the target video, at 0.00 seconds into the target video, <Picture 1> (from [Shot 1]) is fully referenced.\nintegrated_multimodal_description: [Shot 1] A live-action, cinematic fantasy dance film set inside the tropical rainforest of the reference image, built entirely around the flower-crowned forest spirit in <Picture 1>, who must remain visually identical to the reference picture in every single shot of the clip. Keep every element of her look exactly as it is in the still: her dark hair is loose and softly wavy rather than tied up, falling around her face and over her shoulders with fine strands drifting across her cheeks; on her head she wears a large structural floral crown radiating outward, made of green fern fronds and slender seed stems mixed with fully open flowers - a yellow daisy at the centre, framed by a blue daisy, a pink daisy, red and orange blossoms and smaller purple ones; around her throat sits a close-fitting choker woven from tiny green leaves and vine; across her torso she wears a botanical bodice built from overlapping fresh green leaves of several sizes, threaded together with curling vines that run down the centre of her chest and around her waist, studded with a single large purple flower high on the left side of her chest, a white five-petalled flower on her right side, small orange blossoms and one yellow flower at the waist; her shoulders, upper arms, collarbones and bare midriff are exposed, with thin vines trailing down her left arm and around her right wrist, and a small red-orange flower resting on her right upper arm; around her hips the leaves thicken into a low botanical skirt of larger leaves and hanging vine with a lavender flower and a crimson flower at the front of each hip, and further green vines spiral down her thighs. Her expression is calm, direct and slightly dreamlike, her gaze straight into the lens, and her skin has a soft natural texture in dappled light. The rainforest around her is preserved exactly and never changes: dense mid-ground foliage and tall blurred tree trunks behind her, broad foreground leaves and ferns at the lower left and lower right of the frame, a soft green bokeh haze in the depth of the forest, and circular out-of-focus highlights of sunlight glinting between the leaves high above. Dappled sunlight keeps moving slowly across her body and the leaves as the clip plays, because the canopy is moving. The clip opens on the exact pose of the reference picture: she stands still, breathing quietly, arms relaxed at her sides, and then lifts both arms slowly into a soft, rounded first position in front of her and rises onto the balls of her bare feet, her toes pressing and gripping into the damp moss and leaf litter beneath her as she lifts her heels off the ground, the hanging vines of her hip piece swinging with the small upward movement and the fern fronds of her crown trembling and catching the light. The camera pushes in very slowly through the foreground leaves, staying low and keeping her centred in the frame. A faint rustle of her own leaves, a soft squelch of damp moss underfoot, and one light movement of air in the canopy above are heard as she rises. [Shot 2] At 01.900, the camera cuts to a medium full shot from slightly to her left, framing her whole figure with the forest depth opening up behind her. Still balanced on the balls of her feet, she performs a slow, sustained port de bras: both arms travel outward through a wide second position and then close above her head into a high fifth, wrists leading and elbows soft, while her head inclines and her eyes follow her leading hand in a clear, gentle epaulement, chin lifted into the light. She then slides her free bare foot forward along the moss into a tendu, the toes never leaving the ground and dragging through the leaf litter, draws it back, and then unfolds the leg slowly into a developpe to the side, the knee straightening only at the very end, the whole leg held long, before closing it back into a tight fifth position with a controlled fondu, her toes curling into the moss to take the weight. The camera arcs slowly to the right at low speed, tracking with her body and letting blurred leaves sweep across the foreground. The leaves of her bodice rasp softly against one another, dry leaf litter crunches faintly under her foot, a single petal comes loose from the crown and drifts down past her shoulder, and her breath is audible on the long extension. [Shot 3] At 03.900, the camera cuts to a medium shot, frontally framed and locked off. She takes one soft preparation with both arms, then performs a clean, controlled pirouette en dehors: her arms sweep in to a tight first position, her right foot rises to a retire position pressed against the inside of her left knee, and she rotates once on the ball of her supporting bare foot. She spots hard, keeping her eyes and then her head locked on the camera for as long as she can before whipping her head around to find the same point again on the final quarter turn. Because her costume is made of leaves rather than fabric, the overlap of leaves across her chest and hips lifts and fans outward from her body as she spins, the vines and small flower heads swing and rattle, the fern fronds of her crown whip around her head and the loose hair sweeps out across her face; two or three loose petals and one tiny leaf are flung off and spin slowly through the air beside her. As the turn completes, the leaves fall back flat against her body and the vines settle against her hips. She finishes facing the camera and opens both arms out into a wide second position, holding the balance absolutely still with no wobble, her weight fully over the supporting leg, breathing hard once through the nose. The camera stays locked off but drifts a few centimetres closer. The dry rustle of her leaves, the grip of her foot on the moss, and one sharp inhale punctuate the rotation, and somewhere behind her a single bird calls once. [Shot 4] At 06.300, the camera cuts to a low-angle wide shot from just above the forest floor, looking up at her through foreground ferns. She steps directly onto the ball of her foot and pique-turns outward in one smooth quarter turn, then extends immediately into a long arabesque, her back leg lifted high behind her with a fully pointed bare foot, arms opened into a long diagonal line, chest lifted and her back arched in a clean curve running from the crown of her head through the extended toe. She holds the arabesque steadily, then slowly lowers her upper body forward and down into an arabesque penche, the standing leg straight, her toes gripping the moss as the weight shifts, the leaves of her hip piece tilting forward with gravity and hanging down, her loose hair falling toward the ground and the vine ends dangling. The camera tilts up fast at the moment of the pique and then holds steady and low, so the moss, the ferns and the shadow of her body stay visible along the bottom of the frame, and a shaft of sunlight passes across her back as she lowers. Her breathing deepens and becomes clearly audible, the damp ground gives slightly under her foot, and her leaves rustle as they hang. [Shot 5] At 08.700, the camera cuts to a wide lateral tracking shot, moving parallel with her through the trees. She takes two quick, light preparatory steps on the balls of her bare feet, then launches into a single travelling grand jete: she pushes off explosively from the moss, both legs split wide in the air in a full 180-degree split, the front foot pointed and the back leg extended, arms stretched open into a long line, back arched and chin lifted, and she travels right through a shaft of sunlight. At the apex she hangs for a fraction of a second, the leaves of her bodice and hip piece spread out and fluttering around her like a broken-open flower, the fern fronds of her crown streaming backward, her hair and the vine ends trailing upward, and a burst of dislodged petals and tiny leaves scattered in the air around her. The camera tilts up quickly to follow her rise and then tracks sideways with her, blurred leaves and branches passing across the lens in the foreground, revealing the depth of the forest as the ground slips by underneath. During the flight there is almost no footfall sound, only the rush of leaves and hair through the air and a swell of wind in the canopy. [Shot 6] At 11.100, the camera cuts to a medium wide shot and begins a slow forward dolly, moving with her. She lands the jump softly and continues straight across the clearing in a short series of quick pique turns, each step landing precisely on the same spot on the ball of her foot with no pause between them, her arms snapping crisply into first position on each rotation and opening slightly between them, her head spotting hard on the camera every single turn, one hand briefly lifted above her head. The leaves of her bodice and hip piece fan out and snap back with every rotation, the vines swing, damp moss and shreds of leaf litter are kicked up and briefly stick to her feet, and one small flower is knocked loose from her hip and spins away into the ferns. The camera keeps pace with her, holding a constant distance so she stays the same size in the frame, and the whole forest depth slides past behind her. Each landing makes a soft, damp thump on the moss, a rhythmic dry rustle of leaves carries the sequence forward, and her breathing is now clearly audible. [Shot 7] At 13.300, the camera cuts to a medium-wide frontal shot from slightly below eye level. She arrives out of the turns and absorbs the momentum with a deep, controlled fondu into a turned-out plie, her knees tracking out over her toes, arms held low and steady, then rises slowly and deliberately, straightening both legs completely and pressing back up onto the balls of her feet one last time. She lifts her chin, opens both arms into a high fifth position above her head, and settles into a final held pose: chest lifted, shoulders down, back long, eyes calm and focused straight ahead into the lens, the leaves of her costume still trembling faintly from the motion, one fern frond of her crown nodding, and one loose strand of hair settling back against her cheek. She holds the pose absolutely still except for one visible, quiet exhale, and a single held beat passes with no movement at all, while the dappled light continues to drift across her skin. The camera pulls back very slowly while craning up a little, passing back out through the foreground leaves and revealing more of the rainforest canopy above her as the clip ends. The last sounds are the settling whisper of her leaves, one faint drip of water somewhere in the forest, wind moving high in the canopy, and one long, controlled breath out.\noverall_soundscape: The clip takes place inside a dense, humid tropical rainforest with a continuous, softly textured natural ambience: a wide, low bed of insect and cicada shimmer, occasional single bird calls answered far away in the depth of the forest, a faint dripping of water from the leaves, and the moving air of the canopy overhead that rises and falls in slow waves. Layered on top of that, the physical sounds of the dancer are clearly audible in the foreground and tightly synchronized to her movements: the dry, papery rasp of fresh leaves rubbing against one another across her bodice and hips, the creak and snap of thin vines taking tension, the softer rustle of fern fronds and the tiny knock of small flower heads swinging on their stems, the faint crunch of dry leaf litter and the soft, damp squelch of moss and earth under her bare feet, her toes dragging and gripping the ground, and her steadily deepening breathing that becomes louder on the arabesque, the jump and the final pose. During the grand jete the footfalls disappear for a moment, replaced by the rush of leaves and hair through the air, and the ambient forest opens up before the landing returns as a soft, damp thump on the moss. At the very end, her leaves settle with a last light whisper, one distant bird calls once more, and the clip finishes on one long, controlled exhale. There is no speech, no counting, no music coming from inside the scene, no crowd, no studio room tone and no wood or hard-floor sounds anywhere in the clip.\nnon_diegetic_music: An original lyrical, romantic score in a slow triple meter, around 92 BPM, written for the forest setting: a solo grand piano with a warm, close-miked tone, a soft sustained string pad underneath, a discreet harp, and a breathy wooden flute that answers the piano in short phrases, all acoustic and unhurried. It starts sparse and delicate, single rolling arpeggios in the piano with air around them that rise together with her first lift onto the balls of her feet, leaving plenty of space for the forest ambience. Through the port de bras and the pirouette it settles into a gentle, flowing three-four accompaniment with a light left-hand pulse, the flute entering in the second half and growing a little warmer and more melodic as she turns. At the arabesque and the penche the texture thins to soft sustained chords that follow the slow descent of her upper body. Exactly at the apex of the grand jete it swells upward with a rising melodic line, a soft bowed crescendo and a brief harp glissando, then falls away again as she lands and continues into the pique turns, where a light, even rhythmic figure underneath matches her rotations without ever turning percussive or dance-pop. For the final pose the arrangement reduces back to solo piano alone, resolving onto one long, quiet, sustained chord held through the last frame, with the flute returning only as a single fading breath of sound. No vocals, no choir, no drums, no electronic elements, no folk percussion: the music stays elegant, airy and restrained, supporting the movement rather than competing with the quiet sounds of the forest.",
+        "480p",
+        "9:16",
+        5,
+        true,
+        "reference",
+        "mp4",
+        true,
+        false,
+        0,
+        "randomize",
+        false
+      ],
+      "widgets_values_named": {
+        "model": "Seedance 2.5",
+        "model.prompt": "For the target video, at 0.00 seconds into the target video, <Picture 1> (from [Shot 1]) is fully referenced.\nintegrated_multimodal_description: [Shot 1] A live-action, cinematic fantasy dance film set inside the tropical rainforest of the reference image, built entirely around the flower-crowned forest spirit in <Picture 1>, who must remain visually identical to the reference picture in every single shot of the clip. Keep every element of her look exactly as it is in the still: her dark hair is loose and softly wavy rather than tied up, falling around her face and over her shoulders with fine strands drifting across her cheeks; on her head she wears a large structural floral crown radiating outward, made of green fern fronds and slender seed stems mixed with fully open flowers - a yellow daisy at the centre, framed by a blue daisy, a pink daisy, red and orange blossoms and smaller purple ones; around her throat sits a close-fitting choker woven from tiny green leaves and vine; across her torso she wears a botanical bodice built from overlapping fresh green leaves of several sizes, threaded together with curling vines that run down the centre of her chest and around her waist, studded with a single large purple flower high on the left side of her chest, a white five-petalled flower on her right side, small orange blossoms and one yellow flower at the waist; her shoulders, upper arms, collarbones and bare midriff are exposed, with thin vines trailing down her left arm and around her right wrist, and a small red-orange flower resting on her right upper arm; around her hips the leaves thicken into a low botanical skirt of larger leaves and hanging vine with a lavender flower and a crimson flower at the front of each hip, and further green vines spiral down her thighs. Her expression is calm, direct and slightly dreamlike, her gaze straight into the lens, and her skin has a soft natural texture in dappled light. The rainforest around her is preserved exactly and never changes: dense mid-ground foliage and tall blurred tree trunks behind her, broad foreground leaves and ferns at the lower left and lower right of the frame, a soft green bokeh haze in the depth of the forest, and circular out-of-focus highlights of sunlight glinting between the leaves high above. Dappled sunlight keeps moving slowly across her body and the leaves as the clip plays, because the canopy is moving. The clip opens on the exact pose of the reference picture: she stands still, breathing quietly, arms relaxed at her sides, and then lifts both arms slowly into a soft, rounded first position in front of her and rises onto the balls of her bare feet, her toes pressing and gripping into the damp moss and leaf litter beneath her as she lifts her heels off the ground, the hanging vines of her hip piece swinging with the small upward movement and the fern fronds of her crown trembling and catching the light. The camera pushes in very slowly through the foreground leaves, staying low and keeping her centred in the frame. A faint rustle of her own leaves, a soft squelch of damp moss underfoot, and one light movement of air in the canopy above are heard as she rises. [Shot 2] At 01.900, the camera cuts to a medium full shot from slightly to her left, framing her whole figure with the forest depth opening up behind her. Still balanced on the balls of her feet, she performs a slow, sustained port de bras: both arms travel outward through a wide second position and then close above her head into a high fifth, wrists leading and elbows soft, while her head inclines and her eyes follow her leading hand in a clear, gentle epaulement, chin lifted into the light. She then slides her free bare foot forward along the moss into a tendu, the toes never leaving the ground and dragging through the leaf litter, draws it back, and then unfolds the leg slowly into a developpe to the side, the knee straightening only at the very end, the whole leg held long, before closing it back into a tight fifth position with a controlled fondu, her toes curling into the moss to take the weight. The camera arcs slowly to the right at low speed, tracking with her body and letting blurred leaves sweep across the foreground. The leaves of her bodice rasp softly against one another, dry leaf litter crunches faintly under her foot, a single petal comes loose from the crown and drifts down past her shoulder, and her breath is audible on the long extension. [Shot 3] At 03.900, the camera cuts to a medium shot, frontally framed and locked off. She takes one soft preparation with both arms, then performs a clean, controlled pirouette en dehors: her arms sweep in to a tight first position, her right foot rises to a retire position pressed against the inside of her left knee, and she rotates once on the ball of her supporting bare foot. She spots hard, keeping her eyes and then her head locked on the camera for as long as she can before whipping her head around to find the same point again on the final quarter turn. Because her costume is made of leaves rather than fabric, the overlap of leaves across her chest and hips lifts and fans outward from her body as she spins, the vines and small flower heads swing and rattle, the fern fronds of her crown whip around her head and the loose hair sweeps out across her face; two or three loose petals and one tiny leaf are flung off and spin slowly through the air beside her. As the turn completes, the leaves fall back flat against her body and the vines settle against her hips. She finishes facing the camera and opens both arms out into a wide second position, holding the balance absolutely still with no wobble, her weight fully over the supporting leg, breathing hard once through the nose. The camera stays locked off but drifts a few centimetres closer. The dry rustle of her leaves, the grip of her foot on the moss, and one sharp inhale punctuate the rotation, and somewhere behind her a single bird calls once. [Shot 4] At 06.300, the camera cuts to a low-angle wide shot from just above the forest floor, looking up at her through foreground ferns. She steps directly onto the ball of her foot and pique-turns outward in one smooth quarter turn, then extends immediately into a long arabesque, her back leg lifted high behind her with a fully pointed bare foot, arms opened into a long diagonal line, chest lifted and her back arched in a clean curve running from the crown of her head through the extended toe. She holds the arabesque steadily, then slowly lowers her upper body forward and down into an arabesque penche, the standing leg straight, her toes gripping the moss as the weight shifts, the leaves of her hip piece tilting forward with gravity and hanging down, her loose hair falling toward the ground and the vine ends dangling. The camera tilts up fast at the moment of the pique and then holds steady and low, so the moss, the ferns and the shadow of her body stay visible along the bottom of the frame, and a shaft of sunlight passes across her back as she lowers. Her breathing deepens and becomes clearly audible, the damp ground gives slightly under her foot, and her leaves rustle as they hang. [Shot 5] At 08.700, the camera cuts to a wide lateral tracking shot, moving parallel with her through the trees. She takes two quick, light preparatory steps on the balls of her bare feet, then launches into a single travelling grand jete: she pushes off explosively from the moss, both legs split wide in the air in a full 180-degree split, the front foot pointed and the back leg extended, arms stretched open into a long line, back arched and chin lifted, and she travels right through a shaft of sunlight. At the apex she hangs for a fraction of a second, the leaves of her bodice and hip piece spread out and fluttering around her like a broken-open flower, the fern fronds of her crown streaming backward, her hair and the vine ends trailing upward, and a burst of dislodged petals and tiny leaves scattered in the air around her. The camera tilts up quickly to follow her rise and then tracks sideways with her, blurred leaves and branches passing across the lens in the foreground, revealing the depth of the forest as the ground slips by underneath. During the flight there is almost no footfall sound, only the rush of leaves and hair through the air and a swell of wind in the canopy. [Shot 6] At 11.100, the camera cuts to a medium wide shot and begins a slow forward dolly, moving with her. She lands the jump softly and continues straight across the clearing in a short series of quick pique turns, each step landing precisely on the same spot on the ball of her foot with no pause between them, her arms snapping crisply into first position on each rotation and opening slightly between them, her head spotting hard on the camera every single turn, one hand briefly lifted above her head. The leaves of her bodice and hip piece fan out and snap back with every rotation, the vines swing, damp moss and shreds of leaf litter are kicked up and briefly stick to her feet, and one small flower is knocked loose from her hip and spins away into the ferns. The camera keeps pace with her, holding a constant distance so she stays the same size in the frame, and the whole forest depth slides past behind her. Each landing makes a soft, damp thump on the moss, a rhythmic dry rustle of leaves carries the sequence forward, and her breathing is now clearly audible. [Shot 7] At 13.300, the camera cuts to a medium-wide frontal shot from slightly below eye level. She arrives out of the turns and absorbs the momentum with a deep, controlled fondu into a turned-out plie, her knees tracking out over her toes, arms held low and steady, then rises slowly and deliberately, straightening both legs completely and pressing back up onto the balls of her feet one last time. She lifts her chin, opens both arms into a high fifth position above her head, and settles into a final held pose: chest lifted, shoulders down, back long, eyes calm and focused straight ahead into the lens, the leaves of her costume still trembling faintly from the motion, one fern frond of her crown nodding, and one loose strand of hair settling back against her cheek. She holds the pose absolutely still except for one visible, quiet exhale, and a single held beat passes with no movement at all, while the dappled light continues to drift across her skin. The camera pulls back very slowly while craning up a little, passing back out through the foreground leaves and revealing more of the rainforest canopy above her as the clip ends. The last sounds are the settling whisper of her leaves, one faint drip of water somewhere in the forest, wind moving high in the canopy, and one long, controlled breath out.\noverall_soundscape: The clip takes place inside a dense, humid tropical rainforest with a continuous, softly textured natural ambience: a wide, low bed of insect and cicada shimmer, occasional single bird calls answered far away in the depth of the forest, a faint dripping of water from the leaves, and the moving air of the canopy overhead that rises and falls in slow waves. Layered on top of that, the physical sounds of the dancer are clearly audible in the foreground and tightly synchronized to her movements: the dry, papery rasp of fresh leaves rubbing against one another across her bodice and hips, the creak and snap of thin vines taking tension, the softer rustle of fern fronds and the tiny knock of small flower heads swinging on their stems, the faint crunch of dry leaf litter and the soft, damp squelch of moss and earth under her bare feet, her toes dragging and gripping the ground, and her steadily deepening breathing that becomes louder on the arabesque, the jump and the final pose. During the grand jete the footfalls disappear for a moment, replaced by the rush of leaves and hair through the air, and the ambient forest opens up before the landing returns as a soft, damp thump on the moss. At the very end, her leaves settle with a last light whisper, one distant bird calls once more, and the clip finishes on one long, controlled exhale. There is no speech, no counting, no music coming from inside the scene, no crowd, no studio room tone and no wood or hard-floor sounds anywhere in the clip.\nnon_diegetic_music: An original lyrical, romantic score in a slow triple meter, around 92 BPM, written for the forest setting: a solo grand piano with a warm, close-miked tone, a soft sustained string pad underneath, a discreet harp, and a breathy wooden flute that answers the piano in short phrases, all acoustic and unhurried. It starts sparse and delicate, single rolling arpeggios in the piano with air around them that rise together with her first lift onto the balls of her feet, leaving plenty of space for the forest ambience. Through the port de bras and the pirouette it settles into a gentle, flowing three-four accompaniment with a light left-hand pulse, the flute entering in the second half and growing a little warmer and more melodic as she turns. At the arabesque and the penche the texture thins to soft sustained chords that follow the slow descent of her upper body. Exactly at the apex of the grand jete it swells upward with a rising melodic line, a soft bowed crescendo and a brief harp glissando, then falls away again as she lands and continues into the pique turns, where a light, even rhythmic figure underneath matches her rotations without ever turning percussive or dance-pop. For the final pose the arrangement reduces back to solo piano alone, resolving onto one long, quiet, sustained chord held through the last frame, with the flute returning only as a single fading breath of sound. No vocals, no choir, no drums, no electronic elements, no folk percussion: the music stays elegant, airy and restrained, supporting the movement rather than competing with the quiet sounds of the forest.",
+        "model.resolution": "480p",
+        "model.ratio": "9:16",
+        "model.duration": 5,
+        "model.generate_audio": true,
+        "model.task_type": "reference",
+        "model.output_format": "mp4",
+        "model.auto_downscale": true,
+        "model.auto_upscale": false,
+        "seed": 0,
+        "control_after_generate": "randomize",
+        "watermark": false
+      },
+      "color": "#432",
+      "bgcolor": "#653"
+    }
+  ],
+  "links": [
+    [
+      19,
+      24,
+      0,
+      16,
+      0,
+      "VIDEO"
+    ],
+    [
+      18,
+      12,
+      0,
+      24,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.7087322643903566,
+      "offset": [
+        441.1886707901069,
+        -7485.93747940303
+      ]
+    },
+    "frontendVersion": "1.55.14"
+  },
+  "version": 0.4
+}
