@@ -26,15 +26,17 @@
 
 | # | 用途 | 尺寸或时长 | 比例 | 数量 |
 |---|------|------------|------|------|
-| 1 | **单条成品**（主交付） | 1080×1920 / **15.083 s = 362 帧 @24fps** | 9:16 | 每条 1 |
-| 2 | 竖版参考图（i2v 首帧） | 1080×1920（喂模型前压到 ≤1MP） | 9:16 | 每条 1 |
+| 1 | **单条成品**（主交付） | 1080×1920 / **15 s**（云端 `--duration 15`；本机 i2v 路线是 362 帧 = 15.083 s） | 9:16 | 每条 1 |
+| 2 | 竖版参考图（r2v 首帧，由 **Seedream** 出图/改图） | 1080×1920（竖版预设） | 9:16 | 每条 1–3 |
 | 3 | 封面帧 | 1080×1920 | 9:16 | 每条 1 |
 | 4 | 选题与提示词档案（**100 条话题**海选 + **10 版提示词**海选 + 评分） | — | — | 每条 1 份 |
 | 5 | 发布文案 + 话题标签 | — | — | 每条 1 份 |
 
 **硬指标（"方便观看"落到数字上）**：
 
-- **时长**：15 s 在 i2v 的 **17k+5 帧栅格**上落在 **362 帧 = 15.083 s**，不是 15.000 s；定稿按 362 帧算。
+- **时长**：目标 **15 s**。走云端（Seedance）时就是 `--duration 15`（秒）；
+  走本机 i2v 时受 **17k+5 帧栅格**约束，落在 **362 帧 = 15.083 s** —— 两条路线的时长量化不同，
+  **交付按 15 s 报，定稿记录里写清走的是哪条**。
 - **构图**：主体居中偏上，**下方约 1/4 画面留白给字幕/标题**，别让字压在人脸上。
 - **前 3 秒必须给钩子**：一上来就是最离谱的那一帧 + 一句话结论（完播率决定推荐量）。
 - **字幕**：大字号中文，短句；信息密度高时用"叠加式"短句逐条弹出，而不是长段落。
@@ -58,9 +60,9 @@
 
 ## 四、内容规范：15 秒里塞进多少东西
 
-### 时间结构（15.083 s = 362 帧）
+### 时间结构（15 s；帧号按本机 i2v 的 362 帧栅格，云端只认秒）
 
-| 区段 | 帧 | 任务 |
+| 区段 | 帧（本机 i2v 参考） | 任务 |
 |------|-----|------|
 | 0–1.9 s | 0–45 | **钩子**：直接给最离谱的一帧 + 一句结论（不铺垫） |
 | 1.9–6.3 s | 46–150 | 建立"正常世界"的规则，让观众以为看懂了 |
@@ -91,29 +93,61 @@
 
 | # | 用途 | 所用技能或方法 | 输入素材 |
 |---|------|----------------|----------|
-| 1 | 环境体检与工作流审计 | [comfyui-server](../../.agents/skills/comfyui-server/SKILL.md) | — |
-| 2 | 出竖版参考图（首帧） | [text-to-image-comfyui](../../.agents/skills/text-to-image-comfyui/SKILL.md) | prompt |
-| 3 | **参考生视频（主路线）** | [image-to-video-fastvideo3](../../.agents/skills/image-to-video-fastvideo3/SKILL.md) | 竖版参考图 + i2v prompt |
-| 4 | 字幕帧 / 封面 / 比对 / 剥元数据 | [image-tools](../../.agents/skills/image-tools/SKILL.md) | 成品帧 |
-| 5 | 备选：文生视频（无参考图时） | [text-to-video-fastvideo3](../../.agents/skills/text-to-video-fastvideo3/SKILL.md) | 结构化 prompt |
-| 6 | 备选：云端云端视频（1080p / 长时长） | [methods/](../../methods/README.md)（方舟 Seedance，按量计费） | 首帧 + prompt |
+| 1 | 环境体检与工作流审计（看模板 / 权重 / 节点在不在） | [comfyui-server](../../.agents/skills/comfyui-server/SKILL.md) | — |
+| 2 | **生成竖版参考图（主路线）** | [seedream-text-to-image](../../.agents/skills/seedream-text-to-image/SKILL.md) —— ByteDance Seedream 云端付费节点，**按张计费** | prompt |
+| 3 | **改参考图**（换背景 / 换服装 / 局部标注 / 多图参考） | [seedream-image-edit](../../.agents/skills/seedream-image-edit/SKILL.md) —— 同一个 Seedream 云端节点 | 底图（+ 标注层）+ 指令 |
+| 4 | **参考生视频（主路线）** | [seedance-reference-to-video](../../.agents/skills/seedance-reference-to-video/SKILL.md) —— Seedance 2.5 云端付费节点（r2v），**按次计费**；参考图接 `model.reference_images.image_N` | 竖版参考图（1–30 张）+ r2v prompt |
+| 5 | 字幕帧 / 封面 / 比对 / 剥元数据 | [image-tools](../../.agents/skills/image-tools/SKILL.md) | 成品帧 |
+| 6 | 备选（**免费、本机**）：出图 / 图生视频 / 文生视频 | [text-to-image-comfyui](../../.agents/skills/text-to-image-comfyui/SKILL.md) · [image-to-video-fastvideo3](../../.agents/skills/image-to-video-fastvideo3/SKILL.md) · [text-to-video-fastvideo3](../../.agents/skills/text-to-video-fastvideo3/SKILL.md) | 本地权重，可无限重跑 |
+| 7 | 备选：方舟 ARK 直连（不经过 ComfyUI） | [methods/](../../methods/README.md)（Seedance，按量计费） | 首帧 + prompt |
+
+> ⚠️ **主路线三段都是云端付费**：出图按张（Seedream）、改图按张（Seedream）、出片按次（Seedance）。
+> **本技能库不含这三段的价格表**，单价以 ComfyUI 账号（platform.comfy.org）的 credits 口径为准，
+> **本项目没有核实过**。所以：文本层海选必须做到位（见 §七），**不要把海选烧在付费接口上**。
+>
+> ⚠️ **`seedance-reference-to-video` 目前是"只建未验"状态**：有脚本与 `--list/--check/--plan` 入口，
+> 但**没有真机验证记录**。本项目正式开跑前，先按它的 SKILL.md 顶部"首次真机前必做的 5 步"走一遍
+> （`--check` → `--list` → `--plan` → 最短时长真跑一条 → 补验证记录）。在此之前，出片这一段
+> 视作**待验证依赖**；要稳就先走第 6 行的本机免费路线。
 
 ---
 
-## 六、技术路线：参考生视频（图 + 文字提示词）
+## 六、技术路线：云端参考生视频（图 + 文字提示词）
 
 **为什么是"参考生视频"而不是文生视频**：本项目要的是**可控的离谱**——先锁死一帧"离谱但一眼看懂"的
 画面，再让它动起来。文生视频每一条都要重新赌构图，无法保证"第一帧就是钩子"。
 
-**⚠️ 竖版从哪来（最容易踩的坑）**：i2v 的**画幅由输入图决定**，工作流里是
-`LoadImage → ImageScaleToTotalPixels → GetImageSize → width/height`，**没有比例参数**。
-所以：
+**⚠️ 画幅：两条路线不一样，别记混**（这是换路线时最容易整条作废的地方）：
 
-- 参考图必须**先做成 9:16**（1080×1920，或先出 768×1365）→ 否则成品不是竖版，整条重做。
-- 喂给模型的图**别超过 ~1MP**：`first_frame` 接的是**原图**，大图只会白抬显存与时间。
-- 想要"下 1/4 留白给字幕"，**在参考图阶段就把主体构图顶上去**（出图时就留白，别在视频里补）。
+| 路线 | 画幅从哪来 | 参考图要求 |
+|------|-----------|-----------|
+| **主路线：Seedance 2.5 r2v（云端付费）** | **显式 `--ratio`**（用 `9:16`；只有 `adaptive` 才跟随参考图比例） | 用 **Seedream** 出 9:16 竖版图（保持全系列一致） |
+| 备选：本机 FastH3 i2v（免费） | **由输入图决定**（`LoadImage → ImageScaleToTotalPixels → GetImageSize`，**没有比例参数**） | 必须**先做成 9:16**，且 ≤ ~1MP（原图直接进模型） |
 
-**参数与成本**：
+无论走哪条：想要"下 1/4 留白给字幕"，**在参考图阶段就把主体构图顶上去**（出图时留白，别在视频里补）。
+
+**主路线（云端付费）——出图 → 出片**：
+
+```bash
+# ① 竖版参考图（Seedream，**按张计费**）
+cd .agents/skills/seedream-text-to-image
+python3 scripts/seedream_gen.py --prompt-file <ref-prompt.txt> \
+    --size Custom --width 1080 --height 1920 --out-dir out/
+# 要改这张图（换背景 / 换服装 / 局部）→ 交给 seedream-image-edit，同样按张计费
+
+# ② 参考生视频（Seedance 2.5 r2v，**按次计费**）
+cd ../seedance-reference-to-video
+python3 scripts/seedance_r2v.py --reference <ref.png> --prompt-file <slug>.txt \
+    --resolution 1080p --ratio 9:16 --duration 15 --plan     # 先免费验证参数落图
+python3 scripts/seedance_r2v.py --reference <ref.png> --prompt-file <slug>.txt \
+    --resolution 1080p --ratio 9:16 --duration 15 --out-dir out/
+```
+
+- **成本**：出图按张、出片按次；**本项目未核实单价**，以 ComfyUI 账号 credits 为准。
+- **时长**：云端 `--duration 15` 就是 15 s，没有帧栅格量化。
+- ⚠️ `seedance-reference-to-video` 是**只建未验**技能，正式开跑前先按它 SKILL.md 顶部的 5 步验证。
+
+**备选（本机免费，可无限重跑）**：
 
 ```bash
 cd .agents/skills/image-to-video-fastvideo3
@@ -137,12 +171,16 @@ python3 scripts/comfyui_i2v.py --image ../../projects/ai-cant-replace-humans/ref
 | 层 | 选什么 | 筛选量 | 单条成本 | 合计 |
 |----|--------|--------|----------|------|
 | ① **话题海选** | 一句话剧情 + 5 拍动作 | **100 → 1** | ~0（纯文本） | ~0 |
-| ② **提示词海选** | 完整 i2v 提示词（同一话题的 10 种写法） | **10 → 1** | ~0（纯文本） | ~0 |
-| ③ 关键帧 | 定稿提示词的竖版参考图 | 3 版 | ~25 s/张 | ~75 s |
-| ④ 真机出片 | i2v | 1–2 条 | ~20 min/条 | ~20–40 min |
-| ~~真机全跑~~ | ~~话题全拍~~ | ~~100~~ | ~~20 min~~ | ~~**≈33 h GPU**~~ ← 绝不可行 |
+| ② **提示词海选** | 完整 r2v 提示词（同一话题的 10 种写法） | **10 → 1** | ~0（纯文本） | ~0 |
+| ③ 关键帧 | 定稿提示词的竖版参考图（**Seedream，按张计费**） | 3 版 | 按张（单价未核实） | 3 张 |
+| ④ 真机出片 | **Seedance r2v，按次计费** | 1–2 条 | 按次（单价未核实） | 1–2 次 |
+| ~~把 100 条话题全拍出来~~ | ~~话题全拍~~ | ~~100~~ | ~~按次~~ | ~~**100 次云端计费**~~ ← 绝不可行 |
 
-> **核心纪律**：两层都在**文本层**完成筛选，GPU 只花在最后两行（合计约 1 小时，不是 33 小时）。
+> **核心纪律**：两层都在**文本层**完成筛选，付费接口只花在最后两行（3 张图 + 1–2 次出片）。
+> 换成本机免费路线（[text-to-image-comfyui](../../.agents/skills/text-to-image-comfyui/SKILL.md) +
+> [image-to-video-fastvideo3](../../.agents/skills/image-to-video-fastvideo3/SKILL.md)）时，
+> ③④ 的时间成本约 **75 s + 20–40 min GPU**，钱为 0 —— 但画质与一致性不如云端，
+> **"定调用云端、试错用本机"是省钱又稳的组合**。
 
 ### ① 话题海选（100 → 1）
 
@@ -161,7 +199,7 @@ python3 scripts/comfyui_i2v.py --image ../../projects/ai-cant-replace-humans/ref
 
 ### ② 提示词海选（10 → 1）
 
-只给**定稿话题**写 **10 版完整 i2v 提示词**（三节齐全，见下方格式要求），逐版评分：
+只给**定稿话题**写 **10 版完整 r2v 提示词**（三节齐全，见下方格式要求），逐版评分：
 
 | 维度 | 权重 | 门槛 | 看什么 |
 |------|------|------|--------|
@@ -186,8 +224,10 @@ refs/<slug>.png                   # 定稿竖版参考图（9:16）
 > **"话题"在本项目里指一条可拍摄的选题（一句 logline + 5 拍动作），不是抖音的话题标签**；标签见 §三。
 > ⚠️ 两层都要留下**被淘汰的原文与理由**——海选的价值一半在"选出了什么"，一半在"淘汰了什么、为什么"。
 
-> i2v 提示词的规范写法见 [image-to-video-fastvideo3/references/prompt-format.md](../../.agents/skills/image-to-video-fastvideo3/references/prompt-format.md)：
-> **首帧引用句 + `integrated_multimodal_description`（分镜 + 时间码）+ `overall_soundscape` + `non_diegetic_music`，一节不能少**。
+> 提示词的规范写法（**主路线与本机备选共用同一套三节结构**）见
+> [seedance-reference-to-video/references/api-node.md](../../.agents/skills/seedance-reference-to-video/references/api-node.md) §5
+> 与 [image-to-video-fastvideo3/references/prompt-format.md](../../.agents/skills/image-to-video-fastvideo3/references/prompt-format.md)：
+> **首帧引用句（`<Picture 1>`…）+ `integrated_multimodal_description`（分镜 + 时间码）+ `overall_soundscape` + `non_diegetic_music`，一节不能少**。
 
 ---
 
@@ -219,9 +259,11 @@ refs/<slug>.png                   # 定稿竖版参考图（9:16）
 | 阶段 | 做什么 | 判据 |
 |------|--------|------|
 | 定向 | **话题海选 100 → 1**（纯文本：一句 logline + 5 拍动作） | 100 条原文 + 分数进档；留下 **1 条定稿话题** |
-| 定型 | **提示词海选 10 → 1**（给定稿话题写 10 版完整提示词）+ 出 3 版竖版关键帧 | 10 版原文 + 分数进档；留下 **1 版定稿提示词** + 参考图 |
-| 定稿 | 1–2 条跑 i2v → 选 1 条加字幕/封面/合规角标 | 1 条成品 + 两层档案齐全 |
+| 定型 | **提示词海选 10 → 1**（给定稿话题写 10 版完整提示词）+ 用 **Seedream** 出 3 版竖版关键帧 | 10 版原文 + 分数进档；留下 **1 版定稿提示词** + 参考图 |
+| 定稿 | 1–2 条跑 **Seedance r2v**（付费；先 `--plan`）→ 选 1 条加字幕/封面/合规角标 | 1 条成品 + 两层档案齐全 |
 | 衍生 | 同话题换画风/换角色；合集连载 | 集数与数据复盘 |
+
+> 省钱组合：**试错走本机**（Z-Image + FastH3，免费、可无限重跑），**定稿走云端**（Seedream + Seedance，付费但一致性与画质更好）。
 
 ---
 
@@ -246,11 +288,14 @@ refs/<slug>.png                   # 定稿竖版参考图（9:16）
 
 ## 十二、检查清单
 
-- [ ] 参考图是 **9:16**（否则成品不是竖版，整条重做）
-- [ ] 参考图 ≤ ~1MP，且**下方 1/4 留白**给字幕
+- [ ] **主路线**：参考图用 Seedream 出成 **9:16**（全系列一致）；**备选路线**：参考图也要 9:16
+      （本机 i2v 的画幅由输入图决定，不是 9:16 就整条重做）
+- [ ] 参考图**下方 1/4 留白**给字幕；走本机 i2v 时另需 ≤ ~1MP
 - [ ] **话题海选 100 选 1** 已留档：100 条原文 + 每条分数 + 淘汰理由（§七①）
 - [ ] **提示词海选 10 选 1** 已留档：10 版完整提示词 + 逐版分数（§七②）
-- [ ] `--plan` 通过：帧数 **362**、无 warning、prompt 三节齐全
+- [ ] 云端两段**先免费验证**：Seedance `--plan`（不提交/不上传）；确认 prompt 三节齐全
+- [ ] 云端出片参数确认：`--duration 15`、`--ratio 9:16`、`--resolution`（走本机备选则是 **362 帧**、无 warning）
+- [ ] **`seedance-reference-to-video` 的"首次真机 5 步"已走过**（它当前是只建未验状态，§五）
 - [ ] 首帧与参考图对照过（人眼 + 必要时 `image-tools` 的 SSIM）
 - [ ] 一集只讲**一件事**，且命中**≥2 种**抽象手法（§四）
 - [ ] 前 3 秒有钩子；13.3 s 后有落版静帧
@@ -267,3 +312,4 @@ refs/<slug>.png                   # 定稿竖版参考图（9:16）
 |------|------|----------|------|
 | 2026-10-11 | v0.1 | **项目建立（仅规范，子主题未开启）**：定下形态（竖版 9:16 / 15.083 s = 362 帧 / 图文并茂）、关键词与话题标签、15 s 时间结构与"抽象五法"、参考生视频技术路线（含"画幅跟随输入图 → 参考图必须 9:16"这条硬约束）、**100 选 1 海选漏斗与评分表**（并算出"真跑 100 条 ≈ 33 h GPU"故海选必须在文本+关键帧层做）、以及**AI 生成内容标识合规要求**（《标识办法》2025-09-01 施行，视频须在起始画面加显著标识、发布须主动声明） | 小七 |
 | 2026-10-11 | v0.2 | **海选拆成两层（按用户要求）**：§七 重写为「**话题海选 100 选 1** → **提示词海选 10 选 1**」——话题层只评"这点子是不是只有人能想出来"（100 → 20 → 5 → 1，一票否决门槛），提示词层只评"能不能把它拍出来"（10 → 3 → 1，五维含忠实度/分镜可执行性/声音两节/首帧兼容/信息密度）；两层都在**文本层**做完，GPU 只花在 3 版关键帧 + 1–2 条真机（≈1 h，而不是 33 h）。同步改 §二 交付物、§九 执行计划（定向=话题 100→1，定型=提示词 10→1）、§十 子主题（每子主题各自跑两层，分数不复用）、§十二 检查清单（两层档案各一条）、留档路径（`topics/hunt/` 与 `prompts/hunt/<slug>/`） | 小七 |
+| 2026-10-11 | v0.3 | **技术路线改为云端三段（按用户要求）**：§五 选型表重写——**出图用 [seedream-text-to-image](../../.agents/skills/seedream-text-to-image/SKILL.md)、改图用 [seedream-image-edit](../../.agents/skills/seedream-image-edit/SKILL.md)、参考生视频用 [seedance-reference-to-video](../../.agents/skills/seedance-reference-to-video/SKILL.md)**；本机 Z-Image / FastH3 三条降为**备选（免费，试错用）**。连带订正三处**因换路线而失效的旧假设**：① §六 画幅来源（云端是显式 `--ratio 9:16`，只有 `adaptive` 才跟随参考图；本机仍是"输入图定画幅"）；② §二/§四 时长量化（云端 `--duration 15` 无帧栅格；本机 362 帧 = 15.083 s）；③ §七 成本表（关键帧与出片变成**按张/按次付费**，并把"别把海选烧在付费接口上"写成纪律）。另在 §五 明确标注：**三段云端单价本项目未核实**，且 `seedance-reference-to-video` 是**只建未验**技能，正式开跑前要先走它的"首次真机 5 步" | 小七 |

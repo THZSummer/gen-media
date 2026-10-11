@@ -67,7 +67,7 @@ cp -r _template <your-project>
 | [step-scenery/](step-scenery/README.md) | 视频 | 移步换景：少女穿越时空，一步一世界（茶室→竹林→沙漠→赛博→星空→雪原→茶室闭环） | 规划中 |
 | [step-scenery-v2/](step-scenery-v2/README.md) | 视频 | 移步换景 v2：同故事，seedance-2.0 原生音频版（每镜自带场景音效） | 规划中 |
 | [giant-kingdom/](giant-kingdom/README.md) | 视频 | 穿越到巨人女儿国：体型反差视觉奇观（巨手遮天/掌心如地/一肩一世界） | 规划中 |
-| [ai-cant-replace-humans/](ai-cant-replace-humans/README.md) | 视频 | **AI 无法取代人类**（谁说 AI 永远也无法取代人类）：抖音类平台竖版 **15 s 合集**，用「只有人能想出来」的抽象剧情反讽「AI 能否取代人类」。路线 = **参考生视频（图 + 提示词）**，两层海选：**话题 100 选 1 → 提示词 10 选 1**（都在文本层做完，GPU 只花在 3 版关键帧 + 1–2 条真机 ≈ 1 h，而非 33 h）；含 **AI 生成内容标识合规**要求。**子主题未开启** | 规划中（仅规范） |
+| [ai-cant-replace-humans/](ai-cant-replace-humans/README.md) | 视频 | **AI 无法取代人类**（谁说 AI 永远也无法取代人类）：抖音类平台竖版 **15 s 合集**，用「只有人能想出来」的抽象剧情反讽「AI 能否取代人类」。**云端三段**（出图/改图 `seedream-*` → 参考生视频 `seedance-reference-to-video`），本机 Z-Image/FastH3 为免费备选；两层海选：**话题 100 选 1 → 提示词 10 选 1**（都在文本层做完，付费接口只花在 3 张关键帧 + 1–2 次出片）；含 **AI 生成内容标识合规**要求。**子主题未开启** | 规划中（仅规范） |
 
 > 新项目在此追加一行。
 
@@ -97,3 +97,4 @@ projects/<图片项目>/out/storyboard/  ──►  projects/<视频项目>/（I
 | **2026-10-05** | **v2.0** | **扁平化合并**：`image-gen/projects/README.md` 与 `video-gen/projects/README.md` 合并为本文件；目录迁至仓库根 `projects/`；模板合并为 `_template/`；项目列表改为图像/视频统一表（9 个项目） | 小七 |
 | 2026-10-11 | v2.1 | 新增项目 [ai-cant-replace-humans](ai-cant-replace-humans/README.md)（第 10 个项目）：抖音类平台竖版 15 s 合集，参考生视频 + 提示词海选；**只立规范，子主题未开启** | 小七 |
 | 2026-10-11 | v2.2 | 按用户要求把 [ai-cant-replace-humans](ai-cant-replace-humans/README.md) 的海选**拆成两层**：**话题 100 选 1 → 提示词 10 选 1**（话题层评"只有人能想出来"，提示词层评"能不能拍出来"），项目索引行同步改写 | 小七 |
+| 2026-10-11 | v2.3 | [ai-cant-replace-humans](ai-cant-replace-humans/README.md) 的技术路线按用户要求改为**云端三段**：出图/改图用 `seedream-text-to-image` + `seedream-image-edit`，参考生视频用 `seedance-reference-to-video`（本机 Z-Image / FastH3 降为免费备选）；连带订正画幅来源、时长量化、成本表三处旧假设，并标注三段单价**未核实**、`seedance-reference-to-video` 是**只建未验**技能 | 小七 |

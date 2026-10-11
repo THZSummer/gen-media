@@ -27,15 +27,15 @@
 
 | # | Purpose | Size or duration | Ratio | Qty |
 |---|---------|------------------|-------|-----|
-| 1 | **Single episode** (main deliverable) | 1080×1920 / **15.083 s = 362 frames @24fps** | 9:16 | 1 per episode |
-| 2 | Vertical reference image (i2v first frame) | 1080×1920 (downscale to ≤1MP before feeding) | 9:16 | 1 per episode |
+| 1 | **Single episode** (main deliverable) | 1080×1920 / **15 s** (cloud: `--duration 15`; local i2v route: 362 frames = 15.083 s) | 9:16 | 1 per episode |
+| 2 | Vertical reference image (r2v first frame, made/edited with **Seedream**) | 1080×1920 (vertical preset) | 9:16 | 1–3 per episode |
 | 3 | Cover frame | 1080×1920 | 9:16 | 1 per episode |
 | 4 | Topic and prompt archive (**100-topic** funnel + **10-prompt** funnel + scores) | — | — | 1 per episode |
 | 5 | Publish copy + hashtags | — | — | 1 per episode |
 
 **Hard targets ("easy to watch" turned into numbers)**:
 
-- **Duration**: on the i2v **17k+5 frame grid**, 15 s lands on **362 frames = 15.083 s**, not 15.000 s; final renders are counted in 362 frames.
+- **Duration**: target **15 s**. On the cloud route (Seedance) that is simply `--duration 15`; on the local i2v route the **17k+5 frame grid** puts it at **362 frames = 15.083 s** — the two routes quantise differently, so **report 15 s and state in the record which route produced it**.
 - **Composition**: subject centred and slightly high, with **roughly the bottom quarter of the frame left clear for subtitles/titles** — never let text sit on a face.
 - **The first 3 seconds must carry a hook**: open on the single most absurd frame plus a one-line conclusion (completion rate drives reach).
 - **Subtitles**: large Chinese type, short phrases; when the information density is high, stack short lines that pop in one by one instead of writing paragraphs.
@@ -59,9 +59,9 @@
 
 ## 4. Content rules: how much to pack into 15 seconds
 
-### Time structure (15.083 s = 362 frames)
+### Time structure (15 s; frame numbers are the local i2v 362-frame grid, the cloud route only takes seconds)
 
-| Segment | Frames | Job |
+| Segment | Frames (local i2v reference) | Job |
 |---------|--------|-----|
 | 0–1.9 s | 0–45 | **Hook**: show the most absurd frame immediately plus a one-line conclusion (no setup) |
 | 1.9–6.3 s | 46–150 | Establish the "normal world" rules so the viewer thinks they understand |
@@ -92,12 +92,17 @@
 
 | # | Purpose | Skill or method | Input |
 |---|---------|-----------------|-------|
-| 1 | Environment check and workflow audit | [comfyui-server](../../.agents/skills/comfyui-server/SKILL.md) | — |
-| 2 | Generate the vertical reference image (first frame) | [text-to-image-comfyui](../../.agents/skills/text-to-image-comfyui/SKILL.md) | prompt |
-| 3 | **Reference-to-video (main route)** | [image-to-video-fastvideo3](../../.agents/skills/image-to-video-fastvideo3/SKILL.md) | vertical reference image + i2v prompt |
-| 4 | Subtitle frames / cover / comparison / metadata strip | [image-tools](../../.agents/skills/image-tools/SKILL.md) | finished frames |
-| 5 | Fallback: text-to-video (no reference image) | [text-to-video-fastvideo3](../../.agents/skills/text-to-video-fastvideo3/SKILL.md) | structured prompt |
-| 6 | Fallback: cloud video (1080p / long duration) | [methods/](../../methods/README.en.md) (Ark Seedance, pay per use) | first frame + prompt |
+| 1 | Environment check and workflow audit (what templates / weights / nodes exist) | [comfyui-server](../../.agents/skills/comfyui-server/SKILL.md) | — |
+| 2 | **Generate the vertical reference image (main route)** | [seedream-text-to-image](../../.agents/skills/seedream-text-to-image/SKILL.md) — ByteDance Seedream cloud paid node, **billed per image** | prompt |
+| 3 | **Edit the reference image** (background / outfit / local retouch / multi-reference) | [seedream-image-edit](../../.agents/skills/seedream-image-edit/SKILL.md) — same Seedream cloud node | base image (+ annotation layer) + instruction |
+| 4 | **Reference-to-video (main route)** | [seedance-reference-to-video](../../.agents/skills/seedance-reference-to-video/SKILL.md) — Seedance 2.5 cloud paid node (r2v), **billed per run**; reference images wired to `model.reference_images.image_N` | vertical reference images (1–30) + r2v prompt |
+| 5 | Subtitle frames / cover / comparison / metadata strip | [image-tools](../../.agents/skills/image-tools/SKILL.md) | finished frames |
+| 6 | Fallback (**free, local**): text-to-image / image-to-video / text-to-video | [text-to-image-comfyui](../../.agents/skills/text-to-image-comfyui/SKILL.md) · [image-to-video-fastvideo3](../../.agents/skills/image-to-video-fastvideo3/SKILL.md) · [text-to-video-fastvideo3](../../.agents/skills/text-to-video-fastvideo3/SKILL.md) | local weights, unlimited reruns |
+| 7 | Fallback: direct Ark API (bypassing ComfyUI) | [methods/](../../methods/README.en.md) (Seedance, pay per use) | first frame + prompt |
+
+> ⚠️ **All three stages of the main route are paid cloud services**: image generation per image (Seedream), image editing per image (Seedream), video per run (Seedance). **This repo contains no price table for any of them**; the unit price follows the ComfyUI account credits (platform.comfy.org) and **this project has not verified it**. Hence the rule: do the text-level selection properly (see §7) and **never burn the selection funnel on paid endpoints**.
+>
+> ⚠️ **`seedance-reference-to-video` is currently "built but unverified"**: it has scripts and `--list/--check/--plan` entry points but **no real-machine validation record**. Before this project starts for real, walk its SKILL.md "5 steps before the first real run" (`--check` → `--list` → `--plan` → one shortest-duration run → record the verification). Until then treat the video stage as an **unverified dependency**; if you need certainty, use the free local route in row 6 first.
 
 ---
 
@@ -107,15 +112,38 @@
 frame that is "absurd but instantly legible", then set it in motion. Text-to-video re-gambles the composition
 every time and cannot guarantee that frame one is the hook.
 
-**⚠️ Where the vertical format comes from (the easiest trap)**: in i2v the **canvas is decided by the input
-image** — the workflow runs `LoadImage → ImageScaleToTotalPixels → GetImageSize → width/height` and exposes
-**no aspect-ratio parameter**. Therefore:
+**⚠️ The canvas differs between the two routes — do not confuse them** (this is where swapping routes silently voids an episode):
 
-- The reference image must be **made 9:16 first** (1080×1920, or 768×1365) — otherwise the output is not vertical and the episode is a redo.
-- Keep the image fed to the model **below ~1MP**: `first_frame` receives the **original**, so a big image only wastes memory and time.
-- If you want "the bottom quarter clear for subtitles", **push the subject up while making the reference image** (leave the space at image time, do not patch it in video).
+| Route | Where the canvas comes from | Reference image requirement |
+|-------|-----------------------------|-----------------------------|
+| **Main route: Seedance 2.5 r2v (paid cloud)** | **explicit `--ratio`** (use `9:16`; only `adaptive` follows the reference image) | generate a 9:16 vertical image with **Seedream** (keeps the series consistent) |
+| Fallback: local FastH3 i2v (free) | **decided by the input image** (`LoadImage → ImageScaleToTotalPixels → GetImageSize`, **no aspect-ratio parameter**) | must be **made 9:16 first**, and ≤ ~1MP (the original goes straight into the model) |
 
-**Parameters and cost**:
+Either way: if you want "the bottom quarter clear for subtitles", **push the subject up while making the reference image** (leave the space at image time, do not patch it in video).
+
+**Main route (paid cloud) — image first, then video**:
+
+```bash
+# ① vertical reference image (Seedream, **billed per image**)
+cd .agents/skills/seedream-text-to-image
+python3 scripts/seedream_gen.py --prompt-file <ref-prompt.txt> \
+    --size Custom --width 1080 --height 1920 --out-dir out/
+# need to change that image (background / outfit / local retouch)?
+# hand it to seedream-image-edit — also billed per image
+
+# ② reference-to-video (Seedance 2.5 r2v, **billed per run**)
+cd ../seedance-reference-to-video
+python3 scripts/seedance_r2v.py --reference <ref.png> --prompt-file <slug>.txt \
+    --resolution 1080p --ratio 9:16 --duration 15 --plan     # free parameter check first
+python3 scripts/seedance_r2v.py --reference <ref.png> --prompt-file <slug>.txt \
+    --resolution 1080p --ratio 9:16 --duration 15 --out-dir out/
+```
+
+- **Cost**: images per image, video per run; **this project has not verified the unit prices** — they follow the ComfyUI account credits.
+- **Duration**: on the cloud route `--duration 15` simply means 15 s; there is no frame-grid quantisation.
+- ⚠️ `seedance-reference-to-video` is a **built-but-unverified** skill; before the first real run, walk the 5 steps in its SKILL.md.
+
+**Fallback (free, local, unlimited reruns)**:
 
 ```bash
 cd .agents/skills/image-to-video-fastvideo3
@@ -140,12 +168,16 @@ looks good" always beats "the idea is absurd enough" — and that is exactly the
 | Layer | What is chosen | Funnel | Unit cost | Total |
 |-------|----------------|--------|-----------|-------|
 | ① **Topic selection** | one logline + 5 beats | **100 → 1** | ~0 (text only) | ~0 |
-| ② **Prompt selection** | the full i2v prompt (10 wordings of the same topic) | **10 → 1** | ~0 (text only) | ~0 |
-| ③ Keyframes | vertical reference images for the winning prompt | 3 versions | ~25 s each | ~75 s |
-| ④ Real renders | i2v | 1–2 | ~20 min each | ~20–40 min |
-| ~~All through i2v~~ | ~~shoot every topic~~ | ~~100~~ | ~~20 min~~ | ~~**≈33 h GPU**~~ ← never viable |
+| ② **Prompt selection** | the full r2v prompt (10 wordings of the same topic) | **10 → 1** | ~0 (text only) | ~0 |
+| ③ Keyframes | vertical reference images for the winning prompt (**Seedream, billed per image**) | 3 versions | per image (unverified) | 3 images |
+| ④ Real renders | **Seedance r2v, billed per run** | 1–2 | per run (unverified) | 1–2 runs |
+| ~~Shoot all 100 topics~~ | ~~every topic through video~~ | ~~100~~ | ~~per run~~ | ~~**100 paid cloud runs**~~ ← never viable |
 
-> **Core discipline**: both layers are decided **on text**, so the GPU only pays for the last two rows (about 1 hour in total, not 33).
+> **Core discipline**: both layers are decided **on text**, so paid endpoints only pay for the last two rows (3 images + 1–2 runs).
+> On the free local route ([text-to-image-comfyui](../../.agents/skills/text-to-image-comfyui/SKILL.md) +
+> [image-to-video-fastvideo3](../../.agents/skills/image-to-video-fastvideo3/SKILL.md)) rows ③④ cost about
+> **75 s + 20–40 min of GPU** and no money — but image quality and consistency are below the cloud route.
+> **"Trial and error locally, final render in the cloud" is the cheap-and-solid combination.**
 
 ### ① Topic selection (100 → 1)
 
@@ -164,7 +196,7 @@ Flow: **100 → 20** (by score) → **20 → 5** (re-scored, and checked against
 
 ### ② Prompt selection (10 → 1)
 
-Write **10 full i2v prompts** (all three sections, see the format note below) for the **final topic only**, and score each one:
+Write **10 full r2v prompts** (all three sections, see the format note below) for the **final topic only**, and score each one:
 
 | Dimension | Weight | Threshold | What it looks at |
 |-----------|--------|-----------|------------------|
@@ -189,8 +221,10 @@ refs/<slug>.png                   # the final vertical reference image (9:16)
 > **In this project a "topic" means one shootable brief (a logline + 5 beats), not a Douyin hashtag**; hashtags are in §3.
 > ⚠️ Both layers must keep **the eliminated entries and the reasons** — half the value of a selection funnel is "what was chosen", the other half is "what was dropped and why".
 
-> The required i2v prompt form is documented in [image-to-video-fastvideo3/references/prompt-format.md](../../.agents/skills/image-to-video-fastvideo3/references/prompt-format.md):
-> **the first-frame reference sentence + `integrated_multimodal_description` (shots + timecodes) + `overall_soundscape` + `non_diegetic_music` — no section may be omitted**.
+> The required prompt form (**the main route and the local fallback share one three-section structure**) is documented in
+> [seedance-reference-to-video/references/api-node.md](../../.agents/skills/seedance-reference-to-video/references/api-node.md) §5
+> and [image-to-video-fastvideo3/references/prompt-format.md](../../.agents/skills/image-to-video-fastvideo3/references/prompt-format.md):
+> **the first-frame reference sentence (`<Picture 1>`…) + `integrated_multimodal_description` (shots + timecodes) + `overall_soundscape` + `non_diegetic_music` — no section may be omitted**.
 
 ---
 
@@ -220,9 +254,11 @@ Sources: [Four departments issue the Measures for the Labelling of AI-Generated 
 | Stage | What happens | Gate |
 |-------|--------------|------|
 | Direction | **Topic selection 100 → 1** (text only: one logline + 5 beats) | all 100 archived with scores; **1 final topic** |
-| Lock-in | **Prompt selection 10 → 1** (10 full prompts for the final topic) + 3 vertical keyframes | all 10 archived with scores; **1 final prompt** + reference image |
-| Final | 1–2 runs of i2v → pick 1, add subtitles / cover / compliance mark | 1 episode + both archives complete |
+| Lock-in | **Prompt selection 10 → 1** (10 full prompts for the final topic) + 3 vertical keyframes rendered with **Seedream** | all 10 archived with scores; **1 final prompt** + reference image |
+| Final | 1–2 runs of **Seedance r2v** (paid; `--plan` first) → pick 1, add subtitles / cover / compliance mark | 1 episode + both archives complete |
 | Spin-off | Same topic with a different art style or character; series publishing | Episode count and data review |
+
+> Money-saving combination: **try things locally** (Z-Image + FastH3, free and unlimited), **render the final in the cloud** (Seedream + Seedance, paid but better consistency and quality).
 
 ---
 
@@ -247,11 +283,13 @@ As requested, **this period defines the project spec only and starts no sub-topi
 
 ## 12. Checklist
 
-- [ ] The reference image is **9:16** (otherwise the output is not vertical and the episode is a redo)
-- [ ] The reference image is ≤ ~1MP and leaves the **bottom quarter** clear for subtitles
+- [ ] **Main route**: the reference image is generated as **9:16** with Seedream (series consistency); **fallback route**: the reference image must also be 9:16 (local i2v takes the canvas from the input image — anything else is a redo)
+- [ ] The reference image leaves the **bottom quarter** clear for subtitles; on the local i2v route it must also be ≤ ~1MP
 - [ ] **Topic selection 100 → 1** archived: all 100 entries + per-item score + reason for elimination (§7①)
 - [ ] **Prompt selection 10 → 1** archived: 10 full prompts + per-version score (§7②)
-- [ ] `--plan` passes: **362** frames, no warning, all three prompt sections present
+- [ ] Both cloud stages **validated for free first**: Seedance `--plan` (no submit, no upload); confirm all three prompt sections are present
+- [ ] Cloud render parameters confirmed: `--duration 15`, `--ratio 9:16`, `--resolution` (or, on the local fallback route, **362** frames with no warning)
+- [ ] The **"5 steps before the first real run" of `seedance-reference-to-video` have been walked** (it is currently built-but-unverified, §5)
 - [ ] First frame compared against the reference image (by eye and, when needed, `image-tools` SSIM)
 - [ ] The episode tells **one thing** and hits **≥2** absurdity devices (§4)
 - [ ] A hook in the first 3 seconds; a still end card after 13.3 s
@@ -268,3 +306,4 @@ As requested, **this period defines the project spec only and starts no sub-topi
 |------|---------|--------|--------|
 | 2026-10-11 | v0.1 | **Project created (spec only, no sub-topics started)**: settled the format (vertical 9:16 / 15.083 s = 362 frames / image + text + sound), the keywords and hashtags, the 15-second time structure and the "five absurdity devices", the reference-to-video route (including the hard constraint "the canvas follows the input image, so the reference image must be 9:16 first"), the **100 → 1 selection funnel and scorecard** (with the arithmetic showing that running all 100 through i2v would cost ≈33 h of GPU, so selection must happen on the text and keyframe layers), and the **AI-generated content labelling requirement** (the Labelling Measures took effect 2025-09-01: video needs a conspicuous notice on the opening frame and a proactive declaration when publishing) | 小七 |
 | 2026-10-11 | v0.2 | **The funnel was split into two layers (as requested)**: §7 rewritten as "**topic selection 100 → 1** → **prompt selection 10 → 1**" — the topic layer scores only "is this an idea only a human could have" (100 → 20 → 5 → 1, with veto thresholds) and the prompt layer scores only "can it be shot" (10 → 3 → 1, across fidelity / shot executability / the two sound sections / first-frame compatibility / information density); both layers are decided **on text**, so the GPU only pays for 3 keyframes and 1–2 real renders (≈1 h instead of 33 h). Also updated §2 deliverables, §9 execution plan (Direction = topics 100 → 1, Lock-in = prompts 10 → 1), §10 sub-topics (each runs both funnels; scores not reused), §12 checklist (one item per archive) and the archive paths (`topics/hunt/` and `prompts/hunt/<slug>/`) | 小七 |
+| 2026-10-11 | v0.3 | **The technical route moved to three cloud stages (as requested)**: §5 rewritten — **images with [seedream-text-to-image](../../.agents/skills/seedream-text-to-image/SKILL.md), image edits with [seedream-image-edit](../../.agents/skills/seedream-image-edit/SKILL.md), reference-to-video with [seedance-reference-to-video](../../.agents/skills/seedance-reference-to-video/SKILL.md)**; the local Z-Image / FastH3 routes were demoted to **free fallbacks for trial and error**. Three stale assumptions were corrected as a consequence: ① §6 where the canvas comes from (cloud = explicit `--ratio 9:16`, only `adaptive` follows the reference image; local = still "the input image decides"); ② §2/§4 duration quantisation (cloud `--duration 15` has no frame grid; local is 362 frames = 15.083 s); ③ §7 cost table (keyframes and renders are now **per-image / per-run paid**, with "never burn the selection funnel on paid endpoints" written in as a rule). §5 also states plainly that **the unit prices of all three cloud stages are unverified by this project**, and that `seedance-reference-to-video` is a **built-but-unverified** skill whose "5 steps before the first real run" must be walked first | 小七 |
