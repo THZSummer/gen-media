@@ -30,7 +30,7 @@
 | 1 | **Single episode** (main deliverable) | 1080×1920 / **15.083 s = 362 frames @24fps** | 9:16 | 1 per episode |
 | 2 | Vertical reference image (i2v first frame) | 1080×1920 (downscale to ≤1MP before feeding) | 9:16 | 1 per episode |
 | 3 | Cover frame | 1080×1920 | 9:16 | 1 per episode |
-| 4 | Prompt archive (incl. the 100 candidate briefs and scores) | — | — | 1 per episode |
+| 4 | Topic and prompt archive (**100-topic** funnel + **10-prompt** funnel + scores) | — | — | 1 per episode |
 | 5 | Publish copy + hashtags | — | — | 1 per episode |
 
 **Hard targets ("easy to watch" turned into numbers)**:
@@ -130,44 +130,64 @@ python3 scripts/comfyui_i2v.py --image ../../projects/ai-cant-replace-humans/ref
 
 ---
 
-## 7. Prompt selection funnel (100 → 1)
+## 7. Two selection funnels: **topics 100 → 1, then prompts 10 → 1**
 
-**Core discipline: do the selection on the text and keyframe layers; never actually run 100 videos.** The arithmetic makes it obvious:
+**Keep the two layers apart; never merge them into one scorecard.** Eliminate 99 ideas on the **topic layer** first,
+then 9 wordings on the **prompt layer**. The reason is practical: the topic decides "**is this an idea only a human
+could have come up with**", while the prompt only decides "**can it actually be shot**". Scored together, "the frame
+looks good" always beats "the idea is absurd enough" — and that is exactly the thing this project cannot afford to lose.
 
-| Layer | Qty | Unit cost | Total |
-|-------|-----|-----------|-------|
-| Text scoring | 100 | ~0 | ~0 |
-| Keyframe images (T2I) | 10 | ~25 s each | ~4 min |
-| Real i2v renders | 3 | ~20 min each | ~1 h |
-| ~~All 100 through i2v~~ | ~~100~~ | ~~20 min~~ | ~~**≈33 h GPU**~~ ← never viable |
+| Layer | What is chosen | Funnel | Unit cost | Total |
+|-------|----------------|--------|-----------|-------|
+| ① **Topic selection** | one logline + 5 beats | **100 → 1** | ~0 (text only) | ~0 |
+| ② **Prompt selection** | the full i2v prompt (10 wordings of the same topic) | **10 → 1** | ~0 (text only) | ~0 |
+| ③ Keyframes | vertical reference images for the winning prompt | 3 versions | ~25 s each | ~75 s |
+| ④ Real renders | i2v | 1–2 | ~20 min each | ~20–40 min |
+| ~~All through i2v~~ | ~~shoot every topic~~ | ~~100~~ | ~~20 min~~ | ~~**≈33 h GPU**~~ ← never viable |
 
-**Five-step funnel**:
+> **Core discipline**: both layers are decided **on text**, so the GPU only pays for the last two rows (about 1 hour in total, not 33).
 
-1. **Brief layer (100 → 20)**: each candidate is only "one logline + 5 beats", not a full prompt. Score with the rubric below.
-2. **Prompt layer (20 → 10)**: write the **full i2v prompt** for the surviving 20 (all three sections), then score again.
-3. **Keyframe layer (10 → 3)**: render the vertical reference images with T2I and **eliminate by eye** (if the frame cannot hold the idea, cut it).
-4. **Real-machine layer (3 → 1)**: run i2v for those 3 only, and compare "does it still hold once it moves".
-5. **Final pick**: 1 episode goes to delivery, the rest to the archive (they can be revived next period).
+### ① Topic selection (100 → 1)
 
-**Scorecard** (out of 5; any failed threshold eliminates the candidate outright, one veto):
+Write **100 topics** first; each one contains **only** a **single logline + 5 beats** (**no prompts** — writing prompts now makes reaching 100 impossible).
 
 | Dimension | Weight | Threshold | What it looks at |
 |-----------|--------|-----------|------------------|
-| Absurdity strength | 0.30 | ≥3 | Is it something "a human could invent and AI could not" |
-| Sayable and memorable in one line | 0.20 | ≥3 | Can it serve as the title |
-| Fits 15 s | 0.20 | ≥3 | Does it have two twists of setup and payoff |
-| Shot feasibility | 0.15 | — | Can i2v actually shoot it (no impossible physics) |
-| Platform friendliness | 0.15 | — | No real faces / existing IP / existing music / sensitive elements |
+| Absurdity strength | 0.35 | **≥3** | Is it something "a human could invent and AI could not" |
+| Sayable and memorable in one line | 0.25 | **≥3** | Can it be the title as-is |
+| Fits 15 s | 0.20 | **≥3** | Does it have two twists (see the §4 time structure) |
+| Shot feasibility | 0.10 | — | Can i2v actually shoot it (no impossible physics) |
+| Platform friendliness | 0.10 | — | No real faces / existing IP / existing music / sensitive elements |
 
-> A total of **≥3.5** is required to enter the keyframe layer; entering the real-machine layer requires **≥4.0**.
+Flow: **100 → 20** (by score) → **20 → 5** (re-scored, and checked against "has this idea been done already") → **5 → 1** (the final topic).
+**Any failed threshold is an outright veto**, regardless of the total.
+
+### ② Prompt selection (10 → 1)
+
+Write **10 full i2v prompts** (all three sections, see the format note below) for the **final topic only**, and score each one:
+
+| Dimension | Weight | Threshold | What it looks at |
+|-----------|--------|-----------|------------------|
+| Fidelity | 0.30 | **≥3** | Which of the 10 actually shoots that logline (instead of turning into another story) |
+| Shot executability | 0.25 | **≥3** | Do the 5 beats land on the cuts at **0 / 1.9 / 6.3 / 11.1 / 13.3 s**; is the action a **process** rather than a state |
+| The two sound sections hold | 0.20 | **≥3** | Does `overall_soundscape` carry **concrete physical sounds** (steps, fabric, objects), and does `non_diegetic_music` rise and fall with the emotion |
+| First-frame compatibility | 0.15 | — | Does it match the reference image (look / composition / the clear bottom quarter) |
+| Per-frame information density | 0.10 | — | Is there any section of the 15 s that idles |
+
+Flow: **10 → 3** (by score) → render a **vertical keyframe** for each of the 3 and judge by eye → **3 → 1** (the final prompt).
+The other 9 versions are **all archived**: they can be re-shot next period in another art style, or kept as "different solutions to the same topic".
 
 **Archive layout**:
 
 ```text
-prompts/hunt/<date>-r<N>.md   # all 100 briefs + per-item score + reason for elimination (traceable, never deleted)
-prompts/<slug>.txt            # the final i2v prompt in full (three sections: reference sentence / shots / two sound sections)
-refs/<slug>.png               # the final vertical reference image (9:16)
+topics/hunt/<date>-r<N>.md        # all 100 topics + per-item score + reason for elimination (traceable, never deleted)
+prompts/hunt/<slug>/<date>.md     # the 10 prompts for that topic + per-version score
+prompts/<slug>.txt                # the final prompt in full (three sections: reference sentence / shots / two sound sections)
+refs/<slug>.png                   # the final vertical reference image (9:16)
 ```
+
+> **In this project a "topic" means one shootable brief (a logline + 5 beats), not a Douyin hashtag**; hashtags are in §3.
+> ⚠️ Both layers must keep **the eliminated entries and the reasons** — half the value of a selection funnel is "what was chosen", the other half is "what was dropped and why".
 
 > The required i2v prompt form is documented in [image-to-video-fastvideo3/references/prompt-format.md](../../.agents/skills/image-to-video-fastvideo3/references/prompt-format.md):
 > **the first-frame reference sentence + `integrated_multimodal_description` (shots + timecodes) + `overall_soundscape` + `non_diegetic_music` — no section may be omitted**.
@@ -199,20 +219,21 @@ Sources: [Four departments issue the Measures for the Labelling of AI-Generated 
 
 | Stage | What happens | Gate |
 |-------|--------------|------|
-| Direction | **Text-level selection**, 100 → 1 briefs (logline + 5 beats) | 20 → 10 briefs survive |
-| Lock-in | 10 **vertical keyframes** rendered and scored on the rubric | 3 enter the real machine |
-| Final | 3 runs of i2v → pick 1, add subtitles / cover / compliance mark | 1 episode + complete archive |
-| Spin-off | Same brief with a different art style or character; series publishing | Episode count and data review |
+| Direction | **Topic selection 100 → 1** (text only: one logline + 5 beats) | all 100 archived with scores; **1 final topic** |
+| Lock-in | **Prompt selection 10 → 1** (10 full prompts for the final topic) + 3 vertical keyframes | all 10 archived with scores; **1 final prompt** + reference image |
+| Final | 1–2 runs of i2v → pick 1, add subtitles / cover / compliance mark | 1 episode + both archives complete |
+| Spin-off | Same topic with a different art style or character; series publishing | Episode count and data review |
 
 ---
 
 ## 10. Sub-topics (**not started**)
 
-As requested, **this period defines the project spec only and starts no sub-topics**. Before starting them, three things must be decided:
+As requested, **this period defines the project spec only and starts no sub-topics**. Before starting them, four things must be decided:
 
 1. **What dimension splits the sub-topics**: content device (logic / scale / material / causality / jargon)? Subject (office / kitchen / space / antiquity)? Or a character?
 2. **How many episodes per sub-topic**: compare [shanhai-jing](../shanhai-jing/README.en.md)'s "one creature per episode" with [bio-splice](../bio-splice/README.en.md)'s "5 periods per sub-topic".
 3. **Whether to use a fixed character**: a fixed character builds series recognition but stacks i2v consistency risk on top (the look must be re-anchored every episode).
+4. **Every sub-topic runs both funnels separately** (topics 100 → 1, prompts 10 → 1); **scores are not reused across sub-topics** — "absurdity strength" does not mean the same thing under a different dimension.
 
 ---
 
@@ -228,6 +249,8 @@ As requested, **this period defines the project spec only and starts no sub-topi
 
 - [ ] The reference image is **9:16** (otherwise the output is not vertical and the episode is a redo)
 - [ ] The reference image is ≤ ~1MP and leaves the **bottom quarter** clear for subtitles
+- [ ] **Topic selection 100 → 1** archived: all 100 entries + per-item score + reason for elimination (§7①)
+- [ ] **Prompt selection 10 → 1** archived: 10 full prompts + per-version score (§7②)
 - [ ] `--plan` passes: **362** frames, no warning, all three prompt sections present
 - [ ] First frame compared against the reference image (by eye and, when needed, `image-tools` SSIM)
 - [ ] The episode tells **one thing** and hits **≥2** absurdity devices (§4)
@@ -244,3 +267,4 @@ As requested, **this period defines the project spec only and starts no sub-topi
 | Date | Version | Change | Author |
 |------|---------|--------|--------|
 | 2026-10-11 | v0.1 | **Project created (spec only, no sub-topics started)**: settled the format (vertical 9:16 / 15.083 s = 362 frames / image + text + sound), the keywords and hashtags, the 15-second time structure and the "five absurdity devices", the reference-to-video route (including the hard constraint "the canvas follows the input image, so the reference image must be 9:16 first"), the **100 → 1 selection funnel and scorecard** (with the arithmetic showing that running all 100 through i2v would cost ≈33 h of GPU, so selection must happen on the text and keyframe layers), and the **AI-generated content labelling requirement** (the Labelling Measures took effect 2025-09-01: video needs a conspicuous notice on the opening frame and a proactive declaration when publishing) | 小七 |
+| 2026-10-11 | v0.2 | **The funnel was split into two layers (as requested)**: §7 rewritten as "**topic selection 100 → 1** → **prompt selection 10 → 1**" — the topic layer scores only "is this an idea only a human could have" (100 → 20 → 5 → 1, with veto thresholds) and the prompt layer scores only "can it be shot" (10 → 3 → 1, across fidelity / shot executability / the two sound sections / first-frame compatibility / information density); both layers are decided **on text**, so the GPU only pays for 3 keyframes and 1–2 real renders (≈1 h instead of 33 h). Also updated §2 deliverables, §9 execution plan (Direction = topics 100 → 1, Lock-in = prompts 10 → 1), §10 sub-topics (each runs both funnels; scores not reused), §12 checklist (one item per archive) and the archive paths (`topics/hunt/` and `prompts/hunt/<slug>/`) | 小七 |
