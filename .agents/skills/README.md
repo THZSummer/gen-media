@@ -33,6 +33,7 @@
 | **已有图片**要按提示词改（换背景 / 换主体 / 局部标注 / 多图参考） | [seedream-image-edit](seedream-image-edit/SKILL.md) —— 同一个 Seedream 付费节点，参考图接 `model.images.image_N`；也可用本机 ControlNet 那条路 |
 | 有**参考图**，要**云端**出片（1080p / 长时长 / 主体一致性，按次计费） | [seedance-reference-to-video](seedance-reference-to-video/SKILL.md) —— Seedance 2.5 付费 partner 节点做 r2v；⚠️ **只建未验**（见该技能顶部声明） |
 | 有一张控制图（线稿 / 照片 / 姿态图），要按结构出图 | [image-edit-comfyui](image-edit-comfyui/SKILL.md) —— Fun Union ControlNet，控制强度与生效区间可调 |
+| 有**一张图**，要同一主体的**多个机位/角度**（本机免费、可重复跑） | [comfyui-multi-angle](comfyui-multi-angle/SKILL.md) —— Qwen-Image-Edit 2511 + Multiple-Angles LoRA，**一次 8 个角度，实测 8 张约 4 分 46 秒**；可 `--only` 只出几个 |
 | 要合并多张图 / 比对两张图 / 去元数据 / 缩放裁切 | [image-tools](image-tools/SKILL.md) —— **不用 AI**，确定性、可复现 |
 | 只有文字，要**带同步音频**的短视频 | [text-to-video-fastvideo3](text-to-video-fastvideo3/SKILL.md) —— FastH3 t2va（本地 ComfyUI） |
 | 有一张静图，要它动起来（首帧/可选尾帧） | [image-to-video-fastvideo3](image-to-video-fastvideo3/SKILL.md) —— FastH3 fl2va（本地 ComfyUI） |
@@ -67,7 +68,8 @@
 │   ├── text-to-image-comfyui/           文生图：Z-Image-Turbo（12 步，~25s/张）+ Qwen-Image（细节、真负向）
 │   ├── seedream-text-to-image/        文生图：ByteDance Seedream 5.0 —— **模型在云端**，ComfyUI 付费节点，按张计费
 │   ├── seedream-image-edit/             图片编辑：同一个 Seedream 云端节点，底图（+ 标注）接 model.images.image_N
-│   └── image-edit-comfyui/              控制图生图：Z-Image Fun Union ControlNet（Canny 驱动）
+│   ├── image-edit-comfyui/              控制图生图：Z-Image Fun Union ControlNet（Canny 驱动）
+│   └── comfyui-multi-angle/             一张图 → 8 个角度（Qwen-Image-Edit 2511 + Multiple-Angles LoRA；实测 8 张 ≈ 4 分 46 秒）
 │
 ├── 🎬 出片
 │   ├── text-to-video-fastvideo3/        文生视频 + 同步音频（t2va）· **本地** ComfyUI
@@ -95,6 +97,7 @@
 | [seedream-image-edit](seedream-image-edit/SKILL.md) | 同一个 Seedream 云端节点做**图片编辑** | 底图（+ 标注层，可多张参考图）+ 指令 → 图片文件 | `seedream_edit.py --check` / `test_skill.py`（复用它那一份引擎） |
 | [seedance-reference-to-video](seedance-reference-to-video/SKILL.md) ⚠️ | ComfyUI 付费节点跑 **Seedance 2.5** 参考生视频（r2v） | 参考图（1–30 张）+ 提示词 → mp4（带同步音频） | `seedance_r2v.py --list`（离线）/ `--check`（真机）—— ⚠️ **均未跑过** |
 | [image-edit-comfyui](image-edit-comfyui/SKILL.md) | 远程 ComfyUI 跑 Fun Union ControlNet 控制图生图 | 控制图 + prompt → 图片文件 | `comfyui_edit.py --check` |
+| [comfyui-multi-angle](comfyui-multi-angle/SKILL.md) | 远程 ComfyUI 跑 **Qwen-Image-Edit 2511 + Multiple-Angles LoRA**：一张图出多机位 | 1 张参考图 → 8 张不同角度（可 `--only` 子集） | `test_skill.py`（离线 65 项）/ `comfyui_angles.py --check` |
 | [text-to-video-fastvideo3](text-to-video-fastvideo3/SKILL.md) | 远程 ComfyUI 跑 FastH3 文生视频 | 结构化 prompt → mp4（带音频轨） | `comfyui_video.py --check` |
 | [image-to-video-fastvideo3](image-to-video-fastvideo3/SKILL.md) | 远程 ComfyUI 跑 FastH3 图生视频（首帧/可选尾帧） | 1–2 张图 + prompt → mp4（带音频轨） | `comfyui_i2v.py --check` |
 | [comfyui-music-minimax3](comfyui-music-minimax3/SKILL.md) | 远程 ComfyUI 跑 **MiniMax Music 3** 文生音乐 | caption（+ lyrics）→ mp3（纯音乐/BGM 或整首歌） | `test_skill.py`（离线 43 项）/ `comfyui_music.py --check` |
@@ -106,6 +109,7 @@
 ### 组合用法
 
 - **动手前的第一步**：`comfyui-server status` 看版本/显存、`queue` 看谁在跑、`models --search X` 确认权重在位；想拿官方模板当起点就 `templates --pull <name> --audit`，再交给对应生成技能
+- **一张图要多个机位**：`comfyui-multi-angle`（本机免费，8 个角度 ≈ 5 分钟）→ 用 `image-tools` 拼版对照；同一主体的多机位也是图生视频/i2v 的好素材
 - **从文字到成品**：`text-to-image-comfyui` 逐轮出图 → `image-tools` 拼版速览 + 像素比对（与同轮底座对照）
 - **要云端模型的画质/中文理解、又不想装权重**：`seedream-text-to-image`（本机 ComfyUI 编排，推理在 ByteDance 云端；按张计费，先 `--dry-run`）
 - **改已有的图**：`seedream-image-edit`（底图 + 指令；要局部就在标注层上画一笔，Painter 会按 alpha 合成进去）→ 交付前用 `image-tools` 比对改动是否真的落在目标区域
@@ -130,6 +134,7 @@ http://192.168.3.5:18000            # ComfyUI 0.39.0，RTX 4060 Ti 8GB
 | seedream-text-to-image | **本机不需要权重**；要节点 `ByteDanceSeedreamNodeV3` + ComfyUI 账号 API Key + credits | `python3 scripts/seedream_gen.py --check` | ✅ 节点在位、`schema_drift: none`；真机出图 pro 1K+thinking **63 秒**，参数矩阵 **6/6**（`verify_params.py --yes`，3 分 41 秒） |
 | seedream-image-edit | 同上 + `LoadImage` / `Painter`（`Painter` 只在 `--annotate` 时需要） | `python3 scripts/seedream_edit.py --check` | ✅ 四类节点在位、`schema_drift: none`；真机编辑矩阵 **8/8**（`verify_edits.py --yes`，4 张图约 3 分钟）：背景改纯白落到像素上（边缘白占比 0.000→0.722）、标注合成图框内 1.000 不同/框外 0.00000、双参考 `image_1`+`image_2` 可用、flash + 参考图照跑 |
 | image-edit-comfyui | 上面 Z-Image 三件 + `Z-Image-Turbo-Fun-Controlnet-Union.safetensors` | `python3 scripts/comfyui_edit.py --check` | ✅ `missing: []`，真机参数矩阵 **28/28** 通过 |
+| comfyui-multi-angle | `qwen_image_edit_2511_bf16` / `qwen_2.5_vl_7b_fp8_scaled` / `qwen_image_vae` / `Qwen-Image-Edit-2511-Lightning-4steps` / `qwen-image-edit-2511-multiple-angles-lora` + **13 个节点类** | `python3 scripts/test_skill.py`（离线）+ `python3 scripts/comfyui_angles.py --check` | ✅ 离线 **65/65**；真机 `ok: true`；**真机 8 角度出片 285.8 s**（1024×1024 ×8，单张 35.7 s），人眼+数值双核对 |
 | seedance-reference-to-video ⚠️ | **本机不需要权重**；要节点 `ByteDance2ReferenceNodeV2` + `SaveVideo` + `LoadImage` + ComfyUI 账号 API Key + credits | `python3 scripts/seedance_r2v.py --list`（离线）/ `--check`（真机） | ⚠️ **未验证**：语法编译通过而已；`--check` / `--plan` / 真机出片**都没跑过**（按要求"只建不验"） |
 | text-to-video-fastvideo3 | 4 个模型文件 + **9 个节点类** | `python3 scripts/comfyui_video.py --check` | ✅ |
 | image-to-video-fastvideo3 | 同上（共用权重） | `python3 scripts/comfyui_i2v.py --check` | ✅ |
@@ -169,6 +174,9 @@ http://192.168.3.5:18000            # ComfyUI 0.39.0，RTX 4060 Ti 8GB
 | 像素判据 | 判断「改动是否生效」看**解码后的像素**，不看文件哈希（ComfyUI 会把执行图写进 PNG 的 tEXt，哈希必变） |
 | 落点 | 提示词里那个「件」实际应该长在什么位置/结构上 |
 | 探活 | 干活之前的第一个请求（本库统一用 `/system_stats`）：不可达立刻报错退出，不提交任务后长等 |
+| 多角度（multi-angle） | 同一主体换机位出图：`comfyui-multi-angle` 一次 8 个（特写/45°右/俯拍/广角/90°右/低机位/90°左/45°左），靠 Multiple-Angles LoRA + 角度提示词 |
+| 子图摊平（flatten） | 把"父图套子图"的两级嵌套改成一级再转换——共享转换器只可靠处理一级，否则参考图会丢、输出连线会悬空（实测坑） |
+| 可达性剪枝 | 从输出节点出发删掉没人依赖的节点；`--only` 靠它把 193 节点降到 49、KSampler 8→2，真省时间 |
 | `audit` / 可跑性审计 | 把工作流引用的权重与节点类和服务器实际清单对账（`comfyui-server`）：先按 `node.mode` 分 active/bypass，再看 `/api/models/<folder>` 与 `/api/object_info` |
 | active / bypass 分支 | 工作流里 `mode` 为 0 的节点会执行，`2`（mute）/`4`（bypass）不执行但仍在图里；官方模板常备着"另一条分支"的权重，审计区分错就会误判 |
 | `model_patches` | 模型补丁目录：Z-Image Fun Union ControlNet 的权重在这里，**不在 `controlnet`**；`/api/object_info` 不枚举它，得查 `/api/models` |
@@ -189,3 +197,4 @@ http://192.168.3.5:18000            # ComfyUI 0.39.0，RTX 4060 Ti 8GB
 | 2026-10-06 | v2.2 | **新增 [`seedream-image-edit`](seedream-image-edit/SKILL.md)**：同一个 Seedream 付费节点做**图片编辑**——上传底图（+ 可选 RGBA 标注层，Painter 按 alpha 合成）接进 `model.images.image_N`，支持多图参考、`--size auto`（按底图比例挑预设）；用 `_shared.py` 复用姊妹技能的引擎，不复制凭据/schema 代码。同时给 `seedream_api.py` 补 `prune_ui_only()`（桌面导出图里的 `MarkdownNote` 会让 /prompt 判 `missing_node_type`）。选路表/技能地图/技能表/自检表/组合用法各加一行，补两条术语 | 小七 |
 | 2026-10-11 | v2.3 | **新增 [`comfyui-server`](comfyui-server/SKILL.md)**（技能库第 9 个）：把"**服务器本身**"当对象来查——状态/显存/队列、`/api/models` 权重目录、`/api/object_info` 节点 schema、`/templates/index.json` 官方模板（本机 598 个，可搜可拉）、`audit` 判某模板/工作流**在本机缺什么**、历史记录与任意产物下载、userdata 工作流；写操作 `interrupt`/`free`/`clear-queue`/`upload` 一律要 `--yes`（护栏缺失时退出码 3）。**边界判据**："这个功能在完全没有 prompt 的情况下还有意义吗？"有 → 归它；没有 → 归生成技能，因此它**一步生成都不做**（UI→API 转换仍在 `text-to-image-comfyui`）。选路表/技能地图/技能表/自检表/组合用法各加一行，新增 6 条术语；同时订正服务器版本 `0.38.0` → **`0.39.0`**（实测） | 小七 |
 | 2026-10-11 | v2.4 | **新增 [`seedance-reference-to-video`](seedance-reference-to-video/SKILL.md)**（技能库第 10 个）**⚠️ 按用户要求"只建不验"**：以一份导出的 UI 工作流（`ByteDance2ReferenceNodeV2`，`LoadImage → Seedance 2.5 → SaveVideo`）为资产 + 一份**本地缓存的** schema 快照（5 个模型键、动态下拉框子输入、autogrow 参考上限 30/9）静态构造；脚本 `seedance_r2v.py` 提供 `--list / --check / --show-default-prompt / --plan / 生成`，复用兄弟技能的凭据通道与 UI→API 转换器。**没跑过 `--check`/`--plan`/真机出片，没有 `test_skill.py`，未进 `check.sh`** —— 例外与"首次真机前必做的 5 步"写在文件头与该技能 SKILL.md 顶部。技能地图的"出片"组改为本地/云端混排并注明权重约束 | 小七 |
+| 2026-10-12 | v2.5 | **新增 [`comfyui-multi-angle`](comfyui-multi-angle/SKILL.md)**（技能库第 11 个）：一张图一次出 **8 个不同角度**（Qwen-Image-Edit 2511 + Multiple-Angles LoRA，本机免费可重复跑）。以官方模板 "1 Click Multiple Character Angles" 的导出图为资产（498 KB / 三级图层 / 展开 193 节点），脚本提供 `--list / --check / --plan / 生成` + `--only`（按节点 id 旁路 + 可达性剪枝）/ `--angle` / 前后缀 / `--output-prefix` / `--fast, --no-fast` / `--seed`。**两个实测坑都修在技能里**：① 两级嵌套共享转换器处理不了（参考图会丢 + 8 条输出连线悬空）→ 新增 `flatten_parent()` 摊平父图，并把"指向图外节点的连线"升级成硬校验；② 官方模板两处输出前缀写错/重名（45°右→wide_shot、90°右→aerial_view）→ 资产已修正。真机：`--check` ok、`--plan` 0 悬空、**8 角度出片 285.8 s**（1024×1024×8，单张 35.7 s），人眼与数值双核对；离线自检 **65/65**。选路表/技能地图/技能表/自检表/组合用法各加一条，新增 3 条术语 | 小七 |

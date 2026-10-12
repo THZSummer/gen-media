@@ -74,7 +74,9 @@ run_check "image-edit-comfyui mock"       python3 .agents/skills/image-edit-comf
 run_check "comfyui-music-minimax3 mock"   python3 .agents/skills/comfyui-music-minimax3/scripts/test_skill.py
 # 服务器探查技能：离线自检（64 项，自带 mock ComfyUI）+ 真机探活（只读、零花费、不占 GPU）
 run_check "comfyui-server mock"            python3 .agents/skills/comfyui-server/scripts/test_skill.py
+run_check "comfyui-multi-angle mock"       python3 .agents/skills/comfyui-multi-angle/scripts/test_skill.py
 run_check "comfyui_server --check（真机）"  python3 .agents/skills/comfyui-server/scripts/comfyui_server.py --check
+run_check "comfyui_angles --check（真机）"  python3 .agents/skills/comfyui-multi-angle/scripts/comfyui_angles.py --check
 run_check "comfyui_gen --check（真机）"    python3 .agents/skills/text-to-image-comfyui/scripts/comfyui_gen.py --check
 run_check "comfyui_edit --check（真机）"   python3 .agents/skills/image-edit-comfyui/scripts/comfyui_edit.py --check
 run_check "comfyui_music --check（真机）"  python3 .agents/skills/comfyui-music-minimax3/scripts/comfyui_music.py --check
