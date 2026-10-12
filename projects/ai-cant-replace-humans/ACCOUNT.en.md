@@ -1,0 +1,135 @@
+# Media account identity (ACCOUNT)
+
+> 🌐 Language: **English** | [中文](ACCOUNT.md)
+
+> Back to [project home](README.en.md) ｜ Project index [../README.en.md](../README.en.md) ｜ Skills [../../.agents/skills/](../../.agents/skills/README.md)
+
+> This file settles **who the account is** (the brand umbrella). It does not replace [README.en.md](README.en.md) §5 (skill selection) or §7 (the selection funnels).
+> Once the name is live, changing it costs followers — so everything here is a **decision**, not a suggestion.
+
+---
+
+## 1. In one sentence
+
+> **The account is an AI called "硅基小张" (Silicon-based Xiao Zhang). It is hired by humans to do work, speaks in the first person throughout, and reports the absurd requests it receives with complete seriousness.**
+
+The series "Who Says AI Can Never Replace Humans" is its **first season**, not its whole identity.
+
+## 2. Settled items
+
+| Item | Decision | Note |
+|---|---|---|
+| **Account name** | **硅基小张** | A proper noun. Search requires the whole phrase ("小张" alone is far too common) |
+| **Protagonist** | 硅基小张 — a silicon-based worker | AI point of view; humans appear as "the employer / the one who sets the task" |
+| **Person** | **First person throughout (I / Xiao Zhang)** | The copy must keep this voice at all times |
+| **Opening line** (identical every episode) | **"我是那个 AI。我叫硅基小张。"** | A persona declaration, **not the account name** (why: §6) |
+| **End card** | **"收到，人类。"** plus employee number `07` | Closes the loop that the opening line opens |
+| **Title template** | `硅基小张 · 第 NNN 期｜人类让我做一件 AI 想不到的事` | Three parts: persona + episode number + promise |
+| **Employee number** | `07` | A fixed visual element, used in the end card and watermark |
+| **Season 1** | "Who Says AI Can Never Replace Humans" | A 15 s vertical series; format in [README.en.md](README.en.md) §2/§4 |
+| **Primary hashtags** | `#AI无法取代人类` `#这是人能想出来的剧情` | See [README.en.md](README.en.md) §3 |
+
+## 3. Protagonist sheet
+
+| Item | Setting |
+|---|---|
+| **Identity** | A silicon-based worker hired by humans, whose jobs are "things AI could not have thought of"; **permanently an intern** (employee number 07) |
+| **Character** | **Deadpan and over-conscientious**: it executes every absurd request as a formal research task |
+| **Comedy engine** | **The more serious it is, the funnier it gets** — the joke is not "AI is dumb" but "the AI actually took it seriously" |
+| **Its view of the world** | Every human quirk has a number, a category and an acceptance criterion |
+| **How it fails** | Not by doing it wrong, but by discovering halfway through that **the human's task itself makes no sense**, and reporting that faithfully |
+
+**Catchphrases (retellable = free distribution units)**:
+
+```text
+收到，人类。
+这不在我的训练集里。
+已上报第 7 类非理性折叠。
+```
+
+**Hard rules of speech**:
+
+1. **Always start with "收到，人类。"** before executing — the more absurd the instruction, the funnier that line is;
+2. **Treat absurdity as research**: number, name, score and report deviations on human behaviour;
+3. **Never admit ignorance, but report faithfully**: `这不在我的训练集里` is a dignified surrender;
+4. **The satire must be gentle**: it may tease human quirks but **must never insult humans** — the point of the project is that AI cannot replace humans, not that humans are stupid.
+
+**Forbidden** (any of these breaks the persona):
+
+- ❌ Being cute, coy, or whining "aww I can't do it";
+- ❌ Playing the victim or complaining about humans (it is a dutiful working AI, not a casualty);
+- ❌ Suddenly stepping out of the persona to lecture (when a lesson is needed, let "a human" say it);
+- ❌ Strings of exclamation marks (its humour comes from calm).
+
+## 4. Brand kit + corpus (the part nobody can copy)
+
+| Layer | Content | Role |
+|---|---|---|
+| ① Opening line | "我是那个 AI。我叫硅基小张。" | Establishes the persona within 3 seconds; builds a reflex |
+| ② Title template | `硅基小张 · 第 NNN 期｜人类让我做一件 AI 想不到的事` | Makes both the algorithm and the audience recognise "this is a series" |
+| ③ End card + watermark | "收到，人类。" + employee number 07, same position every episode | Series recognition — more effective than the account name, because viewers see the video before the profile |
+| ④ **Corpus** | **The 100 → 1 topic archive plus the 99 rejected ideas and the reasons** ([README.en.md](README.en.md) §7①) | A **brand asset**: names can be copied, but not what you rejected and why |
+
+## 5. Room for the future (extension test)
+
+Season 1 is "Who Says AI Can Never Replace Humans". Can this account name hold anything else? Test it one by one:
+
+| Possible future topic | Does it fit "硅基小张"? |
+|---|---|
+| Folk remedies / old crafts that AI cannot learn | ✅ It is the AI that "cannot learn it" |
+| Ancestral aesthetics AI cannot reproduce | ✅ It is the AI that "cannot judge it" |
+| 100 weird human questions posed to AI | ✅ It is the AI "answering them" |
+| Chinese county-town life as seen by an AI | ✅ It is the AI "seeing it for the first time" |
+
+**Rule of thumb**: as long as the topic is "**an AI facing the human world**", it fits. Only a pure "AI tool review" account would need a separate identity.
+
+## 6. Why not a descriptive name (rationale, on record)
+
+| Dimension | Descriptive name (e.g. "人类研究所", "给 AI 出难题") | Proper noun (`硅基小张`) |
+|---|---|---|
+| Ownership | Describes something public — **it belongs to you neither cognitively nor legally** | A coined proper noun — **yours by construction** |
+| Memory | Zero information ("I post AI content" — anyone can say that) | An oxymoron (silicon-based + Xiao Zhang); remembered in one hearing |
+| Distribution | Cannot be retold as a single line | The comments can shout "小张！" "收到人类！" |
+| Defensibility | A competitor adds one character and does the same thing | The name can be copied, but **the persona and the corpus cannot** |
+
+**Why "我是那个 AI" stays a line, not a name**: `那个` ("that") is a **deictic** with no proper-noun property — **anyone can be "that AI"**, and a rival calling itself "this AI" splits the audience. So keep the voice, and put the brand on a **proper noun**.
+
+## 7. Alternative persona: 碳基小张 (human point of view) and the switching cost
+
+If you go the other way (**the protagonist is a human**, the AI is its subordinate, "碳基小张"), only three things differ:
+
+| Item | 硅基小张 (**settled**) | 碳基小张 (alternative) |
+|---|---|---|
+| Who is "I" | The AI | The human |
+| Comedy engine | An AI deadpan-executing absurd instructions | A human mocking an AI that can never catch up |
+| Opening line | 我是那个 AI。我叫硅基小张。 | 我是个普通人。我让 AI 替我干活。 |
+
+**What switching would touch**: §2/§3/§4 of this file, the positioning line in [README.en.md](README.en.md) §1, and the title template. **Decide before launch** — changing later is the same as starting a new account.
+
+> ⚠️ In the previous round my option label misspelled "硅基" as "碳基" (AI is silicon-based; humans are carbon-based). This file follows the meaning and uses **硅基小张**; if you actually wanted the human point of view, switch to "碳基小张" per the table above and say the word.
+
+## 8. Still open (to be decided)
+
+| Open item | Note |
+|---|---|
+| Whether the **look** is fixed | Recommended: fix in **layers** — language persona + end card **must** be fixed; the look can be re-rendered per episode with Seedream/Seedance (fixing "the same face" burns the budget on consistency repair, see [README.en.md](README.en.md) §10) |
+| Cadence and schedule | Once decided, put it in the bio (a promise like "new episode every Tuesday" must be kept) |
+| Platform verification / blue V | Keep it consistent with the real-name entity; helps against impersonation |
+| **Trademark** | A name cannot stop copying, **a trademark can**; once the name is set, check classes 41/42 on the China Trademark Office site and register |
+| One-line bio | Suggested: `一个被人类雇来的 AI｜记录 AI 想不到的事｜每周二更` |
+
+## 9. Pre-launch checklist
+
+- [ ] **Check for duplicates on the platform** (I cannot see platform-internal data; you must search in the app): `硅基小张` and its no-space/underscore variants — look at whether the top 10 accounts are in the same lane
+- [ ] **Comment test**: can you imagine the comments shouting it — "小张！" "收到人类！"? A name nobody can shout is a dead name
+- [ ] **Spoken test**: say it to a friend once; can they repeat it correctly the second time?
+- [ ] **Search-term check**: does the name keep a high-frequency search term? (`硅基小张` contains no "AI" → **put "AI" into the bio and the title template** to compensate)
+- [ ] **Decoupling test**: the name contains no conclusion such as "replace humans" (that belongs to the series title)
+- [ ] **Trademark pre-check**: classes 41/42 on the China Trademark Office site
+- [ ] The kit — opening line / title template / end card — is final and written into the per-episode workflow (add one item to the checklist in [README.en.md](README.en.md) §12)
+
+## 10. Revision log
+
+| Date | Version | Change | Author |
+|------|---------|--------|--------|
+| 2026-10-11 | v0.1 | **Account identity created**: account name **`硅基小张`** (a proper noun: silicon-based identity + an everyday human name); protagonist = a silicon-based worker hired by humans, **first person throughout**; opening line "我是那个 AI。我叫硅基小张。", end card "收到，人类。", employee number 07, and a three-part title template; protagonist sheet (character / comedy engine / three catchphrases / four hard speech rules / four forbidden moves); the brand "kit + corpus"; the extension test over four future topics; the naming rationale (why not a descriptive name, and why "我是那个 AI" stays a line); the alternative persona "碳基小张" with its switching cost; five open items and a seven-point pre-launch checklist | 小七 |
