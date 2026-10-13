@@ -48,7 +48,9 @@ python3 scripts/comfyui_angles.py --image ref.png --plan   # ④ 免费：只验
 | 差异（数值） | 8 张两两平均绝对差 **42–60**（0–255 尺度），没有两张相同 |
 | `--only 45_right,90_right` | 图内节点 **193 → 49**、KSampler **8 → 2**（真省时间，不是只丢输出） |
 | ETA | 脚本按 **36 s/张** 估（实测 35.7）；`--plan` 也会先报 ETA |
-| 慢档（`--no-fast`，40 步） | ⚠️ **未实测**，ETA 里的 150 s/张是粗估 |
+| **慢档（`--no-fast`，40 步 + cfg 4）单张** | **576.5 s（9 分 37 秒）**；服务端执行窗口 **572.2 s**，`execution_cached: 16/25`（**加载器全命中缓存，不是冷加载**） |
+| 慢档的倍数关系 | **16×** 于快档（理论 10×步数 × ≈2×cfg：cfg>1 每步多一次无条件前向） |
+| 慢档 8 个角度 | **≈ 76 分钟（线性外推，没跑满 8 张）** —— 要用慢档请先 `--only` 出 1 个角度 |
 
 ## 参数
 
@@ -59,7 +61,7 @@ python3 scripts/comfyui_angles.py --image ref.png --plan   # ④ 免费：只验
 | `--angle KEY=TEXT` | 改写某个角度的提示词（可重复） | 模板原文 |
 | `--prompt-prefix` / `--prompt-suffix` | 给 8 条角度提示词统一加前后缀（如"保持服装一致"） | 空 |
 | `--output-prefix NAME` | 输出前缀改成 `NAME/<角度名>`（便于一次跑出一组有名字的文件） | 模板前缀 |
-| `--fast` / `--no-fast` | 快档（4 步 + cfg 1 + Lightning LoRA）／慢档（40 步 + cfg 4） | 模板为 `--fast` |
+| `--fast` / `--no-fast` | 快档（4 步 + cfg 1 + Lightning LoRA，**35.7 s/张**）／慢档（40 步 + cfg 4，**576.5 s/张**） | 模板为 `--fast` |
 | `--seed` | 固定种子：8 个角度依次用 `seed, seed+1, …`（不传则沿用工作流里的随机种子） | — |
 | `--unet-name` `--clip-name` `--vae-name` `--lora-name` `--lora-name-1` | 覆盖模型文件 | 工作流自带 |
 | `--out-dir` / `--timeout` / `--poll` / `--quiet` / `--no-record` | 产物与留档 | `out` / 3600 / 5 / — / 留档开 |
@@ -97,7 +99,7 @@ python3 scripts/comfyui_angles.py --image ref.png \
     --prompt-suffix "Keep the same face, hairstyle and outfit as the reference." \
     --angle aerial_view="Turn the camera to a high bird's-eye view." --out-dir out/
 
-# ⑤ 慢档（40 步，更慢；本技能未实测耗时）
+# ⑤ 慢档（40 步 + cfg 4）：**单张 ≈ 9 分 37 秒**，8 张 ≈ 76 分钟 —— 一定配 --only 先试一张
 python3 scripts/comfyui_angles.py --image ref.png --no-fast --only close_up --out-dir out/
 ```
 
@@ -139,7 +141,7 @@ python3 scripts/comfyui_angles.py --image ref.png --no-fast --only close_up --ou
 | 人眼核对 | ✅ `close_up` 特写 / `aerial_view` 俯拍：同一角色同一服装，机位确实变了 |
 | 数值对照 | ✅ 8 张两两平均绝对差 42–60，无两张相同 |
 | `--only` 省时 | ✅ 图内节点 193 → 49、KSampler 8 → 2 |
-| 慢档 `--no-fast` | ❌ 未实测（仅离线验证开关语义与图结构） |
+| **慢档 `--no-fast`（2026-10-12）** | ✅ `status: success`，单张 **576.5 s（9 分 37 秒）**；服务端窗口 572.2 s、`execution_cached: 16/25`（排除冷加载）；同角度同 seed 与快档图平均绝对差 **29.15**（`--no-fast` 真的换了算法，不是空转）；人眼核对仍是同一角色同一特写 |
 | `image2/image3` 双参考 | ❌ 未做（父图未接线） |
 
 ## 检查清单
@@ -148,6 +150,7 @@ python3 scripts/comfyui_angles.py --image ref.png --no-fast --only close_up --ou
 - [ ] `--check`：`ok: true`（缺模型会点名；按工作流 MarkdownNote 里的链接下载）
 - [ ] `--plan` 通过：输出数 = 想要的角度数、`dangling_links` 为空
 - [ ] 首次出片先用 `--only` 挑 2 个角度验方向（≈1 分 15 秒），再上全 8 个
+- [ ] 要用慢档（`--no-fast`）：**先 `--only` 出 1 张**（≈9 分 37 秒），别直接上 8 张（≈76 分钟）
 - [ ] 需要复现时给 `--seed`（8 个角度依次 `seed..seed+7`）
 - [ ] 大体积中间产物（`work/`、`out/`）未入库
 
@@ -155,4 +158,5 @@ python3 scripts/comfyui_angles.py --image ref.png --no-fast --only close_up --ou
 
 | 日期 | 版本 | 变更 |
 |------|------|------|
+| 2026-10-12 | v1.1 | **补上慢档实测**：`--no-fast`（40 步 + cfg 4）单张 **576.5 s**，服务端执行窗口 572.2 s、`execution_cached 16/25`（排除冷加载），是快档的 **16×**；同角度同 seed 与快档平均绝对差 29.15（确认换了算法）。据此把 ETA 常量从粗估 150 s/张改成实测 **576 s/张**，`--list` 里写明"慢档 8 张 ≈ 76 分钟"，检查清单加"慢档先只出 1 张"。离线自检 65 → **67 项**（新增慢档 ETA 与倍比两条断言） |
 | 2026-10-12 | v1.0 | **建立并真机验证**：以官方模板 "1 Click Multiple Character Angles" 的导出图为资产（498 KB / 三级图层 / 193 节点）；脚本 `comfyui_angles.py` 提供 `--list / --check / --plan / 生成`，支持 `--only`（按节点 id 旁路 + 可达性剪枝）、`--angle`、前后缀、`--output-prefix`、`--fast/--no-fast`、`--seed`。**新增 `flatten_parent()`**：把两级嵌套摊平成一级（否则参考图丢失 + 8 条连线悬空）；`validate()` 加图完整性检查。修正官方模板两处输出前缀错名。实时测：8 张 285.8 s（单张 35.7 s）、0 悬空、人眼与数值双核对；离线自检 65/65 |

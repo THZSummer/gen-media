@@ -51,7 +51,7 @@ LOAD_CLASS = "LoadImage"
 
 # 实测成本（2026-10-12 真机）：8 张 1024×1024 / 快档 4 步 = 285.8 s → 单张 35.7 s
 SECONDS_PER_ANGLE_FAST = 36.0
-SECONDS_PER_ANGLE_SLOW = 150.0  # 慢档 40 步的粗估（未实测，仅用于提示）
+SECONDS_PER_ANGLE_SLOW = 576.0  # 慢档实测（2026-10-12 真机）：单张 576.5 s（服务端执行窗口 572.2 s）
 
 REQUIRED_MODELS: tuple[tuple[str, str], ...] = (
     ("diffusion_models", "qwen_image_edit_2511_bf16.safetensors"),
@@ -543,7 +543,8 @@ def describe(ui: dict) -> dict:
             "interface": "value（enable_turbo_mode）",
             "current": fast,
             "true": "快档：4 步 + cfg 1 + Lightning LoRA（模板默认）",
-            "false": "慢档：40 步 + cfg 4，不走 Lightning",
+            "false": ("慢档：40 步 + cfg 4，不走 Lightning —— **实测单张 576.5 s（9 分 37 秒）**，"
+                      "比快档慢 16×；8 个角度线性外推 ≈ 76 分钟"),
             "where": ("UI 链：实例 value → 父图接口 → 子图实例 → 子图内 PrimitiveBoolean → 三个 ComfySwitchNode；"
                       "但转换器不透传实例接口值，所以脚本直接改 8 个子图里的 PrimitiveBoolean（--fast/--no-fast）"),
         },

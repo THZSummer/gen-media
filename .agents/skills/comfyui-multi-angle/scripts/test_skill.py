@@ -302,7 +302,11 @@ def test_describe_and_cli() -> None:
     check("--list：说明 value 开关的两档语义",
           "value" in desc["switch"]["interface"] and desc["switch"]["current"] is True
           and "where" in desc["switch"])
-    check("--list：ETA 按 8 张 ≈ 5 分钟给", 280 <= desc["eta_fast_s"] <= 320, desc["eta_fast_s"])
+    check("--list：快档 ETA 按 8 张 ≈ 5 分钟给", 280 <= desc["eta_fast_s"] <= 320, desc["eta_fast_s"])
+    check("--list：慢档 ETA 按实测 576 s/张 给（8 张 ≈ 76 分钟）",
+          desc["eta_slow_s"] >= 4500, desc["eta_slow_s"])
+    check("慢/快 ETA 比 ≈ 16×", 14 <= desc["eta_slow_s"] / desc["eta_fast_s"] <= 18,
+          desc["eta_slow_s"] / desc["eta_fast_s"])
 
     buf = io.StringIO()
     old = sys.stdout

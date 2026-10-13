@@ -55,8 +55,10 @@
 | Switch (CFG) → `KSampler.cfg` | `PrimitiveFloat` **1** | `PrimitiveFloat` **4** |
 | Switch (Model) → `KSampler.model` | 走 Lightning LoRA 的模型 | 不走 Lightning 的模型 |
 
-- `value=True`（模板默认）= **快档**：4 步 + cfg 1 + Lightning 4steps LoRA
-- `value=False` = **慢档**：40 步 + cfg 4
+- `value=True`（模板默认）= **快档**：4 步 + cfg 1 + Lightning 4steps LoRA → 实测 **35.7 s/张**
+- `value=False` = **慢档**：40 步 + cfg 4 → 实测 **576.5 s/张（9 分 37 秒）**，是快档的 **16×**
+  （步数 10× × cfg 多一次无条件前向 ≈2×；服务端 `execution_cached: 16/25` 说明加载器命中缓存，
+  不是冷加载吃掉了时间）。**慢档 8 张 ≈ 76 分钟**，要用先 `--only` 单张试。
 - CLI 的 `--fast` / `--no-fast` 就是它。
 
 ## 4. 两个实测踩到的坑（都已修，别退回去）
@@ -110,5 +112,5 @@
 ## 7. 未做 / 待验证
 
 - [ ] `image2/image3` 多参考（父图未接线，要自己接线才能用）
-- [ ] `--no-fast`（慢档 40 步）真机耗时未实测（ETA 里的 150 s/张是粗估）
+- [x] ~~`--no-fast`（慢档 40 步）真机耗时未实测~~ → **已实测：576.5 s/张**（2026-10-12，见 §3）
 - [ ] 与官方 MarkdownNote 里列的 2509 版本模型混用（本模板实际用的是 **2511** 系列文件）
